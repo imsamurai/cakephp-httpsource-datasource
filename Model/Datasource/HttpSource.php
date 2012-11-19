@@ -525,6 +525,8 @@ abstract class HttpSource extends DataSource {
      */
     public function processResult(Model $model, array $result) {
         $result = $this->structurizeResult($model, $result);
+
+        //emulate limit and offset
         if (!empty($this->_queryData['limit'])) {
             if (!empty($this->_queryData['offset'])) {
                 $offset = $this->_queryData['offset'];
@@ -535,6 +537,7 @@ abstract class HttpSource extends DataSource {
             $result = array_slice($result, $offset, $this->_queryData['limit']);
         }
 
+        //fields emulation
         if (!empty($this->_queryData['fields'])) {
             foreach ($result as &$data) {
                 $data = array_intersect_key($data, array_flip($this->_queryData['fields']));
@@ -542,11 +545,17 @@ abstract class HttpSource extends DataSource {
             unset($data);
         }
 
+        //order emulation
         if (!empty($this->_queryData['order'])) {
             App::uses('ArraySort', 'ArraySort.Utility');
             $result = ArraySort::multisort($result, $this->_queryData['order']);
         }
 
+        //final structure
+        foreach ($result as &$data) {
+            $data = array($model->name => $data);
+        }
+        unset($data);
 
         return $result;
     }
