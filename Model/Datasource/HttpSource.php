@@ -32,8 +32,6 @@ abstract class HttpSource extends DataSource {
      * @var array
      */
     public $config = array();
-    // TODO: Relocate to a dedicated schema file
-    public $_schema = array();
 
     /**
      * Instance of CakePHP core HttpSocket class
@@ -48,6 +46,20 @@ abstract class HttpSource extends DataSource {
      * @var integer
      */
     public $took = null;
+
+    /**
+     * Rows affected
+     *
+     * @var integer
+     */
+    public $affected = null;
+
+    /**
+     * Rows number
+     *
+     * @var integer
+     */
+    public $numRows = null;
 
     /**
      * Time the last query error
@@ -110,6 +122,13 @@ abstract class HttpSource extends DataSource {
      * @var array Cache of results from executed queries.
      */
     protected $_requestCache = array();
+
+    /**
+     * Query data passed in read method
+     *
+     * @var array
+     */
+    protected $_queryData = array();
 
     /**
      * Constructor
@@ -177,10 +196,11 @@ abstract class HttpSource extends DataSource {
      *
      * @param Model $model Model object
      * @param mixed $request_data Array of request or string uri
+     * @param string $request_method read, create, update, delete
      *
      * @return array|false $response
      */
-    public function request(Model $model = null, $request_data = null) {
+    public function request(Model $model = null, $request_data = null, $request_method = 'read') {
         if ($model !== null) {
             $request = $model->request;
         } elseif (is_array($request_data)) {
@@ -240,6 +260,9 @@ abstract class HttpSource extends DataSource {
         }
 
         if ($model !== null) {
+            if ($response !== false && $request_method === 'read') {
+                $response = $this->processResult($model, $response);
+            }
             $model->response = $response;
             $model->request = $request;
         }
@@ -333,9 +356,15 @@ abstract class HttpSource extends DataSource {
         return $response;
     }
 
-    /* public function listSources() {
-      return array_keys($this->_schema);
-      } */
+    /**
+     * Returns all available sources
+     *
+     * @param mixed $data
+     * @return array Array of sources available in this datasource.
+     */
+    public function listSources($data = null) {
+        return array_keys($this->map['read']) + array_keys($this->map['create']) + array_keys($this->map['update']) + array_keys($this->map['delete']);
+    }
 
     /**
      * Iterates through the tokens (passed or request items) and replaces them into the url
@@ -409,9 +438,9 @@ abstract class HttpSource extends DataSource {
         $this->_requestsCnt++;
         $this->_requestsLog[] = array(
             'query' => $this->Http->request['raw'],
-            'error' => '',
-            'affected' => '',
-            'numRows' => '',
+            'error' => $this->error,
+            'affected' => $this->affected,
+            'numRows' => $this->numRows,
             'took' => $this->took,
         );
         $this->_requestsTime += $this->took;
@@ -475,6 +504,18 @@ abstract class HttpSource extends DataSource {
     }
 
     /**
+     * Filter data by fields, limit, structurize results like in DBO.
+     * Override this method for your DataSource.
+     *
+     * @param Model $model
+     * @param array $result
+     * @return array
+     */
+    public function processResult(Model $model, array $result) {
+        return $result;
+    }
+
+    /**
      * Uses standard find conditions. Use find('all', $params). Since you cannot pull specific fields,
      * we will instead use 'fields' to specify what table to pull from.
      *
@@ -484,6 +525,7 @@ abstract class HttpSource extends DataSource {
      * @access public
      */
     public function read(Model $model, $queryData = array(), $recursive = null) {
+        $this->_queryData = $queryData;
         if (!isset($model->request)) {
             $model->request = array();
         }
@@ -516,7 +558,7 @@ abstract class HttpSource extends DataSource {
             }
         }
 
-        $result = $this->request($model);
+        $result = $this->request($model, null, 'read');
 
         if ($model->cacheQueries && $result !== false) {
             $this->_writeQueryCache($model->request, $result);
@@ -546,7 +588,7 @@ abstract class HttpSource extends DataSource {
         } else {
             return false;
         }
-        return $this->request($model);
+        return $this->request($model, null, 'create');
     }
 
     /**
@@ -572,7 +614,7 @@ abstract class HttpSource extends DataSource {
                 return false;
             }
         }
-        return $this->request($model);
+        return $this->request($model, null, 'update');
     }
 
     /**
@@ -586,7 +628,7 @@ abstract class HttpSource extends DataSource {
             $model->request = array();
         }
         $model->request = array_merge(array('method' => 'DELETE'), $model->request);
-        return $this->request($model);
+        return $this->request($model, null, 'delete');
     }
 
     public function getColumnType() {

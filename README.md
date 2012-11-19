@@ -105,7 +105,7 @@ $config['MyPlugin']['read'] = array(
 		),
 	),
 );
-$config['MyPlugin']['write'] = array(
+$config['MyPlugin']['create'] = array(
 );
 $config['MyPlugin']['update'] = array(
 );
