@@ -1,9 +1,9 @@
 # HttpSource Plugin
 
 Plugin with HttpSource to provide base class for datasorses with Http protocol. Based on [ProLoser](https://github.com/ProLoser/CakePHP-Api-Datasources) implementation.
-I make some refactoring to make HttpSource more similar to DboSource and removed OAuth component? because i think for login better use [Opauth](https://github.com/uzyn/cakephp-opauth).
+I make some refactoring to make HttpSource more similar to DboSource and removed OAuth component, because i think for login better use [Opauth](https://github.com/uzyn/cakephp-opauth).
 
-For existing plugins check [ProLoser](https://github.com/ProLoser/CakePHP-Api-Datasources) readme.
+For existing plugins check [ProLoser](https://github.com/ProLoser/CakePHP-Api-Datasources) readme. But they will not work with HttpSource. I will adapt these plugins later.
 
 ## Notes
 
@@ -21,12 +21,6 @@ It's _very_ easy to add new ones - [check out the list](#expanding-functionality
 :: database.php ::
 var $myapi = array(
 	'datasource' => 'MyPlugin.Http/MyPlugin', // Example: 'Github.Http/Github'
-        /**
-         * or
-         * 'datasource' => 'MyPlugin.MyPlugin', // Example: 'Github.Github'
-         * if plugin datasource not in Datasource/Http folder
-         *
-         */
 
 	// These are only required for authenticated requests (write-access)
 	'login' => '--Your API Key--',
@@ -69,7 +63,7 @@ Class Project extends AppModel {
 
 ### Creating a configuration map
 
-_[MyPlugin]/Config/[MyPlugin].php_
+_[MyPlugin]/Config/Http/[MyPlugin].php_
 
 REST paths must be ordered from most specific conditions to least (or none). This is because the map is iterated through
 until the first path which has all of its required conditions met is found. If a path has no required conditions, it will
@@ -146,7 +140,7 @@ Class MyPlugin extends HttpSource {
 		parent::__construct($config);
 	}
 	// Last minute tweaks
-	public function beforeRequest(&$model, $request) {
+	public function beforeRequest($request) {
 		$request['header']['x-li-format'] = $this->options['format'];
 		return $request;
 	}
