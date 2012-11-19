@@ -546,9 +546,9 @@ abstract class HttpSource extends DataSource {
         }
 
         //order emulation
-        if (!empty($this->_queryData['order'])) {
+        if (!empty($this->_queryData['order'][0])) {
             App::uses('ArraySort', 'ArraySort.Utility');
-            $result = ArraySort::multisort($result, $this->_queryData['order']);
+            $result = ArraySort::multisort($result, $this->_queryData['order'][0]);
         }
 
         //final structure
