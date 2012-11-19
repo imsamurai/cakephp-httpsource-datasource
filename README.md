@@ -1,24 +1,33 @@
-# Apis Plugin
+# HttpSource Plugin
 
-Since I started going through several restful apis things started to become repetitive. I decided to layout my code in a more 'proper ' fashion then.
+Plugin with HttpSource to provide base class for datasorses with Http protocol. Based on [ProLoser](https://github.com/ProLoser/CakePHP-Api-Datasources) implementation.
+I make some refactoring to make HttpSource more similar to DboSource and removed OAuth component? because i think for login better use [Opauth](https://github.com/uzyn/cakephp-opauth).
+
+For existing plugins check [ProLoser](https://github.com/ProLoser/CakePHP-Api-Datasources) readme.
 
 ## Notes
 
-`ApiDatasource` is an **abstract** class and must be extended by the Api you wish to support.
+`HttpSource` is an **abstract** class and must be extended by the Api you wish to support.
 Open a bug ticket if you'd like some help making your own or just want me to do it.
 It's _very_ easy to add new ones - [check out the list](#expanding-functionality)
 
 ## Installation
 
-### Step 1: Clone or download to `Plugin/Apis`
+### Step 1: Clone or download to `Plugin/HttpSource`
 
 ### Step 2: Add your configuration to `database.php` and set it to the model
 
 ```
 :: database.php ::
 var $myapi = array(
-	'datasource' => 'MyPlugin.MyPlugin', // Example: 'Github.Github'
-	
+	'datasource' => 'MyPlugin.Http/MyPlugin', // Example: 'Github.Http/Github'
+        /**
+         * or
+         * 'datasource' => 'MyPlugin.MyPlugin', // Example: 'Github.Github'
+         * if plugin datasource not in Datasource/Http folder
+         *
+         */
+
 	// These are only required for authenticated requests (write-access)
 	'login' => '--Your API Key--',
 	'password' => '--Your API Secret--',
@@ -26,49 +35,10 @@ var $myapi = array(
 
 :: MyModel.php ::
 var $useDbConfig = 'myapi';
-```
-
-### Step 3: Authenticating (requires a configuration map)
 
 ```
-MyController extends AppController {
-	var $components = array(
-		'Apis.Oauth' => 'linkedin', // name of the $dbConfig to use
-	);
-	
-	function connect() {
-		$this->Oauth->connect();
-	}
-	
-	function linkedin_callback() {
-		$this->Oauth->callback();
-	}
-}
-```
 
-You can also use multiple database configurations
-
-```
-var $components = array(
-	'Apis.Oauth' => array(
-		'linkedin',
-		'github',
-		'flickr',
-	);
-);
-```
-
-However this requires you to specify which config to use before calling authentication methods
-
-```
-function beforeFilter() {
-	$this->Oauth->useDbConfig = 'github';
-}
-```
-
-### Step 4: Querying the API
-
-> **NOTE:** You _must_ load the OauthComponent on any action that makes a call to the Api
+### Step 3: Querying the API
 
 Best to just give an example. I switch the datasource on the fly because the model is actually a `projects` table in the
 DB. I tend to query from my API and then switch to default and save the results.
@@ -88,26 +58,6 @@ Class Project extends AppModel {
 
 ## Expanding functionality
 
-Use the [template branch](https://github.com/ProLoser/CakePHP-Api-Datasources/tree/template) as a starting point for creating your own datasource.
-
-__Checkout other plugins for examples__
-
- * [Flickr](https://github.com/proloser/cakephp-flickr)
- * [Vimeo](https://github.com/proloser/cakephp-vimeo)
- * [Instagram](https://github.com/proloser/cakephp-instagram)
- * [Facebook](https://github.com/JavRok/http_socket_oauth)
- * [LinkedIn](https://github.com/ProLoser/CakePHP-LinkedIn)
- * [Github](https://github.com/ProLoser/CakePHP-Github) which does OAuth v2
- * [PhotoBucket](https://github.com/ProLoser/CakePHP-Photobucket)
- * [Dribbble](https://github.com/ProLoser/CakePHP-Dribbble)
- * [Instagram](https://github.com/ProLoser/CakePHP-Instagram)
- * [Asana](https://github.com/ProLoser/CakePHP-Asana)
- * [Delicio.us](https://github.com/ProLoser/CakePHP-Delicious)
- * [Forrst](https://github.com/ProLoser/CakePHP-Forrst)
- * [CloudPrint (Google)](https://github.com/tenebrousedge/CakePHP-Cloudprint)
- * [JsFiddle](https://github.com/ProLoser/CakePHP-JsFiddle) for the bare minimum needed to add a new API
- * A whole lot more
-
 ### Creating a configuration map
 
 _[MyPlugin]/Config/[MyPlugin].php_
@@ -117,11 +67,11 @@ until the first path which has all of its required conditions met is found. If a
 be used. Optional conditions aren't checked, but are added when building the request.
 
 ```
-$config['Apis']['MyPlugin']['hosts'] = array(
+$config['MyPlugin']['hosts'] = array(
 	'oauth' => 'api.myplugin.com/login/oauth',
 	'rest' => 'api.myplugin.com/v1',
 );
-$config['Apis']['MyPlugin']['oauth'] = array(
+$config['MyPlugin']['oauth'] = array(
 	'version' => '1.0', // [Optional] OAuth version (defaults to 1.0): '1.0' or '2.0'
 	'scheme' => 'https', // [Optional] Values: 'http' or 'https'
 	'authorize' => 'authorize', // Example URI: api.linkedin.com/uas/oauth/authorize
@@ -130,7 +80,7 @@ $config['Apis']['MyPlugin']['oauth'] = array(
 	'login' => 'authenticate', // Like authorize, just auto-redirects
 	'logout' => 'invalidateToken',
 );
-$config['Apis']['MyPlugin']['read'] = array(
+$config['MyPlugin']['read'] = array(
 	// field
 	'people' => array(
 		// api url
@@ -152,23 +102,27 @@ $config['Apis']['MyPlugin']['read'] = array(
 		),
 	),
 );
-$config['Apis']['MyPlugin']['write'] = array(
+$config['MyPlugin']['write'] = array(
 );
-$config['Apis']['MyPlugin']['update'] = array(
+$config['MyPlugin']['update'] = array(
 );
-$config['Apis']['MyPlugin']['delete'] = array(
+$config['MyPlugin']['delete'] = array(
 );
 ```
 
-### Creating a custom datasource 
+### Note:
+Format `$config['Apis']['MyPlugin']` not supported.
+
+
+### Creating a custom datasource
 
 Try browsing the apis datasource and seeing what automagic functionality you can hook into.
 
-_[MyPlugin]/Model/Datasource/[MyPlugin].php_
+_[MyPlugin]/Model/Datasource/Http/[MyPlugin].php_
 
 ```
-App::uses('ApisSource', 'Apis.Model/Datasource'); 
-Class MyPlugin extends ApisSource {
+App::uses('ApisSource', 'Apis.Model/Datasource');
+Class MyPlugin extends HttpSource {
 	// Examples of overriding methods & attributes:
 	public $options = array(
 		'format'    => 'json',
@@ -187,17 +141,6 @@ Class MyPlugin extends ApisSource {
 		$request['header']['x-li-format'] = $this->options['format'];
 		return $request;
 	}
-}
-```
-
-### Creating a custom oauth component (recommended approach)
-
-_[MyPlugin]/Controller/Component/[MyPlugin].php_
-
-```
-App::uses('Oauth', 'Apis.Component/Component');
-Class MyPluginComponent extends OauthComponent {
-	// Override & supplement your methods & attributes
 }
 ```
 
