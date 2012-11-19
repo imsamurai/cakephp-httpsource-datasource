@@ -57,6 +57,24 @@ abstract class HttpSource extends DataSource {
     public $error = null;
 
     /**
+     * Holds a configuration map
+     *
+     * @var array
+     */
+    public $map = array();
+
+    /**
+     * Options
+     *
+     * @var array
+     */
+    public $options = array(
+        'format' => 'json',
+        'ps' => '&', // param separator
+        'kvs' => '=', // key-value separator
+    );
+
+    /**
      * Queries count.
      *
      * @var integer
@@ -89,29 +107,12 @@ abstract class HttpSource extends DataSource {
     /**
      * Caches serialized results of executed queries
      *
-     * @var array Cache of results from executed sql queries.
+     * @var array Cache of results from executed queries.
      */
     protected $_requestCache = array();
 
     /**
-     * Holds a configuration map
-     *
-     * @var array
-     */
-    public $map = array();
-
-    /**
-     * API options
-     * @var array
-     */
-    public $options = array(
-        'format' => 'json',
-        'ps' => '&', // param separator
-        'kvs' => '=', // key-value separator
-    );
-
-    /**
-     * Loads HttpSocket class
+     * Constructor
      *
      * @param array $config
      * @param HttpSocket $Http
@@ -128,6 +129,10 @@ abstract class HttpSource extends DataSource {
             $this->map = Configure::read($plugin);
         }
 
+        if (!isset($this->map['socket_config'])) {
+            $this->map['socket_config'] = array();
+        }
+
         // Store the HttpSocket reference
         if (!$Http) {
             if (!empty($this->map['oauth']['version'])) {
@@ -138,10 +143,10 @@ abstract class HttpSource extends DataSource {
                 }
 
                 App::import('Vendor', 'HttpSocketOauth/HttpSocketOauth');
-                $Http = new HttpSocketOauth();
+                $Http = new HttpSocketOauth($this->map['socket_config']);
             } else {
                 App::uses('HttpSocket', 'Network/Http');
-                $Http = new HttpSocket();
+                $Http = new HttpSocket($this->map['socket_config']);
             }
         }
         $this->Http = $Http;
@@ -228,11 +233,9 @@ abstract class HttpSource extends DataSource {
             }
             $this->error = $HttpResponse->reasonPhrase;
             $HttpResponse = false;
-        }
-        else if ($HttpResponse && $HttpResponse->isOk()) {
+        } else if ($HttpResponse && $HttpResponse->isOk()) {
             $response = $this->decode($HttpResponse);
-        }
-        else {
+        } else {
             $response = false;
         }
 
@@ -505,7 +508,21 @@ abstract class HttpSource extends DataSource {
                 $model->request['uri']['query'][$condition] = $queryData['conditions'][$condition];
             }
         }
-        return $this->request($model);
+
+        if ($model->cacheQueries) {
+            $result = $this->getQueryCache($model->request);
+            if ($result) {
+                return $result;
+            }
+        }
+
+        $result = $this->request($model);
+
+        if ($model->cacheQueries && $result) {
+            $this->_writeQueryCache($model->request, $result);
+        }
+
+        return $result;
     }
 
     /**
@@ -572,12 +589,35 @@ abstract class HttpSource extends DataSource {
         return $this->request($model);
     }
 
-    public function calculate($model, $func, $params = array()) {
-
-    }
-
     public function getColumnType() {
         return true;
+    }
+
+    /**
+     * Writes a new key for the in memory query cache
+     *
+     * @param array $request Http request
+     * @param mixed $data result of $request query
+     *
+     */
+    protected function _writeQueryCache(array $request, $data) {
+        $this->_queryCache[serialize($request)] = $data;
+    }
+
+    /**
+     * Returns the result for a sql query if it is already cached
+     *
+     * @param array $request query
+     *
+     * @return mixed results for query if it is cached, false otherwise
+     */
+    public function getQueryCache(array $request) {
+        $key = serialize($request);
+        if (isset($this->_queryCache[$key])) {
+            return $this->_queryCache[$key];
+        }
+
+        return false;
     }
 
 }

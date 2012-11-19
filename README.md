@@ -111,6 +111,9 @@ $config['MyPlugin']['update'] = array(
 );
 $config['MyPlugin']['delete'] = array(
 );
+//Configuration for HttpSocket
+$config['MyPlugin']['socket_config'] = array(
+);
 ```
 
 ### Note:
