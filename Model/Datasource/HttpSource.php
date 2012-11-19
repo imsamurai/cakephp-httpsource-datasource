@@ -524,7 +524,26 @@ abstract class HttpSource extends DataSource {
      * @return array
      */
     public function processResult(Model $model, array $result) {
-        return $this->structurizeResult($model, $result);
+        $result = $this->structurizeResult($model, $result);
+        if (!empty($this->_queryData['limit'])) {
+            if (!empty($this->_queryData['offset'])) {
+                $offset = $this->_queryData['offset'];
+            }
+            else {
+                $offset = 0;
+            }
+            $result = array_slice($result, $offset, $this->_queryData['limit']);
+        }
+
+        if (!empty($this->_queryData['fields'])) {
+            foreach ($result as &$data) {
+                $data = array_intersect_key($data, array_flip($this->_queryData['fields']));
+            }
+            unset($data);
+        }
+        
+
+        return $result;
     }
 
     /**
