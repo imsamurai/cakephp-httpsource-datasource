@@ -224,7 +224,7 @@ abstract class HttpSource extends DataSource {
 
         $timerEnd = microtime(true);
 
-        $this->took = $timerEnd - $timerStart;
+        $this->took = round(($timerEnd - $timerStart) * 1000);
 
         // Check response status code for success or failure
         if ($HttpResponse && !$HttpResponse->isOk()) {
