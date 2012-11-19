@@ -38,7 +38,16 @@ var $useDbConfig = 'myapi';
 
 ```
 
-### Step 3: Querying the API
+### Step 3: Load main plugin and your plugin
+
+```
+:: bootstrap.php ::
+CakePlugin::load('HttpSource', array('bootstrap' => true, 'routes' => false));
+CakePlugin::load('MyPlugin');
+
+```
+
+### Step 4: Querying the API
 
 Best to just give an example. I switch the datasource on the fly because the model is actually a `projects` table in the
 DB. I tend to query from my API and then switch to default and save the results.
@@ -148,6 +157,8 @@ Class MyPlugin extends HttpSource {
 Lets say you don't feel like bothering to make a new plugin just to support your api, or the existing plugin doesn't cover
 enough of the features. Good news! The plugin degrades gracefully and allows you to manually manipulate the request (thanks
 to NeilCrookes' RESTful plugin).
+
+You can use `query` method (like with DBO) with one argument request array or uri string.
 
 Simply populate Model->request with any request params you wish and then fire off the related action. You can even continue
 using the `$data` & `$this->data` for `save()` and `update()` or pass a `'path'` key to `find()` and it will automagically
