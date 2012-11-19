@@ -1,3 +1,6 @@
 [submodule "Vendor/http_socket_oauth"]
 	path = Vendor/http_socket_oauth
 	url = git://github.com/imsamurai/http_socket_oauth.git
+[submodule "Plugin/ArraySort"]
+	path = Plugin/ArraySort
+	url = git://github.com/imsamurai/cakephp-arraysort-utility.git

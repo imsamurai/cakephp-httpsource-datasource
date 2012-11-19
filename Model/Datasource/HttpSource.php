@@ -516,7 +516,7 @@ abstract class HttpSource extends DataSource {
     }
 
     /**
-     * Filter data by fields, limit, etc.
+     * Filter data by fields, emulate limit, offset, order etc.
      * Override this method for your DataSource.
      *
      * @param Model $model
@@ -541,7 +541,12 @@ abstract class HttpSource extends DataSource {
             }
             unset($data);
         }
-        
+
+        if (!empty($this->_queryData['order'])) {
+            App::uses('ArraySort', 'ArraySort.Utility');
+            $result = ArraySort::multisort($result, $this->_queryData['order']);
+        }
+
 
         return $result;
     }
