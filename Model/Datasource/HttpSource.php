@@ -298,9 +298,8 @@ abstract class HttpSource extends DataSource {
      */
     public function decode(HttpResponse $HttpResponse) {
         // Extract content type from content type header
-        if (preg_match('/^(?P<content_type>[a-z0-9\/\+]+);\s*charset=(?P<charset>[a-z0-9\-]+)/i', $HttpResponse->getHeader('Content-Type'), $matches)) {
+        if (preg_match('/^(?P<content_type>[a-z0-9\/\+]+)/i', $HttpResponse->getHeader('Content-Type'), $matches)) {
             $content_type = $matches['content_type'];
-            //$charset = $matches['charset'];
         }
 
         // Decode response according to content type
