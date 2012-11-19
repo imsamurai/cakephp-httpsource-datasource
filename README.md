@@ -121,7 +121,7 @@ Try browsing the apis datasource and seeing what automagic functionality you can
 _[MyPlugin]/Model/Datasource/Http/[MyPlugin].php_
 
 ```
-App::uses('ApisSource', 'Apis.Model/Datasource');
+App::uses('ApisSource', 'HttpSource.Model/Datasource');
 Class MyPlugin extends HttpSource {
 	// Examples of overriding methods & attributes:
 	public $options = array(
