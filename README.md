@@ -15,6 +15,19 @@ It's _very_ easy to add new ones - [check out the list](#expanding-functionality
 
 ### Step 1: Clone or download to `Plugin/HttpSource`
 
+	cd my_cake_app/app
+	git clone git://github.com/imsamurai/CakePHP-Api-Datasources.git Plugin/HttpSource
+  
+or if you use git add as submodule:
+
+	cd my_cake_app
+	git submodule add "git://github.com/imsamurai/CakePHP-Api-Datasources.git" "app/Plugin/HttpSource"
+
+then update submodules:
+
+	git submodule init
+	git submodule update
+
 ### Step 2: Add your configuration to `database.php` and set it to the model
 
 ```
