@@ -28,7 +28,8 @@ var $myapi = array(
 );
 
 :: MyModel.php ::
-var $useDbConfig = 'myapi';
+public $useDbConfig = 'myapi';
+public $useTable = 'myapi_table';
 
 ```
 

@@ -536,13 +536,8 @@ abstract class HttpSource extends DataSource {
         if (empty($model->request['uri']['path']) && !empty($queryData['path'])) {
             $model->request['uri']['path'] = $queryData['path'];
             $model->request['uri']['query'] = $queryData['conditions'];
-        } elseif (!empty($this->map['read']) && (is_string($queryData['fields']) || !empty($queryData['section']))) {
-            if (!empty($queryData['section'])) {
-                $section = $queryData['section'];
-            } else {
-                $section = $queryData['fields'];
-            }
-            $scan = $this->scanMap('read', $section, array_keys($queryData['conditions']));
+        } elseif (!empty($this->map['read']) && (is_string($queryData['fields']) || !empty($model->useTable))) {
+            $scan = $this->scanMap('read', $model->useTable, array_keys($queryData['conditions']));
             $model->request['uri']['path'] = $scan[0];
             $model->request['uri']['query'] = array();
             $usedConditions = array_intersect(array_keys($queryData['conditions']), array_merge($scan[1], $scan[2]));
@@ -606,8 +601,8 @@ abstract class HttpSource extends DataSource {
             $model->request['body'] = array_combine($fields, $values);
         }
         $model->request = array_merge(array('method' => 'PUT'), $model->request);
-        if (!empty($this->map['update']) && in_array('section', $fields)) {
-            $scan = $this->scanMap('write', $fields['section'], $fields);
+        if (!empty($this->map['update']) && !empty($model->useTable)) {
+            $scan = $this->scanMap('write', $model->useTable, $fields);
             if ($scan) {
                 $model->request['uri']['path'] = $scan[0];
             } else {
