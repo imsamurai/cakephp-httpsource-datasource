@@ -504,7 +504,19 @@ abstract class HttpSource extends DataSource {
     }
 
     /**
-     * Filter data by fields, limit, structurize results like in DBO.
+     * Structurize results like in DBO.
+     * Override this method for your DataSource.
+     *
+     * @param Model $model
+     * @param array $result
+     * @return array
+     */
+    public function structurizeResult(Model $model, array $result) {
+        return $result;
+    }
+
+    /**
+     * Filter data by fields, limit, etc.
      * Override this method for your DataSource.
      *
      * @param Model $model
@@ -512,7 +524,7 @@ abstract class HttpSource extends DataSource {
      * @return array
      */
     public function processResult(Model $model, array $result) {
-        return $result;
+        return $this->structurizeResult($model, $result);
     }
 
     /**
