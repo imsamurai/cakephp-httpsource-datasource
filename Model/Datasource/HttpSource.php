@@ -511,14 +511,14 @@ abstract class HttpSource extends DataSource {
 
         if ($model->cacheQueries) {
             $result = $this->getQueryCache($model->request);
-            if ($result) {
+            if ($result !== false) {
                 return $result;
             }
         }
 
         $result = $this->request($model);
 
-        if ($model->cacheQueries && $result) {
+        if ($model->cacheQueries && $result !== false) {
             $this->_writeQueryCache($model->request, $result);
         }
 
