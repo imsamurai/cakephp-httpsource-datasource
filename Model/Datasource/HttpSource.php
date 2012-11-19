@@ -122,10 +122,10 @@ abstract class HttpSource extends DataSource {
         }
         // Store the API configuration map
         list($plugin, $name) = pluginSplit($config['datasource']);
-        
-        if (!$this->map = Configure::read($name)) {
-            Configure::load($plugin . '.' . $name);
-            $this->map = Configure::read($name);
+
+        if (!$this->map = Configure::read($plugin)) {
+            Configure::load($plugin . '.' . $plugin);
+            $this->map = Configure::read($plugin);
         }
 
         // Store the HttpSocket reference

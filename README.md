@@ -63,7 +63,7 @@ Class Project extends AppModel {
 
 ### Creating a configuration map
 
-_[MyPlugin]/Config/Http/[MyPlugin].php_
+_[MyPlugin]/Config/[MyPlugin].php_
 
 REST paths must be ordered from most specific conditions to least (or none). This is because the map is iterated through
 until the first path which has all of its required conditions met is found. If a path has no required conditions, it will
