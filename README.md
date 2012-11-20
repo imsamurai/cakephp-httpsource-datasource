@@ -108,8 +108,7 @@ $config['MyPlugin']['read'] = array(
 		'people/url=' => array(
 			'required' => array('url'),
                         /**
-                         * default values for required (only for required)
-                         * conditions
+                         * default values for required and optional conditions
                          */
                         'defaults' => array(
                                         'url' => 'http://example.com/'
