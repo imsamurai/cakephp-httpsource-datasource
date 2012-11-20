@@ -128,6 +128,8 @@ $config['MyPlugin']['delete'] = array(
 //Configuration for HttpSocket
 $config['MyPlugin']['socket_config'] = array(
 );
+//Cache configuration name or false (no cache)
+$config['MyPlugin']['cache'] = false;
 ```
 
 ### Note:

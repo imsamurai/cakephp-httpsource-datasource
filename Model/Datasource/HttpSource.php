@@ -131,6 +131,14 @@ abstract class HttpSource extends DataSource {
     protected $_queryData = array();
 
     /**
+     * Chache name for store requests. If null cache not used.
+     * Cache works only for read method
+     *
+     * @var string
+     */
+    protected $_cache = null;
+
+    /**
      * Constructor
      *
      * @param array $config
@@ -150,6 +158,10 @@ abstract class HttpSource extends DataSource {
 
         if (!isset($this->map['socket_config'])) {
             $this->map['socket_config'] = array();
+        }
+
+        if (isset($this->map['cache'])) {
+            $this->_cache = (string)$this->map['cache'];
         }
 
         // Store the HttpSocket reference
@@ -676,18 +688,21 @@ abstract class HttpSource extends DataSource {
     }
 
     /**
-     * Writes a new key for the in memory query cache
+     * Writes a new key for the in memory query cache and cache specified by $this->_cache
      *
      * @param array $request Http request
      * @param mixed $data result of $request query
-     *
      */
     protected function _writeQueryCache(array $request, $data) {
-        $this->_queryCache[serialize($request)] = $data;
+        $key = serialize($request);
+        $this->_queryCache[$key] = $data;
+        if ($this->_cache) {
+            Cache::write($key, $data, $this->_cache);
+        }
     }
 
     /**
-     * Returns the result for a sql query if it is already cached
+     * Returns the result for a query if it is already cached
      *
      * @param array $request query
      *
@@ -697,6 +712,9 @@ abstract class HttpSource extends DataSource {
         $key = serialize($request);
         if (isset($this->_queryCache[$key])) {
             return $this->_queryCache[$key];
+        }
+        else if ($this->_cache) {
+            return Cache::read($key, $this->_cache);
         }
 
         return false;
