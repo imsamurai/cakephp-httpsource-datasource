@@ -329,8 +329,10 @@ abstract class HttpSource extends DataSource {
     /**
      * Decodes the response based on the content type
      *
-     * @param string $response
-     * @return void
+     * @param HttpResponse $HttpResponse
+     * @return array Decoded response
+     * @trows HttpSourceException If content type decoder not found
+     * @author imsamurai  <im.samuray@gmail.com>
      * @author Dean Sofer
      */
     public function decode(HttpResponse $HttpResponse) {
@@ -364,7 +366,7 @@ abstract class HttpSource extends DataSource {
                 break;
             default: throw new HttpSourceException("Can't decode unknown format: '$content_type'");
         }
-        return $response;
+        return (array)$response;
     }
 
     /**
@@ -417,12 +419,13 @@ abstract class HttpSource extends DataSource {
     /**
      * Tries iterating through the config map of REST commmands to decide which command to use
      * Usage: list($path, $required_fields, $optional_fields, $defaults) = $this->scanMap(...)
+     *
      * @param string $action
      * @param string $section
      * @param array $fields
      * @return array $path, $required_fields, $optional_fields
      * @trows HttpSourceException
-     * @author imsamurai
+     * @author imsamurai <im.samuray@gmail.com>
      * @author Dean Sofer
      */
     public function scanMap($action, $section, $fields = array()) {
@@ -562,8 +565,17 @@ abstract class HttpSource extends DataSource {
                     )
                 );
             }
+
+            //remove model name from each field
+            $model_name = $model->name;
+            $fields = array_map(function($field) use ($model_name) {
+                return str_replace("$model_name.", '', $field);
+            }, (array)$this->_queryData['fields']);
+            
+            $fields_keys = array_flip($fields);
+
             foreach ($result as &$data) {
-                $data = array_intersect_key($data, array_flip((array) $this->_queryData['fields']));
+                $data = array_intersect_key($data, $fields_keys);
             }
             unset($data);
         }
