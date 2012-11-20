@@ -103,10 +103,17 @@ $config['MyPlugin']['read'] = array(
 		// api url
 		'people/id=' => array(
 			// required conditions
-			'id',
+			'required' => array('id'),
 		),
 		'people/url=' => array(
-			'url',
+			'required' => array('url'),
+                        /**
+                         * default values for required (only for required)
+                         * conditions
+                         */
+                        'defaults' => array(
+                                        'url' => 'http://example.com/'
+                                      )
 		),
 		'people/~' => array(),
 	),
@@ -114,7 +121,7 @@ $config['MyPlugin']['read'] = array(
 		'people-search' => array(
 		// optional conditions the api call can take
 			'optional' => array(
-				'keywords',
+				'keywords'
 			),
 		),
 	),

@@ -5,13 +5,16 @@
  *
  * HttpSource is abstract class for all datasources that using http protocol
  *
- * @package default
+ * @author imsamurai <im.samuray@gmail.com>
  * @author Dean Sofer
- * */
+ */
 App::uses('DataSource', 'Model/Datasource');
 
 abstract class HttpSource extends DataSource {
-
+    /**
+     * Count function constant
+     */
+    const FUNCTION_COUNT = 'COUNT()';
     /**
      * The description of this data source
      *
@@ -183,10 +186,6 @@ abstract class HttpSource extends DataSource {
         $this->Http = $Http;
         parent::__construct($config);
         $this->fullDebug = Configure::read('debug') > 1;
-    }
-
-    public function describe($model) {
-        return array();
     }
 
     /**
@@ -417,11 +416,13 @@ abstract class HttpSource extends DataSource {
 
     /**
      * Tries iterating through the config map of REST commmands to decide which command to use
-     *
+     * Usage: list($path, $required_fields, $optional_fields, $defaults) = $this->scanMap(...)
      * @param string $action
      * @param string $section
      * @param array $fields
-     * @return boolean $found
+     * @return array $path, $required_fields, $optional_fields
+     * @trows HttpSourceException
+     * @author imsamurai
      * @author Dean Sofer
      */
     public function scanMap($action, $section, $fields = array()) {
@@ -430,10 +431,12 @@ abstract class HttpSource extends DataSource {
         }
         $map = $this->map[$action][$section];
         foreach ($map as $path => $conditions) {
-            $optional = (isset($conditions['optional'])) ? $conditions['optional'] : array();
-            unset($conditions['optional']);
-            if (array_intersect($fields, $conditions) == $conditions) {
-                return array($path, $conditions, $optional);
+            $optional = (array) Hash::get($conditions, 'optional');
+            $defaults = (array) Hash::get($conditions, 'defaults');
+            $required = (array) Hash::get($conditions, 'required');
+            //check if all required fields present in $fields or $defaults
+            if (count(array_intersect(array_intersect(array_merge($fields, array_keys($defaults)), $required), $required)) === count($required)) {
+                return array($path, $required, $optional, $defaults);
             }
         }
         throw new HttpSourceException('Could not find a match for passed conditions');
@@ -551,8 +554,16 @@ abstract class HttpSource extends DataSource {
 
         //fields emulation
         if (!empty($this->_queryData['fields'])) {
+            if ($this->_queryData['fields'] === static::FUNCTION_COUNT) {
+                return array(
+                    array($model->name => array(
+                            'count' => count($result)
+                        )
+                    )
+                );
+            }
             foreach ($result as &$data) {
-                $data = array_intersect_key($data, array_flip($this->_queryData['fields']));
+                $data = array_intersect_key($data, array_flip((array) $this->_queryData['fields']));
             }
             unset($data);
         }
@@ -570,6 +581,23 @@ abstract class HttpSource extends DataSource {
         unset($data);
 
         return $result;
+    }
+
+    /**
+     * Returns an calculation, i.e. COUNT
+     *
+     * @param Model $model
+     * @param string $func Lowercase name of function, i.e. 'count'
+     * @param array $params Function parameters (any values must be quoted manually)
+     * @return string An calculation function
+     */
+    public function calculate(Model $model, $func, $params = array()) {
+        switch (strtolower($func)) {
+            case 'count':
+                return static::FUNCTION_COUNT;
+            default:
+                throw new NotImplementedException("Can't make calculation of function '$func'!");
+        }
     }
 
     /**
@@ -594,12 +622,13 @@ abstract class HttpSource extends DataSource {
             $model->request['uri']['path'] = $queryData['path'];
             $model->request['uri']['query'] = $queryData['conditions'];
         } elseif (!empty($this->map['read']) && (is_string($queryData['fields']) || !empty($model->useTable))) {
-            $scan = $this->scanMap('read', $model->useTable, array_keys($queryData['conditions']));
-            $model->request['uri']['path'] = $scan[0];
+            list($path, $required_fields, $optional_fields, $defaults) = $this->scanMap('read', $model->useTable, array_keys($queryData['conditions']));
+            $model->request['uri']['path'] = $path;
             $model->request['uri']['query'] = array();
-            $usedConditions = array_intersect(array_keys($queryData['conditions']), array_merge($scan[1], $scan[2]));
+            $usedConditions = array_merge(array_intersect(array_keys($queryData['conditions']), array_merge($required_fields, $optional_fields)), array_keys($defaults));
+            $query_conditions = $queryData['conditions']+$defaults;
             foreach ($usedConditions as $condition) {
-                $model->request['uri']['query'][$condition] = $queryData['conditions'][$condition];
+                $model->request['uri']['query'][$condition] = $query_conditions[$condition];
             }
         }
 
