@@ -131,10 +131,18 @@ $config['MyPlugin']['update'] = array(
 );
 $config['MyPlugin']['delete'] = array(
 );
-//Configuration for HttpSocket
-$config['MyPlugin']['socket_config'] = array(
+/**
+ * Map parameters like limit, offset, etc to conditions
+ * by config rules
+ *
+ * For example to map limit to parameter count:
+ *    array(
+ *      'count' => 'limit+offset'
+ *    );
+ */
+$config['MyPlugin']['map_read_params'] = array(
 );
-//Cache configuration name or false (no cache)
+//Cache configuration name or false or null or '' (no cache)
 $config['MyPlugin']['cache'] = false;
 ```
 
