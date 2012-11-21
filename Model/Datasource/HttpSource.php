@@ -154,6 +154,7 @@ abstract class HttpSource extends DataSource {
      */
     protected $_mapReadParams = null;
 
+
     /**
      * Constructor
      *
@@ -291,7 +292,7 @@ abstract class HttpSource extends DataSource {
 
         if ($model !== null) {
             if ($response !== false && $request_method === HttpSource::METHOD_READ) {
-                $response = $this->processResult($model, $response);
+                $response = $this->afterRequest($model, $response);
             }
             $model->response = $response;
             $model->request = $request;
@@ -526,18 +527,7 @@ abstract class HttpSource extends DataSource {
     }
 
     /**
-     * Structurize results like in DBO.
-     * Override this method for your DataSource.
-     *
-     * @param Model $model
-     * @param array $result
-     * @return array
-     */
-    public function structurizeResult(Model $model, array $result) {
-        return $result;
-    }
-
-    /**
+     * After request callback
      * Filter data by fields, emulate limit, offset, order etc.
      * Override this method for your DataSource.
      *
@@ -545,9 +535,7 @@ abstract class HttpSource extends DataSource {
      * @param array $result
      * @return array
      */
-    public function processResult(Model $model, array $result) {
-        $result = $this->structurizeResult($model, $result);
-
+    public function afterRequest(Model $model, array $result) {
         //emulate limit and offset
         if (!empty($this->_queryData['limit'])) {
             if (!empty($this->_queryData['offset'])) {
@@ -616,8 +604,7 @@ abstract class HttpSource extends DataSource {
     }
 
     /**
-     * Uses standard find conditions. Use find('all', $params). Since you cannot pull specific fields,
-     * we will instead use 'fields' to specify what table to pull from.
+     * Uses standard find conditions.
      *
      * @param string $model The model being read.
      * @param string $queryData An array of query data used to find the data you want
@@ -727,8 +714,22 @@ abstract class HttpSource extends DataSource {
         return $this->request($model, null, HttpSource::METHOD_DELETE);
     }
 
-    public function getColumnType() {
-        return true;
+    /**
+     * Returns the result for a query if it is already cached
+     *
+     * @param array $request query
+     *
+     * @return mixed results for query if it is cached, false otherwise
+     */
+    public function getQueryCache(array $request) {
+        $key = serialize($request);
+        if (isset($this->_queryCache[$key])) {
+            return $this->_queryCache[$key];
+        } else if ($this->_cacheName) {
+            return Cache::read($key, $this->_cacheName);
+        }
+
+        return false;
     }
 
     /**
@@ -769,22 +770,5 @@ abstract class HttpSource extends DataSource {
         }
     }
 
-    /**
-     * Returns the result for a query if it is already cached
-     *
-     * @param array $request query
-     *
-     * @return mixed results for query if it is cached, false otherwise
-     */
-    public function getQueryCache(array $request) {
-        $key = serialize($request);
-        if (isset($this->_queryCache[$key])) {
-            return $this->_queryCache[$key];
-        } else if ($this->_cacheName) {
-            return Cache::read($key, $this->_cacheName);
-        }
-
-        return false;
-    }
 
 }
