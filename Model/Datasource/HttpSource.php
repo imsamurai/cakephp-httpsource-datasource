@@ -14,7 +14,17 @@ abstract class HttpSource extends DataSource {
     /**
      * Count function constant
      */
+
     const FUNCTION_COUNT = 'COUNT()';
+
+    /**
+     * CRUD constants
+     */
+    const METHOD_READ = 'read';
+    const METHOD_CREATE = 'create';
+    const METHOD_UPDATE = 'update';
+    const METHOD_DELETE = 'delete';
+
     /**
      * The description of this data source
      *
@@ -79,17 +89,6 @@ abstract class HttpSource extends DataSource {
     public $map = array();
 
     /**
-     * Options
-     *
-     * @var array
-     */
-    public $options = array(
-        'format' => 'json',
-        'ps' => '&', // param separator
-        'kvs' => '=', // key-value separator
-    );
-
-    /**
      * Queries count.
      *
      * @var integer
@@ -139,18 +138,31 @@ abstract class HttpSource extends DataSource {
      *
      * @var string
      */
-    protected $_cache = null;
+    protected $_cacheName = null;
+
+    /**
+     * Parameters to map in read request. You can use '+' as part of value
+     * and names of other parameters
+     * For example to map limit to parameter count:
+     * {{{
+     *    array(
+     *      'count' => 'limit+offset'
+     *    );
+     * }}}
+     *
+     * @var array
+     */
+    protected $_mapReadParams = null;
 
     /**
      * Constructor
      *
      * @param array $config
      * @param HttpSocket $Http
+     * @trows HttpSourceException
      */
     public function __construct($config, $Http = null) {
-        if (!isset($this->config['database'])) {
-            $this->config['database'] = '';
-        }
+        parent::__construct($config);
         // Store the API configuration map
         list($plugin, $name) = pluginSplit($config['datasource']);
 
@@ -159,13 +171,15 @@ abstract class HttpSource extends DataSource {
             $this->map = Configure::read($plugin);
         }
 
-        if (!isset($this->map['socket_config'])) {
-            $this->map['socket_config'] = array();
+        if (empty($this->map)) {
+            throw new HttpSourceException('Configuration not found!');
         }
 
-        if (isset($this->map['cache'])) {
-            $this->_cache = (string)$this->map['cache'];
-        }
+        $this->_cacheName = (string) Hash::get($this->map, 'cache_name');
+        unset($this->map['cache_name']);
+
+        $this->_mapReadParams = (array) Hash::get($this->map, 'map_read_params');
+        unset($this->map['map_read_params']);
 
         // Store the HttpSocket reference
         if (!$Http) {
@@ -177,14 +191,14 @@ abstract class HttpSource extends DataSource {
                 }
 
                 App::import('Vendor', 'HttpSocketOauth/HttpSocketOauth');
-                $Http = new HttpSocketOauth($this->map['socket_config']);
+                $Http = new HttpSocketOauth($this->config);
             } else {
                 App::uses('HttpSocket', 'Network/Http');
-                $Http = new HttpSocket($this->map['socket_config']);
+                $Http = new HttpSocket($this->config);
             }
         }
         $this->Http = $Http;
-        parent::__construct($config);
+
         $this->fullDebug = Configure::read('debug') > 1;
     }
 
@@ -211,7 +225,7 @@ abstract class HttpSource extends DataSource {
      *
      * @return array|false $response
      */
-    public function request(Model $model = null, $request_data = null, $request_method = 'read') {
+    public function request(Model $model = null, $request_data = null, $request_method = HttpSource::METHOD_READ) {
         if ($model !== null) {
             $request = $model->request;
         } elseif (is_array($request_data)) {
@@ -227,7 +241,11 @@ abstract class HttpSource extends DataSource {
         }
 
         if (empty($request['uri']['host'])) {
-            $request['uri']['host'] = $this->map['hosts']['rest'];
+            $request['uri']['host'] = $this->config['host'];
+        }
+
+        if (empty($request['uri']['port'])) {
+            $request['uri']['port'] = $this->config['port'];
         }
 
         if (empty($request['uri']['scheme']) && !empty($this->map['oauth']['scheme'])) {
@@ -241,7 +259,7 @@ abstract class HttpSource extends DataSource {
             $request['uri']['path'] = $this->swapTokens($request['uri']['path'], $this->tokens);
         }
 
-        $request = $this->beforeRequest($request);
+        $request = $this->beforeRequest($request, $request_method);
 
         $timerStart = microtime(true);
 
@@ -264,6 +282,7 @@ abstract class HttpSource extends DataSource {
             }
             $this->error = $HttpResponse->reasonPhrase;
             $HttpResponse = false;
+            $response = false;
         } else if ($HttpResponse && $HttpResponse->isOk()) {
             $response = $this->decode($HttpResponse);
         } else {
@@ -271,7 +290,7 @@ abstract class HttpSource extends DataSource {
         }
 
         if ($model !== null) {
-            if ($response !== false && $request_method === 'read') {
+            if ($response !== false && $request_method === HttpSource::METHOD_READ) {
                 $response = $this->processResult($model, $response);
             }
             $model->response = $response;
@@ -366,7 +385,7 @@ abstract class HttpSource extends DataSource {
                 break;
             default: throw new HttpSourceException("Can't decode unknown format: '$content_type'");
         }
-        return (array)$response;
+        return (array) $response;
     }
 
     /**
@@ -376,7 +395,7 @@ abstract class HttpSource extends DataSource {
      * @return array Array of sources available in this datasource.
      */
     public function listSources($data = null) {
-        return array_keys($this->map['read']) + array_keys($this->map['create']) + array_keys($this->map['update']) + array_keys($this->map['delete']);
+        return array_keys($this->map[HttpSource::METHOD_READ]) + array_keys($this->map[HttpSource::METHOD_CREATE]) + array_keys($this->map[HttpSource::METHOD_UPDATE]) + array_keys($this->map[HttpSource::METHOD_DELETE]);
     }
 
     /**
@@ -396,25 +415,6 @@ abstract class HttpSource extends DataSource {
         return $url;
     }
 
-    /**
-     * Generates a conditions section of the url
-     *
-     * @param array $params permitted conditions
-     * @param array $queryData passed conditions in key => value form
-     * @return string
-     * @author Dean Sofer
-     */
-    public function buildQuery($params = array(), $data = array()) {
-        $query = array();
-        foreach ($params as $param) {
-            if (!empty($data[$param]) && $this->options['kvs']) {
-                $query[] = $param . $this->options['kvs'] . $data[$param];
-            } elseif (!empty($data[$param])) {
-                $query[] = $data[$param];
-            }
-        }
-        return implode($this->options['ps'], $query);
-    }
 
     /**
      * Tries iterating through the config map of REST commmands to decide which command to use
@@ -514,10 +514,14 @@ abstract class HttpSource extends DataSource {
      * Just-In-Time callback for any last-minute request modifications
      *
      * @param array $request
+     * @param string $request_method Create, update, read or delete
      * @return array $request
      * @author Dean Sofer
      */
-    public function beforeRequest($request) {
+    public function beforeRequest($request, $request_method) {
+        if ($request_method === HttpSource::METHOD_READ) {
+            $this->_mapReadParams($request);
+        }
         return $request;
     }
 
@@ -548,8 +552,7 @@ abstract class HttpSource extends DataSource {
         if (!empty($this->_queryData['limit'])) {
             if (!empty($this->_queryData['offset'])) {
                 $offset = $this->_queryData['offset'];
-            }
-            else {
+            } else {
                 $offset = 0;
             }
             $result = array_slice($result, $offset, $this->_queryData['limit']);
@@ -569,9 +572,9 @@ abstract class HttpSource extends DataSource {
             //remove model name from each field
             $model_name = $model->name;
             $fields = array_map(function($field) use ($model_name) {
-                return str_replace("$model_name.", '', $field);
-            }, (array)$this->_queryData['fields']);
-            
+                        return str_replace("$model_name.", '', $field);
+                    }, (array) $this->_queryData['fields']);
+
             $fields_keys = array_flip($fields);
 
             foreach ($result as &$data) {
@@ -633,12 +636,12 @@ abstract class HttpSource extends DataSource {
         if (empty($model->request['uri']['path']) && !empty($queryData['path'])) {
             $model->request['uri']['path'] = $queryData['path'];
             $model->request['uri']['query'] = $queryData['conditions'];
-        } elseif (!empty($this->map['read']) && (is_string($queryData['fields']) || !empty($model->useTable))) {
-            list($path, $required_fields, $optional_fields, $defaults) = $this->scanMap('read', $model->useTable, array_keys($queryData['conditions']));
+        } elseif (!empty($this->map[HttpSource::METHOD_READ]) && (is_string($queryData['fields']) || !empty($model->useTable))) {
+            list($path, $required_fields, $optional_fields, $defaults) = $this->scanMap(HttpSource::METHOD_READ, $model->useTable, array_keys($queryData['conditions']));
             $model->request['uri']['path'] = $path;
             $model->request['uri']['query'] = array();
             $usedConditions = array_merge(array_intersect(array_keys($queryData['conditions']), array_merge($required_fields, $optional_fields)), array_keys($defaults));
-            $query_conditions = $queryData['conditions']+$defaults;
+            $query_conditions = $queryData['conditions'] + $defaults;
             foreach ($usedConditions as $condition) {
                 $model->request['uri']['query'][$condition] = $query_conditions[$condition];
             }
@@ -651,7 +654,7 @@ abstract class HttpSource extends DataSource {
             }
         }
 
-        $result = $this->request($model, null, 'read');
+        $result = $this->request($model, null, HttpSource::METHOD_READ);
 
         if ($model->cacheQueries && $result !== false) {
             $this->_writeQueryCache($model->request, $result);
@@ -675,13 +678,13 @@ abstract class HttpSource extends DataSource {
             $model->request['body'] = array_combine($fields, $values);
         }
         $model->request = array_merge(array('method' => 'POST'), $model->request);
-        $scan = $this->scanMap('create', $model->useTable, $fields);
+        $scan = $this->scanMap(HttpSource::METHOD_CREATE, $model->useTable, $fields);
         if ($scan) {
             $model->request['uri']['path'] = $scan[0];
         } else {
             return false;
         }
-        return $this->request($model, null, 'create');
+        return $this->request($model, null, HttpSource::METHOD_CREATE);
     }
 
     /**
@@ -699,7 +702,7 @@ abstract class HttpSource extends DataSource {
             $model->request['body'] = array_combine($fields, $values);
         }
         $model->request = array_merge(array('method' => 'PUT'), $model->request);
-        if (!empty($this->map['update']) && !empty($model->useTable)) {
+        if (!empty($this->map[HttpSource::METHOD_UPDATE]) && !empty($model->useTable)) {
             $scan = $this->scanMap('write', $model->useTable, $fields);
             if ($scan) {
                 $model->request['uri']['path'] = $scan[0];
@@ -707,7 +710,7 @@ abstract class HttpSource extends DataSource {
                 return false;
             }
         }
-        return $this->request($model, null, 'update');
+        return $this->request($model, null, HttpSource::METHOD_UPDATE);
     }
 
     /**
@@ -721,7 +724,7 @@ abstract class HttpSource extends DataSource {
             $model->request = array();
         }
         $model->request = array_merge(array('method' => 'DELETE'), $model->request);
-        return $this->request($model, null, 'delete');
+        return $this->request($model, null, HttpSource::METHOD_DELETE);
     }
 
     public function getColumnType() {
@@ -729,7 +732,31 @@ abstract class HttpSource extends DataSource {
     }
 
     /**
-     * Writes a new key for the in memory query cache and cache specified by $this->_cache
+     * Map parameters like limit, offset, etc to conditions
+     * by config rules
+     *
+     * @param array $request
+     * @return array
+     */
+    protected function _mapReadParams(array &$request) {
+        foreach ($this->_mapReadParams as $condition => $value) {
+            if (!isset($request[$condition])) {
+                if (strpos($value, '+') === false) {
+                    $request['uri']['query'][$condition] = Hash::get($this->_queryData, $value);
+                    continue;
+                }
+
+                $values = explode('+', $value);
+                $request['uri']['query'][$condition] = 0;
+                foreach ($values as $value_name) {
+                    $request['uri']['query'][$condition] += (int) Hash::get($this->_queryData, $value_name);
+                }
+            }
+        }
+    }
+
+    /**
+     * Writes a new key for the in memory query cache and cache specified by $this->_cacheName
      *
      * @param array $request Http request
      * @param mixed $data result of $request query
@@ -737,8 +764,8 @@ abstract class HttpSource extends DataSource {
     protected function _writeQueryCache(array $request, $data) {
         $key = serialize($request);
         $this->_queryCache[$key] = $data;
-        if ($this->_cache) {
-            Cache::write($key, $data, $this->_cache);
+        if ($this->_cacheName) {
+            Cache::write($key, $data, $this->_cacheName);
         }
     }
 
@@ -753,9 +780,8 @@ abstract class HttpSource extends DataSource {
         $key = serialize($request);
         if (isset($this->_queryCache[$key])) {
             return $this->_queryCache[$key];
-        }
-        else if ($this->_cache) {
-            return Cache::read($key, $this->_cache);
+        } else if ($this->_cacheName) {
+            return Cache::read($key, $this->_cacheName);
         }
 
         return false;

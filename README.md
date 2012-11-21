@@ -34,10 +34,14 @@ then update submodules:
 :: database.php ::
 var $myapi = array(
 	'datasource' => 'MyPlugin.Http/MyPlugin', // Example: 'Github.Http/Github'
-
+        'host' => 'api.myplugin.com/v1',
+        'port' => 80,
+        'persistent' => false,
 	// These are only required for authenticated requests (write-access)
 	'login' => '--Your API Key--',
 	'password' => '--Your API Secret--',
+        //all other parameters that passed to config of http socket
+        //...
 );
 
 :: MyModel.php ::
@@ -84,10 +88,6 @@ until the first path which has all of its required conditions met is found. If a
 be used. Optional conditions aren't checked, but are added when building the request.
 
 ```
-$config['MyPlugin']['hosts'] = array(
-	'oauth' => 'api.myplugin.com/login/oauth',
-	'rest' => 'api.myplugin.com/v1',
-);
 $config['MyPlugin']['oauth'] = array(
 	'version' => '1.0', // [Optional] OAuth version (defaults to 1.0): '1.0' or '2.0'
 	'scheme' => 'https', // [Optional] Values: 'http' or 'https'
