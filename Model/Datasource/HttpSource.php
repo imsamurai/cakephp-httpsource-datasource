@@ -7,6 +7,7 @@
  *
  * @author imsamurai <im.samuray@gmail.com>
  */
+App::uses('ArraySort', 'ArraySort.Utility');
 App::uses('DataSource', 'Model/Datasource');
 
 abstract class HttpSource extends DataSource {
