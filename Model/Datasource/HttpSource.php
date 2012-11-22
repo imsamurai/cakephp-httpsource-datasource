@@ -6,7 +6,6 @@
  * HttpSource is abstract class for all datasources that using http protocol
  *
  * @author imsamurai <im.samuray@gmail.com>
- * @author Dean Sofer
  */
 App::uses('DataSource', 'Model/Datasource');
 
@@ -352,8 +351,6 @@ abstract class HttpSource extends DataSource {
      * @param HttpResponse $HttpResponse
      * @return array Decoded response
      * @trows HttpSourceException If content type decoder not found
-     * @author imsamurai  <im.samuray@gmail.com>
-     * @author Dean Sofer
      */
     public function decode(HttpResponse $HttpResponse) {
         // Extract content type from content type header
@@ -405,7 +402,6 @@ abstract class HttpSource extends DataSource {
      * @param string $url
      * @param array $tokens optional
      * @return string $url
-     * @author Dean Sofer
      */
     public function swapTokens($url, $tokens = array()) {
         $formattedTokens = array();
@@ -426,8 +422,6 @@ abstract class HttpSource extends DataSource {
      * @param array $fields
      * @return array $path, $required_fields, $optional_fields
      * @trows HttpSourceException
-     * @author imsamurai <im.samuray@gmail.com>
-     * @author Dean Sofer
      */
     public function scanMap($action, $section, $fields = array()) {
         if (!isset($this->map[$action][$section])) {
@@ -517,7 +511,6 @@ abstract class HttpSource extends DataSource {
      * @param array $request
      * @param string $request_method Create, update, read or delete
      * @return array $request
-     * @author Dean Sofer
      */
     public function beforeRequest($request, $request_method) {
         if ($request_method === HttpSource::METHOD_READ) {
