@@ -104,6 +104,17 @@ $config['MyPlugin']['read'] = array(
 		'people/id=' => array(
 			// required conditions
 			'required' => array('id'),
+                        //additionally you can map fields with or without callbacks
+                        //field names are Hash path compatible
+                        'new_path.name' => 'old_path.name',
+                        'new_path_name' => 'old_path_name',
+                        'new_array_path_name' => array(
+                            'field' => 'old.field_string',
+                            //any callable construction that expect one param with value
+                            'callback' => function($value) {
+                                return explode(',', $value);
+                            }
+                        ),
 		),
 		'people/url=' => array(
 			'required' => array('url'),

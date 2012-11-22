@@ -153,6 +153,26 @@ abstract class HttpSource extends DataSource {
      */
     protected $_mapReadParams = null;
 
+    /**
+     * Fields map. Applied before field filters emulation.
+     * Support Hash path notation
+     *
+     * {{{
+     *    array(
+     *      'new_field.name' => 'old.field.name',
+     *      'new_field.name2' => array(
+     *          'field' => 'old.field.name2',
+     *          'callback' => function($value) {
+     *                          ...
+     *                          return $new_value;
+     *                          }
+     *      )
+     *    );
+     * }}}
+     *
+     * @var array
+     */
+    protected $_mapFields = null;
 
     /**
      * Constructor
@@ -412,15 +432,14 @@ abstract class HttpSource extends DataSource {
         return $url;
     }
 
-
     /**
      * Tries iterating through the config map of REST commmands to decide which command to use
-     * Usage: list($path, $required_fields, $optional_fields, $defaults) = $this->scanMap(...)
+     * Usage: list($path, $required_fields, $optional_fields, $defaults, $map_fields) = $this->scanMap(...)
      *
      * @param string $action
      * @param string $section
      * @param array $fields
-     * @return array $path, $required_fields, $optional_fields
+     * @return array $path, $required_fields, $optional_fields, $default, $map_fields
      * @trows HttpSourceException
      */
     public function scanMap($action, $section, $fields = array()) {
@@ -432,9 +451,10 @@ abstract class HttpSource extends DataSource {
             $optional = (array) Hash::get($conditions, 'optional');
             $defaults = (array) Hash::get($conditions, 'defaults');
             $required = (array) Hash::get($conditions, 'required');
+            $map_fields = (array) Hash::get($conditions, 'map_fields');
             //check if all required fields present in $fields or $defaults
             if (count(array_intersect(array_intersect(array_merge($fields, array_keys($defaults)), $required), $required)) === count($required)) {
-                return array($path, $required, $optional, $defaults);
+                return array($path, $required, $optional, $defaults, $map_fields);
             }
         }
         throw new HttpSourceException('Could not find a match for passed conditions');
@@ -549,7 +569,17 @@ abstract class HttpSource extends DataSource {
                     )
                 );
             }
+        }
 
+        $this->_mapFields($result);
+
+        //order emulation
+        if (!empty($this->_queryData['order'][0])) {
+            App::uses('ArraySort', 'ArraySort.Utility');
+            $result = ArraySort::multisort($result, $this->_queryData['order'][0]);
+        }
+
+        if (!empty($this->_queryData['fields'])) {
             //remove model name from each field
             $model_name = $model->name;
             $fields = array_map(function($field) use ($model_name) {
@@ -563,13 +593,6 @@ abstract class HttpSource extends DataSource {
             }
             unset($data);
         }
-
-        //order emulation
-        if (!empty($this->_queryData['order'][0])) {
-            App::uses('ArraySort', 'ArraySort.Utility');
-            $result = ArraySort::multisort($result, $this->_queryData['order'][0]);
-        }
-
         //final structure
         foreach ($result as &$data) {
             $data = array($model->name => $data);
@@ -617,7 +640,14 @@ abstract class HttpSource extends DataSource {
             $model->request['uri']['path'] = $queryData['path'];
             $model->request['uri']['query'] = $queryData['conditions'];
         } elseif (!empty($this->map[HttpSource::METHOD_READ]) && (is_string($queryData['fields']) || !empty($model->useTable))) {
-            list($path, $required_fields, $optional_fields, $defaults) = $this->scanMap(HttpSource::METHOD_READ, $model->useTable, array_keys($queryData['conditions']));
+            list(
+                    $path,
+                    $required_fields,
+                    $optional_fields,
+                    $defaults,
+                    $this->_mapFields
+
+                    ) = $this->scanMap(HttpSource::METHOD_READ, $model->useTable, array_keys($queryData['conditions']));
             $model->request['uri']['path'] = $path;
             $model->request['uri']['query'] = array();
             $usedConditions = array_merge(array_intersect(array_keys($queryData['conditions']), array_merge($required_fields, $optional_fields)), array_keys($defaults));
@@ -750,6 +780,33 @@ abstract class HttpSource extends DataSource {
     }
 
     /**
+     * Move fields from old key to new and apply callback if specified
+     *
+     * @param array $result
+     * @throws HttpSourceException
+     */
+    protected function _mapFields(array &$result) {
+        foreach ($this->_mapFields as $field_name_new => $field_old) {
+            foreach ($result as &$element) {
+                if (is_array($field_old)) {
+                    if (empty($field_old['callback']) || empty($field_old['field'])) {
+                        throw new HttpSourceException('Bad map_fields format!');
+                    }
+                    $value = call_user_func($field_old['callback'], Hash::get($element, $field_old['field']));
+                    $element = Hash::remove($element, $field_old['field']);
+                } else if (is_string($field_old)) {
+                    $value = Hash::get($element, $field_old);
+                    $element = Hash::remove($element, $field_old);
+                } else {
+                    throw new HttpSourceException('Bad map_fields format!');
+                }
+
+                $element = Hash::insert($element, $field_name_new, $value);
+            }
+        }
+    }
+
+    /**
      * Writes a new key for the in memory query cache and cache specified by $this->_cacheName
      *
      * @param array $request Http request
@@ -762,6 +819,5 @@ abstract class HttpSource extends DataSource {
             Cache::write($key, $data, $this->_cacheName);
         }
     }
-
 
 }
