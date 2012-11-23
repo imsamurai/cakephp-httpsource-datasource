@@ -829,7 +829,7 @@ abstract class HttpSource extends DataSource {
                     throw new HttpSourceException('Bad condition map value');
                 }
                 $condition_new = $value['condition'];
-                $condition_value_new = call_user_func($value['callback'], $query[$condition]);
+                $condition_value_new = call_user_func($value['callback'], $query[$condition], $this);
             }
             else {
                 $condition_new = $value;
@@ -853,7 +853,7 @@ abstract class HttpSource extends DataSource {
                     if (empty($field_old['callback']) || empty($field_old['field'])) {
                         throw new HttpSourceException('Bad map_fields format!');
                     }
-                    $value = call_user_func($field_old['callback'], Hash::get($element, $field_old['field']));
+                    $value = call_user_func($field_old['callback'], Hash::get($element, $field_old['field']), $this);
                     $element = Hash::remove($element, $field_old['field']);
                 } else if (is_string($field_old)) {
                     $value = Hash::get($element, $field_old);
