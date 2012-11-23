@@ -332,8 +332,8 @@ abstract class HttpSource extends DataSource {
         }
 
         if ($model !== null) {
-            if ($response !== false && $request_method === HttpSource::METHOD_READ) {
-                $response = $this->afterRequest($model, $response);
+            if ($response !== false) {
+                $response = $this->afterRequest($model, $response, $request_method);
             }
             $model->response = $response;
             $model->request = $request;
@@ -556,10 +556,6 @@ abstract class HttpSource extends DataSource {
      * @return array $request
      */
     public function beforeRequest($request, $request_method) {
-        if ($request_method === HttpSource::METHOD_READ) {
-            $this->_mapReadParams($request);
-            $this->_mapConditions($request);
-        }
         return $request;
     }
 
@@ -570,59 +566,61 @@ abstract class HttpSource extends DataSource {
      *
      * @param Model $model
      * @param array $result
+     * @param string $request_method Create, update, read or delete
      * @return array
      */
-    public function afterRequest(Model $model, array $result) {
-        //emulate limit and offset
-        if (!empty($this->_queryData['limit'])) {
-            if (!empty($this->_queryData['offset'])) {
-                $offset = $this->_queryData['offset'];
-            } else {
-                $offset = 0;
+    public function afterRequest(Model $model, array $result, $request_method) {
+        if ($request_method === HttpSource::METHOD_READ) {
+            //emulate limit and offset
+            if (!empty($this->_queryData['limit'])) {
+                if (!empty($this->_queryData['offset'])) {
+                    $offset = $this->_queryData['offset'];
+                } else {
+                    $offset = 0;
+                }
+                $result = array_slice($result, $offset, $this->_queryData['limit']);
             }
-            $result = array_slice($result, $offset, $this->_queryData['limit']);
-        }
 
-        //fields emulation
-        if (!empty($this->_queryData['fields'])) {
-            if ($this->_queryData['fields'] === static::FUNCTION_COUNT) {
-                return array(
-                    array($model->name => array(
-                            'count' => count($result)
+            //fields emulation
+            if (!empty($this->_queryData['fields'])) {
+                if ($this->_queryData['fields'] === static::FUNCTION_COUNT) {
+                    return array(
+                        array($model->name => array(
+                                'count' => count($result)
+                            )
                         )
-                    )
-                );
+                    );
+                }
             }
-        }
 
-        $this->_mapFields($model, $result);
+            $this->_mapFields($model, $result);
 
-        //order emulation
-        if (!empty($this->_queryData['order'][0])) {
-            App::uses('ArraySort', 'ArraySort.Utility');
-            $result = ArraySort::multisort($result, $this->_queryData['order'][0]);
-        }
+            //order emulation
+            if (!empty($this->_queryData['order'][0])) {
+                App::uses('ArraySort', 'ArraySort.Utility');
+                $result = ArraySort::multisort($result, $this->_queryData['order'][0]);
+            }
 
-        if (!empty($this->_queryData['fields'])) {
-            //remove model name from each field
-            $model_name = $model->name;
-            $fields = array_map(function($field) use ($model_name) {
-                        return str_replace("$model_name.", '', $field);
-                    }, (array) $this->_queryData['fields']);
+            if (!empty($this->_queryData['fields'])) {
+                //remove model name from each field
+                $model_name = $model->name;
+                $fields = array_map(function($field) use ($model_name) {
+                            return str_replace("$model_name.", '', $field);
+                        }, (array) $this->_queryData['fields']);
 
-            $fields_keys = array_flip($fields);
+                $fields_keys = array_flip($fields);
 
+                foreach ($result as &$data) {
+                    $data = array_intersect_key($data, $fields_keys);
+                }
+                unset($data);
+            }
+            //final structure
             foreach ($result as &$data) {
-                $data = array_intersect_key($data, $fields_keys);
+                $data = array($model->name => $data);
             }
             unset($data);
         }
-        //final structure
-        foreach ($result as &$data) {
-            $data = array($model->name => $data);
-        }
-        unset($data);
-
         return $result;
     }
 
@@ -675,11 +673,18 @@ abstract class HttpSource extends DataSource {
                     ) = $this->scanMap(HttpSource::METHOD_READ, $model->useTable, array_keys($queryData['conditions']));
             $model->request['uri']['path'] = $path;
             $model->request['uri']['query'] = array();
+
+            $this->_mapReadParams($queryData['conditions']);
+            $this->_mapConditions($queryData['conditions']);
+
             $usedConditions = array_merge(array_intersect(array_keys($queryData['conditions']), array_merge($required_fields, $optional_fields)), array_keys($defaults));
             $query_conditions = $queryData['conditions'] + $defaults;
+
             foreach ($usedConditions as $condition) {
                 $model->request['uri']['query'][$condition] = $query_conditions[$condition];
             }
+
+
         }
 
         if ($model->cacheQueries) {
@@ -784,29 +789,29 @@ abstract class HttpSource extends DataSource {
      * Map parameters like limit, offset, etc to conditions
      * by config rules
      *
-     * @param array $request
+     * @param array $conditions
      * @return array
      */
-    protected function _mapReadParams(array &$request) {
+    protected function _mapReadParams(array &$conditions) {
         foreach ($this->_mapReadParams as $condition => $value) {
-            if (!isset($request[$condition])) {
+            if (!isset($conditions[$condition])) {
                 if (strpos($value, '+') === false) {
                     $value_new = Hash::get($this->_queryData, $value);
                     if ($value_new === null) {
                         continue;
                     }
-                    $request['uri']['query'][$condition] = Hash::get($this->_queryData, $value);
+                    $conditions[$condition] = Hash::get($this->_queryData, $value);
                     continue;
                 }
 
 
                 $values = explode('+', $value);
-                $request['uri']['query'][$condition] = 0;
+                $conditions[$condition] = 0;
                 foreach ($values as $value_name) {
-                    $request['uri']['query'][$condition] += (int) Hash::get($this->_queryData, $value_name);
+                    $conditions[$condition] += (int) Hash::get($this->_queryData, $value_name);
                 }
-                if ($request['uri']['query'][$condition] === 0) {
-                    unset($request['uri']['query'][$condition]);
+                if ($conditions[$condition] === 0) {
+                    unset($conditions[$condition]);
                 }
             }
         }
@@ -816,12 +821,11 @@ abstract class HttpSource extends DataSource {
      * Map conditions to another condition name and apply callback if set
      *
      * @param Model $model
-     * @param array $request
+     * @param array $conditions
      */
-    protected function _mapConditions(array &$request) {
-        $query = &$request['uri']['query'];
+    protected function _mapConditions(array &$conditions) {
         foreach ($this->_mapConditions as $condition => $value) {
-            if (empty($query[$condition])) {
+            if (empty($conditions[$condition])) {
                 continue;
             }
 
@@ -830,14 +834,13 @@ abstract class HttpSource extends DataSource {
                     throw new HttpSourceException('Bad condition map value');
                 }
                 $condition_new = $value['condition'];
-                $condition_value_new = call_user_func($value['callback'], $query[$condition]);
-            }
-            else {
+                $condition_value_new = call_user_func($value['callback'], $conditions[$condition]);
+            } else {
                 $condition_new = $value;
-                $condition_value_new = $query[$condition];
+                $condition_value_new = $conditions[$condition];
             }
-            unset($query[$condition]);
-            $query[$condition_new] = $condition_value_new;
+            unset($conditions[$condition]);
+            $conditions[$condition_new] = $condition_value_new;
         }
     }
 
