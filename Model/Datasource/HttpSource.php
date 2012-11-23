@@ -595,7 +595,7 @@ abstract class HttpSource extends DataSource {
             }
         }
 
-        $this->_mapFields($result);
+        $this->_mapFields($model, $result);
 
         //order emulation
         if (!empty($this->_queryData['order'][0])) {
@@ -815,6 +815,7 @@ abstract class HttpSource extends DataSource {
     /**
      * Map conditions to another condition name and apply callback if set
      *
+     * @param Model $model
      * @param array $request
      */
     protected function _mapConditions(array &$request) {
@@ -829,7 +830,7 @@ abstract class HttpSource extends DataSource {
                     throw new HttpSourceException('Bad condition map value');
                 }
                 $condition_new = $value['condition'];
-                $condition_value_new = call_user_func($value['callback'], $query[$condition], $this);
+                $condition_value_new = call_user_func($value['callback'], $query[$condition]);
             }
             else {
                 $condition_new = $value;
@@ -843,17 +844,18 @@ abstract class HttpSource extends DataSource {
     /**
      * Move fields from old key to new and apply callback if specified
      *
+     * @param Model $model
      * @param array $result
      * @throws HttpSourceException
      */
-    protected function _mapFields(array &$result) {
+    protected function _mapFields(Model $model, array &$result) {
         foreach ($this->_mapFields as $field_name_new => $field_old) {
             foreach ($result as &$element) {
                 if (is_array($field_old)) {
                     if (empty($field_old['callback']) || empty($field_old['field'])) {
                         throw new HttpSourceException('Bad map_fields format!');
                     }
-                    $value = call_user_func($field_old['callback'], Hash::get($element, $field_old['field']), $this);
+                    $value = call_user_func($field_old['callback'], Hash::get($element, $field_old['field']), $model);
                     $element = Hash::remove($element, $field_old['field']);
                 } else if (is_string($field_old)) {
                     $value = Hash::get($element, $field_old);
