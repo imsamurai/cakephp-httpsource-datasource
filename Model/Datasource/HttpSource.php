@@ -203,7 +203,7 @@ abstract class HttpSource extends DataSource {
      * @param HttpSocket $Http
      * @trows HttpSourceException
      */
-    public function __construct($config, $Http = null) {
+    public function __construct($config = array(), HttpSocket $Http = null) {
         parent::__construct($config);
         // Store the API configuration map
         list($plugin, $name) = pluginSplit($config['datasource']);
