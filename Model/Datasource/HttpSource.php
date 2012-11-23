@@ -820,15 +820,10 @@ abstract class HttpSource extends DataSource {
     /**
      * Map conditions to another condition name and apply callback if set
      *
-     * @param Model $model
      * @param array $conditions
      */
     protected function _mapConditions(array &$conditions) {
         foreach ($this->_mapConditions as $condition => $value) {
-            if (empty($conditions[$condition])) {
-                continue;
-            }
-
             if (is_array($value)) {
                 if (empty($value['condition']) || empty($value['callback'])) {
                     throw new HttpSourceException('Bad condition map value');
@@ -838,6 +833,10 @@ abstract class HttpSource extends DataSource {
             } else {
                 $condition_new = $value;
                 $condition_value_new = $conditions[$condition];
+            }
+
+            if (empty($conditions[$condition_value_new])) {
+                continue;
             }
             unset($conditions[$condition]);
             $conditions[$condition_new] = $condition_value_new;
