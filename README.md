@@ -113,7 +113,7 @@ $config['MyPlugin']['read'] = array(
                             'new_array_path_name' => array(
                                 'field' => 'old.field_string',
                                 //any callable construction that expect one param with value
-                                'callback' => function($value) {
+                                'callback' => function($value, Model $model) {
                                     return explode(',', $value);
                                 }
                             ),
