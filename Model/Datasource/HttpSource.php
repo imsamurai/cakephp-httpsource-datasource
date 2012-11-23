@@ -828,11 +828,9 @@ abstract class HttpSource extends DataSource {
                 if (empty($value['condition']) || empty($value['callback'])) {
                     throw new HttpSourceException('Bad condition map value');
                 }
-                $condition_new = $value['condition'];
-                $condition_value_new = call_user_func($value['callback'], Hash::get($conditions, $condition_value_new));
+                $condition_value_new = call_user_func($value['callback'], Hash::get($conditions, $value['condition']));
             } else {
-                $condition_new = $value;
-                $condition_value_new = Hash::get($conditions, $condition_value_new);
+                $condition_value_new = Hash::get($conditions, $value);
             }
 
             unset($conditions[$condition_value_new]);
