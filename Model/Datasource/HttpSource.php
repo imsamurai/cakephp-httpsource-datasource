@@ -505,7 +505,7 @@ abstract class HttpSource extends DataSource {
         }
 
         if (!empty($this->error)) {
-             $this->log(get_class($this).': '.$this->error, LOG_ERR);
+             $this->log('['.get_class($this).'] '.$this->error, LOG_ERR);
         }
     }
 
