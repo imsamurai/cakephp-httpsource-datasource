@@ -492,20 +492,21 @@ abstract class HttpSource extends DataSource {
      */
     public function logRequest() {
         $this->_requestsCnt++;
-        $this->_requestsLog[] = array(
+        $log = array(
             'query' => $this->Http->request['raw'],
             'error' => $this->error,
             'affected' => $this->affected,
             'numRows' => $this->numRows,
             'took' => $this->took,
         );
+        $this->_requestsLog[] = $log;
         $this->_requestsTime += $this->took;
         if (count($this->_requestsLog) > $this->_requestsLogMax) {
             array_shift($this->_requestsLog);
         }
 
         if (!empty($this->error)) {
-             $this->log('['.get_class($this).'] '.$this->error, LOG_ERR);
+             $this->log(get_class($this).': '.$this->error."\n".$log['query'], LOG_ERR);
         }
     }
 
