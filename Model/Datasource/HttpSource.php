@@ -679,7 +679,7 @@ abstract class HttpSource extends DataSource {
             $model->request['uri']['path'] = $path;
             $model->request['uri']['query'] = array();
 
-            $this->_mapReadParams($queryData['conditions']);
+            $this->_mapReadParams($queryData);
             $this->_mapConditions($queryData['conditions']);
 
             $usedConditions = array_merge(array_intersect(array_keys($queryData['conditions']), array_merge($required_fields, $optional_fields)), array_keys($defaults));
@@ -794,18 +794,21 @@ abstract class HttpSource extends DataSource {
      * Map parameters like limit, offset, etc to conditions
      * by config rules
      *
-     * @param array $conditions
+     * @param array $params
      * @return array
      */
-    protected function _mapReadParams(array &$conditions) {
+    protected function _mapReadParams(array &$params) {
+        $conditions = &$params['conditions'];
         foreach ($this->_mapReadParams as $condition => $value) {
             if (!isset($conditions[$condition])) {
+
                 if (strpos($value, '+') === false) {
                     $value_new = Hash::get($this->_queryData, $value);
                     if ($value_new === null) {
                         continue;
                     }
                     $conditions[$condition] = Hash::get($this->_queryData, $value);
+                    unset($params[$value]);
                     continue;
                 }
 
@@ -814,6 +817,7 @@ abstract class HttpSource extends DataSource {
                 $conditions[$condition] = 0;
                 foreach ($values as $value_name) {
                     $conditions[$condition] += (int) Hash::get($this->_queryData, $value_name);
+                    unset($params[$value_name]);
                 }
                 if ($conditions[$condition] === 0) {
                     unset($conditions[$condition]);
