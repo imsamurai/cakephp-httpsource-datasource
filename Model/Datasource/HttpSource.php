@@ -297,9 +297,9 @@ abstract class HttpSource extends DataSource {
         // Remove unwanted elements from request array
         $request = array_intersect_key($request, $this->Http->request);
 
-        if (!empty($this->tokens)) {
-            $request['uri']['path'] = $this->swapTokens($request['uri']['path'], $this->tokens);
-        }
+
+        $this->swapTokens($request);
+
 
         $request = $this->beforeRequest($request, $request_method);
 
@@ -442,16 +442,17 @@ abstract class HttpSource extends DataSource {
      * Iterates through the tokens (passed or request items) and replaces them into the url
      *
      * @param string $url
-     * @param array $tokens optional
-     * @return string $url
+     * @param array $request
      */
-    public function swapTokens($url, $tokens = array()) {
+    public function swapTokens(array &$request) {
+        $query = (array)Hash::get($request, 'uri.query');
+
         $formattedTokens = array();
-        foreach ($tokens as $token => $value) {
+        foreach ($query as $token => $value) {
             $formattedTokens[':' . $token] = $value;
+            unset($request['uri']['query'][$token]);
         }
-        $url = strtr($url, $formattedTokens);
-        return $url;
+        $request['uri']['path'] = strtr($request['uri']['path'], $formattedTokens);
     }
 
     /**
