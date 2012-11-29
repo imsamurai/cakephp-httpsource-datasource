@@ -1,17 +1,54 @@
-# CakePHP [MyApi] Api Plugin
+[MyAPI]Source Plugin
+=====================
 
-**TO USE THIS TEMPLATE, SEARCH AND REPLACE ALL INSTANCES OF [MyApi] AND FILL OUT THE CONFIG FILE**
+CakePHP [MyAPI]Source Plugin with DataSource for http://www.freebase.com/
 
 ## Installation
 
-This plugin depends on the [ApisDatasource](https://github.com/ProLoser/CakePHP-Api-Datasources). Refer to the instructions found there.
+### Step 1: Clone or download [HttpSource](https://github.com/imsamurai/cakephp-httpsource-datasource)
 
+### Step 2: Clone or download to `Plugin/[MyAPI]Source`
 
-## Contributors
+  cd my_cake_app/app
+	[link to repo] Plugin/[MyAPI]Source
 
-* [ProLoser](https://http://deansofer.com/)
+or if you use git add as submodule:
 
-## Bugs
+	cd my_cake_app
+	git submodule add "[link to repo]" "app/Plugin/[MyAPI]Source"
 
-If you need help, try opening a ticket hereon the [bug tracker](https://github.com/proloser/cakephp-api-datasources/issues)
- **CHANGE URL**
+then update submodules:
+
+	git submodule init
+	git submodule update
+
+### Step 3: Add your configuration to `database.php` and set it to the model
+
+```
+:: database.php ::
+public $freebase = array(
+  'datasource' => '[MyAPI]Source.Http/[MyAPI]Source',
+        'host' => 'www.example.com',
+        'port' => 80
+);
+
+Then make model
+
+:: Freebase.php ::
+public $useDbConfig = 'myapi';
+public $useTable = '<desired api url ending, for ex: "search">';
+
+```
+
+### Step 4: Load plugin
+
+```
+:: bootstrap.php ::
+CakePlugin::load('HttpSource', array('bootstrap' => true, 'routes' => false));
+CakePlugin::load('[MyAPI]Source');
+
+```
+
+#Documentation
+
+Please read [HttpSource Plugin README](https://github.com/imsamurai/cakephp-httpsource-datasource/blob/master/README.md)
