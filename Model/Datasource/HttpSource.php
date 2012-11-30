@@ -278,6 +278,11 @@ abstract class HttpSource extends DataSource {
      * @return array|false $response
      */
     public function request(Model $model = null, $request_data = null, $request_method = HttpSource::METHOD_READ) {
+        $this->error = null;
+        $this->affected = null;
+        $this->numRows = null;
+        $this->took = null;
+
         if ($model !== null) {
             $request = $model->request;
         } elseif (is_array($request_data)) {
@@ -598,7 +603,9 @@ abstract class HttpSource extends DataSource {
     public function afterRequest(Model $model, array $result, $request_method) {
         if ($request_method === HttpSource::METHOD_READ) {
             $this->_mapResult($result);
-
+            if ($this->numRows === null) {
+                $this->numRows = count($result);
+            }
             //emulate limit and offset
             if (!empty($this->_queryData['limit'])) {
                 if (!empty($this->_queryData['offset'])) {
