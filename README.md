@@ -130,7 +130,14 @@ $config['MyPlugin']['read'] = array(
                                                 return $new_value;
                                                 }
                             )
-                        )
+                        ),
+                        //extract result data from decoded result
+                        //this can be field name or callback
+                        //used only for read method
+                        //for ex:
+                        'map_result' => function ($result) {
+                            return $result;
+                        }
 		),
 		'people/url=' => array(
 			'required' => array('url'),
@@ -169,6 +176,15 @@ $config['MyPlugin']['delete'] = array(
  */
 $config['MyPlugin']['map_read_params'] = array(
 );
+
+//extract result data from decoded result
+//this can be field name or callback
+//applied if callback for url not specified
+//used only for read method
+$config['MyPlugin']['map_result'] = function ($result) {
+    return $result;
+};
+
 //Cache configuration name or false or null or '' (no cache)
 $config['MyPlugin']['cache'] = false;
 ```

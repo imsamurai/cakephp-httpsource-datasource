@@ -197,6 +197,16 @@ abstract class HttpSource extends DataSource {
     protected $_mapConditions = null;
 
     /**
+     * Callback that applied for decoded raw results
+     * and extracts actual results
+     *
+     * @var callcable|string
+     */
+    protected $_mapResultCallback = null;
+
+
+
+    /**
      * Constructor
      *
      * @param array $config
@@ -423,7 +433,12 @@ abstract class HttpSource extends DataSource {
             case 'text/javascript':
                 $response = json_decode((string) $HttpResponse, true);
                 break;
-            default: throw new HttpSourceException("Can't decode unknown format: '$content_type'");
+            default: {
+                if ($this->fullDebug) {
+                    $this->logRequest();
+                }
+                throw new HttpSourceException("Can't decode unknown format: '$content_type'");
+            }
         }
         return (array) $response;
     }
@@ -441,28 +456,26 @@ abstract class HttpSource extends DataSource {
     /**
      * Iterates through the tokens (passed or request items) and replaces them into the url
      *
-     * @param string $url
      * @param array $request
      */
     public function swapTokens(array &$request) {
         $query = (array)Hash::get($request, 'uri.query');
-
-        $formattedTokens = array();
         foreach ($query as $token => $value) {
-            $formattedTokens[':' . $token] = $value;
-            unset($request['uri']['query'][$token]);
+            $count = 0;
+            $request['uri']['path'] = preg_replace('/\:'.  preg_quote($token, '/').'\b/', $value, $request['uri']['path'], 1, $count);
+            if ($count > 0) {
+                unset($request['uri']['query'][$token]);
+            }
         }
-        $request['uri']['path'] = strtr($request['uri']['path'], $formattedTokens);
     }
 
     /**
      * Tries iterating through the config map of REST commmands to decide which command to use
-     * Usage: list($path, $required_fields, $optional_fields, $defaults, $map_fields, $map_conditions) = $this->scanMap(...)
      *
      * @param string $action
      * @param string $section
      * @param array $fields
-     * @return array $path, $required_fields, $optional_fields, $default, $map_fields, $map_conditions
+     * @return array $path, $required_fields, $optional_fields, $default, $map_fields, $map_conditions, $map_results
      * @trows HttpSourceException
      */
     public function scanMap($action, $section, $fields = array()) {
@@ -476,9 +489,16 @@ abstract class HttpSource extends DataSource {
             $required = (array) Hash::get($conditions, 'required');
             $map_fields = (array) Hash::get($conditions, 'map_fields');
             $map_conditions = (array) Hash::get($conditions, 'map_conditions');
+            $map_results = Hash::get($conditions, 'map_results');
+            if (!is_callable($map_results) && !is_string($map_results)) {
+                $map_results = Hash::get($this->map, 'map_results');
+                if (!is_callable($map_results) && !is_string($map_results)) {
+                    $map_results = function ($result) { return $result; };
+                }
+            }
             //check if all required fields present in $fields or $defaults
             if (count(array_intersect(array_intersect(array_merge($fields, array_keys($defaults)), $required), $required)) === count($required)) {
-                return array($path, $required, $optional, $defaults, $map_fields, $map_conditions);
+                return array($path, $required, $optional, $defaults, $map_fields, $map_conditions, $map_results);
             }
         }
         throw new HttpSourceException('Could not find a match for passed conditions');
@@ -577,6 +597,8 @@ abstract class HttpSource extends DataSource {
      */
     public function afterRequest(Model $model, array $result, $request_method) {
         if ($request_method === HttpSource::METHOD_READ) {
+            $this->_mapResult($result);
+
             //emulate limit and offset
             if (!empty($this->_queryData['limit'])) {
                 if (!empty($this->_queryData['offset'])) {
@@ -674,7 +696,8 @@ abstract class HttpSource extends DataSource {
                     $optional_fields,
                     $defaults,
                     $this->_mapFields,
-                    $this->_mapConditions
+                    $this->_mapConditions,
+                    $this->_mapResultCallback
 
                     ) = $this->scanMap(HttpSource::METHOD_READ, $model->useTable, array_keys($queryData['conditions']));
             $model->request['uri']['path'] = $path;
@@ -789,6 +812,25 @@ abstract class HttpSource extends DataSource {
         }
 
         return false;
+    }
+
+    /**
+     * Applies callback or get value by path from raw decoded result
+     * to get actual results
+     *
+     * @param array $result
+     * @throws HttpSourceException
+     */
+    protected function _mapResult(array &$result) {
+        if (is_callable($this->_mapResultCallback)) {
+            $result = call_user_func($this->_mapResultCallback, $result);
+        }
+        else if (is_string($this->_mapResultCallback)) {
+            $result = Hash::get($result, $this->_mapResultCallback);
+        }
+        else {
+            throw new HttpSourceException('Map Result Callback must be callable or string!');
+        }
     }
 
     /**
