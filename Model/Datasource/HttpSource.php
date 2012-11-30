@@ -89,6 +89,14 @@ abstract class HttpSource extends DataSource {
     public $map = array();
 
     /**
+     * Contains all possible decoders
+     *
+     * @var array
+     */
+    public $decoders = array(
+    );
+
+    /**
      * Queries count.
      *
      * @var integer
@@ -204,8 +212,6 @@ abstract class HttpSource extends DataSource {
      */
     protected $_mapResultCallback = null;
 
-
-
     /**
      * Constructor
      *
@@ -252,6 +258,21 @@ abstract class HttpSource extends DataSource {
         $this->Http = $Http;
 
         $this->fullDebug = Configure::read('debug') > 1;
+
+        $this->setDecoder(array('application/xml', 'application/atom+xml', 'application/rss+xml'), function(HttpResponse $HttpResponse) {
+                    App::uses('Xml', 'Utility');
+                    $Xml = new Xml((string) $HttpResponse);
+                    $response = $Xml->toArray(false); // Send false to get separate elements
+                    $Xml->__destruct();
+                    $Xml = null;
+                    unset($Xml);
+
+                    return $response;
+                }, false);
+
+        $this->setDecoder(array('application/json', 'application/javascript', 'text/javascript'), function(HttpResponse $HttpResponse) {
+                    return json_decode((string) $HttpResponse, true);
+                }, false);
     }
 
     /**
@@ -403,6 +424,41 @@ abstract class HttpSource extends DataSource {
     }
 
     /**
+     * Add decoder for given $content_type
+     *
+     * @param string|array $content_type Content type
+     * @param callable $callback Function used for decoding
+     * @param bool $replace Replace decoder if already set or not. Default false
+     */
+    public function setDecoder($content_type, callable $callback, $replace = false) {
+        $content_types = (array) $content_type;
+        foreach ($content_types as $type) {
+            if (!isset($this->decoders[$type]) || $replace) {
+                $this->decoders[$type] = $callback;
+            }
+        }
+    }
+
+    /**
+     * Get decoder by given $content_type.
+     * If decoder not found writes log and throw exception.
+     *
+     * @param string $content_type
+     * @return callable
+     * @throws HttpSourceException
+     */
+    public function getDecoder($content_type) {
+        if (empty($this->decoders[$content_type])) {
+            if ($this->fullDebug) {
+                $this->logRequest();
+            }
+            throw new HttpSourceException("Can't decode unknown format: '$content_type'");
+        }
+
+        return $this->decoders[$content_type];
+    }
+
+    /**
      * Decodes the response based on the content type
      *
      * @param HttpResponse $HttpResponse
@@ -416,36 +472,7 @@ abstract class HttpSource extends DataSource {
         }
 
         // Decode response according to content type
-        switch ($content_type) {
-            case 'application/xml':
-            case 'application/atom+xml':
-            case 'application/rss+xml':
-                // If making multiple requests that return xml, I found that using the
-                // same Xml object with Xml::load() to load new responses did not work,
-                // consequently it is necessary to create a whole new instance of the
-                // Xml class. This can use a lot of memory so we have to manually
-                // garbage collect the Xml object when we've finished with it, i.e. got
-                // it to transform the xml string response into a php array.
-                App::uses('Xml', 'Utility');
-                $Xml = new Xml((string) $HttpResponse);
-                $response = $Xml->toArray(false); // Send false to get separate elements
-                $Xml->__destruct();
-                $Xml = null;
-                unset($Xml);
-                break;
-            case 'application/json':
-            case 'application/javascript':
-            case 'text/javascript':
-                $response = json_decode((string) $HttpResponse, true);
-                break;
-            default: {
-                if ($this->fullDebug) {
-                    $this->logRequest();
-                }
-                throw new HttpSourceException("Can't decode unknown format: '$content_type'");
-            }
-        }
-        return (array) $response;
+        return (array) call_user_func($this->getDecoder($content_type), $HttpResponse);
     }
 
     /**
@@ -464,10 +491,10 @@ abstract class HttpSource extends DataSource {
      * @param array $request
      */
     public function swapTokens(array &$request) {
-        $query = (array)Hash::get($request, 'uri.query');
+        $query = (array) Hash::get($request, 'uri.query');
         foreach ($query as $token => $value) {
             $count = 0;
-            $request['uri']['path'] = preg_replace('/\:'.  preg_quote($token, '/').'\b/', $value, $request['uri']['path'], 1, $count);
+            $request['uri']['path'] = preg_replace('/\:' . preg_quote($token, '/') . '\b/', $value, $request['uri']['path'], 1, $count);
             if ($count > 0) {
                 unset($request['uri']['query'][$token]);
             }
@@ -498,7 +525,9 @@ abstract class HttpSource extends DataSource {
             if (!is_callable($map_results) && !is_string($map_results)) {
                 $map_results = Hash::get($this->map, 'map_results');
                 if (!is_callable($map_results) && !is_string($map_results)) {
-                    $map_results = function ($result) { return $result; };
+                    $map_results = function ($result) {
+                                return $result;
+                            };
                 }
             }
             //check if all required fields present in $fields or $defaults
@@ -532,7 +561,7 @@ abstract class HttpSource extends DataSource {
         }
 
         if (!empty($this->error)) {
-             $this->log(get_class($this).': '.$this->error."\n".$log['query'], LOG_ERR);
+            $this->log(get_class($this) . ': ' . $this->error . "\n" . $log['query'], LOG_ERR);
         }
     }
 
@@ -719,8 +748,6 @@ abstract class HttpSource extends DataSource {
             foreach ($usedConditions as $condition) {
                 $model->request['uri']['query'][$condition] = $query_conditions[$condition];
             }
-
-
         }
 
         if ($model->cacheQueries) {
@@ -831,11 +858,9 @@ abstract class HttpSource extends DataSource {
     protected function _mapResult(array &$result) {
         if (is_callable($this->_mapResultCallback)) {
             $result = call_user_func($this->_mapResultCallback, $result);
-        }
-        else if (is_string($this->_mapResultCallback)) {
+        } else if (is_string($this->_mapResultCallback)) {
             $result = Hash::get($result, $this->_mapResultCallback);
-        }
-        else {
+        } else {
             throw new HttpSourceException('Map Result Callback must be callable or string!');
         }
     }
@@ -894,14 +919,13 @@ abstract class HttpSource extends DataSource {
                 $callback = false;
             }
 
-            if(!isset($conditions[$condition_old])) {
+            if (!isset($conditions[$condition_old])) {
                 continue;
             }
 
             if ($callback) {
                 $condition_value_new = call_user_func($callback, $conditions[$condition_old]);
-            }
-            else {
+            } else {
                 $condition_value_new = $conditions[$condition_old];
             }
 
