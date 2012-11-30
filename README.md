@@ -146,7 +146,20 @@ $config['MyPlugin']['read'] = array(
                          */
                         'defaults' => array(
                                         'url' => 'http://example.com/'
-                                      )
+                                      ),
+
+                        /**
+                         * Map parameters like limit, offset, etc to conditions
+                         * by config rules.
+                         *
+                         * For example to map limit to parameter count:
+                         *    array(
+                         *      'count' => 'limit+offset'
+                         *    );
+                         */
+                         'map_params' => array(
+                                                'count' => 'limit'
+                                                    )
 		),
 		'people/~' => array(),
 	),
@@ -167,7 +180,8 @@ $config['MyPlugin']['delete'] = array(
 );
 /**
  * Map parameters like limit, offset, etc to conditions
- * by config rules
+ * by config rules.
+ * Used if map_params not found in url config
  *
  * For example to map limit to parameter count:
  *    array(

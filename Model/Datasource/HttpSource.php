@@ -236,8 +236,6 @@ abstract class HttpSource extends DataSource {
         $this->_cacheName = (string) Hash::get($this->map, 'cache_name');
         unset($this->map['cache_name']);
 
-        $this->_mapReadParams = (array) Hash::get($this->map, 'map_read_params');
-        unset($this->map['map_read_params']);
 
         // Store the HttpSocket reference
         if (!$Http) {
@@ -507,7 +505,7 @@ abstract class HttpSource extends DataSource {
      * @param string $action
      * @param string $section
      * @param array $fields
-     * @return array $path, $required_fields, $optional_fields, $default, $map_fields, $map_conditions, $map_results
+     * @return array $path, $required_fields, $optional_fields, $default, $map_fields, $map_conditions, $map_results, $map_read_params
      * @trows HttpSourceException
      */
     public function scanMap($action, $section, $fields = array()) {
@@ -530,9 +528,13 @@ abstract class HttpSource extends DataSource {
                             };
                 }
             }
+            $map_read_params = (array) Hash::get($conditions, 'map_params');
+            if (empty($map_read_params)) {
+                $map_read_params = (array) Hash::get($this->map, 'map_read_params');
+            }
             //check if all required fields present in $fields or $defaults
             if (count(array_intersect(array_intersect(array_merge($fields, array_keys($defaults)), $required), $required)) === count($required)) {
-                return array($path, $required, $optional, $defaults, $map_fields, $map_conditions, $map_results);
+                return array($path, $required, $optional, $defaults, $map_fields, $map_conditions, $map_results, $map_read_params);
             }
         }
         throw new HttpSourceException('Could not find a match for passed conditions');
@@ -733,7 +735,8 @@ abstract class HttpSource extends DataSource {
                     $defaults,
                     $this->_mapFields,
                     $this->_mapConditions,
-                    $this->_mapResultCallback
+                    $this->_mapResultCallback,
+                    $this->_mapReadParams
 
                     ) = $this->scanMap(HttpSource::METHOD_READ, $model->useTable, array_keys($queryData['conditions']));
             $model->request['uri']['path'] = $path;
