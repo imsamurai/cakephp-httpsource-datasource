@@ -717,10 +717,9 @@ abstract class HttpSource extends DataSource {
      */
     public function read(Model $model, $queryData = array(), $recursive = null) {
         $this->_queryData = $queryData;
-        if (!isset($model->request)) {
-            $model->request = array();
-        }
-        $model->request = array_merge(array('method' => 'GET'), $model->request);
+
+        $model->request = array('method' => 'GET');
+
         if (!isset($queryData['conditions'])) {
             $queryData['conditions'] = array();
         }
@@ -777,9 +776,8 @@ abstract class HttpSource extends DataSource {
      * @param array $values Unused
      */
     public function create(Model $model, $fields = null, $values = null) {
-        if (!isset($model->request)) {
-            $model->request = array();
-        }
+        $model->request = array();
+
         if (empty($model->request['body']) && !empty($fields) && !empty($values)) {
             $model->request['body'] = array_combine($fields, $values);
         }
@@ -801,9 +799,8 @@ abstract class HttpSource extends DataSource {
      * @param array $values Unused
      */
     public function update(Model $model, $fields = null, $values = null, $conditions = null) {
-        if (!isset($model->request)) {
-            $model->request = array();
-        }
+        $model->request = array();
+
         if (empty($model->request['body']) && !empty($fields) && !empty($values)) {
             $model->request['body'] = array_combine($fields, $values);
         }
@@ -826,10 +823,7 @@ abstract class HttpSource extends DataSource {
      * @param mixed $id Unused
      */
     public function delete(Model $model, $id = null) {
-        if (!isset($model->request)) {
-            $model->request = array();
-        }
-        $model->request = array_merge(array('method' => 'DELETE'), $model->request);
+        $model->request = array('method' => 'DELETE');
         return $this->request($model, null, HttpSource::METHOD_DELETE);
     }
 
