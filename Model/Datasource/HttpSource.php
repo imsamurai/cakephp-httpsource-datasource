@@ -720,6 +720,7 @@ abstract class HttpSource extends DataSource {
 
         $model->request = array('method' => 'GET');
 
+        //TODO: extract condition composition into separate method and use in other CRUD methods
         if (!isset($queryData['conditions'])) {
             $queryData['conditions'] = array();
         }
@@ -819,11 +820,16 @@ abstract class HttpSource extends DataSource {
     /**
      * Sets method = DELETE in request if not already set
      *
-     * @param AppModel $model
-     * @param mixed $id Unused
+     * @param Model $model
+     * @param mixed $id
      */
     public function delete(Model $model, $id = null) {
-        $model->request = array('method' => 'DELETE');
+        $model->request = array(
+            'method' => 'DELETE',
+            'uri' => array(
+                'query' => compact('id')
+            )
+        );
         return $this->request($model, null, HttpSource::METHOD_DELETE);
     }
 
