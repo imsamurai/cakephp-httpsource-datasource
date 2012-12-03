@@ -480,7 +480,7 @@ abstract class HttpSource extends DataSource {
      * @return array Array of sources available in this datasource.
      */
     public function listSources($data = null) {
-        return array_keys($this->map[HttpSource::METHOD_READ]) + array_keys($this->map[HttpSource::METHOD_CREATE]) + array_keys($this->map[HttpSource::METHOD_UPDATE]) + array_keys($this->map[HttpSource::METHOD_DELETE]);
+        return array_keys($this->map[HttpSource::METHOD_READ] + $this->map[HttpSource::METHOD_CREATE] + $this->map[HttpSource::METHOD_UPDATE] + $this->map[HttpSource::METHOD_DELETE]);
     }
 
     /**
@@ -809,7 +809,7 @@ abstract class HttpSource extends DataSource {
         }
         $model->request = array_merge(array('method' => 'PUT'), $model->request);
         if (!empty($this->map[HttpSource::METHOD_UPDATE]) && !empty($model->useTable)) {
-            $scan = $this->scanMap('write', $model->useTable, $fields);
+            $scan = $this->scanMap(HttpSource::METHOD_UPDATE, $model->useTable, $fields);
             if ($scan) {
                 $model->request['uri']['path'] = $scan[0];
             } else {
