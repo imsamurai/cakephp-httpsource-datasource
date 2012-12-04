@@ -521,26 +521,28 @@ abstract class HttpSource extends DataSource {
         }
         $map = $this->map[$action][$section];
         foreach ($map as $path => $conditions) {
-            $optional = (array) Hash::get($conditions, 'optional');
             $defaults = (array) Hash::get($conditions, 'defaults');
             $required = (array) Hash::get($conditions, 'required');
-            $map_fields = (array) Hash::get($conditions, 'map_fields');
-            $map_conditions = (array) Hash::get($conditions, 'map_conditions');
-            $map_results = Hash::get($conditions, 'map_results');
-            if (!is_callable($map_results) && !is_string($map_results)) {
-                $map_results = Hash::get($this->map, 'map_results');
-                if (!is_callable($map_results) && !is_string($map_results)) {
-                    $map_results = function ($result) {
-                                return $result;
-                            };
-                }
-            }
-            $map_read_params = (array) Hash::get($conditions, 'map_params');
-            if (empty($map_read_params)) {
-                $map_read_params = (array) Hash::get($this->map, 'map_read_params');
-            }
+
             //check if all required fields present in $fields or $defaults
             if (count(array_intersect(array_intersect(array_merge($fields, array_keys($defaults)), $required), $required)) === count($required)) {
+                $optional = (array) Hash::get($conditions, 'optional');
+                $map_fields = (array) Hash::get($conditions, 'map_fields');
+                $map_conditions = (array) Hash::get($conditions, 'map_conditions');
+                $map_results = Hash::get($conditions, 'map_results');
+                if (!is_callable($map_results) && !is_string($map_results)) {
+                    $map_results = Hash::get($this->map, 'map_results');
+                    if (!is_callable($map_results) && !is_string($map_results)) {
+                        $map_results = function ($result) {
+                                    return $result;
+                                };
+                    }
+                }
+                $map_read_params = (array) Hash::get($conditions, 'map_params');
+                if (empty($map_read_params)) {
+                    $map_read_params = (array) Hash::get($this->map, 'map_read_params');
+                }
+
                 return array($path, $required, $optional, $defaults, $map_fields, $map_conditions, $map_results, $map_read_params);
             }
         }
