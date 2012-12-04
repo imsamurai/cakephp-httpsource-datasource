@@ -101,7 +101,7 @@ abstract class HttpSource extends DataSource {
      *
      * @var array
      */
-    public $columns = array(null=>array());
+    public $columns = array(null => array());
 
     /**
      * Queries count.
@@ -727,35 +727,7 @@ abstract class HttpSource extends DataSource {
 
         $model->request = array('method' => 'GET');
 
-        //TODO: extract condition composition into separate method and use in other CRUD methods
-        if (!isset($queryData['conditions'])) {
-            $queryData['conditions'] = array();
-        }
-        if (!empty($model->useTable)) {
-            list(
-                    $path,
-                    $required_fields,
-                    $optional_fields,
-                    $defaults,
-                    $this->_mapFields,
-                    $this->_mapConditions,
-                    $this->_mapResultCallback,
-                    $this->_mapReadParams
-
-                    ) = $this->scanMap(HttpSource::METHOD_READ, $model->useTable, array_keys($queryData['conditions']));
-            $model->request['uri']['path'] = $path;
-            $model->request['uri']['query'] = array();
-
-            $this->_mapReadParams($queryData);
-            $this->_mapConditions($queryData['conditions']);
-
-            $usedConditions = array_merge(array_intersect(array_keys($queryData['conditions']), array_merge($required_fields, $optional_fields)), array_keys($defaults));
-            $query_conditions = $queryData['conditions'] + $defaults;
-
-            foreach ($usedConditions as $condition) {
-                $model->request['uri']['query'][$condition] = $query_conditions[$condition];
-            }
-        }
+        $this->_buildRequest(HttpSource::METHOD_READ, $model, $queryData, null, null, null, $recursive);
 
         if ($model->cacheQueries) {
             $result = $this->getQueryCache($model->request);
@@ -783,16 +755,8 @@ abstract class HttpSource extends DataSource {
     public function create(Model $model, $fields = null, $values = null) {
         $model->request = array('method' => 'POST');
 
-        if (!empty($fields) && !empty($values)) {
-            $model->request['body'] = array_combine($fields, $values);
-        }
+        $this->_buildRequest(HttpSource::METHOD_CREATE, $model, array(), $fields, $values);
 
-        $scan = $this->scanMap(HttpSource::METHOD_CREATE, $model->useTable, $fields);
-        if ($scan) {
-            $model->request['uri']['path'] = $scan[0];
-        } else {
-            return false;
-        }
         return $this->request($model, null, HttpSource::METHOD_CREATE);
     }
 
@@ -806,18 +770,8 @@ abstract class HttpSource extends DataSource {
     public function update(Model $model, $fields = null, $values = null, $conditions = null) {
         $model->request = array('method' => 'PUT');
 
-        if (!empty($fields) && !empty($values)) {
-            $model->request['body'] = array_combine($fields, $values);
-        }
+        $this->_buildRequest(HttpSource::METHOD_UPDATE, $model, array(), $fields, $values, $conditions);
 
-        if (!empty($model->useTable)) {
-            $scan = $this->scanMap(HttpSource::METHOD_UPDATE, $model->useTable, $fields);
-            if ($scan) {
-                $model->request['uri']['path'] = $scan[0];
-            } else {
-                return false;
-            }
-        }
         return $this->request($model, null, HttpSource::METHOD_UPDATE);
     }
 
@@ -828,12 +782,13 @@ abstract class HttpSource extends DataSource {
      * @param mixed $id
      */
     public function delete(Model $model, $id = null) {
-        $model->request = array(
-            'method' => 'DELETE',
-            'uri' => array(
-                'query' => compact('id')
-            )
-        );
+        $model->request = array('method' => 'DELETE');
+
+        $queryData = array();
+        if ($id) {
+            $queryData['id'] = $id;
+        }
+        $this->_buildRequest(HttpSource::METHOD_DELETE, $model, $queryData);
         return $this->request($model, null, HttpSource::METHOD_DELETE);
     }
 
@@ -853,6 +808,63 @@ abstract class HttpSource extends DataSource {
         }
 
         return false;
+    }
+
+    /**
+     * Build request depends on parameters and config and store it in $model->request
+     *
+     * @param string $method create/read/update/delete
+     * @param Model $model The model being read.
+     * @param array $queryData Query data for read
+     * @param array $fields Fields for save/create
+     * @param array $values Fields values for update/create
+     * @param type $conditions Conditions for update
+     * @param int $recursive Number of levels of association. NOT USED YET
+     * @throws HttpSourceException
+     */
+    protected function _buildRequest($method, Model $model, array $queryData = array(), array $fields = null, array $values = null, array $conditions = null, $recursive = null) {
+        $query_fields = Hash::get($queryData, 'fields');
+        $table = (is_string($query_fields) && empty($model->useTable)) ? $query_fields : $model->useTable;
+
+        if (empty($table)) {
+            throw new HttpSourceException('Empty table name!');
+        }
+
+        if (empty($queryData['conditions'])) {
+            $queryData['conditions'] = (array) $conditions;
+        }debug($table);
+        list(
+                $path,
+                $required_fields,
+                $optional_fields,
+                $defaults,
+                $this->_mapFields,
+                $this->_mapConditions,
+                $this->_mapResultCallback,
+                $this->_mapReadParams
+
+                ) = $this->scanMap($method, $table, $fields ? $fields : array_keys($queryData['conditions']));
+
+        $model->request['uri']['path'] = $path;
+
+
+        if ($method === HttpSource::METHOD_READ) {
+            $this->_mapReadParams($queryData);
+        }
+
+        $this->_mapConditions($queryData['conditions']);
+
+        $usedConditions = array_merge(array_intersect(array_keys($queryData['conditions']), array_merge($required_fields, $optional_fields)), array_keys($defaults));
+        $query_conditions = $queryData['conditions'] + $defaults;
+
+        if (in_array($method, array(HttpSource::METHOD_READ, HttpSource::METHOD_DELETE), true)) {
+            $model->request['uri']['query'] = array();
+            foreach ($usedConditions as $condition) {
+                $model->request['uri']['query'][$condition] = $query_conditions[$condition];
+            }
+        } else if (!empty($fields) && !empty($values)) {
+            $model->request['body'] = array_combine($fields, $values);
+        }
     }
 
     /**
