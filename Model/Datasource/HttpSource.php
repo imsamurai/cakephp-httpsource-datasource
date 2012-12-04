@@ -832,7 +832,7 @@ abstract class HttpSource extends DataSource {
 
         if (empty($queryData['conditions'])) {
             $queryData['conditions'] = (array) $conditions;
-        }debug($table);
+        }
         list(
                 $path,
                 $required_fields,
