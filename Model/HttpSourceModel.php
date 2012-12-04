@@ -7,10 +7,12 @@
  * Format: http://book.cakephp.org/2.0/en/models.html
  */
 
+App::uses('AppModel', 'Model');
+
 /**
  * Model with patched methods to wirk with save()
  */
-abstract class HttpSource extends AppModel {
+abstract class HttpSourceModel extends AppModel {
 
     /**
      * Model name
