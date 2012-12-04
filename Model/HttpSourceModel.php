@@ -59,7 +59,7 @@ abstract class HttpSourceModel extends AppModel {
      * @return mixed On success Model::$data if its not empty or true, false on failure
      * @link http://book.cakephp.org/2.0/en/models/saving-your-data.html
      */
-    public function update($data, $validate, $fieldList) {
+    public function update($data = null, $validate = true, $fieldList = array()) {
         $this->id = true;
         return $this->save($data, $validate, $fieldList);
     }
