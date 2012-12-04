@@ -176,6 +176,7 @@ $config['MyPlugin']['create'] = array(
 );
 $config['MyPlugin']['update'] = array(
 );
+//reserved, not used
 $config['MyPlugin']['delete'] = array(
 );
 /**
