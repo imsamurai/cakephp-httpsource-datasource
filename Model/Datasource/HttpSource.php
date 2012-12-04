@@ -832,9 +832,19 @@ abstract class HttpSource extends DataSource {
             throw new HttpSourceException('Empty table name!');
         }
 
-        if (empty($queryData['conditions'])) {
+        if (!empty($queryData['conditions'])) {
+            $query_conditions = (array) $queryData['conditions'];
+        }
+        else if (!empty($conditions)) {
             $queryData['conditions'] = (array) $conditions;
         }
+        else if (!empty($fields) && !empty($values)) {
+            $query_conditions = array_combine($fields, $values);
+        }
+        else {
+            $query_conditions = array();
+        }
+
         list(
                 $path,
                 $required_fields,
@@ -845,7 +855,7 @@ abstract class HttpSource extends DataSource {
                 $this->_mapResultCallback,
                 $this->_mapReadParams
 
-                ) = $this->scanMap($method, $table, $fields ? $fields : array_keys($queryData['conditions']));
+                ) = $this->scanMap($method, $table, array_keys($query_conditions));
 
         $model->request['uri']['path'] = $path;
 
@@ -854,18 +864,27 @@ abstract class HttpSource extends DataSource {
             $this->_mapReadParams($queryData);
         }
 
-        $this->_mapConditions($queryData['conditions']);
+        $this->_mapConditions($query_conditions);
 
-        $usedConditions = array_merge(array_intersect(array_keys($queryData['conditions']), array_merge($required_fields, $optional_fields)), array_keys($defaults));
-        $query_conditions = $queryData['conditions'] + $defaults;
+        $usedConditions = array_unique(
+                array_merge(
+                        array_intersect(
+                                array_keys($query_conditions), array_merge($required_fields, $optional_fields)
+                        ), array_keys($defaults)
+                )
+        );
+        
+        $query_conditions += $defaults;
 
         if (in_array($method, array(HttpSource::METHOD_READ, HttpSource::METHOD_DELETE), true)) {
             $model->request['uri']['query'] = array();
             foreach ($usedConditions as $condition) {
                 $model->request['uri']['query'][$condition] = $query_conditions[$condition];
             }
-        } else if (!empty($fields) && !empty($values)) {
-            $model->request['body'] = array_combine($fields, $values);
+        } else {
+            foreach ($usedConditions as $condition) {
+                $model->request['body'][$condition] = $query_conditions[$condition];
+            }
         }
     }
 
