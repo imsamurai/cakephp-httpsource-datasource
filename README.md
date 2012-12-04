@@ -65,10 +65,11 @@ Best to just give an example. I switch the datasource on the fly because the mod
 DB. I tend to query from my API and then switch to default and save the results.
 
 ```
-Class Project extends AppModel {
+class Project extends AppModel {
 	function findAuthedUserRepos() {
 		$this->setDataSource('github');
 		$projects = $this->find('all', array(
+                        //used as repo name if useTable is empty, otherwise used as standart fields parameter
 			'fields' => 'repos'
 		));
 		$this->setDataSource('default'); // if more queries are done later
@@ -218,20 +219,13 @@ _[MyPlugin]/Model/Datasource/Http/[MyPlugin].php_
 App::uses('HttpSource', 'HttpSource.Model/Datasource');
 Class MyPlugin extends HttpSource {
 	// Examples of overriding methods & attributes:
-	public $options = array(
-		'format'    => 'json',
-		'ps'		=> '&', // param separator
-		'kvs'		=> '=', // key-value separator
-	);
-	// Key => Values substitutions in the uri-path right before the request is made. Scans uri-path for :keyname
-	public $tokens = array();
 	// Enable OAuth for the api
 	public function __construct($config) {
 		$config['method'] = 'OAuth'; // or 'OAuthV2'
 		parent::__construct($config);
 	}
 	// Last minute tweaks
-	public function beforeRequest($request) {
+	public function beforeRequest($request, $request_method) {
 		$request['header']['x-li-format'] = $this->options['format'];
 		return $request;
 	}
@@ -253,6 +247,7 @@ be injected into your request object.
 
 **I'm eager to hear any recommendations or possible solutions.**
 
+* Write better documentation (wiki)
 * **More automagic**
 * **Better map scanning:**
   I'm not sure of a good way to add map scanning to `save()`, `update()` and `delete()` methods yet since I have little control
