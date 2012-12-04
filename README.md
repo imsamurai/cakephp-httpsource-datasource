@@ -1,7 +1,7 @@
 [MyAPI]Source Plugin
 =====================
 
-CakePHP [MyAPI]Source Plugin with DataSource for http://www.freebase.com/
+CakePHP [MyAPI]Source Plugin with DataSource for http://www.example.com/
 
 ## Installation
 
@@ -26,7 +26,7 @@ then update submodules:
 
 ```
 :: database.php ::
-public $freebase = array(
+public $myapi = array(
   'datasource' => '[MyAPI]Source.Http/[MyAPI]Source',
         'host' => 'www.example.com',
         'port' => 80
@@ -34,7 +34,7 @@ public $freebase = array(
 
 Then make model
 
-:: Freebase.php ::
+:: [MyAPI]Source.php ::
 public $useDbConfig = 'myapi';
 public $useTable = '<desired api url ending, for ex: "search">';
 
