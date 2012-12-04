@@ -861,7 +861,7 @@ abstract class HttpSource extends DataSource {
 
 
         if ($method === HttpSource::METHOD_READ) {
-            $this->_mapReadParams($queryData);
+            $this->_mapReadParams($queryData, $query_conditions);
         }
 
         $this->_mapConditions($query_conditions);
@@ -873,7 +873,7 @@ abstract class HttpSource extends DataSource {
                         ), array_keys($defaults)
                 )
         );
-        
+
         $query_conditions += $defaults;
 
         if (in_array($method, array(HttpSource::METHOD_READ, HttpSource::METHOD_DELETE), true)) {
@@ -910,10 +910,10 @@ abstract class HttpSource extends DataSource {
      * by config rules
      *
      * @param array $params
+     * @param array $conditions
      * @return array
      */
-    protected function _mapReadParams(array &$params) {
-        $conditions = &$params['conditions'];
+    protected function _mapReadParams(array &$params, array &$conditions) {
         foreach ($this->_mapReadParams as $condition => $value) {
             if (!isset($conditions[$condition])) {
 
