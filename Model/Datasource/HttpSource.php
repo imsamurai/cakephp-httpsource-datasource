@@ -731,10 +731,7 @@ abstract class HttpSource extends DataSource {
         if (!isset($queryData['conditions'])) {
             $queryData['conditions'] = array();
         }
-        if (empty($model->request['uri']['path']) && !empty($queryData['path'])) {
-            $model->request['uri']['path'] = $queryData['path'];
-            $model->request['uri']['query'] = $queryData['conditions'];
-        } elseif (!empty($this->map[HttpSource::METHOD_READ]) && (is_string($queryData['fields']) || !empty($model->useTable))) {
+        if (!empty($model->useTable)) {
             list(
                     $path,
                     $required_fields,
@@ -784,12 +781,12 @@ abstract class HttpSource extends DataSource {
      * @param array $values Unused
      */
     public function create(Model $model, $fields = null, $values = null) {
-        $model->request = array();
+        $model->request = array('method' => 'POST');
 
-        if (empty($model->request['body']) && !empty($fields) && !empty($values)) {
+        if (!empty($fields) && !empty($values)) {
             $model->request['body'] = array_combine($fields, $values);
         }
-        $model->request = array_merge(array('method' => 'POST'), $model->request);
+
         $scan = $this->scanMap(HttpSource::METHOD_CREATE, $model->useTable, $fields);
         if ($scan) {
             $model->request['uri']['path'] = $scan[0];
@@ -807,13 +804,13 @@ abstract class HttpSource extends DataSource {
      * @param array $values Unused
      */
     public function update(Model $model, $fields = null, $values = null, $conditions = null) {
-        $model->request = array();
+        $model->request = array('method' => 'PUT');
 
-        if (empty($model->request['body']) && !empty($fields) && !empty($values)) {
+        if (!empty($fields) && !empty($values)) {
             $model->request['body'] = array_combine($fields, $values);
         }
-        $model->request = array_merge(array('method' => 'PUT'), $model->request);
-        if (!empty($this->map[HttpSource::METHOD_UPDATE]) && !empty($model->useTable)) {
+
+        if (!empty($model->useTable)) {
             $scan = $this->scanMap(HttpSource::METHOD_UPDATE, $model->useTable, $fields);
             if ($scan) {
                 $model->request['uri']['path'] = $scan[0];
