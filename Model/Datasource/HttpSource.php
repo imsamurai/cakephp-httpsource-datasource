@@ -93,8 +93,15 @@ abstract class HttpSource extends DataSource {
      *
      * @var array
      */
-    public $decoders = array(
-    );
+    public $decoders = array();
+
+    /**
+     * Columns info by type.
+     * Used in Model::save, Model::create methods
+     *
+     * @var array
+     */
+    public $columns = array(null=>array());
 
     /**
      * Queries count.
