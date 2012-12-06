@@ -12,6 +12,7 @@ class HttpSourceConfig {
 
     protected $_result = null;
     protected $_endpoints = array();
+    protected $_readParams = array();
     protected $_methods = array(
         HttpSourceEndpoint::METHOD_READ,
         HttpSourceEndpoint::METHOD_CREATE,
@@ -24,6 +25,14 @@ class HttpSourceConfig {
             return $this->_result;
         }
         $this->_result = $Result;
+        return $this;
+    }
+
+    public function readParams(array $params = null) {
+        if (is_null($params)) {
+            return $this->_readParams;
+        }
+        $this->_readParams = $params;
         return $this;
     }
 
@@ -61,6 +70,9 @@ class HttpSourceConfig {
             if ($this->_endpointMatch($Endpoint, $fields)) {
                 if (is_null($Endpoint->result())) {
                     $Endpoint->result($this->result());
+                }
+                if (is_null($Endpoint->readParams())) {
+                    $Endpoint->readParams($this->readParams());
                 }
                 return $Endpoint;
             }

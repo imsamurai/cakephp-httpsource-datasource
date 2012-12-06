@@ -18,7 +18,7 @@ class HttpSourceEndpoint {
     protected $_fields = array();
     protected $_conditions = array();
     protected $_result = null;
-    protected $_cache = array();
+    protected $_readParams = null;
 
     /**
      * CRUD constants
@@ -77,6 +77,14 @@ class HttpSourceEndpoint {
         return $this;
     }
 
+    public function readParams(array $params = null) {
+        if (is_null($params)) {
+            return $this->_readParams;
+        }
+        $this->_readParams = $params;
+        return $this;
+    }
+
     public function addField(HttpSourceField $Field) {
         $this->_fields[(string) $Field] = $Field;
         return $this;
@@ -86,6 +94,8 @@ class HttpSourceEndpoint {
         $this->_conditions[(string) $Condition] = $Condition;
         return $this;
     }
+
+
 
     public function requiredConditions() {
         $conditions_list = array();
@@ -107,6 +117,35 @@ class HttpSourceEndpoint {
         }
 
         return $conditions_list;
+    }
+
+    public function processReadParams(Model $model, array &$params, array &$conditions) {
+        foreach ($this->readParams() as $condition => $value) {
+            if (isset($conditions[$condition])) {
+                continue;
+            }
+
+            if (strpos($value, '+') === false) {
+                $value_new = Hash::get($this->_queryData, $value);
+                if ($value_new === null) {
+                    continue;
+                }
+                $conditions[$condition] = Hash::get($this->_queryData, $value);
+                unset($params[$value]);
+                continue;
+            }
+
+
+            $values = explode('+', $value);
+            $conditions[$condition] = 0;
+            foreach ($values as $value_name) {
+                $conditions[$condition] += (int) Hash::get($this->_queryData, $value_name);
+                unset($params[$value_name]);
+            }
+            if ($conditions[$condition] === 0) {
+                unset($conditions[$condition]);
+            }
+        }
     }
 
     public function processFields(Model $model, array &$fields) {
