@@ -7,6 +7,10 @@
  *
  */
 App::uses('HttpSourceConfig', 'HttpSource.Lib/Config');
+App::uses('HttpSourceCondition', 'HttpSource.Lib/Config');
+App::uses('HttpSourceEndpoint', 'HttpSource.Lib/Config');
+App::uses('HttpSourceField', 'HttpSource.Lib/Config');
+App::uses('HttpSourceResult', 'HttpSource.Lib/Config');
 
 class HttpSourceConfigFactory {
 

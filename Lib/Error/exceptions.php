@@ -14,3 +14,7 @@
 class HttpSourceException extends CakeException {
 
 }
+
+class HttpSourceConfigException extends CakeException {
+
+}

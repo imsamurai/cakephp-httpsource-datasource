@@ -13,7 +13,13 @@ class HttpSourceField extends HttpSourceEndpointItem {
     protected $_name = null;
     protected $_mapToName = null;
 
-    public function name($name) {
+    public function name($name = null) {
+        if (is_null($name)) {
+            if (is_null($this->_name)) {
+                throw new HttpSourceConfigException('Field or condition name is null!');
+            }
+           return $this->_name;
+        }
         $this->_name = (string)$name;
         return $this;
     }
@@ -25,7 +31,15 @@ class HttpSourceField extends HttpSourceEndpointItem {
      * @return HttpSourceField
      */
     public function map(callable $callback = null, $map_to_name = null) {
+        if (is_null($callback) && is_null($map_to_name)) {
+            return array($this->_map, $this->_mapToName ? $this->_mapToName : $this->name());
+        }
         $this->_mapToName = $map_to_name;
-        return parent::map($callback);
+        parent::map($callback);
+        return $this;
+    }
+
+    public function __toString() {
+        return $this->name();
     }
 }

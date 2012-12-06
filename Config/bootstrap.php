@@ -6,6 +6,8 @@
  * Time: 11:07:20
  *
  */
+App::uses('HttpSourceConfigFactory', 'HttpSource.Lib/Config');
+
 $this_plugin_dir = dirname(dirname(__FILE__)) . DS;
 App::build(array(
     'Plugin' => array($this_plugin_dir . 'Plugin' . DS),

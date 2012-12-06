@@ -6,8 +6,6 @@
  * Time: 23:20:06
  * Format: http://book.cakephp.org/2.0/en/development/testing.html
  */
-App::uses('HttpSourceConfigFactory', 'HttpSource.Lib/Config');
-App::uses('HttpSourceConfig', 'HttpSource.Lib/Config');
 
 class HttpSourceConfigTest extends CakeTestCase {
 
@@ -60,7 +58,7 @@ class HttpSourceConfigTest extends CakeTestCase {
         $Config = $CF->config();
         $Config->add(
                 $CF->endpoint()
-                        ->method(HttpSourceEndpoint::METHOD_READ)
+                        ->methodRead()
                         ->table('test/get_dics_info')
                         ->addField(
                                 $CF->field()
@@ -73,6 +71,7 @@ class HttpSourceConfigTest extends CakeTestCase {
                                 $CF->condition()
                                 ->name('id')
                                 ->null(false)
+                                ->keyPrimary()
                         )
                         ->addCondition(
                                 $CF->condition()
@@ -99,12 +98,9 @@ class HttpSourceConfigTest extends CakeTestCase {
                         )
         );
 
-        //debug($Config->endpoints());
+        debug($Config->endpoint(HttpSourceEndpoint::METHOD_READ, 'test/get_dics_info', array('id','pin'))->schema());
 
-        $Endpoint = $Config->endpoints(HttpSourceEndpoint::METHOD_READ, 'test/get_dics_info');
-        $Endpoint['test/get_dics_info']->table('test/jh');
-        $Endpoint1 = $Config->endpoints(HttpSourceEndpoint::METHOD_READ, 'test/get_dics_info');
-        debug($Endpoint1['test/get_dics_info']->table());
+
         $this->assertTrue(true);
     }
 
