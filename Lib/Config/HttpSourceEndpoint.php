@@ -190,15 +190,15 @@ class HttpSourceEndpoint {
     }
 
     /**
-     * Get condition by name
+     * Get condition by name, if condition not exists
+     * create, add and return new
      *
      * @param string $name
      * @return HttpSourceCondition
-     * @throws HttpSourceConfigException If not found
      */
     public function condition($name) {
         if (!isset($this->_conditions[$name])) {
-            throw new HttpSourceConfigException("Condition '$name' not found in table '{$this->table()}'!");
+            $this->_conditions[$name] = HttpSourceConfigFactory::instance()->condition()->name($name);
         }
         return $this->_conditions[$name];
     }
