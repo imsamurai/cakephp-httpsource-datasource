@@ -85,6 +85,16 @@ class HttpSourceConfigFactory {
     }
 
     /**
+     * Load config by source name
+     *
+     * @param string $source_name
+     * @return HttpSourceConfig
+     */
+    public function load($source_name) {
+        return Configure::read($source_name.'.config');
+    }
+
+    /**
      * For single object
      */
     private function __construct() {
