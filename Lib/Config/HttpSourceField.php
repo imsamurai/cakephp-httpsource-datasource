@@ -9,10 +9,32 @@
 
 App::uses('HttpSourceEndpointItem', 'HttpSource.Lib/Config');
 
+/**
+ * Http source endpoint field
+ */
 class HttpSourceField extends HttpSourceEndpointItem {
+    /**
+     * Field name
+     *
+     * @var string
+     */
     protected $_name = null;
+
+    /**
+     * New field name
+     *
+     * @var string
+     */
     protected $_mapToName = null;
 
+    /**
+     * Set or get field name
+     *
+     * @param string $name
+     * @return HttpSourceField
+     * @return string
+     * @throws HttpSourceConfigException
+     */
     public function name($name = null) {
         if (is_null($name)) {
             if (is_null($this->_name)) {
@@ -25,10 +47,12 @@ class HttpSourceField extends HttpSourceEndpointItem {
     }
 
     /**
+     * Get or set callback and new name
      *
      * @param callable $callback
-     * @param type $map_to_name
+     * @param string $map_to_name New field name
      * @return HttpSourceField
+     * @return array
      */
     public function map(callable $callback = null, $map_to_name = null) {
         if (is_null($callback) && is_null($map_to_name)) {
@@ -39,6 +63,11 @@ class HttpSourceField extends HttpSourceEndpointItem {
         return $this;
     }
 
+    /**
+     * Typecast to string
+     *
+     * @return string
+     */
     public function __toString() {
         return $this->name();
     }

@@ -12,23 +12,35 @@ App::uses('HttpSourceEndpoint', 'HttpSource.Lib/Config');
 App::uses('HttpSourceField', 'HttpSource.Lib/Config');
 App::uses('HttpSourceResult', 'HttpSource.Lib/Config');
 
+/**
+ * Factory to make HttpSource configuration
+ */
 class HttpSourceConfigFactory {
 
     protected static $_instance = null;
 
     /**
+     * Singleton instance
+     * By setting HttpSource.factory to your class you can use your own,
+     * you must use same interface
      *
      * @return HttpSourceConfigFactory
      */
     public static function instance() {
         if (is_null(static::$_instance)) {
-            static::$_instance = new static();
+            $factory_class = Configure::read('HttpSource.factory');
+            if (!empty($factory_class)) {
+                static::$_instance = new $factory_class();
+            } else {
+                static::$_instance = new static();
+            }
         }
 
         return static::$_instance;
     }
 
     /**
+     * Create config
      *
      * @return HttpSourceConfig
      */
@@ -37,14 +49,7 @@ class HttpSourceConfigFactory {
     }
 
     /**
-     *
-     * @return HttpSourceCondition
-     */
-    public function condition() {
-        return new HttpSourceCondition();
-    }
-
-    /**
+     * Create endpoint
      *
      * @return HttpSourceEndpoint
      */
@@ -53,6 +58,16 @@ class HttpSourceConfigFactory {
     }
 
     /**
+     * Create endpoint condition
+     *
+     * @return HttpSourceCondition
+     */
+    public function condition() {
+        return new HttpSourceCondition();
+    }
+
+    /**
+     * Create endpoint field
      *
      * @return HttpSourceField
      */
@@ -61,6 +76,7 @@ class HttpSourceConfigFactory {
     }
 
     /**
+     * Create endpoint result
      *
      * @return HttpSourceResult
      */
@@ -69,8 +85,10 @@ class HttpSourceConfigFactory {
     }
 
     /**
-     *
+     * For single object
      */
-    private function __construct() {}
+    private function __construct() {
+
+    }
 
 }

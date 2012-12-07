@@ -6,16 +6,35 @@
  * Time: 23:04:48
  *
  */
+
+/**
+ * Base class for endpoint items (field, result)
+ */
 abstract class HttpSourceEndpointItem {
 
+    /**
+     * Holds callback
+     *
+     * @var callable
+     */
     protected $_map = null;
 
+    /**
+     * Constructor
+     */
     public function __construct() {
         $this->_map = function ($value) {
-            return $value;
-        };
+                    return $value;
+                };
     }
 
+    /**
+     * Set or get callback
+     *
+     * @param callable $callback
+     * @return HttpSourceEndpointItem
+     * @return callable
+     */
     public function map(callable $callback = null) {
         if (is_null($callback)) {
             return $this->_map;

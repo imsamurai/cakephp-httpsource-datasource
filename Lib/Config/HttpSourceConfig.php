@@ -8,11 +8,45 @@
  */
 App::uses('HttpSourceEndpoint', 'HttpSource.Lib/Config');
 
+/**
+ * Http source endpoints config
+ */
 class HttpSourceConfig {
 
+    /**
+     * Holds default result handler that applied
+     * if no result handler found in endpoint
+     *
+     * @var HttpSourceResult
+     */
     protected $_result = null;
+
+    /**
+     * Added endpoints
+     *
+     * @var array
+     */
     protected $_endpoints = array();
+
+    /**
+     * Added endpoints by id
+     *
+     * @var array
+     */
+    protected $_endpointsById = array();
+
+    /**
+     * Default mapped read params (limit, offset, etc)
+     *
+     * @var array
+     */
     protected $_readParams = array();
+
+    /**
+     * Available endpoint methods
+     *
+     * @var array
+     */
     protected $_methods = array(
         HttpSourceEndpoint::METHOD_READ,
         HttpSourceEndpoint::METHOD_CREATE,
@@ -20,6 +54,13 @@ class HttpSourceConfig {
         HttpSourceEndpoint::METHOD_DELETE
     );
 
+    /**
+     * Get and set default endpoint result handler
+     *
+     * @param HttpSourceResult $Result
+     * @return HttpSourceConfig
+     * @return HttpSourceResult
+     */
     public function result(HttpSourceResult $Result = null) {
         if (is_null($Result)) {
             return $this->_result;
@@ -28,6 +69,13 @@ class HttpSourceConfig {
         return $this;
     }
 
+    /**
+     * Get and set default endpoint mapped read params
+     *
+     * @param array $params
+     * @return HttpSourceConfig
+     * @return array
+     */
     public function readParams(array $params = null) {
         if (is_null($params)) {
             return $this->_readParams;
@@ -36,32 +84,50 @@ class HttpSourceConfig {
         return $this;
     }
 
+    /**
+     * Add and check endpoint
+     *
+     * @param HttpSourceEndpoint $Endpoint
+     * @return HttpSourceConfig
+     * @throws HttpSourceConfigException If endpoint configuration is incorrect
+     */
     public function add(HttpSourceEndpoint $Endpoint) {
+        if (is_null($Endpoint->id())) {
+            throw new HttpSourceConfigException('You must set id for each endpoint by call id($id) method!');
+        }
+        if (isset($this->_endpointsById[$Endpoint->id()])) {
+            throw new HttpSourceConfigException('Each endpoint must have unique id!');
+        }
         $this->_endpoints[$Endpoint->method()][$Endpoint->table()][$Endpoint->path()] = $Endpoint;
+        $this->_endpointsById[$Endpoint->id()] = $Endpoint;
         return $this;
     }
 
-    public function describe(Model $model) {
-        if (empty($model->useTable)) {
-            return array();
+    /**
+     * Get endpoint by id
+     *
+     * @param int $id
+     * @return HttpSourceEndpoint
+     * @throws HttpSourceConfigException If endpoint not found
+     */
+    public function endpoint($id) {
+        if (empty($this->_endpointsById[$id])) {
+            throw new HttpSourceConfigException("Endpoint with id=$id not found!");
         }
-        foreach ($this->_methods as $method) {
-            if (!empty($this->_endpoints[$method][$model->useTable])) {
-                $this->_endpoints[$method][$model->useTable]->describe();
-            }
-        }
+
+        return $this->_endpointsById[$id];
     }
 
-    public function listSources() {
-        $sources = array();
-        foreach ($this->_methods as $method) {
-            $sources = array_merge($sources, array_keys(Hash::get($sources, $method)));
-        }
-
-        return array_unique($sources);
-    }
-
-    public function endpoint($method, $table, $fields = array()) {
+    /**
+     * Finds endpoint that match given arguments
+     *
+     * @param string $method CRUD method name
+     * @param string $table
+     * @param array $fields
+     * @return HttpSourceEndpoint
+     * @throws HttpSourceConfigException If endpoint not found
+     */
+    public function findEndpoint($method, $table, $fields = array()) {
         if (!isset($this->_endpoints[$method][$table])) {
             throw new HttpSourceConfigException('Table ' . $table . ' not found in HttpSource Configuration');
         }
@@ -81,10 +147,51 @@ class HttpSourceConfig {
         throw new HttpSourceConfigException('Could not find a match for passed conditions');
     }
 
-    protected function _endpointMatch(HttpSourceEndpoint $Endpoint, $fields) {
+    /**
+     * Returns endpoint info for the model
+     * in schema format
+     *
+     * @param Model $model
+     * @return array
+     *
+     * TODO: improove
+     */
+    public function describe(Model $model) {
+        if (empty($model->useTable)) {
+            return array();
+        }
+        foreach ($this->_methods as $method) {
+            if (!empty($this->_endpoints[$method][$model->useTable])) {
+                $endpoints = $this->_endpoints[$method][$model->useTable];
+                return $endpoints[key($endpoints)]->schema();
+            }
+        }
+    }
+
+    /**
+     * Returns list of available sources (tables)
+     *
+     * @return array
+     */
+    public function listSources() {
+        $sources = array();
+        foreach ($this->_methods as $method) {
+            $sources = array_merge($sources, array_keys((array) Hash::get($this->_endpoints, $method)));
+        }
+
+        return array_unique($sources);
+    }
+
+    /**
+     * Check if endpoint matched by given fields
+     *
+     * @param HttpSourceEndpoint $Endpoint
+     * @param array $fields
+     * @return bool
+     */
+    protected function _endpointMatch(HttpSourceEndpoint $Endpoint, array $fields) {
         $required = $Endpoint->requiredConditions();
-        $defaults = $Endpoint->defaultsConditions();
-        debug($required);
+        $defaults = $Endpoint->conditionsDefaults();
         return (count(array_intersect(array_intersect(array_merge($fields, array_keys($defaults)), $required), $required)) === count($required));
     }
 
