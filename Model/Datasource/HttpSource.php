@@ -181,15 +181,15 @@ abstract class HttpSource extends DataSource {
         // Store the API configuration map
         list($plugin, $name) = pluginSplit($config['datasource']);
 
+        if (!$this->map = Configure::read($plugin)) {
+            Configure::load($plugin . '.' . $plugin);
+            $this->map = Configure::read($plugin);
+        }
+        //must be after map loading
         if ((int) Configure::read($plugin . '.config_version') === 2) {
             $this->Config = Configure::read($plugin . '.config');
         } else {
             throw new NotImplementedException('Configs with config_version != 2 are not implemented yet!');
-        }
-
-        if (!$this->map = Configure::read($plugin)) {
-            Configure::load($plugin . '.' . $plugin);
-            $this->map = Configure::read($plugin);
         }
 
         if (empty($this->map)) {
