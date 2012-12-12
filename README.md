@@ -98,108 +98,12 @@ $config['MyPlugin']['oauth'] = array(
 	'login' => 'authenticate', // Like authorize, just auto-redirects
 	'logout' => 'invalidateToken',
 );
-$config['MyPlugin']['read'] = array(
-	// field
-	'people' => array(
-		// api url
-		'people/id=' => array(
-			// required conditions
-			'required' => array('id'),
 
-                        //additionally you can map fields with or without callbacks
-                        //field names are Hash path compatible
-                        'map_fields' => array(
-                            'new_path.name' => 'old_path.name',
-                            'new_path_name' => 'old_path_name',
-                            'new_array_path_name' => array(
-                                'field' => 'old.field_string',
-                                //any callable construction that expect one param with value
-                                'callback' => function($value, Model $model) {
-                                    return explode(',', $value);
-                                }
-                            ),
-                        ),
-
-                        //additionally you can map conditions with or without callbacks
-                        //field names are *NOT* Hash path compatible
-                        'map_conditions' => array (
-                            'new_param_name' => 'old_param_name',
-                            'new_param_name2' => array(
-                                'condition' => 'old_param_name2',
-                                'callback' => function($value) {
-                                                ...
-                                                return $new_value;
-                                                }
-                            )
-                        ),
-                        //extract result data from decoded result
-                        //this can be field name or callback
-                        //used only for read method
-                        //for ex:
-                        'map_result' => function ($result) {
-                            return $result;
-                        }
-		),
-		'people/url=' => array(
-			'required' => array('url'),
-                        /**
-                         * default values for required and optional conditions
-                         */
-                        'defaults' => array(
-                                        'url' => 'http://example.com/'
-                                      ),
-
-                        /**
-                         * Map parameters like limit, offset, etc to conditions
-                         * by config rules.
-                         *
-                         * For example to map limit to parameter count:
-                         *    array(
-                         *      'count' => 'limit+offset'
-                         *    );
-                         */
-                         'map_params' => array(
-                                                'count' => 'limit'
-                                                    )
-		),
-		'people/~' => array(),
-	),
-	'people-search' => array(
-		'people-search' => array(
-		// optional conditions the api call can take
-			'optional' => array(
-				'keywords'
-			),
-		),
-	),
-);
-$config['MyPlugin']['create'] = array(
-);
-$config['MyPlugin']['update'] = array(
-);
-//reserved, not used
-$config['MyPlugin']['delete'] = array(
-);
 /**
- * Map parameters like limit, offset, etc to conditions
- * by config rules.
- * Used if map_params not found in url config
- *
- * For example to map limit to parameter count:
- *    array(
- *      'count' => 'limit+offset'
- *    );
- */
-$config['MyPlugin']['map_read_params'] = array(
-);
-
-//extract result data from decoded result
-//this can be field name or callback
-//applied if callback for url not specified
-//used only for read method
-$config['MyPlugin']['map_result'] = function ($result) {
-    return $result;
-};
+*
+* Configuration example will be soon
+*
+*/
 
 //Cache configuration name or false or null or '' (no cache)
 $config['MyPlugin']['cache'] = false;
