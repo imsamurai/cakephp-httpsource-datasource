@@ -280,15 +280,15 @@ abstract class HttpSource extends DataSource {
         }
 
         if (empty($request['uri']['host'])) {
-            $request['uri']['host'] = $this->config['host'];
+            $request['uri']['host'] = (string)Hash::get($this->config, 'host');
         }
 
         if (empty($request['uri']['port'])) {
-            $request['uri']['port'] = $this->config['port'];
+            $request['uri']['port'] = (int)Hash::get($this->config, 'port');
         }
 
         if (empty($request['uri']['path'])) {
-            $request['uri']['path'] = $this->config['path'];
+            $request['uri']['path'] = (string)Hash::get($this->config, 'path');;
         }
 
         if (empty($request['uri']['scheme']) && !empty($this->map['oauth']['scheme'])) {
