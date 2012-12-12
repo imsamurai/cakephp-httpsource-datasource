@@ -148,6 +148,16 @@ class HttpSourceCondition extends HttpSourceField {
     }
 
     /**
+     * Mark condition as required
+     *
+     * @return HttpSourceCondition
+     */
+    public function required() {
+        $this->_null = false;
+        return $this;
+    }
+
+    /**
      * Sets or gets condition length
      *
      * @param int $length
