@@ -574,16 +574,6 @@ abstract class HttpSource extends DataSource {
             if ($this->numRows === null) {
                 $this->numRows = count($result);
             }
-            //emulate limit and offset
-            if (!empty($this->_queryData['limit'])) {
-                if (!empty($this->_queryData['offset'])) {
-                    $offset = $this->_queryData['offset'];
-                } else {
-                    $offset = 0;
-                }
-                $result = array_slice($result, $offset, $this->_queryData['limit']);
-            }
-
             //fields emulation
             if (!empty($this->_queryData['fields'])) {
                 if ($this->_queryData['fields'] === static::FUNCTION_COUNT) {
@@ -618,6 +608,17 @@ abstract class HttpSource extends DataSource {
                 }
                 unset($data);
             }
+
+            //emulate limit and offset
+            if (!empty($this->_queryData['limit'])) {
+                if (!empty($this->_queryData['offset'])) {
+                    $offset = $this->_queryData['offset'];
+                } else {
+                    $offset = 0;
+                }
+                $result = array_slice($result, $offset, $this->_queryData['limit']);
+            }
+            
             //final structure
             foreach ($result as &$data) {
                 $data = array($model->name => $data);
