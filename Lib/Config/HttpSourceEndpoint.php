@@ -386,6 +386,7 @@ class HttpSourceEndpoint {
      */
     public function processFields(Model $model, array &$results) {
         foreach ($results as &$result) {
+            $result+=array_fill_keys(array_keys($this->_fields), null);
             $result = $this->_process($result, $this->_fields, $model);
         }
         unset($result);
@@ -461,7 +462,7 @@ class HttpSourceEndpoint {
 
             list($callback, $to_field_name) = $storage[$item]->map();
             unset($data[$item]);
-            $data[$to_field_name] = $callback($value, $model);
+            $data = Hash::insert($data, $to_field_name, $callback($value, $model));
         }
 
         return $data;
