@@ -111,6 +111,13 @@ abstract class HttpSource extends DataSource {
     public $columns = array(null => array());
 
     /**
+     * Credentials for request, for ex: login, password, token, etc
+     *
+     * @var array
+     */
+    public $credentials = array();
+
+    /**
      * Current requested endpoint
      *
      * @var HttpSourceEndpoint
@@ -234,6 +241,24 @@ abstract class HttpSource extends DataSource {
         $this->setDecoder(array('application/json', 'application/javascript', 'text/javascript'), function(HttpResponse $HttpResponse) {
                     return json_decode((string) $HttpResponse, true);
                 }, false);
+    }
+
+    /**
+     * Sets credentials data
+     *
+     * @param array $credentials
+     */
+    public function setCredentials(array $credentials = array()) {
+        $this->credentials = $credentials;
+    }
+
+    /**
+     * Gets credentials data
+     *
+     * @return array
+     */
+    public function getCredentials() {
+        return $this->credentials;
     }
 
     /**
@@ -618,7 +643,7 @@ abstract class HttpSource extends DataSource {
                 }
                 $result = array_slice($result, $offset, $this->_queryData['limit']);
             }
-            
+
             //final structure
             foreach ($result as &$data) {
                 $data = array($model->name => $data);

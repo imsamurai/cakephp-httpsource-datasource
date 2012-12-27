@@ -22,6 +22,15 @@ abstract class HttpSourceModel extends AppModel {
     public $name = 'HttpSource';
 
     /**
+     * Sets credentials data
+     *
+     * @param array $credentials
+     */
+    public function setCredentials(array $credentials = array()) {
+        $this->getDataSource()->setCredentials($credentials);
+    }
+
+    /**
      * Returns true if the supplied field exists in the model's database table.
      *
      * @param string|array $name Name of field to look for, or an array of names
