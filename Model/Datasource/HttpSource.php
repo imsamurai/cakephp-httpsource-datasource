@@ -756,11 +756,11 @@ abstract class HttpSource extends DataSource {
      * @return mixed results for query if it is cached, false otherwise
      */
     public function getQueryCache(array $request) {
-        $key = md5(serialize($request));
+        $key = serialize($request);
         if (isset($this->_queryCache[$key])) {
             return $this->_queryCache[$key];
         } else if ($this->_cacheName) {
-            return Cache::read($key, $this->_cacheName);
+            return Cache::read(md5($key), $this->_cacheName);
         }
 
         return false;
@@ -810,7 +810,7 @@ abstract class HttpSource extends DataSource {
         $key = serialize($request);
         $this->_queryCache[$key] = $data;
         if ($this->_cacheName) {
-            Cache::write($key, $data, $this->_cacheName);
+            Cache::write(md5($key), $data, $this->_cacheName);
         }
     }
 
