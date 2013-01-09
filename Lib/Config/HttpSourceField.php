@@ -47,6 +47,14 @@ class HttpSourceField extends HttpSourceEndpointItem {
     }
 
     /**
+     * Get mapToName or name
+     *
+     */
+    public function mapToName() {
+        return is_null($this->_mapToName) ? $this->_name : $this->_mapToName;
+    }
+
+    /**
      * Get or set callback and new name
      *
      * @param callable $callback
@@ -56,7 +64,7 @@ class HttpSourceField extends HttpSourceEndpointItem {
      */
     public function map(callable $callback = null, $map_to_name = null) {
         if (is_null($callback) && is_null($map_to_name)) {
-            return array($this->_map, $this->_mapToName ? $this->_mapToName : $this->name());
+            return array($this->_map, $this->mapToName());
         }
         $this->_mapToName = $map_to_name;
         parent::map($callback);

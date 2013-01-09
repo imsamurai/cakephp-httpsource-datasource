@@ -305,7 +305,7 @@ class HttpSourceEndpoint {
         $conditions_list = array();
         foreach ($this->_conditions as $Condition) {
             if ($Condition->null() !== false) {
-                $conditions_list[] = $Condition->name();
+                $conditions_list[] = $Condition->mapToName();
             }
         }
 
@@ -387,7 +387,7 @@ class HttpSourceEndpoint {
                         ), array_keys($conditions_defaults)
                 )
         );
-
+debug($this->optionalConditions());
         $query_conditions = $query_data['conditions'] + $conditions_defaults;
 
         if (in_array($this->method(), array(static::METHOD_READ, static::METHOD_DELETE), true)) {
