@@ -55,6 +55,29 @@ class HttpSourceConfig {
     );
 
     /**
+     * Global cache name for store requests. If null cache not used.
+     * Cache works only for read method
+     *
+     * @var string
+     */
+    protected $_cacheName = null;
+
+    /**
+     * Set or get endpoint cache name
+     *
+     * @param string $name
+     * @return HttpSourceEndpoint
+     * @return string Current cache name
+     */
+    public function cacheName($name = null) {
+        if (is_null($name)) {
+            return $this->_cacheName;
+        }
+        $this->_cacheName = $name;
+        return $this;
+    }
+
+    /**
      * Get and set default endpoint result handler
      *
      * @param HttpSourceResult $Result
@@ -139,6 +162,9 @@ class HttpSourceConfig {
                 }
                 if (is_null($Endpoint->readParams())) {
                     $Endpoint->readParams($this->readParams());
+                }
+                if (is_null($Endpoint->cacheName())) {
+                    $Endpoint->cacheName($this->cacheName());
                 }
                 return $Endpoint;
             }

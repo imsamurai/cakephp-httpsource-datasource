@@ -169,14 +169,6 @@ abstract class HttpSource extends DataSource {
     protected $_queryData = array();
 
     /**
-     * Chache name for store requests. If null cache not used.
-     * Cache works only for read method
-     *
-     * @var string
-     */
-    protected $_cacheName = null;
-
-    /**
      * Constructor
      *
      * @param array $config
@@ -202,10 +194,6 @@ abstract class HttpSource extends DataSource {
         if (empty($this->map)) {
             throw new HttpSourceException('Configuration not found!');
         }
-
-        $this->_cacheName = (string) Hash::get($this->map, 'cache_name');
-        unset($this->map['cache_name']);
-
 
         // Store the HttpSocket reference
         if (!$Http) {
@@ -758,10 +746,11 @@ abstract class HttpSource extends DataSource {
      */
     public function getQueryCache(array $request) {
         $key = serialize($request);
+        $cache_name = $this->_currentEndpoint->cacheName();
         if (isset($this->_queryCache[$key])) {
             return $this->_queryCache[$key];
-        } else if ($this->_cacheName) {
-            return Cache::read(md5($key), $this->_cacheName);
+        } else if ($cache_name) {
+            return Cache::read(md5($key), $cache_name);
         }
 
         return false;
@@ -798,11 +787,10 @@ abstract class HttpSource extends DataSource {
 
         $this->_currentEndpoint = $this->Config->findEndpoint($method, $table, array_keys($query_data['conditions']));
         $this->_currentEndpoint->buildRequest($model, $query_data);
-
     }
 
     /**
-     * Writes a new key for the in memory query cache and cache specified by $this->_cacheName
+     * Writes a new key for the in memory query cache and cache specified by current endpoint
      *
      * @param array $request Http request
      * @param mixed $data result of $request query
@@ -810,8 +798,9 @@ abstract class HttpSource extends DataSource {
     protected function _writeQueryCache(array $request, $data) {
         $key = serialize($request);
         $this->_queryCache[$key] = $data;
-        if ($this->_cacheName) {
-            Cache::write(md5($key), $data, $this->_cacheName);
+        $cache_name = $this->_currentEndpoint->cacheName();
+        if ($cache_name) {
+            Cache::write(md5($key), $data, $cache_name);
         }
     }
 

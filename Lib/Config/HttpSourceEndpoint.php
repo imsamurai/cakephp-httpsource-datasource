@@ -72,6 +72,15 @@ class HttpSourceEndpoint {
     protected $_id = null;
 
     /**
+     * Cache name for store requests. If null cache not used.
+     * Cache works only for read method
+     * This setting will override global cache from config
+     *
+     * @var string
+     */
+    protected $_cacheName = null;
+
+    /**
      * CRUD constants
      */
 
@@ -171,6 +180,21 @@ class HttpSourceEndpoint {
             return is_null($this->_path) ? $this->table() : $this->_path;
         }
         $this->_path = $name;
+        return $this;
+    }
+
+    /**
+     * Set or get endpoint cache name
+     *
+     * @param string $name
+     * @return HttpSourceEndpoint
+     * @return string Current cache name
+     */
+    public function cacheName($name = null) {
+        if (is_null($name)) {
+            return $this->_cacheName;
+        }
+        $this->_cacheName = $name;
         return $this;
     }
 
