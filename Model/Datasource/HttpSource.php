@@ -685,8 +685,9 @@ abstract class HttpSource extends DataSource {
 
         $this->_buildRequest(HttpSource::METHOD_READ, $model, $query_data, null, null, null, $recursive);
 
+        $request = $model->request;
         if ($model->cacheQueries) {
-            $result = $this->getQueryCache($model->request);
+            $result = $this->getQueryCache($request);
             if ($result !== false) {
                 return $result;
             }
@@ -695,7 +696,7 @@ abstract class HttpSource extends DataSource {
         $result = $this->request($model, null, HttpSource::METHOD_READ);
 
         if ($model->cacheQueries && $result !== false) {
-            $this->_writeQueryCache($model->request, $result);
+            $this->_writeQueryCache($request, $result);
         }
 
         return $result;
