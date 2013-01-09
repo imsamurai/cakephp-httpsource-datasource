@@ -756,7 +756,7 @@ abstract class HttpSource extends DataSource {
      * @return mixed results for query if it is cached, false otherwise
      */
     public function getQueryCache(array $request) {
-        $key = serialize($request);
+        $key = md5(serialize($request));
         if (isset($this->_queryCache[$key])) {
             return $this->_queryCache[$key];
         } else if ($this->_cacheName) {
