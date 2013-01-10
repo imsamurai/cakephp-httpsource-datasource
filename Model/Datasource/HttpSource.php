@@ -217,11 +217,8 @@ abstract class HttpSource extends DataSource {
 
         $this->setDecoder(array('application/xml', 'application/atom+xml', 'application/rss+xml'), function(HttpResponse $HttpResponse) {
                     App::uses('Xml', 'Utility');
-                    $Xml = new Xml((string) $HttpResponse);
-                    $response = $Xml->toArray(false); // Send false to get separate elements
-                    $Xml->__destruct();
-                    $Xml = null;
-                    unset($Xml);
+                    $Xml = Xml::build((string) $HttpResponse);
+                    $response = Xml::toArray($Xml);
 
                     return $response;
                 }, false);
