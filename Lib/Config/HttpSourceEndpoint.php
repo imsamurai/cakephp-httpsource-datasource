@@ -387,7 +387,6 @@ class HttpSourceEndpoint {
                         ), array_keys($conditions_defaults)
                 )
         );
-debug($this->optionalConditions());
         $query_conditions = $query_data['conditions'] + $conditions_defaults;
 
         if (in_array($this->method(), array(static::METHOD_READ, static::METHOD_DELETE), true)) {
