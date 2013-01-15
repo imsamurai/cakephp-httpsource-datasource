@@ -475,6 +475,9 @@ abstract class HttpSource extends DataSource {
     public function swapTokens(array &$request) {
         $query = (array) Hash::get($request, 'uri.query');
         foreach ($query as $token => $value) {
+            if (is_array($value)) {
+                continue;
+            }
             $count = 0;
             $request['uri']['path'] = preg_replace('/\:' . preg_quote($token, '/') . '\b/', $value, $request['uri']['path'], 1, $count);
             if ($count > 0) {
