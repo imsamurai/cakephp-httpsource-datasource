@@ -73,4 +73,29 @@ abstract class HttpSourceModel extends AppModel {
         return $this->save($data, $validate, $fieldList);
     }
 
+    /**
+     * Removes record for given ID. If no ID is given, the current ID is used. Returns true on success.
+     *
+     * @param integer|string $id ID of record to delete
+     * @param boolean $cascade Set to true to delete records that depend on this record (NOT USED)
+     * @return boolean True on success
+     * @link http://book.cakephp.org/2.0/en/models/deleting-data.html
+     */
+    public function delete($id = null, $cascade = true) {
+        return parent::delete($id, false);
+    }
+
+    /**
+     * Deletes multiple model records based on a set of conditions.
+     *
+     * @param mixed $conditions Conditions to match
+     * @param boolean $cascade Set to true to delete records that depend on this record (NOT USED)
+     * @param boolean $callbacks Run callbacks (NOT USED)
+     * @return boolean True on success, false on failure
+     * @link http://book.cakephp.org/2.0/en/models/deleting-data.html#deleteall
+     */
+    public function deleteAll($conditions, $cascade = true, $callbacks = false) {
+        return parent::deleteAll($conditions, false, false);
+    }
+
 }
