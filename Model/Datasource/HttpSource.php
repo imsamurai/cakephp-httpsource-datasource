@@ -726,14 +726,11 @@ abstract class HttpSource extends DataSource {
      * @param Model $model
      * @param mixed $id
      */
-    public function delete(Model $model, $id = null) {
+    public function delete(Model $model, $conditions = null) {
         $model->request = array('method' => 'DELETE');
 
-        $query_data = array();
-        if ($id) {
-            $query_data['id'] = $id;
-        }
-        $this->_buildRequest(HttpSource::METHOD_DELETE, $model, $query_data);
+
+        $this->_buildRequest(HttpSource::METHOD_DELETE, $model, array(), null, null, $conditions);
         return $this->request($model, null, HttpSource::METHOD_DELETE);
     }
 
