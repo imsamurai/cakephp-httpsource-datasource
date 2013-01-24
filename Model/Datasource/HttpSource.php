@@ -698,7 +698,7 @@ abstract class HttpSource extends DataSource {
      * @param array $values Unused
      */
     public function create(Model $model, $fields = null, $values = null) {
-        $model->request = array('method' => 'POST');
+        $model->request = array('method' => 'PUT');
 
         $this->_buildRequest(HttpSource::METHOD_CREATE, $model, array(), $fields, $values);
 
@@ -713,7 +713,7 @@ abstract class HttpSource extends DataSource {
      * @param array $values Unused
      */
     public function update(Model $model, $fields = null, $values = null, $conditions = null) {
-        $model->request = array('method' => 'PUT');
+        $model->request = array('method' => 'POST');
 
         $this->_buildRequest(HttpSource::METHOD_UPDATE, $model, array(), $fields, $values, $conditions);
 
