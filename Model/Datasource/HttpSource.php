@@ -26,6 +26,14 @@ abstract class HttpSource extends DataSource {
     const METHOD_DELETE = 'delete';
 
     /**
+     * Http methods constants
+     */
+    const HTTP_METHOD_READ = 'GET';
+    const HTTP_METHOD_CREATE = 'PUT';
+    const HTTP_METHOD_UPDATE = 'POST';
+    const HTTP_METHOD_DELETE = 'DELETE';
+
+    /**
      * The description of this data source
      *
      * @var string
@@ -669,7 +677,7 @@ abstract class HttpSource extends DataSource {
     public function read(Model $model, $query_data = array(), $recursive = null) {
         $this->_queryData = $query_data;
 
-        $model->request = array('method' => 'GET');
+        $model->request = array('method' => static::HTTP_METHOD_READ);
 
         $this->_buildRequest(HttpSource::METHOD_READ, $model, $query_data, null, null, null, $recursive);
 
@@ -698,7 +706,7 @@ abstract class HttpSource extends DataSource {
      * @param array $values Unused
      */
     public function create(Model $model, $fields = null, $values = null) {
-        $model->request = array('method' => 'PUT');
+        $model->request = array('method' => static::HTTP_METHOD_CREATE);
 
         $this->_buildRequest(HttpSource::METHOD_CREATE, $model, array(), $fields, $values);
 
@@ -713,7 +721,7 @@ abstract class HttpSource extends DataSource {
      * @param array $values Unused
      */
     public function update(Model $model, $fields = null, $values = null, $conditions = null) {
-        $model->request = array('method' => 'POST');
+        $model->request = array('method' => static::HTTP_METHOD_UPDATE);
 
         $this->_buildRequest(HttpSource::METHOD_UPDATE, $model, array(), $fields, $values, $conditions);
 
@@ -727,7 +735,7 @@ abstract class HttpSource extends DataSource {
      * @param mixed $id
      */
     public function delete(Model $model, $conditions = null) {
-        $model->request = array('method' => 'DELETE');
+        $model->request = array('method' => static::HTTP_METHOD_DELETE);
 
 
         $this->_buildRequest(HttpSource::METHOD_DELETE, $model, array(), null, null, $conditions);
