@@ -223,16 +223,16 @@ abstract class HttpSource extends DataSource {
 
         $this->fullDebug = Configure::read('debug') > 1;
 
-        $this->setDecoder(array('application/xml', 'application/atom+xml', 'application/rss+xml'), function(HttpResponse $HttpResponse) {
+        $this->setDecoder(array('application/xml', 'application/atom+xml', 'application/rss+xml'), function(HttpSocketResponse $HttpSocketResponse) {
                     App::uses('Xml', 'Utility');
-                    $Xml = Xml::build((string) $HttpResponse);
+                    $Xml = Xml::build((string) $HttpSocketResponse);
                     $response = Xml::toArray($Xml);
 
                     return $response;
                 }, false);
 
-        $this->setDecoder(array('application/json', 'application/javascript', 'text/javascript'), function(HttpResponse $HttpResponse) {
-                    return json_decode((string) $HttpResponse, true);
+        $this->setDecoder(array('application/json', 'application/javascript', 'text/javascript'), function(HttpSocketResponse $HttpSocketResponse) {
+                    return json_decode((string) $HttpSocketResponse, true);
                 }, false);
     }
 
@@ -325,11 +325,11 @@ abstract class HttpSource extends DataSource {
         $timerStart = microtime(true);
 
         try {
-            $HttpResponse = $this->Http->request($request);
+            $HttpSocketResponse = $this->Http->request($request);
             $this->error = null;
         } catch (Exception $Exception) {
             $this->error = $Exception->getMessage();
-            $HttpResponse = false;
+            $HttpSocketResponse = false;
         }
 
         $timerEnd = microtime(true);
@@ -337,15 +337,15 @@ abstract class HttpSource extends DataSource {
         $this->took = round(($timerEnd - $timerStart) * 1000);
 
         // Check response status code for success or failure
-        if ($HttpResponse && !$HttpResponse->isOk()) {
+        if ($HttpSocketResponse && !$HttpSocketResponse->isOk()) {
             if ($model !== null) {
                 $model->onError();
             }
-            $this->error = $HttpResponse->reasonPhrase;
-            $HttpResponse = false;
+            $this->error = $HttpSocketResponse->reasonPhrase;
+            $HttpSocketResponse = false;
             $response = false;
-        } else if ($HttpResponse && $HttpResponse->isOk()) {
-            $response = $this->decode($HttpResponse);
+        } else if ($HttpSocketResponse && $HttpSocketResponse->isOk()) {
+            $response = $this->decode($HttpSocketResponse);
         } else {
             $response = false;
         }
@@ -444,18 +444,18 @@ abstract class HttpSource extends DataSource {
     /**
      * Decodes the response based on the content type
      *
-     * @param HttpResponse $HttpResponse
+     * @param HttpSocketResponse $HttpSocketResponse
      * @return array Decoded response
      * @trows HttpSourceException If content type decoder not found
      */
-    public function decode(HttpResponse $HttpResponse) {
+    public function decode(HttpSocketResponse $HttpSocketResponse) {
         // Extract content type from content type header
-        if (preg_match('/^(?P<content_type>[a-z0-9\/\+]+)/i', $HttpResponse->getHeader('Content-Type'), $matches)) {
+        if (preg_match('/^(?P<content_type>[a-z0-9\/\+]+)/i', $HttpSocketResponse->getHeader('Content-Type'), $matches)) {
             $content_type = $matches['content_type'];
         }
 
         // Decode response according to content type
-        return (array) call_user_func($this->getDecoder($content_type), $HttpResponse);
+        return (array) call_user_func($this->getDecoder($content_type), $HttpSocketResponse);
     }
 
     /**
