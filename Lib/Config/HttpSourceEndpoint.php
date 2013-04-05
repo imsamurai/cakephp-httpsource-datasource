@@ -389,7 +389,7 @@ class HttpSourceEndpoint {
         );
         $query_conditions = $query_data['conditions'] + $conditions_defaults;
 
-        if (in_array($this->method(), array(static::METHOD_READ, static::METHOD_DELETE), true)) {
+        if (in_array(strtoupper($model->request['method']), array('GET', 'DELETE'), true)) {
             $model->request['uri']['query'] = array();
             foreach ($usedConditions as $condition) {
                 $model->request['uri']['query'][$condition] = $query_conditions[$condition];
