@@ -345,7 +345,12 @@ abstract class HttpSource extends DataSource {
             $HttpSocketResponse = false;
             $response = false;
         } else if ($HttpSocketResponse && $HttpSocketResponse->isOk()) {
-            $response = $this->decode($HttpSocketResponse);
+			try {
+				$response = $this->decode($HttpSocketResponse);
+			} catch (Exception $Exception) {
+				$this->error = $Exception->getMessage();
+				$response = false;
+			}
         } else {
             $response = false;
         }
