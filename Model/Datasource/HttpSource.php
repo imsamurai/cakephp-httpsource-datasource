@@ -350,6 +350,10 @@ abstract class HttpSource extends DataSource {
             $response = false;
         }
 
+		if (!empty($this->error)) {
+			$this->log(get_class().": Error:".$this->error." Request: ".str_replace(array("\n", "\r"), ' ', @$this->Http->request['raw']), LOG_ERR);
+		}
+
         if ($model !== null) {
             if ($response !== false) {
                 $response = $this->afterRequest($model, $response, $request_method);
