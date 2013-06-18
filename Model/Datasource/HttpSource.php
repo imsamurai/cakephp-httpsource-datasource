@@ -356,7 +356,7 @@ abstract class HttpSource extends DataSource {
         }
 
 		if (!empty($this->error)) {
-			$this->log(get_class().": Error:".$this->error." Request: ".str_replace(array("\n", "\r"), ' ', @$this->Http->request['raw']), LOG_ERR);
+			$this->log(get_class().": ".$this->error." Request: ".str_replace(array("\n", "\r"), ' ', @$this->Http->request['raw']), LOG_ERR);
 		}
 
         if ($model !== null) {
