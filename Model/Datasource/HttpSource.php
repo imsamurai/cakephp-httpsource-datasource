@@ -205,11 +205,11 @@ abstract class HttpSource extends DataSource {
 
         // Store the HttpSocket reference
         if (!$Http) {
-            if (!empty($this->map['oauth']['version'])) {
-                if ($this->map['oauth']['version'][0] == 2) {
-                    $config['method'] = 'OAuthV2';
+            if (Hash::get($this->config, 'auth.name') === 'oauth') {
+                if ($this->config['auth']['version'][0] == 2) {
+                    $this->config['auth']['method'] = 'OAuthV2';
                 } else {
-                    $config['method'] = 'OAuth';
+                    $this->config['auth']['method'] = 'OAuth';
                 }
 
                 App::import('Vendor', 'HttpSocketOauth/HttpSocketOauth');
@@ -291,12 +291,6 @@ abstract class HttpSource extends DataSource {
             $request = array('uri' => $request_data);
         }
 
-        if (isset($this->config['method']) && $this->config['method'] == 'OAuth') {
-            $request = $this->addOauth($request);
-        } elseif (isset($this->config['method']) && $this->config['method'] == 'OAuthV2') {
-            $request = $this->addOauthV2($request);
-        }
-
         if (empty($request['uri']['host'])) {
             $request['uri']['host'] = (string)Hash::get($this->config, 'host');
         }
@@ -306,11 +300,11 @@ abstract class HttpSource extends DataSource {
         }
 
         if (empty($request['uri']['path'])) {
-            $request['uri']['path'] = (string)Hash::get($this->config, 'path');;
+            $request['uri']['path'] = (string)Hash::get($this->config, 'path');
         }
 
-        if (empty($request['uri']['scheme']) && !empty($this->map['oauth']['scheme'])) {
-            $request['uri']['scheme'] = $this->map['oauth']['scheme'];
+        if (empty($request['uri']['scheme']) && Hash::get($this->config, 'scheme')) {
+            $request['uri']['scheme'] = (string)Hash::get($this->config, 'scheme');
         }
 
         // Remove unwanted elements from request array
@@ -368,9 +362,9 @@ abstract class HttpSource extends DataSource {
         }
 
         // Log the request in the query log
-        if ($this->fullDebug) {
-            $this->logRequest();
-        }
+        //if ($this->fullDebug) {
+        $this->logRequest();
+        //}
 
         return $response;
     }
@@ -382,38 +376,35 @@ abstract class HttpSource extends DataSource {
      * @return array $request
      */
     public function addOauth($request) {
-        if (!empty($this->config['oauth_token']) && !empty($this->config['oauth_token_secret'])) {
-            $request['auth']['method'] = 'OAuth';
-            $request['auth']['oauth_consumer_key'] = $this->config['login'];
-            $request['auth']['oauth_consumer_secret'] = $this->config['password'];
-            if (isset($this->config['oauth_token'])) {
-                $request['auth']['oauth_token'] = $this->config['oauth_token'];
-            }
-            if (isset($this->config['oauth_token_secret'])) {
-                $request['auth']['oauth_token_secret'] = $this->config['oauth_token_secret'];
-            }
-        }
-        return $request;
-    }
+		if (empty($this->config['auth']['oauth_consumer_key']) || empty($this->config['auth']['oauth_consumer_secret'])) {
+			throw new HttpSourceConfigException('You must specify oauth_consumer_key and oauth_consumer_secret!');
+		}
 
-    /**
-     * Supplements a request array with oauth credentials
-     *
-     * @param array $request
-     * @return array $request
-     */
-    public function addOauthV2($request) {
-        if (!empty($this->config['access_token'])) {
-            $request['auth']['method'] = 'OAuth';
-            $request['auth']['oauth_version'] = '2.0';
-            $request['auth']['client_id'] = $this->config['login'];
-            $request['auth']['client_secret'] = $this->config['password'];
-            if (isset($this->config['access_token'])) {
-                $request['auth']['access_token'] = $this->config['access_token'];
-            }
-        }
-        return $request;
-    }
+		$request['auth']['method'] = 'OAuth';
+		$request['auth']['oauth_consumer_key'] = $this->config['auth']['oauth_consumer_key'];
+		$request['auth']['oauth_consumer_secret'] = $this->config['auth']['oauth_consumer_secret'];
+		$request['auth'] += $this->getCredentials();
+
+		return $request;
+	}
+
+	/**
+	 * Supplements a request array with oauth credentials
+	 *
+	 * @param array $request
+	 * @return array $request
+	 */
+	public function addOauthV2($request) {
+		if (empty($this->config['auth']['access_token'])) {
+			throw new HttpSourceConfigException('You must specify access_token!');
+		}
+		$request['auth']['method'] = 'OAuth';
+		$request['auth']['oauth_version'] = '2.0';
+		$request['auth']['access_token'] = $this->config['auth']['access_token'];
+		$request['auth'] += $this->getCredentials();
+
+		return $request;
+	}
 
     /**
      * Add decoder for given $content_type
@@ -441,9 +432,9 @@ abstract class HttpSource extends DataSource {
      */
     public function getDecoder($content_type) {
         if (empty($this->decoders[$content_type])) {
-            if ($this->fullDebug) {
-                $this->logRequest();
-            }
+            //if ($this->fullDebug) {
+			$this->logRequest();
+			//}
             throw new HttpSourceException("Can't decode unknown format: '$content_type'");
         }
 
@@ -581,6 +572,14 @@ abstract class HttpSource extends DataSource {
      * @return array $request
      */
     public function beforeRequest($request, $request_method) {
+		if (isset($this->config['auth']['method'])) {
+			$authMethod = 'add'.$this->config['auth']['method'];
+			if (!method_exists($this, $authMethod)) {
+				throw new HttpSourceConfigException('No such authorization method: '.$authMethod);
+			}
+
+			$request = $this->{$authMethod}($request);
+        }
         return $request;
     }
 

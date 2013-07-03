@@ -37,9 +37,12 @@ var $myapi = array(
         'host' => 'api.myplugin.com/v1',
         'port' => 80,
         'persistent' => false,
-	// These are only required for authenticated requests (write-access)
-	'login' => '--Your API Key--',
-	'password' => '--Your API Secret--',
+		'auth' => array(
+			'name' => 'oauth',
+			'version' => '1.0', //version 2 not tested, maybe don't work
+			'oauth_consumer_key' => '--Your API Key--',
+			'oauth_consumer_secret' => '--Your API Secret--'
+		),
         //all other parameters that passed to config of http socket
         //...
 );
@@ -88,16 +91,6 @@ REST paths must be ordered from most specific conditions to least (or none). Thi
 until the first path which has all of its required conditions met is found. If a path has no required conditions, it will
 be used. Optional conditions aren't checked, but are added when building the request.
 
-```
-$config['MyPlugin']['oauth'] = array(
-	'version' => '1.0', // [Optional] OAuth version (defaults to 1.0): '1.0' or '2.0'
-	'scheme' => 'https', // [Optional] Values: 'http' or 'https'
-	'authorize' => 'authorize', // Example URI: api.linkedin.com/uas/oauth/authorize
-	'request' => 'requestToken',
-	'access' => 'accessToken',
-	'login' => 'authenticate', // Like authorize, just auto-redirects
-	'logout' => 'invalidateToken',
-);
 
 /**
 *
