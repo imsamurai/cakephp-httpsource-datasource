@@ -6,12 +6,13 @@
  * Time: 22:55:25
  *
  */
+App::uses('HttpSourceConfigFactoryItem', 'HttpSource.Lib/Config');
 App::uses('HttpSourceEndpoint', 'HttpSource.Lib/Config');
 
 /**
  * Http source endpoints config
  */
-class HttpSourceConfig {
+class HttpSourceConfig extends HttpSourceConfigFactoryItem {
 
     /**
      * Holds default result handler that applied

@@ -6,6 +6,7 @@
  * Time: 22:52:50
  *
  */
+App::uses('HttpSourceConfigFactoryItem', 'HttpSource.Lib/Config');
 App::uses('HttpSourceResult', 'HttpSource.Lib/Config');
 App::uses('HttpSourceField', 'HttpSource.Lib/Config');
 App::uses('HttpSourceCondition', 'HttpSource.Lib/Config');
@@ -13,7 +14,7 @@ App::uses('HttpSourceCondition', 'HttpSource.Lib/Config');
 /**
  * Http source endpoint
  */
-class HttpSourceEndpoint {
+class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 
     /**
      * Endpoint CRUD method
@@ -144,6 +145,7 @@ class HttpSourceEndpoint {
      * @param int $id
      * @return HttpSourceEndpoint
      * @return int Current id
+	 * @deprecated
      */
     public function id($id = null) {
         if (is_null($id)) {
@@ -222,7 +224,7 @@ class HttpSourceEndpoint {
      */
     public function condition($name) {
         if (!isset($this->_conditions[$name])) {
-            $this->_conditions[$name] = HttpSourceConfigFactory::instance()->condition()->name($name);
+            $this->_conditions[$name] = $this->_ConfigFactory->condition()->name($name);
         }
         return $this->_conditions[$name];
     }
@@ -236,7 +238,7 @@ class HttpSourceEndpoint {
      */
     public function field($name) {
         if (!isset($this->_fields[$name])) {
-            $this->_fields[$name] = HttpSourceConfigFactory::instance()->field()->name($name);
+            $this->_fields[$name] = $this->_ConfigFactory->field()->name($name);
         }
         return $this->_fields[$name];
     }
@@ -365,40 +367,28 @@ class HttpSourceEndpoint {
      * Build request and store it in model->request
      *
      * @param Model $model
-     * @param array $query_data
+     * @param array $queryData
      */
-    public function buildRequest(Model $model, array $query_data) {
-        $model->request['uri']['path'] = $this->path();
-
-
+    public function buildRequest(Model $model, array $queryData) {
         if ($this->method() === static::METHOD_READ) {
-            $this->_processReadParams($model, $query_data);
+            $this->_processReadParams($model, $queryData);
         }
 
         $conditions_defaults = $this->conditionsDefaults();
 
-        $this->_processConditions($model, $query_data['conditions']);
+        $this->_processConditions($model, $queryData['conditions']);
         $this->_processConditions($model, $conditions_defaults);
 
         $usedConditions = array_unique(
                 array_merge(
                         array_intersect(
-                                array_keys($query_data['conditions']), array_merge($this->requiredConditions(), $this->optionalConditions())
+                                array_keys($queryData['conditions']), array_merge($this->requiredConditions(), $this->optionalConditions())
                         ), array_keys($conditions_defaults)
                 )
         );
-        $query_conditions = $query_data['conditions'] + $conditions_defaults;
+        $queryData['conditions'] += $conditions_defaults;
 
-        if (in_array(strtoupper($model->request['method']), array('GET', 'DELETE'), true)) {
-            $model->request['uri']['query'] = array();
-            foreach ($usedConditions as $condition) {
-                $model->request['uri']['query'][$condition] = $query_conditions[$condition];
-            }
-        } else {
-            foreach ($usedConditions as $condition) {
-                $model->request['body'][$condition] = $query_conditions[$condition];
-            }
-        }
+        $this->_buildQuery($model, $usedConditions, $queryData);
     }
 
     /**
@@ -491,4 +481,24 @@ class HttpSourceEndpoint {
         return $data;
     }
 
+	/**
+	 * Buils query parameters
+	 *
+	 * @param Model $model
+	 * @param array $usedConditions List of conditions that must present in query
+	 * @param array $queryData Query data: conditions, limit, etc
+	 */
+	protected function _buildQuery(Model $model, array $usedConditions, array $queryData) {
+		$model->request['uri']['path'] = $this->path();
+		if (in_array(strtoupper($model->request['method']), array('GET', 'DELETE'), true)) {
+            $model->request['uri']['query'] = array();
+            foreach ($usedConditions as $condition) {
+                $model->request['uri']['query'][$condition] = $queryData['conditions'][$condition];
+            }
+        } else {
+            foreach ($usedConditions as $condition) {
+                $model->request['body'][$condition] = $queryData['conditions'][$condition];
+            }
+        }
+	}
 }

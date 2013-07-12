@@ -7,10 +7,12 @@
  *
  */
 
+App::uses('HttpSourceConfigFactoryItem', 'HttpSource.Lib/Config');
+
 /**
  * Base class for endpoint items (field, result)
  */
-abstract class HttpSourceEndpointItem {
+abstract class HttpSourceEndpointItem extends HttpSourceConfigFactoryItem {
 
     /**
      * Holds callback
@@ -20,9 +22,12 @@ abstract class HttpSourceEndpointItem {
     protected $_map = null;
 
     /**
-     * Constructor
-     */
-    public function __construct() {
+	 * Constructor
+	 *
+	 * @param HttpSourceConfigFactory $ConfigFactory Config factory instance
+	 */
+    public function __construct(HttpSourceConfigFactory $ConfigFactory) {
+		parent::__construct($ConfigFactory);
         $this->_map = function ($value) {
                     return $value;
                 };

@@ -17,88 +17,106 @@ App::uses('HttpSourceResult', 'HttpSource.Lib/Config');
  */
 class HttpSourceConfigFactory {
 
-    protected static $_instance = null;
+	/**
+	 * List of instances
+	 *
+	 * @var array
+	 */
+	protected static $_instances = null;
 
-    /**
-     * Singleton instance
-     * By setting HttpSource.factory to your class you can use your own,
-     * you must use same interface
-     *
-     * @return HttpSourceConfigFactory
-     */
-    public static function instance() {
-        if (is_null(static::$_instance)) {
-            $factory_class = Configure::read('HttpSource.factory');
-            if (!empty($factory_class)) {
-                static::$_instance = new $factory_class();
-            } else {
-                static::$_instance = new static();
-            }
-        }
+	/**
+	 * Instance
+	 *
+	 * @param string $factoryName Description Replacement for default factory (this class must have same interface)
+	 *
+	 * @return HttpSourceConfigFactory
+	 */
+	public static function instance($factoryName = 'HttpSource.HttpSourceConfigFactory') {
+		if (is_null(static::$_instances[$factoryName])) {
 
-        return static::$_instance;
-    }
+			list($factoryPluginName, $factoryClassName) = pluginSplit($factoryName);
+			if ($factoryPluginName) {
+				$factoryPluginName .= '.';
+			}
 
-    /**
-     * Create config
-     *
-     * @return HttpSourceConfig
-     */
-    public function config() {
-        return new HttpSourceConfig();
-    }
+			App::uses($factoryClassName, $factoryPluginName . 'Lib/Config');
 
-    /**
-     * Create endpoint
-     *
-     * @return HttpSourceEndpoint
-     */
-    public function endpoint() {
-        return new HttpSourceEndpoint();
-    }
+			if (!class_exists($factoryClassName)) {
+				throw new HttpSourceConfigException("Config factory '$factoryName' not exist!");
+			}
 
-    /**
-     * Create endpoint condition
-     *
-     * @return HttpSourceCondition
-     */
-    public function condition() {
-        return new HttpSourceCondition();
-    }
+			$Factory = new $factoryClassName();
 
-    /**
-     * Create endpoint field
-     *
-     * @return HttpSourceField
-     */
-    public function field() {
-        return new HttpSourceField();
-    }
+			if (!($Factory instanceof HttpSourceConfigFactory)) {
+				throw new HttpSourceConfigException("Config factory '$factoryName' nust be instance of HttpSourceConfigFactory!");
+			}
 
-    /**
-     * Create endpoint result
-     *
-     * @return HttpSourceResult
-     */
-    public function result() {
-        return new HttpSourceResult();
-    }
+			static::$_instances[$factoryName] = new $Factory();
+		}
 
-    /**
-     * Load config by source name
-     *
-     * @param string $source_name
-     * @return HttpSourceConfig
-     */
-    public function load($source_name) {
-        return Configure::read($source_name.'.config');
-    }
+		return static::$_instances[$factoryName];
+	}
 
-    /**
-     * For single object
-     */
-    private function __construct() {
+	/**
+	 * Create config
+	 *
+	 * @return HttpSourceConfig
+	 */
+	public function config() {
+		return new HttpSourceConfig($this);
+	}
 
-    }
+	/**
+	 * Create endpoint
+	 *
+	 * @return HttpSourceEndpoint
+	 */
+	public function endpoint() {
+		return new HttpSourceEndpoint($this);
+	}
+
+	/**
+	 * Create endpoint condition
+	 *
+	 * @return HttpSourceCondition
+	 */
+	public function condition() {
+		return new HttpSourceCondition($this);
+	}
+
+	/**
+	 * Create endpoint field
+	 *
+	 * @return HttpSourceField
+	 */
+	public function field() {
+		return new HttpSourceField($this);
+	}
+
+	/**
+	 * Create endpoint result
+	 *
+	 * @return HttpSourceResult
+	 */
+	public function result() {
+		return new HttpSourceResult($this);
+	}
+
+	/**
+	 * Load config by source name
+	 *
+	 * @param string $source_name
+	 * @return HttpSourceConfig
+	 */
+	public function load($source_name) {
+		return Configure::read($source_name . '.config');
+	}
+
+	/**
+	 * For single object
+	 */
+	private function __construct() {
+
+	}
 
 }
