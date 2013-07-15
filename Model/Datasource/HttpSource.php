@@ -335,7 +335,7 @@ abstract class HttpSource extends DataSource {
             if ($model !== null) {
                 $model->onError();
             }
-            $this->error = $HttpSocketResponse->reasonPhrase;
+            $this->error = $this->extractRemoteError($HttpSocketResponse);
             $HttpSocketResponse = false;
             $response = false;
         } else if ($HttpSocketResponse && $HttpSocketResponse->isOk()) {
@@ -368,6 +368,16 @@ abstract class HttpSource extends DataSource {
 
         return $response;
     }
+
+	/**
+	 * Extract remote error from response
+	 *
+	 * @param HttpSocketResponse $HttpSocketResponse
+	 * @return string
+	 */
+	public function extractRemoteError(HttpSocketResponse $Response) {
+		return $Response->reasonPhrase;
+	}
 
     /**
      * Supplements a request array with oauth credentials
