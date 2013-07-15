@@ -395,14 +395,7 @@ abstract class HttpSource extends DataSource {
 	 * @return array $request
 	 */
 	public function addOauthV2($request) {
-		if (empty($this->config['auth']['access_token'])) {
-			throw new HttpSourceConfigException('You must specify access_token!');
-		}
-		$request['auth']['method'] = 'OAuth';
-		$request['auth']['oauth_version'] = '2.0';
-		$request['auth']['access_token'] = $this->config['auth']['access_token'];
-		$request['auth'] += $this->getCredentials();
-
+		$request['uri']['query'] = (array)Hash::get($request, 'uri.query') + $this->getCredentials();
 		return $request;
 	}
 
