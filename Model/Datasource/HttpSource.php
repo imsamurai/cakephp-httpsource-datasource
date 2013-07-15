@@ -372,7 +372,7 @@ abstract class HttpSource extends DataSource {
 	/**
 	 * Extract remote error from response
 	 *
-	 * @param HttpSocketResponse $HttpSocketResponse
+	 * @param HttpSocketResponse $Response
 	 * @return string
 	 */
 	public function extractRemoteError(HttpSocketResponse $Response) {
