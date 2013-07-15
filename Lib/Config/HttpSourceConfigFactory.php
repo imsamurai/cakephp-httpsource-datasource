@@ -22,7 +22,7 @@ class HttpSourceConfigFactory {
 	 *
 	 * @var array
 	 */
-	protected static $_instances = null;
+	protected static $_instances = array();
 
 	/**
 	 * Instance
@@ -32,7 +32,7 @@ class HttpSourceConfigFactory {
 	 * @return HttpSourceConfigFactory
 	 */
 	public static function instance($factoryName = 'HttpSource.HttpSourceConfigFactory') {
-		if (is_null(static::$_instances[$factoryName])) {
+		if (empty(static::$_instances[$factoryName])) {
 
 			list($factoryPluginName, $factoryClassName) = pluginSplit($factoryName);
 			if ($factoryPluginName) {
