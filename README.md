@@ -91,7 +91,7 @@ REST paths must be ordered from most specific conditions to least (or none). Thi
 until the first path which has all of its required conditions met is found. If a path has no required conditions, it will
 be used. Optional conditions aren't checked, but are added when building the request.
 
-
+```
 /**
 *
 * Configuration example will be soon
