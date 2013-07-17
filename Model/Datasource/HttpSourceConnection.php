@@ -67,7 +67,7 @@ class HttpSourceConnection {
 	 * @param array $config
 	 * @param HttpSocket $Transport
 	 */
-	public function __construct(array $config, HttpSocket $Transport = null) {
+	public function __construct(array $config = array(), HttpSocket $Transport = null) {
 		if (is_null($Transport)) {
 			if (Hash::get($config, 'auth.name') === 'oauth') {
 				if ($config['auth']['version'][0] == 2) {
