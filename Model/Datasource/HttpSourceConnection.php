@@ -288,7 +288,7 @@ class HttpSourceConnection {
 	 * @param int $currentAttempt
 	 * @return boolean
 	 */
-	protected function _request(array $request, $currentAttempt = 1) {debug("try $currentAttempt");
+	protected function _request(array $request, $currentAttempt = 1) {
 		try {
 			$Response = $this->_Transport->request($request);
 			$this->_error = null;
@@ -315,7 +315,7 @@ class HttpSourceConnection {
 		if ($currentAttempt >= $this->_config['maxAttempts']) {
 			return false;
 		}
-debug($Response->code);
+
 		if (!in_array((int)$Response->code, $this->_config['retryCodes'], true)) {
 			return false;
 		}
