@@ -255,6 +255,7 @@ abstract class HttpSource extends DataSource {
 	 * @return array|false $response
 	 */
 	public function request(Model $model = null, $request_data = null, $request_method = HttpSource::METHOD_READ) {
+
 		if ($model !== null) {
 			$request = $model->request;
 		} elseif (is_array($request_data)) {
@@ -262,50 +263,12 @@ abstract class HttpSource extends DataSource {
 		} elseif (is_string($request_data)) {
 			$request = array('uri' => $request_data);
 		}
-
-		if (empty($request['uri']['host'])) {
-			$request['uri']['host'] = (string) Hash::get($this->config, 'host');
+		$responses = array();
+		foreach ($this->_splitRequest($request) as $subRequest) {
+			$responses[] = $this->_singleRequest($subRequest, $request_method, $model);
 		}
 
-		if (empty($request['uri']['port'])) {
-			$request['uri']['port'] = (int) Hash::get($this->config, 'port');
-		}
-
-		if (empty($request['uri']['path'])) {
-			$request['uri']['path'] = (string) Hash::get($this->config, 'path');
-		}
-
-		if (empty($request['uri']['scheme']) && Hash::get($this->config, 'scheme')) {
-			$request['uri']['scheme'] = (string) Hash::get($this->config, 'scheme');
-		}
-
-		$this->swapTokens($request);
-		$request = $this->beforeRequest($request, $request_method);
-		$response = $this->_Connection->request($request);
-		$this->error = $this->_Connection->getError();
-		$this->took = $this->_Connection->getTook();
-		$this->query = $this->_Connection->getQuery();
-		$this->numRows = is_array($response) ? count($response) : 0;
-
-		if ($model) {
-			if (!$response || $this->error) {
-				$model->onError();
-			}
-			if ($response) {
-				$response = $this->afterRequest($model, $response, $request_method);
-			}
-			$model->response = $response;
-			$model->request = $request;
-		}
-
-		if (!empty($this->error)) {
-			$this->log(get_class() . ": " . $this->error . " Request: " . $this->query, LOG_ERR);
-		}
-
-		// Log the request in the query log
-		//if ($this->fullDebug) {
-		$this->logRequest();
-		//}
+		$response = $this->afterRequest($model, $this->_joinResponses($responses), $request_method);
 
 		return $response;
 	}
@@ -437,11 +400,7 @@ abstract class HttpSource extends DataSource {
 	 * @return array
 	 */
 	public function afterRequest(Model $model, array $result, $request_method) {
-		if ($request_method === HttpSource::METHOD_READ) {
-
-
-			$this->_currentEndpoint->processResult($model, $result);
-
+		if ($request_method === static::METHOD_READ) {
 
 			if ($this->numRows === null) {
 				$this->numRows = count($result);
@@ -613,6 +572,63 @@ abstract class HttpSource extends DataSource {
 	}
 
 	/**
+	 * Single request
+	 *
+	 * @param array $request
+	 * @param string $request_method
+	 * @param Model $model
+	 * @return array|bool
+	 */
+	protected function _singleRequest(array $request, $request_method, Model $model = null) {
+		if (empty($request['uri']['host'])) {
+			$request['uri']['host'] = (string) Hash::get($this->config, 'host');
+		}
+
+		if (empty($request['uri']['port'])) {
+			$request['uri']['port'] = (int) Hash::get($this->config, 'port');
+		}
+
+		if (empty($request['uri']['path'])) {
+			$request['uri']['path'] = (string) Hash::get($this->config, 'path');
+		}
+
+		if (empty($request['uri']['scheme']) && Hash::get($this->config, 'scheme')) {
+			$request['uri']['scheme'] = (string) Hash::get($this->config, 'scheme');
+		}
+
+		$this->swapTokens($request);
+		$request = $this->beforeRequest($request, $request_method);
+
+		$response = $this->_Connection->request($request);
+		$this->error = $this->_Connection->getError();
+		$this->took = $this->_Connection->getTook();
+		$this->query = $this->_Connection->getQuery();
+
+		if ($model) {
+			if (!$response || $this->error) {
+				$model->onError();
+			}
+			if ($response && $request_method === static::METHOD_READ) {
+				$response = $this->_extractResult($model, $response);
+			}
+			$model->response = $response;
+			$model->request = $request;
+		}
+
+		$this->numRows = is_array($response) ? count($response) : 0;
+
+		if (!empty($this->error)) {
+			$this->log(get_class() . ": " . $this->error . " Request: " . $this->query, LOG_ERR);
+		}
+
+		// Log the request in the query log
+		//if ($this->fullDebug) {
+		$this->logRequest();
+		//}
+		return $response;
+	}
+
+	/**
 	 * Build request depends on parameters and config and store it in $model->request
 	 *
 	 * @param string $method create/read/update/delete
@@ -658,6 +674,40 @@ abstract class HttpSource extends DataSource {
 		if ($cache_name) {
 			Cache::write(md5($key), $data, $cache_name);
 		}
+	}
+
+	/**
+	 * Extract data from decoded response
+	 *
+	 * @param Model $model
+	 * @param array $result
+	 * @return array
+	 */
+	protected function _extractResult(Model $model, array $result) {
+		$this->_currentEndpoint->processResult($model, $result);
+		return $result;
+	}
+
+	/**
+	 * Split request into subequests
+	 *
+	 * @param array $request
+	 * @return array
+	 */
+	protected function _splitRequest(array $request) {
+		$splitter = $this->_currentEndpoint->requestSplitter();
+		return $splitter($request);
+	}
+
+	/**
+	 * Join responses into single response
+	 *
+	 * @param array $responses
+	 * @return array
+	 */
+	protected function _joinResponses(array $responses) {
+		$joiner = $this->_currentEndpoint->responseJoiner();
+		return $joiner($responses);
 	}
 
 }

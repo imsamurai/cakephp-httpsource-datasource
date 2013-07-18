@@ -72,6 +72,20 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
      */
     protected $_id = null;
 
+	/**
+	 * Function for splitting request
+	 *
+	 * @var callable
+	 */
+	protected $_requestSplitter = null;
+
+	/**
+	 * Function to join results of splitted requests
+	 *
+	 * @var callable
+	 */
+	protected $_responseJoiner = null;
+
     /**
      * Cache name for store requests. If null cache not used.
      * Cache works only for read method
@@ -207,13 +221,55 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
      * @return HttpSourceEndpoint
      * @return HttpSourceResult Current result handler
      */
-    public function result(HttpSourceResult $Result = null) {
-        if (is_null($Result)) {
-            return $this->_result;
-        }
-        $this->_result = $Result;
-        return $this;
-    }
+	public function result(HttpSourceResult $Result = null) {
+		if (is_null($Result)) {
+			return $this->_result;
+		}
+		$this->_result = $Result;
+		return $this;
+	}
+
+	/**
+	 * Set or get endpoint request splitter
+	 *
+	 * @param callable $requestSplitter
+	 * @return HttpSourceEndpoint
+	 * @return callable Current request splitter
+	 */
+	public function requestSplitter(callable $requestSplitter = null) {
+		if (is_null($requestSplitter)) {
+			return $this->_requestSplitter ?
+					$this->_requestSplitter :
+					function(array $request) {
+						return array($request);
+					};
+		}
+		$this->_requestSplitter = $requestSplitter;
+		return $this;
+	}
+
+	/**
+	 * Set or get endpoint response joiner
+	 *
+	 * @param callable $responseJoiner
+	 * @return HttpSourceEndpoint
+	 * @return callable Current response joiner
+	 */
+	public function responseJoiner(callable $responseJoiner = null) {
+		if (is_null($responseJoiner)) {
+			return $this->_responseJoiner ?
+					$this->_responseJoiner :
+					function(array $responses) {
+						$result = array();
+						foreach ($responses as $response) {
+							$result = array_merge($result, $response);
+						}
+						return $result;
+					};
+		}
+		$this->_responseJoiner = $responseJoiner;
+		return $this;
+	}
 
     /**
      * Get condition by name, if condition not exists
