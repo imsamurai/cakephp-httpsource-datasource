@@ -31,7 +31,8 @@ then update submodules:
 ### Step 2: Add your configuration to `database.php` and set it to the model
 
 ```
-:: database.php ::
+<?
+//:: database.php ::
 var $myapi = array(
 	'datasource' => 'MyPlugin.Http/MyPlugin', // Example: 'Github.Http/Github'
         'host' => 'api.myplugin.com/v1',
@@ -47,7 +48,7 @@ var $myapi = array(
         //...
 );
 
-:: MyModel.php ::
+//:: MyModel.php ::
 public $useDbConfig = 'myapi';
 public $useTable = 'myapi_table';
 
@@ -56,10 +57,10 @@ public $useTable = 'myapi_table';
 ### Step 3: Load main plugin and your plugin
 
 ```
-:: bootstrap.php ::
+<?
+//:: bootstrap.php ::
 CakePlugin::load('HttpSource', array('bootstrap' => true, 'routes' => false));
 CakePlugin::load('MyPlugin');
-
 ```
 
 ### Step 4: Querying the API
@@ -68,7 +69,10 @@ Best to just give an example. I switch the datasource on the fly because the mod
 DB. I tend to query from my API and then switch to default and save the results.
 
 ```
-class Project extends AppModel {
+<?
+App::uses('HttpSourceModel', 'HttpSource.Model');
+
+class Project extends HttpSourceModel {
 	function findAuthedUserRepos() {
 		$this->setDataSource('github');
 		$projects = $this->find('all', array(
@@ -83,4 +87,4 @@ class Project extends AppModel {
 
 ## Configuration
 
-See [wiki](https://github.com/imsamurai/cakephp-httpsource-datasource/wiki)
+See [wiki](https://github.com/imsamurai/cakephp-httpsource-datasource/wiki).
