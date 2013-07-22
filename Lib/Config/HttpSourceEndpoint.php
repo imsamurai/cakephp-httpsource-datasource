@@ -266,7 +266,7 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 								$result = array_merge($result, $response);
 							}
 						}
-						return $result ? $result : false;
+						return $result;
 					};
 		}
 		$this->_responseJoiner = $responseJoiner;
