@@ -346,9 +346,12 @@ class HttpSourceConnection {
 	 * Decodes the response based on the content type
 	 *
 	 * @return array Decoded response
-	 * @trows HttpSourceException If content type decoder not found
+	 * @trows HttpSourceException If content type decoder not found or response is not an object
 	 */
 	protected function _decode() {
+		if (method_exists($this->_Response, 'getHeader')) {
+			throw new HttpSourceException('Response is not an object');
+		}
 		// Extract content type from content type header
 		if (preg_match('/^(?P<content_type>[a-z0-9\/\+]+)/i', $this->_Response->getHeader('Content-Type'), $matches)) {
 			$content_type = $matches['content_type'];
