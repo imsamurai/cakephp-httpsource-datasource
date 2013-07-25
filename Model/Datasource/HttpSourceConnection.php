@@ -349,7 +349,7 @@ class HttpSourceConnection {
 	 * @trows HttpSourceException If content type decoder not found or response is not an object
 	 */
 	protected function _decode() {
-		if (method_exists($this->_Response, 'getHeader')) {
+		if (!method_exists($this->_Response, 'getHeader')) {
 			throw new HttpSourceException('Response is not an object');
 		}
 		// Extract content type from content type header
