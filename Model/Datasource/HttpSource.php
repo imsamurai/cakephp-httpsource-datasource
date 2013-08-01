@@ -35,6 +35,16 @@ abstract class HttpSource extends DataSource {
 	const HTTP_METHOD_DELETE = 'DELETE';
 
 	/**
+	 * Maximum log length
+	 */
+	const LOG_MAX_LENGTH = 500;
+
+	/**
+	 * String to replace truncated part of log
+	 */
+	const LOG_TRUNCATED = '*TRUNCATED*';
+
+	/**
 	 * The description of this data source
 	 *
 	 * @var string
@@ -318,7 +328,7 @@ abstract class HttpSource extends DataSource {
 	public function logRequest() {
 		$this->_requestsCnt++;
 		$log = array(
-			'query' => $this->query,
+			'query' => strlen($this->query) > static::LOG_MAX_LENGTH ? substr($this->query, 0, static::LOG_MAX_LENGTH).' '.static::LOG_TRUNCATED : $this->query,
 			'error' => $this->error,
 			'affected' => $this->affected,
 			'numRows' => $this->numRows,
