@@ -12,10 +12,10 @@ App::uses('DataSource', 'Model/Datasource');
 App::uses('HttpSourceConnection', 'HttpSource.Model/Datasource');
 
 abstract class HttpSource extends DataSource {
+
 	/**
 	 * Count function constant
 	 */
-
 	const FUNCTION_COUNT = 'COUNT()';
 
 	/**
@@ -328,7 +328,7 @@ abstract class HttpSource extends DataSource {
 	public function logRequest() {
 		$this->_requestsCnt++;
 		$log = array(
-			'query' => strlen($this->query) > static::LOG_MAX_LENGTH ? substr($this->query, 0, static::LOG_MAX_LENGTH).' '.static::LOG_TRUNCATED : $this->query,
+			'query' => strlen($this->query) > static::LOG_MAX_LENGTH ? substr($this->query, 0, static::LOG_MAX_LENGTH) . ' ' . static::LOG_TRUNCATED : $this->query,
 			'error' => $this->error,
 			'affected' => $this->affected,
 			'numRows' => $this->numRows,
@@ -416,55 +416,20 @@ abstract class HttpSource extends DataSource {
 				$this->numRows = count($result);
 			}
 			//fields emulation
-			if (!empty($this->_queryData['fields'])) {
-				if ($this->_queryData['fields'] === static::FUNCTION_COUNT) {
-					return array(
-						array($model->name => array(
-								'count' => count($result)
-							)
-						)
-					);
-				}
+			if ($this->_emulateFunctions($model, $result)) {
+				return $result;
 			}
 
 			$this->_currentEndpoint->processFields($model, $result);
 
 			//order emulation
-			if (!empty($this->_queryData['order'][0])) {
-				App::uses('ArraySort', 'ArraySort.Utility');
-				$result = ArraySort::multisort($result, $this->_queryData['order'][0]);
-			}
-
-			if (!empty($this->_queryData['fields'])) {
-				//remove model name from each field
-				$model_name = $model->name;
-				$fields = array_map(function($field) use ($model_name) {
-							return str_replace("$model_name.", '', $field);
-						}, (array) $this->_queryData['fields']);
-
-				$fields_keys = array_flip($fields);
-
-				foreach ($result as &$data) {
-					$data = array_intersect_key($data, $fields_keys);
-				}
-				unset($data);
-			}
-
+			$this->_emulateOrder($model, $result);
+			$this->_emulateFields($model, $result);
 			//emulate limit and offset
-			if (!empty($this->_queryData['limit'])) {
-				if (!empty($this->_queryData['offset'])) {
-					$offset = $this->_queryData['offset'];
-				} else {
-					$offset = 0;
-				}
-				$result = array_slice($result, $offset, $this->_queryData['limit']);
-			}
+			$this->_emulateLimit($model, $result);
 
 			//final structure
-			foreach ($result as &$data) {
-				$data = array($model->name => $data);
-			}
-			unset($data);
+			$this->_formatResult($model, $result);
 		}
 		return $result;
 	}
@@ -579,6 +544,88 @@ abstract class HttpSource extends DataSource {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Format result to match Cake conventions
+	 *
+	 * @param Model $Model
+	 * @param array $result
+	 */
+	protected function _formatResult(Model $Model, array &$result) {
+		foreach ($result as &$data) {
+			$data = array($Model->name => $data);
+		}
+	}
+
+	/**
+	 * Apply function if specified in fields
+	 *
+	 * @param Model $Model
+	 * @param array $result
+	 * @return boolean True if function applied
+	 */
+	protected function _emulateFunctions(Model $Model, array &$result) {
+		if (!empty($this->_queryData['fields'])) {
+			if ($this->_queryData['fields'] === static::FUNCTION_COUNT) {
+				$result = array(array('count' => count($result)));
+				$this->_formatResult($Model, $result);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Sort result
+	 *
+	 * @param Model $Model
+	 * @param array $result
+	 */
+	protected function _emulateOrder(Model $Model, array &$result) {
+		if (!empty($this->_queryData['order'][0])) {
+			$result = ArraySort::multisort($result, $this->_queryData['order'][0]);
+		}
+	}
+
+	/**
+	 * Remove not specified fields from result
+	 *
+	 * @param Model $Model
+	 * @param array $result
+	 */
+	protected function _emulateFields(Model $Model, array &$result) {
+		if (!empty($this->_queryData['fields'])) {
+			//remove model name from each field
+			$model_name = $Model->name;
+			$fields = array_map(function($field) use ($model_name) {
+				return str_replace("$model_name.", '', $field);
+			}, (array) $this->_queryData['fields']);
+
+			$fields_keys = array_flip($fields);
+
+			foreach ($result as &$data) {
+				$data = array_intersect_key($data, $fields_keys);
+			}
+			unset($data);
+		}
+	}
+
+	/**
+	 * Slice result
+	 *
+	 * @param Model $Model
+	 * @param array $result
+	 */
+	protected function _emulateLimit(Model $Model, array &$result) {
+		if (!empty($this->_queryData['limit'])) {
+			if (!empty($this->_queryData['offset'])) {
+				$offset = $this->_queryData['offset'];
+			} else {
+				$offset = 0;
+			}
+			$result = array_slice($result, $offset, $this->_queryData['limit']);
+		}
 	}
 
 	/**
