@@ -86,6 +86,13 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 	 */
 	protected $_responseJoiner = null;
 
+	/**
+	 * Function to build query instead of _buildQuery
+	 *
+	 * @var callable
+	 */
+	protected $_queryBuilder = null;
+
     /**
      * Cache name for store requests. If null cache not used.
      * Cache works only for read method
@@ -273,6 +280,26 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 		return $this;
 	}
 
+	/**
+	 * Set or get endpoint query builder instead of _buildQuery
+	 *
+	 * @param callable $queryBuilder
+	 * @return HttpSourceEndpoint
+	 * @return callable Current query builder
+	 */
+	public function queryBuilder(callable $queryBuilder = null) {
+		if (is_null($queryBuilder)) {
+			if (is_null($this->_queryBuilder)) {
+				$this->_queryBuilder = function(Model $model, array $usedConditions, array $queryData) {
+					return $this->_buildQuery($model, $usedConditions, $queryData);
+				};
+			}
+			return $this->_queryBuilder;
+		}
+		$this->_queryBuilder = $queryBuilder;
+		return $this;
+	}
+
     /**
      * Get condition by name, if condition not exists
      * create, add and return new
@@ -446,7 +473,8 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
         );
         $queryData['conditions'] += $conditions_defaults;
 
-        $this->_buildQuery($model, $usedConditions, $queryData);
+		$queryBuilder = $this->queryBuilder();
+		$queryBuilder($model, $usedConditions, $queryData);
     }
 
     /**
