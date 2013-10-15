@@ -31,8 +31,9 @@ then update submodules:
 ### Step 2: Add your configuration to `database.php` and set it to the model
 
 ```
-<?
-//:: database.php ::
+:: database.php ::
+```
+```php
 var $myapi = array(
 	'datasource' => 'MyPlugin.Http/MyPlugin', // Example: 'Github.Http/Github'
         'host' => 'api.myplugin.com/v1',
@@ -47,8 +48,11 @@ var $myapi = array(
         //all other parameters that passed to config of http socket
         //...
 );
-
-//:: MyModel.php ::
+```
+```
+:: MyModel.php ::
+```
+```php
 public $useDbConfig = 'myapi';
 public $useTable = 'myapi_table';
 
@@ -57,8 +61,9 @@ public $useTable = 'myapi_table';
 ### Step 3: Load main plugin and your plugin
 
 ```
-<?
-//:: bootstrap.php ::
+:: bootstrap.php ::
+```
+```php
 CakePlugin::load('HttpSource', array('bootstrap' => true, 'routes' => false));
 CakePlugin::load('MyPlugin');
 ```
@@ -68,8 +73,7 @@ CakePlugin::load('MyPlugin');
 Best to just give an example. I switch the datasource on the fly because the model is actually a `projects` table in the
 DB. I tend to query from my API and then switch to default and save the results.
 
-```
-<?
+```php
 App::uses('HttpSourceModel', 'HttpSource.Model');
 
 class Project extends HttpSourceModel {
