@@ -495,7 +495,7 @@ abstract class HttpSource extends DataSource {
 
 		$this->_buildRequest(HttpSource::METHOD_CREATE, $model, array(), $fields, $values);
 
-		return $this->request($model, null, HttpSource::METHOD_CREATE);
+		return (bool) $this->request($model, null, HttpSource::METHOD_CREATE);
 	}
 
 	/**
@@ -510,7 +510,7 @@ abstract class HttpSource extends DataSource {
 
 		$this->_buildRequest(HttpSource::METHOD_UPDATE, $model, array(), $fields, $values, $conditions);
 
-		return $this->request($model, null, HttpSource::METHOD_UPDATE);
+		return (bool) $this->request($model, null, HttpSource::METHOD_UPDATE);
 	}
 
 	/**
@@ -524,7 +524,7 @@ abstract class HttpSource extends DataSource {
 
 
 		$this->_buildRequest(HttpSource::METHOD_DELETE, $model, array(), null, null, $conditions);
-		return $this->request($model, null, HttpSource::METHOD_DELETE);
+		return (bool) $this->request($model, null, HttpSource::METHOD_DELETE);
 	}
 
 	/**
