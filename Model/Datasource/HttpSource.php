@@ -665,7 +665,7 @@ abstract class HttpSource extends DataSource {
 			if (!$response || $this->error) {
 				$model->onError();
 			}
-			if ($response && $request_method === static::METHOD_READ) {
+			if ($response) {
 				$response = $this->_extractResult($model, $response);
 			}
 			$model->response = $response;
