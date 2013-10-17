@@ -58,7 +58,7 @@ class HttpSourceTestFixture extends CakeTestFixture {
 			throw new MissingModelException(array('class' => $modelClass));
 		}
 
-		$this->_Model = new $modelClass();
+		$this->_Model = new $modelClass(false, null, $this->useDbConfig);
 		ClassRegistry::flush();
 	}
 
@@ -69,6 +69,7 @@ class HttpSourceTestFixture extends CakeTestFixture {
 	 * @return boolean True on success, false on failure
 	 */
 	public function create($db) {
+		$this->created[] = $db->configKeyName;
 		return true;
 	}
 
@@ -79,6 +80,7 @@ class HttpSourceTestFixture extends CakeTestFixture {
 	 * @return boolean True on success, false on failure
 	 */
 	public function drop($db) {
+		$this->created = array();
 		return true;
 	}
 
@@ -103,10 +105,20 @@ class HttpSourceTestFixture extends CakeTestFixture {
 	 * @return boolean
 	 */
 	public function truncate($db) {
-		foreach ($this->records as $record) {
-			$this->_Model->delete($record[$this->_Model->primaryKey]);
+		foreach ($this->records as $record) {debug($record);
+			$this->_truncateOne($record);
 		}
 		return true;
+	}
+
+	/**
+	 * Delete one record
+	 *
+	 * @param array $record
+	 * @return bool
+	 */
+	protected function _truncateOne(array $record) {
+		return (bool) $this->_Model->deleteAll($record);
 	}
 
 }

@@ -713,8 +713,12 @@ abstract class HttpSource extends DataSource {
 			$query_data['conditions'] = array();
 		}
 
+		$conditions = array();
+		foreach (array_keys($query_data['conditions']) as $_condition) {
+			$conditions[] = str_replace($model->alias.'.', '', $_condition);
+		}
 
-		$this->_currentEndpoint = $this->Config->findEndpoint($method, $table, array_keys($query_data['conditions']));
+		$this->_currentEndpoint = $this->Config->findEndpoint($method, $table, $conditions);
 		$this->_currentEndpoint->buildRequest($model, $query_data);
 	}
 
