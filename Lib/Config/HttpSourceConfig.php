@@ -187,12 +187,15 @@ class HttpSourceConfig extends HttpSourceConfigFactoryItem {
         if (empty($model->useTable)) {
             return array();
         }
+		$schema = array();
         foreach ($this->_methods as $method) {
             if (!empty($this->_endpoints[$method][$model->useTable])) {
                 $endpoints = $this->_endpoints[$method][$model->useTable];
-                return $endpoints[key($endpoints)]->schema();
+                $schema = array_merge($schema, $endpoints[key($endpoints)]->schema());
             }
         }
+
+		return $schema;
     }
 
     /**
