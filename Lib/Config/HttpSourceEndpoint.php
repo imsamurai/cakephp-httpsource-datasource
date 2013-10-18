@@ -437,9 +437,7 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 				$col['key'] = $Condition->key();
 			}
 
-			if (!is_null($Condition->defaults())) {
-				$col['default'] = $Condition->defaults();
-			}
+			$col['default'] = $Condition->defaults();
 
 			$schema[$Condition->name()] = $col;
 		}
