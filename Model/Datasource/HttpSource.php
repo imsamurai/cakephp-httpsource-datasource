@@ -666,7 +666,7 @@ abstract class HttpSource extends DataSource {
 				$model->onError();
 			}
 			if ($response) {
-				$response = $this->_extractResult($model, $response);
+				$response = $this->_extractResult($model, $response, $request_method);
 			}
 			$model->response = $response;
 			$model->request = $request;
@@ -742,10 +742,14 @@ abstract class HttpSource extends DataSource {
 	 *
 	 * @param Model $model
 	 * @param array $result
+	 * @param string $request_method
+	 * @param bool $force
 	 * @return array
 	 */
-	protected function _extractResult(Model $model, array $result) {
-		$this->_currentEndpoint->processResult($model, $result);
+	protected function _extractResult(Model $model, array $result, $request_method, $force = false) {
+		if ($force || $request_method === static::METHOD_READ) {
+			$this->_currentEndpoint->processResult($model, $result);
+		}
 		return $result;
 	}
 
