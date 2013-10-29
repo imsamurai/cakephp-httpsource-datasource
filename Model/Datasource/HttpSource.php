@@ -612,7 +612,7 @@ abstract class HttpSource extends DataSource {
 	 */
 	protected function _formatResult(Model $Model, array &$result) {
 		foreach ($result as &$data) {
-			$data = array($Model->name => $data);
+			$data = array($Model->alias => $data);
 		}
 	}
 
