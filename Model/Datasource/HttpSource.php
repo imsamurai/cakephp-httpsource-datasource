@@ -547,6 +547,64 @@ abstract class HttpSource extends DataSource {
 	}
 
 	/**
+	 * Queries associations. Used to fetch results on recursive models.
+	 *
+	 * @param Model $model Primary Model object
+	 * @param Model $linkModel Linked model that
+	 * @param string $type Association type, one of the model association types ie. hasMany
+	 * @param string $association
+	 * @param array $assocData
+	 * @param array $queryData
+	 * @param boolean $external Whether or not the association query is on an external datasource.
+	 * @param array $resultSet Existing results
+	 * @param integer $recursive Number of levels of association
+	 * @param array $stack
+	 * @return mixed
+	 * @throws CakeException when results cannot be created.
+	 */
+	public function queryAssociation(Model $model, &$linkModel, $type, $association, $assocData, &$queryData, $external, &$resultSet, $recursive, $stack) {
+		$assocQuery = $this->_scrubQueryData($assocData);
+		$query = $this->_scrubQueryData($queryData);
+
+		foreach ($resultSet as &$result) {
+			switch($type) {
+				case 'hasAndBelongsToMany': {
+					$JoinModel = ClassRegistry::init($assocData['with']);
+					$assocQuery['fields'] = array($assocData['associationForeignKey']);
+					$assocQuery['conditions'][$assocData['foreignKey']] = $result[$model->alias][$model->primaryKey];
+					$joinData = $JoinModel->find('all', array_filter($assocQuery));
+					$query['conditions'][$linkModel->primaryKey] = Hash::extract($joinData, "{n}.{$JoinModel->alias}.{$assocData['associationForeignKey']}");
+					$assocResults = $linkModel->find('all', $query);
+
+					$result[$association] = array();
+					foreach ($assocResults as $assocResult) {
+						$result[$association][] = $assocResult[$linkModel->alias];
+					}
+
+					break;
+				}
+
+				default: throw new NotImplementedException("Sorry, but type $type is not implemented yet, check out https://github.com/imsamurai/cakephp-httpsource-datasource/issues/18");
+			}
+		}
+	}
+
+	/**
+	 * Private helper method to remove query metadata in given data array.
+	 *
+	 * @param array $data
+	 * @return array
+	 */
+	protected function _scrubQueryData($data) {
+		static $base = null;
+		if ($base === null) {
+			$base = array_fill_keys(array('conditions', 'fields', 'joins', 'order', 'limit', 'offset', 'group'), array());
+			$base['callbacks'] = null;
+		}
+		return (array) $data + $base;
+	}
+
+	/**
 	 * Format result to match Cake conventions
 	 *
 	 * @param Model $Model
