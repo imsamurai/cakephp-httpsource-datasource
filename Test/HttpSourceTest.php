@@ -32,6 +32,7 @@ abstract class HttpSourceTest extends CakeTestCase {
 	 * @param string $dataName
 	 */
 	public function __construct($name = NULL, array $data = array(), $dataName = '') {
+		CakePlugin::load('TestHttpSource');
 		$this->_loadModel();
 		parent::__construct($name, $data, $dataName);
 	}
