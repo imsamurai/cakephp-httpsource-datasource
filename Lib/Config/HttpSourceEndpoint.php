@@ -471,6 +471,8 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 		$queryData['conditions'] += $conditions_defaults;
 
 		$model->request['uri']['path'] = $this->path();
+		$model->request['uri']['query'] = array();
+		$model->request['body'] = array();
 		$queryBuilder = $this->queryBuilder();
 		$queryBuilder($model, $usedConditions, $queryData);
 	}
