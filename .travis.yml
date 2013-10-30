@@ -10,7 +10,7 @@ env:
   - CAKE_VERSION=master
 
 before_script:
-  - mysql -e 'create database test;'
+  - mysql -e 'create database test1;'
   - git clone git://github.com/cakephp/cakephp ../cakephp && cd ../cakephp && git checkout $CAKE_VERSION
   - cp -R ../cakephp-httpsource-datasource plugins/HttpSource
   - chmod -R 777 ../cakephp/app/tmp
@@ -22,7 +22,7 @@ before_script:
         'datasource' => 'Database/Mysql',
         'host' => '127.0.0.1',
         'login' => 'travis',
-        'database' => 'test',
+        'database' => 'test1',
         'prefix' => '',
         'encoding' => 'utf8'
     );
