@@ -1,4 +1,5 @@
-# HttpSource Plugin
+HttpSource Plugin [![Build Status](https://travis-ci.org/imsamurai/cakephp-httpsource-datasource.png)](https://travis-ci.org/imsamurai/cakephp-httpsource-datasource)
+=================
 
 Plugin with HttpSource to provide base class for datasorses with Http protocol. Based on [ProLoser](https://github.com/ProLoser/CakePHP-Api-Datasources) implementation.
 I make some refactoring to make HttpSource more similar to DboSource and removed OAuth component, because i think for login better use [Opauth](https://github.com/uzyn/cakephp-opauth).
