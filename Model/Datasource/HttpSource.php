@@ -574,7 +574,7 @@ abstract class HttpSource extends DataSource {
 					$assocQuery['conditions'][$assocData['foreignKey']] = $result[$model->alias][$model->primaryKey];
 					$joinData = $JoinModel->find('all', array_filter($assocQuery));
 					$query['conditions'][$linkModel->primaryKey] = Hash::extract($joinData, "{n}.{$JoinModel->alias}.{$assocData['associationForeignKey']}");
-					$assocResults = $linkModel->find('all', $query);
+					$assocResults = $linkModel->find('all', array_filter($query));
 
 					$result[$association] = array();
 					foreach ($assocResults as $assocResult) {
