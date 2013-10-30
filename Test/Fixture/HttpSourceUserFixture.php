@@ -3,7 +3,7 @@
 /**
  * User Fixture
  */
-class UserFixture extends CakeTestFixture {
+class HttpSourceUserFixture extends CakeTestFixture {
 
 	public $useDbConfig = 'test';
 	public $table = 'users';

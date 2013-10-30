@@ -6,27 +6,27 @@
  * Time: 5:28:22 PM
  * Format: http://book.cakephp.org/2.0/en/development/testing.html
  */
-
 App::uses('HttpSourceTest', 'HttpSource.Test');
 
 /**
  * HttpSourceToDboAssociationTest
  */
-class ToDboAssociationTest extends HttpSourceTest {
+class HttpSourceToDboAssociationTest extends HttpSourceTest {
 
 	/**
 	 * User model
 	 *
-	 * @var User
+	 * @var HttpSourceUser
 	 */
 	public $User = null;
+
 	/**
 	 * {@inheritdoc}
 	 */
-    public function setUp(){
-        parent::setUp();
-		$this->User = new User();
-    }
+	public function setUp() {
+		parent::setUp();
+		$this->User = new HttpSourceUser();
+	}
 
 	/**
 	 * {@inheritdoc}
@@ -34,8 +34,8 @@ class ToDboAssociationTest extends HttpSourceTest {
 	 * @var array
 	 */
 	public $fixtures = array(
-		'plugin.HttpSource.User',
-		'plugin.HttpSource.UsersDocument'
+		'plugin.HttpSource.HttpSourceUser',
+		'plugin.HttpSource.HttpSourceUsersDocument'
 	);
 
 	public function testHABTM() {
@@ -46,4 +46,5 @@ class ToDboAssociationTest extends HttpSourceTest {
 			$this->assertNotEmpty($result['Documents']);
 		}
 	}
+
 }

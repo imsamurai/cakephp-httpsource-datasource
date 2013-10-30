@@ -9,20 +9,21 @@
  */
 App::uses('HttpSourceModel', 'HttpSource.Model');
 
-class Document extends HttpSourceModel {
+class HttpSourceDocument extends HttpSourceModel {
 
-	public $name = 'Document';
+	public $name = 'HttpSourceDocument';
 	public $useTable = 'documents';
 
 }
 
-class User extends AppModel {
+class HttpSourceUser extends AppModel {
 
-	public $name = 'User';
+	public $name = 'HttpSourceUser';
 	public $useTable = 'users';
 	public $useDbConfig = 'test';
 	public $hasAndBelongsToMany = array(
 		'Documents' => array(
+			'className' => 'HttpSourceDocument',
 			'joinTable' => 'users_documents',
 			'dependent' => false
 		)

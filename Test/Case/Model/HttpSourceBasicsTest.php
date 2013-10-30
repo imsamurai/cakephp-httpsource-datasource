@@ -11,7 +11,7 @@ App::uses('HttpSourceTest', 'HttpSource.Test');
 /**
  * BasicsTest
  */
-class BasicsTest extends HttpSourceTest {
+class HttpSourceBasicsTest extends HttpSourceTest {
 
 	public function testRead() {
 		$this->HttpModel->setSource('default');
@@ -24,7 +24,7 @@ class BasicsTest extends HttpSourceTest {
 		$this->HttpModel->setSource('documents');
 		$result = $this->HttpModel->find('all', array(
 			'conditions' => array(
-				'id' => array(1,2)
+				'id' => array(1, 2)
 			)
 		));
 
