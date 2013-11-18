@@ -118,7 +118,7 @@ class HttpSourceTestFixture extends CakeTestFixture {
 	 * @return bool
 	 */
 	protected function _truncateOne(array $record) {
-		return (bool) $this->_Model->deleteAll($record);
+		return (bool) $this->_Model->delete($record[$this->_Model->primaryKey]);
 	}
 
 }
