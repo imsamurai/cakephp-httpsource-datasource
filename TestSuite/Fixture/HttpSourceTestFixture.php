@@ -105,8 +105,8 @@ class HttpSourceTestFixture extends CakeTestFixture {
 	 * @return boolean
 	 */
 	public function truncate($db) {
-		foreach ($this->records as $record) {
-			$this->_truncateOne($record);
+		foreach ($this->_Model->find('all', array('limit' => 100000000)) as $record) {
+			$this->_truncateOne($record[$this->_Model->alias]);
 		}
 		return true;
 	}
