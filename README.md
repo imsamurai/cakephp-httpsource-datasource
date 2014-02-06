@@ -1,5 +1,7 @@
-HttpSource Plugin [![Build Status](https://travis-ci.org/imsamurai/cakephp-httpsource-datasource.png)](https://travis-ci.org/imsamurai/cakephp-httpsource-datasource)
+HttpSource Plugin
 =================
+[![Build Status](https://travis-ci.org/imsamurai/cakephp-httpsource-datasource.png)](https://travis-ci.org/imsamurai/cakephp-httpsource-datasource) [![Coverage Status](https://coveralls.io/repos/imsamurai/cakephp-httpsource-datasource/badge.png?branch=master)](https://coveralls.io/r/imsamurai/cakephp-httpsource-datasource?branch=master) [![Latest Stable Version](https://poser.pugx.org/imsamurai/http-source/v/stable.png)](https://packagist.org/packages/imsamurai/http-source) [![Total Downloads](https://poser.pugx.org/imsamurai/http-source/downloads.png)](https://packagist.org/packages/imsamurai/http-source) [![Latest Unstable Version](https://poser.pugx.org/imsamurai/http-source/v/unstable.png)](https://packagist.org/packages/imsamurai/http-source) [![License](https://poser.pugx.org/imsamurai/http-source/license.png)](https://packagist.org/packages/imsamurai/http-source)
+
 
 Plugin with HttpSource to provide base class for datasorses with Http protocol. Based on [ProLoser](https://github.com/ProLoser/CakePHP-Api-Datasources) implementation.
 I make some refactoring to make HttpSource more similar to DboSource and removed OAuth component, because i think for login better use [Opauth](https://github.com/uzyn/cakephp-opauth).
