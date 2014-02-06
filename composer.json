@@ -30,6 +30,6 @@
     "source": "https://github.com/imsamurai/cakephp-httpsource-datasource"
   },
   "extra": {
-    "installer-name": "ElasticsearchSource"
+    "installer-name": "HttpSource"
   }
 }
