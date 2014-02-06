@@ -6,7 +6,6 @@
  * Time: 23:04:48
  *
  */
-
 App::uses('HttpSourceConfigFactoryItem', 'HttpSource.Lib/Config');
 
 /**
@@ -14,38 +13,38 @@ App::uses('HttpSourceConfigFactoryItem', 'HttpSource.Lib/Config');
  */
 abstract class HttpSourceEndpointItem extends HttpSourceConfigFactoryItem {
 
-    /**
-     * Holds callback
-     *
-     * @var callable
-     */
-    protected $_map = null;
+	/**
+	 * Holds callback
+	 *
+	 * @var callable
+	 */
+	protected $_map = null;
 
-    /**
+	/**
 	 * Constructor
 	 *
 	 * @param HttpSourceConfigFactory $ConfigFactory Config factory instance
 	 */
-    public function __construct(HttpSourceConfigFactory $ConfigFactory) {
+	public function __construct(HttpSourceConfigFactory $ConfigFactory) {
 		parent::__construct($ConfigFactory);
-        $this->_map = function ($value) {
-                    return $value;
-                };
-    }
+		$this->_map = function ($value) {
+			return $value;
+		};
+	}
 
-    /**
-     * Set or get callback
-     *
-     * @param callable $callback
-     * @return HttpSourceEndpointItem
-     * @return callable
-     */
-    public function map(callable $callback = null) {
-        if (is_null($callback)) {
-            return $this->_map;
-        }
-        $this->_map = $callback;
-        return $this;
-    }
+	/**
+	 * Set or get callback
+	 *
+	 * @param callable $callback
+	 * @return HttpSourceEndpointItem
+	 * @return callable
+	 */
+	public function map(callable $callback = null) {
+		if (is_null($callback)) {
+			return $this->_map;
+		}
+		$this->_map = $callback;
+		return $this;
+	}
 
 }

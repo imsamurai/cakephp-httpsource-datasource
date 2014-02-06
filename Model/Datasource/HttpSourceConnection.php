@@ -76,27 +76,27 @@ class HttpSourceConnection {
 					$config['auth']['method'] = 'OAuth';
 				}
 
-				App::import('Vendor', 'HttpSocketOauth/HttpSocketOauth');
+				App::import('Plugin', 'HttpSocketOauth/HttpSocketOauth');
 				$Transport = new HttpSocketOauth($config);
 			} else {
 				App::uses('HttpSocket', 'Network/Http');
 				$Transport = new HttpSocket($config);
 			}
 		}
-		$this->_config = (array) Hash::get($config, 'connection') + $this->_config;
+		$this->_config = (array)Hash::get($config, 'connection') + $this->_config;
 		$this->_Transport = $Transport;
 
 		$this->setDecoder(array('application/xml', 'application/atom+xml', 'application/rss+xml'), function(HttpSocketResponse $Response) {
-					App::uses('Xml', 'Utility');
-					$Xml = Xml::build((string) $Response);
-					$response = Xml::toArray($Xml);
+			App::uses('Xml', 'Utility');
+			$Xml = Xml::build((string)$Response);
+			$response = Xml::toArray($Xml);
 
-					return $response;
-				}, false);
+			return $response;
+		}, false);
 
 		$this->setDecoder(array('application/json', 'application/javascript', 'text/javascript'), function(HttpSocketResponse $Response) {
-					return json_decode((string) $Response, true);
-				}, false);
+			return json_decode((string)$Response, true);
+		}, false);
 	}
 
 	/**
@@ -136,15 +136,15 @@ class HttpSourceConnection {
 	}
 
 	/**
-	 * Add decoder for given $content_type
+	 * Add decoder for given $contentType
 	 *
-	 * @param string|array $content_type Content type
+	 * @param string|array $contentType Content type
 	 * @param callable $callback Function used for decoding
 	 * @param bool $replace Replace decoder if already set or not. Default false
 	 */
-	public function setDecoder($content_type, callable $callback, $replace = false) {
-		$content_types = (array) $content_type;
-		foreach ($content_types as $type) {
+	public function setDecoder($contentType, callable $callback, $replace = false) {
+		$contentTypes = (array)$contentType;
+		foreach ($contentTypes as $type) {
 			if (!isset($this->_decoders[$type]) || $replace) {
 				$this->_decoders[$type] = $callback;
 			}
@@ -152,20 +152,21 @@ class HttpSourceConnection {
 	}
 
 	/**
-	 * Get decoder by given $content_type.
+	 * Get decoder by given $contentType.
 	 * If decoder not found writes log and throw exception.
 	 *
-	 * @param string $content_type
+	 * @param string $contentType
 	 * @return callable
 	 * @throws HttpSourceException
 	 */
-	public function getDecoder($content_type) {
-		if (empty($this->_decoders[$content_type])) {
-			throw new HttpSourceException("Can't decode unknown format: '$content_type'");
+	public function getDecoder($contentType) {
+		if (empty($this->_decoders[$contentType])) {
+			throw new HttpSourceException("Can't decode unknown format: '$contentType'");
 		}
 
-		return $this->_decoders[$content_type];
+		return $this->_decoders[$contentType];
 	}
+
 	/**
 	 * Sets credentials data
 	 *
@@ -189,6 +190,7 @@ class HttpSourceConnection {
 	 *
 	 * @param array $request
 	 * @return array $request
+	 * @throws HttpSourceConfigException
 	 */
 	public function addOauth($request) {
 		if (empty($this->_Transport->config['auth']['oauth_consumer_key']) || empty($this->_Transport->config['auth']['oauth_consumer_secret'])) {
@@ -210,7 +212,7 @@ class HttpSourceConnection {
 	 * @return array $request
 	 */
 	public function addOauthV2($request) {
-		$request['uri']['query'] = (array) Hash::get($request, 'uri.query') + $this->getCredentials();
+		$request['uri']['query'] = (array)Hash::get($request, 'uri.query') + $this->getCredentials();
 		return $request;
 	}
 
@@ -229,6 +231,7 @@ class HttpSourceConnection {
 	 *
 	 * @param array $request
 	 * @return mixed false on error, decoded response array on success
+	 * @throws HttpSourceConfigException
 	 */
 	public function request($request = array()) {
 		$this->reset();
@@ -249,10 +252,10 @@ class HttpSourceConnection {
 
 		if (!$this->_Response) {
 			$response = false;
-		} else if (!$this->_Response->isOk()) {
+		} elseif (!$this->_Response->isOk()) {
 			$this->_error = $this->_extractRemoteError();
 			$response = false;
-		} else if ($this->_Response->isOk()) {
+		} elseif ($this->_Response->isOk()) {
 			try {
 				$response = $this->_decode();
 			} catch (Exception $Exception) {
@@ -346,7 +349,7 @@ class HttpSourceConnection {
 	 * Decodes the response based on the content type
 	 *
 	 * @return array Decoded response
-	 * @trows HttpSourceException If content type decoder not found or response is not an object
+	 * @throws HttpSourceException If content type decoder not found or response is not an object
 	 */
 	protected function _decode() {
 		if (!method_exists($this->_Response, 'getHeader')) {
@@ -354,11 +357,11 @@ class HttpSourceConnection {
 		}
 		// Extract content type from content type header
 		if (preg_match('/^(?P<content_type>[a-z0-9\/\+]+)/i', $this->_Response->getHeader('Content-Type'), $matches)) {
-			$content_type = $matches['content_type'];
+			$contentType = $matches['content_type'];
 		}
 
 		// Decode response according to content type
-		return (array) call_user_func($this->getDecoder($content_type), $this->_Response);
+		return (array)call_user_func($this->getDecoder($contentType), $this->_Response);
 	}
 
 }

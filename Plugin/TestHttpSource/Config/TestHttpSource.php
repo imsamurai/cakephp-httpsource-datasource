@@ -18,9 +18,11 @@ $Config
 				->methodRead()
 				->table('default')
 				->path('/imsamurai/cakephp-httpsource-datasource/master/Test/Data/default.json')
-				->result($CF->result()->map(function($result) {
+				->result($CF->result()
+						->map(function($result) {
 							return array($result);
-						}))
+						})
+				)
 		)
 		->add(
 				$CF->endpoint()
@@ -28,15 +30,17 @@ $Config
 				->methodRead()
 				->table('documents')
 				->path('/imsamurai/cakephp-httpsource-datasource/master/Test/Data/documents:id.json')
-				->addCondition($CF->condition()->name('id')->map(function($v) {
+				->addCondition($CF->condition()->name('id')
+						->map(function($v) {
 							return implode('.', $v);
-						}))
-				->result($CF->result()->map(function($result) {
+						})
+				)
+				->result($CF->result()
+						->map(function($result) {
 							return $result;
-						}))
-		)
-
-;
+						})
+				)
+);
 
 $config['TestHttpSource']['config'] = $Config;
 

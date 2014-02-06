@@ -14,5 +14,5 @@ App::uses('HttpSourceEndpointItem', 'HttpSource.Lib/Config');
  * @method HttpSourceResult map(callable $callback = null)
  */
 class HttpSourceResult extends HttpSourceEndpointItem {
-
+	
 }

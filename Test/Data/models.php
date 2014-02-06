@@ -12,6 +12,7 @@ App::uses('HttpSourceModel', 'HttpSource.Model');
 class HttpSourceDocument extends HttpSourceModel {
 
 	public $name = 'HttpSourceDocument';
+	
 	public $useTable = 'documents';
 
 }
@@ -19,8 +20,11 @@ class HttpSourceDocument extends HttpSourceModel {
 class HttpSourceUser extends AppModel {
 
 	public $name = 'HttpSourceUser';
+	
 	public $useTable = 'users';
+	
 	public $useDbConfig = 'test';
+	
 	public $hasAndBelongsToMany = array(
 		'Documents' => array(
 			'className' => 'HttpSourceDocument',

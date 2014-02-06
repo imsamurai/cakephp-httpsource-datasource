@@ -247,8 +247,8 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 			return $this->_requestSplitter ?
 					$this->_requestSplitter :
 					function(array $request) {
-				return array($request);
-			};
+						return array($request);
+					};
 		}
 		$this->_requestSplitter = $requestSplitter;
 		return $this;
@@ -266,14 +266,14 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 			return $this->_responseJoiner ?
 					$this->_responseJoiner :
 					function(array $responses) {
-				$result = array();
-				foreach ($responses as $response) {
-					if (is_array($response)) {
-						$result = array_merge($result, $response);
-					}
-				}
-				return $result;
-			};
+						$result = array();
+						foreach ($responses as $response) {
+							if (is_array($response)) {
+								$result = array_merge($result, $response);
+							}
+						}
+						return $result;
+					};
 		}
 		$this->_responseJoiner = $responseJoiner;
 		return $this;
@@ -349,7 +349,7 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 	 * @return HttpSourceEndpoint
 	 */
 	public function addField(HttpSourceField $Field) {
-		$this->_fields[(string) $Field] = $Field;
+		$this->_fields[(string)$Field] = $Field;
 		return $this;
 	}
 
@@ -360,7 +360,7 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 	 * @return HttpSourceEndpoint
 	 */
 	public function addCondition(HttpSourceCondition $Condition) {
-		$this->_conditions[(string) $Condition] = $Condition;
+		$this->_conditions[(string)$Condition] = $Condition;
 		return $this;
 	}
 
@@ -370,32 +370,30 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 	 * @return array
 	 */
 	public function requiredConditions() {
-		$conditions_list = array();
+		$conditionsList = array();
 		foreach ($this->_conditions as $Condition) {
 			if ($Condition->null() === false) {
-				$conditions_list[] = $Condition->name();
+				$conditionsList[] = $Condition->name();
 			}
 		}
 
-		return $conditions_list;
+		return $conditionsList;
 	}
 
 	/**
 	 * Returns list of optional condition names
 	 *
-	 * TODO: change method using requiredConditions()
-	 *
 	 * @return array
 	 */
 	public function optionalConditions() {
-		$conditions_list = array();
+		$conditionsList = array();
 		foreach ($this->_conditions as $Condition) {
 			if ($Condition->null() !== false) {
-				$conditions_list[] = $Condition->mapToName();
+				$conditionsList[] = $Condition->mapToName();
 			}
 		}
 
-		return $conditions_list;
+		return $conditionsList;
 	}
 
 	/**
@@ -405,14 +403,14 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 	 * @return array
 	 */
 	public function conditionsDefaults() {
-		$conditions_list = array();
+		$conditionsList = array();
 		foreach ($this->_conditions as $Condition) {
 			if (!is_null($Condition->defaults())) {
-				$conditions_list[$Condition->name()] = $Condition->defaults();
+				$conditionsList[$Condition->name()] = $Condition->defaults();
 			}
 		}
 
-		return $conditions_list;
+		return $conditionsList;
 	}
 
 	/**
@@ -456,19 +454,19 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 			$this->_processReadParams($model, $queryData);
 		}
 
-		$conditions_defaults = $this->conditionsDefaults();
+		$conditionsDefaults = $this->conditionsDefaults();
 
 		$this->_processConditions($model, $queryData['conditions']);
-		$this->_processConditions($model, $conditions_defaults);
+		$this->_processConditions($model, $conditionsDefaults);
 
 		$usedConditions = array_unique(
 				array_merge(
 						array_intersect(
 								array_keys($queryData['conditions']), array_merge($this->requiredConditions(), $this->optionalConditions())
-						), array_keys($conditions_defaults)
+						), array_keys($conditionsDefaults)
 				)
 		);
-		$queryData['conditions'] += $conditions_defaults;
+		$queryData['conditions'] += $conditionsDefaults;
 
 		$model->request['uri']['path'] = $this->path();
 		$model->request['uri']['query'] = array();
@@ -485,7 +483,7 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 	 */
 	public function processFields(Model $model, array &$results) {
 		foreach ($results as &$result) {
-			$result+=array_fill_keys(array_keys($this->_fields), null);
+			$result += array_fill_keys(array_keys($this->_fields), null);
 			$result = $this->_process($result, $this->_fields, $model);
 		}
 		unset($result);
@@ -519,8 +517,8 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 			}
 
 			if (strpos($value, '+') === false) {
-				$value_new = Hash::get($params, $value);
-				if ($value_new === null) {
+				$valueNew = Hash::get($params, $value);
+				if ($valueNew === null) {
 					continue;
 				}
 				$conditions[$condition] = Hash::get($params, $value);
@@ -528,12 +526,11 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 				continue;
 			}
 
-
 			$values = explode('+', $value);
 			$conditions[$condition] = 0;
-			foreach ($values as $value_name) {
-				$conditions[$condition] += (int) Hash::get($params, $value_name);
-				unset($params[$value_name]);
+			foreach ($values as $valueName) {
+				$conditions[$condition] += (int)Hash::get($params, $valueName);
+				unset($params[$valueName]);
 			}
 			if ($conditions[$condition] === 0) {
 				unset($conditions[$condition]);
@@ -559,9 +556,9 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 				continue;
 			}
 
-			list($callback, $to_field_name) = $storage[$item]->map();
+			list($callback, $toFieldName) = $storage[$item]->map();
 			unset($data[$item]);
-			$data = Hash::insert($data, $to_field_name, $callback($value, $model));
+			$data = Hash::insert($data, $toFieldName, $callback($value, $model));
 		}
 
 		return $data;

@@ -30,6 +30,7 @@ class HttpSourceConfigFactory {
 	 * @param string $factoryName Description Replacement for default factory (this class must have same interface)
 	 *
 	 * @return HttpSourceConfigFactory
+	 * @throws HttpSourceConfigException
 	 */
 	public static function instance($factoryName = 'HttpSource.HttpSourceConfigFactory') {
 		if (empty(static::$_instances[$factoryName])) {
@@ -105,18 +106,17 @@ class HttpSourceConfigFactory {
 	/**
 	 * Load config by source name
 	 *
-	 * @param string $source_name
+	 * @param string $sourceName
 	 * @return HttpSourceConfig
 	 */
-	public function load($source_name) {
-		return Configure::read($source_name . '.config');
+	public function load($sourceName) {
+		return Configure::read($sourceName . '.config');
 	}
 
 	/**
 	 * For single object
 	 */
-	private function __construct() {
-
+	private function __construct() {	
 	}
 
 }

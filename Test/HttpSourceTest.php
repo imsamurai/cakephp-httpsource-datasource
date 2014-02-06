@@ -31,7 +31,7 @@ abstract class HttpSourceTest extends CakeTestCase {
 	 * @param array $data
 	 * @param string $dataName
 	 */
-	public function __construct($name = NULL, array $data = array(), $dataName = '') {
+	public function __construct($name = null, array $data = array(), $dataName = '') {
 		CakePlugin::load('TestHttpSource');
 		$this->_loadModel();
 		parent::__construct($name, $data, $dataName);
@@ -48,13 +48,13 @@ abstract class HttpSourceTest extends CakeTestCase {
 	/**
 	 * Load model
 	 *
-	 * @param array $config_name
+	 * @param array $configName
 	 * @param array $config
 	 */
-	protected function _loadModel($config_name = 'testHttpSource', $config = array()) {
-		$db_configs = ConnectionManager::enumConnectionObjects();
+	protected function _loadModel($configName = 'testHttpSource', $config = array()) {
+		$dbConfigs = ConnectionManager::enumConnectionObjects();
 
-		if (!empty($db_configs['httpsourceTest'])) {
+		if (!empty($dbConfigs['httpsourceTest'])) {
 			$TestDS = ConnectionManager::getDataSource('httpsourceTest');
 			$config += $TestDS->config;
 		} else {
@@ -66,10 +66,10 @@ abstract class HttpSourceTest extends CakeTestCase {
 			);
 		}
 
-		$config+=array('prefix' => '');
+		$config += array('prefix' => '');
 
-		ConnectionManager::create($config_name, $config);
-		$this->HttpModel = new TestHttpSourceModel(false, null, $config_name);
+		ConnectionManager::create($configName, $config);
+		$this->HttpModel = new TestHttpSourceModel(false, null, $configName);
 	}
 
 }

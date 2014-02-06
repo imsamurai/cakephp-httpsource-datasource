@@ -6,6 +6,7 @@
 class HttpSourceUsersDocumentFixture extends CakeTestFixture {
 
 	public $useDbConfig = 'test';
+	
 	public $table = 'users_documents';
 
 	/**
@@ -14,8 +15,8 @@ class HttpSourceUsersDocumentFixture extends CakeTestFixture {
 	 * @var array
 	 */
 	public $fields = array(
-		'user_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 20),
-		'document_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 20),
+		'user_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 20),
+		'document_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 20),
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
 	);
 

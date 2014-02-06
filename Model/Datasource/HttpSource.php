@@ -185,7 +185,8 @@ abstract class HttpSource extends DataSource {
 	 *
 	 * @param array $config
 	 * @param HttpSourceConnection $Connection
-	 * @trows HttpSourceException
+	 * @throws HttpSourceException
+	 * @throws NotImplementedException
 	 */
 	public function __construct($config = array(), HttpSourceConnection $Connection = null) {
 		parent::__construct($config);
@@ -197,7 +198,7 @@ abstract class HttpSource extends DataSource {
 			$this->map = Configure::read($plugin);
 		}
 		//must be after map loading
-		if ((int) Configure::read($plugin . '.config_version') === 2) {
+		if ((int)Configure::read($plugin . '.config_version') === 2) {
 			$this->Config = Configure::read($plugin . '.config');
 		} else {
 			throw new NotImplementedException('Configs with config_version != 2 are not implemented yet!');
@@ -231,14 +232,14 @@ abstract class HttpSource extends DataSource {
 	}
 
 	/**
-	 * Add decoder for given $content_type
+	 * Add decoder for given $contentType
 	 *
-	 * @param string|array $content_type Content type
+	 * @param string|array $contentType Content type
 	 * @param callable $callback Function used for decoding
 	 * @param bool $replace Replace decoder if already set or not. Default false
 	 */
-	public function setDecoder($content_type, callable $callback, $replace = false) {
-		$this->_Connection->setDecoder($content_type, $callback, $replace);
+	public function setDecoder($contentType, callable $callback, $replace = false) {
+		$this->_Connection->setDecoder($contentType, $callback, $replace);
 	}
 
 	/**
@@ -259,26 +260,25 @@ abstract class HttpSource extends DataSource {
 	 * Sends HttpSocket requests. Builds your uri and formats the response too.
 	 *
 	 * @param Model $model Model object
-	 * @param mixed $request_data Array of request or string uri
-	 * @param string $request_method read, create, update, delete
+	 * @param mixed $requestData Array of request or string uri
+	 * @param string $requestMethod read, create, update, delete
 	 *
 	 * @return array|false $response
 	 */
-	public function request(Model $model = null, $request_data = null, $request_method = HttpSource::METHOD_READ) {
-
+	public function request(Model $model = null, $requestData = null, $requestMethod = HttpSource::METHOD_READ) {
 		if ($model !== null) {
 			$request = $model->request;
-		} elseif (is_array($request_data)) {
-			$request = $request_data;
-		} elseif (is_string($request_data)) {
-			$request = array('uri' => $request_data);
+		} elseif (is_array($requestData)) {
+			$request = $requestData;
+		} elseif (is_string($requestData)) {
+			$request = array('uri' => $requestData);
 		}
 		$responses = array();
 		foreach ($this->_splitRequest($request) as $subRequest) {
-			$responses[] = $this->_singleRequest($subRequest, $request_method, $model);
+			$responses[] = $this->_singleRequest($subRequest, $requestMethod, $model);
 		}
 
-		$response = $this->afterRequest($model, $this->_joinResponses($responses), $request_method);
+		$response = $this->afterRequest($model, $this->_joinResponses($responses), $requestMethod);
 
 		return $response;
 	}
@@ -306,7 +306,7 @@ abstract class HttpSource extends DataSource {
 	 * @param array $request
 	 */
 	public function swapTokens(array &$request) {
-		$query = (array) Hash::get($request, 'uri.query');
+		$query = (array)Hash::get($request, 'uri.query');
 		foreach ($query as $token => $value) {
 			if (is_array($value)) {
 				continue;
@@ -392,10 +392,10 @@ abstract class HttpSource extends DataSource {
 	 * Just-In-Time callback for any last-minute request modifications
 	 *
 	 * @param array $request
-	 * @param string $request_method Create, update, read or delete
+	 * @param string $requestMethod Create, update, read or delete
 	 * @return array $request
 	 */
-	public function beforeRequest($request, $request_method) {
+	public function beforeRequest($request, $requestMethod) {
 		return $request;
 	}
 
@@ -406,11 +406,11 @@ abstract class HttpSource extends DataSource {
 	 *
 	 * @param Model $model
 	 * @param array $result
-	 * @param string $request_method Create, update, read or delete
+	 * @param string $requestMethod Create, update, read or delete
 	 * @return array
 	 */
-	public function afterRequest(Model $model, array $result, $request_method) {
-		if ($request_method === static::METHOD_READ) {
+	public function afterRequest(Model $model, array $result, $requestMethod) {
+		if ($requestMethod === static::METHOD_READ) {
 
 			if ($this->numRows === null) {
 				$this->numRows = count($result);
@@ -441,6 +441,7 @@ abstract class HttpSource extends DataSource {
 	 * @param string $func Lowercase name of function, i.e. 'count'
 	 * @param array $params Function parameters (any values must be quoted manually)
 	 * @return string An calculation function
+	 * @throws NotImplementedException
 	 */
 	public function calculate(Model $model, $func, $params = array()) {
 		switch (strtolower($func)) {
@@ -455,16 +456,16 @@ abstract class HttpSource extends DataSource {
 	 * Uses standard find conditions.
 	 *
 	 * @param string $model The model being read.
-	 * @param string $query_data An array of query data used to find the data you want
+	 * @param string $queryData An array of query data used to find the data you want
 	 * @return mixed
 	 * @access public
 	 */
-	public function read(Model $model, $query_data = array(), $recursive = null) {
-		$this->_queryData = $query_data;
+	public function read(Model $model, $queryData = array(), $recursive = null) {
+		$this->_queryData = $queryData;
 
 		$model->request = array('method' => static::HTTP_METHOD_READ);
 
-		$this->_buildRequest(HttpSource::METHOD_READ, $model, $query_data, null, null, null, $recursive);
+		$this->_buildRequest(HttpSource::METHOD_READ, $model, $queryData, null, null, null, $recursive);
 
 		$request = $model->request;
 		if ($model->cacheQueries) {
@@ -495,7 +496,7 @@ abstract class HttpSource extends DataSource {
 
 		$this->_buildRequest(HttpSource::METHOD_CREATE, $model, array(), $fields, $values);
 
-		return (bool) $this->request($model, null, HttpSource::METHOD_CREATE);
+		return (bool)$this->request($model, null, HttpSource::METHOD_CREATE);
 	}
 
 	/**
@@ -510,7 +511,7 @@ abstract class HttpSource extends DataSource {
 
 		$this->_buildRequest(HttpSource::METHOD_UPDATE, $model, array(), $fields, $values, $conditions);
 
-		return (bool) $this->request($model, null, HttpSource::METHOD_UPDATE);
+		return (bool)$this->request($model, null, HttpSource::METHOD_UPDATE);
 	}
 
 	/**
@@ -522,9 +523,8 @@ abstract class HttpSource extends DataSource {
 	public function delete(Model $model, $conditions = null) {
 		$model->request = array('method' => static::HTTP_METHOD_DELETE);
 
-
 		$this->_buildRequest(HttpSource::METHOD_DELETE, $model, array(), null, null, $conditions);
-		return (bool) $this->request($model, null, HttpSource::METHOD_DELETE);
+		return (bool)$this->request($model, null, HttpSource::METHOD_DELETE);
 	}
 
 	/**
@@ -536,11 +536,11 @@ abstract class HttpSource extends DataSource {
 	 */
 	public function getQueryCache(array $request) {
 		$key = serialize($request);
-		$cache_name = $this->_currentEndpoint->cacheName();
+		$cacheName = $this->_currentEndpoint->cacheName();
 		if (isset($this->_queryCache[$key])) {
 			return $this->_queryCache[$key];
-		} else if ($cache_name) {
-			return Cache::read(md5($key), $cache_name);
+		} elseif ($cacheName) {
+			return Cache::read(md5($key), $cacheName);
 		}
 
 		return false;
@@ -560,31 +560,32 @@ abstract class HttpSource extends DataSource {
 	 * @param integer $recursive Number of levels of association
 	 * @param array $stack
 	 * @return mixed
-	 * @throws CakeException when results cannot be created.
+	 * @throws NotImplementedException
 	 */
 	public function queryAssociation(Model $model, &$linkModel, $type, $association, $assocData, &$queryData, $external, &$resultSet, $recursive, $stack) {
 		$assocQuery = $this->_scrubQueryData($assocData);
 		$query = $this->_scrubQueryData($queryData);
 
 		foreach ($resultSet as &$result) {
-			switch($type) {
+			switch ($type) {
 				case 'hasAndBelongsToMany': {
-					$JoinModel = ClassRegistry::init($assocData['with']);
-					$assocQuery['fields'] = array($assocData['associationForeignKey']);
-					$assocQuery['conditions'][$assocData['foreignKey']] = $result[$model->alias][$model->primaryKey];
-					$joinData = $JoinModel->find('all', array_filter($assocQuery));
-					$query['conditions'][$linkModel->primaryKey] = Hash::extract($joinData, "{n}.{$JoinModel->alias}.{$assocData['associationForeignKey']}");
-					$assocResults = $linkModel->find('all', array_filter($query));
+						$JoinModel = ClassRegistry::init($assocData['with']);
+						$assocQuery['fields'] = array($assocData['associationForeignKey']);
+						$assocQuery['conditions'][$assocData['foreignKey']] = $result[$model->alias][$model->primaryKey];
+						$joinData = $JoinModel->find('all', array_filter($assocQuery));
+						$query['conditions'][$linkModel->primaryKey] = Hash::extract($joinData, "{n}.{$JoinModel->alias}.{$assocData['associationForeignKey']}");
+						$assocResults = $linkModel->find('all', array_filter($query));
 
-					$result[$association] = array();
-					foreach ($assocResults as $assocResult) {
-						$result[$association][] = $assocResult[$linkModel->alias];
+						$result[$association] = array();
+						foreach ($assocResults as $assocResult) {
+							$result[$association][] = $assocResult[$linkModel->alias];
+						}
+
+						break;
 					}
 
-					break;
-				}
-
-				default: throw new NotImplementedException("Sorry, but type $type is not implemented yet, check out https://github.com/imsamurai/cakephp-httpsource-datasource/issues/18");
+				default:
+					throw new NotImplementedException("Sorry, but type $type is not implemented yet, check out https://github.com/imsamurai/cakephp-httpsource-datasource/issues/18");
 			}
 		}
 	}
@@ -601,7 +602,7 @@ abstract class HttpSource extends DataSource {
 			$base = array_fill_keys(array('conditions', 'fields', 'joins', 'order', 'limit', 'offset', 'group'), array());
 			$base['callbacks'] = null;
 		}
-		return (array) $data + $base;
+		return (array)$data + $base;
 	}
 
 	/**
@@ -655,15 +656,15 @@ abstract class HttpSource extends DataSource {
 	protected function _emulateFields(Model $Model, array &$result) {
 		if (!empty($this->_queryData['fields'])) {
 			//remove model name from each field
-			$model_name = $Model->name;
-			$fields = array_map(function($field) use ($model_name) {
-				return str_replace("$model_name.", '', $field);
-			}, (array) $this->_queryData['fields']);
+			$modelName = $Model->name;
+			$fields = array_map(function($field) use ($modelName) {
+				return str_replace("$modelName.", '', $field);
+			}, (array)$this->_queryData['fields']);
 
-			$fields_keys = array_flip($fields);
+			$fieldsKeys = array_flip($fields);
 
 			foreach ($result as &$data) {
-				$data = array_intersect_key($data, $fields_keys);
+				$data = array_intersect_key($data, $fieldsKeys);
 			}
 			unset($data);
 		}
@@ -690,29 +691,29 @@ abstract class HttpSource extends DataSource {
 	 * Single request
 	 *
 	 * @param array $request
-	 * @param string $request_method
+	 * @param string $requestMethod
 	 * @param Model $model
 	 * @return array|bool
 	 */
-	protected function _singleRequest(array $request, $request_method, Model $model = null) {
+	protected function _singleRequest(array $request, $requestMethod, Model $model = null) {
 		if (empty($request['uri']['host'])) {
-			$request['uri']['host'] = (string) Hash::get($this->config, 'host');
+			$request['uri']['host'] = (string)Hash::get($this->config, 'host');
 		}
 
 		if (empty($request['uri']['port'])) {
-			$request['uri']['port'] = (int) Hash::get($this->config, 'port');
+			$request['uri']['port'] = (int)Hash::get($this->config, 'port');
 		}
 
 		if (empty($request['uri']['path'])) {
-			$request['uri']['path'] = (string) Hash::get($this->config, 'path');
+			$request['uri']['path'] = (string)Hash::get($this->config, 'path');
 		}
 
 		if (empty($request['uri']['scheme']) && Hash::get($this->config, 'scheme')) {
-			$request['uri']['scheme'] = (string) Hash::get($this->config, 'scheme');
+			$request['uri']['scheme'] = (string)Hash::get($this->config, 'scheme');
 		}
 
 		$this->swapTokens($request);
-		$request = $this->beforeRequest($request, $request_method);
+		$request = $this->beforeRequest($request, $requestMethod);
 
 		$response = $this->_Connection->request($request);
 		$this->error = $this->_Connection->getError();
@@ -724,7 +725,7 @@ abstract class HttpSource extends DataSource {
 				$model->onError();
 			}
 			if ($response) {
-				$response = $this->_extractResult($model, $response, $request_method);
+				$response = $this->_extractResult($model, $response, $requestMethod);
 			}
 			$model->response = $response;
 			$model->request = $request;
@@ -748,36 +749,36 @@ abstract class HttpSource extends DataSource {
 	 *
 	 * @param string $method create/read/update/delete
 	 * @param Model $model The model being read.
-	 * @param array $query_data Query data for read
+	 * @param array $queryData Query data for read
 	 * @param array $fields Fields for save/create
 	 * @param array $values Fields values for update/create
 	 * @param type $conditions Conditions for update
 	 * @param int $recursive Number of levels of association. NOT USED YET
 	 * @throws HttpSourceException
 	 */
-	protected function _buildRequest($method, Model $model, array $query_data = array(), array $fields = null, array $values = null, array $conditions = null, $recursive = null) {
-		$query_fields = Hash::get($query_data, 'fields');
-		$table = (is_string($query_fields) && empty($model->useTable)) ? $query_fields : $model->useTable;
+	protected function _buildRequest($method, Model $model, array $queryData = array(), array $fields = null, array $values = null, array $conditions = null, $recursive = null) {
+		$queryFields = Hash::get($queryData, 'fields');
+		$table = (is_string($queryFields) && empty($model->useTable)) ? $queryFields : $model->useTable;
 
 		if (empty($table)) {
 			throw new HttpSourceException('Empty table name!');
 		}
 
 		if (!empty($conditions)) {
-			$query_data['conditions'] = (array) $conditions;
-		} else if (!empty($fields) && !empty($values)) {
-			$query_data['conditions'] = array_combine($fields, $values);
-		} else if (empty($query_data['conditions'])) {
-			$query_data['conditions'] = array();
+			$queryData['conditions'] = (array)$conditions;
+		} elseif (!empty($fields) && !empty($values)) {
+			$queryData['conditions'] = array_combine($fields, $values);
+		} elseif (empty($queryData['conditions'])) {
+			$queryData['conditions'] = array();
 		}
 
 		$conditions = array();
-		foreach (array_keys($query_data['conditions']) as $_condition) {
-			$conditions[] = str_replace($model->alias.'.', '', $_condition);
+		foreach (array_keys($queryData['conditions']) as $_condition) {
+			$conditions[] = str_replace($model->alias . '.', '', $_condition);
 		}
 
 		$this->_currentEndpoint = $this->Config->findEndpoint($method, $table, $conditions);
-		$this->_currentEndpoint->buildRequest($model, $query_data);
+		$this->_currentEndpoint->buildRequest($model, $queryData);
 	}
 
 	/**
@@ -789,9 +790,9 @@ abstract class HttpSource extends DataSource {
 	protected function _writeQueryCache(array $request, $data) {
 		$key = serialize($request);
 		$this->_queryCache[$key] = $data;
-		$cache_name = $this->_currentEndpoint->cacheName();
-		if ($cache_name) {
-			Cache::write(md5($key), $data, $cache_name);
+		$cacheName = $this->_currentEndpoint->cacheName();
+		if ($cacheName) {
+			Cache::write(md5($key), $data, $cacheName);
 		}
 	}
 
@@ -800,12 +801,12 @@ abstract class HttpSource extends DataSource {
 	 *
 	 * @param Model $model
 	 * @param array $result
-	 * @param string $request_method
+	 * @param string $requestMethod
 	 * @param bool $force
 	 * @return array
 	 */
-	protected function _extractResult(Model $model, array $result, $request_method, $force = false) {
-		if ($force || $request_method === static::METHOD_READ) {
+	protected function _extractResult(Model $model, array $result, $requestMethod, $force = false) {
+		if ($force || $requestMethod === static::METHOD_READ) {
 			$this->_currentEndpoint->processResult($model, $result);
 		}
 		return $result;

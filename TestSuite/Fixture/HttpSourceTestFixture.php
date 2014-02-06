@@ -76,7 +76,7 @@ class HttpSourceTestFixture extends CakeTestFixture {
 	/**
 	 * {@inheritdoc}
 	 *
-	  @param DboSource $db An instance of the database object used to create the fixture table
+	 * @param DboSource $db An instance of the database object used to create the fixture table
 	 * @return boolean True on success, false on failure
 	 */
 	public function drop($db) {
@@ -118,7 +118,7 @@ class HttpSourceTestFixture extends CakeTestFixture {
 	 * @return bool
 	 */
 	protected function _truncateOne(array $record) {
-		return (bool) $this->_Model->delete($record[$this->_Model->primaryKey]);
+		return (bool)$this->_Model->delete($record[$this->_Model->primaryKey]);
 	}
 
 }

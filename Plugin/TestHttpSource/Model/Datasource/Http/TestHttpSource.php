@@ -6,7 +6,6 @@
  * Time: 5:44:49 PM
  *
  */
-
 App::uses('HttpSource', 'HttpSource.Model/Datasource');
 App::uses('TestHttpSourceConnection', 'TestHttpSource.Model/Datasource');
 
@@ -28,4 +27,5 @@ class TestHttpSource extends HttpSource {
 	public function __construct($config = array(), HttpSourceConnection $Connection = null) {
 		parent::__construct($config, new TestHttpSourceConnection($config));
 	}
+
 }

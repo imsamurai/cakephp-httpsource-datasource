@@ -6,7 +6,6 @@
  * Time: 6:02:17 PM
  * Format: http://book.cakephp.org/2.0/en/models.html
  */
-
 App::uses('HttpSourceModel', 'HttpSource.Model');
 
 /**

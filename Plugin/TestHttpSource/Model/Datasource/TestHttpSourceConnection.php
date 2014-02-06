@@ -20,7 +20,7 @@ class TestHttpSourceConnection extends HttpSourceConnection {
 		parent::__construct($config, $Transport);
 
 		$this->setDecoder(array('text/plain'), function(HttpSocketResponse $Response) {
-			return json_decode((string) $Response, true);
+			return json_decode((string)$Response, true);
 		}, false);
 	}
 

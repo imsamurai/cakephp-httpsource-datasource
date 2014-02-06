@@ -8,10 +8,10 @@
  */
 App::uses('HttpSourceConfigFactory', 'HttpSource.Lib/Config');
 
-$this_plugin_dir = dirname(dirname(__FILE__)) . DS;
+$thisPluginDir = dirname(dirname(__FILE__)) . DS;
 App::build(array(
-    'Plugin' => array($this_plugin_dir . 'Plugin' . DS),
-	'Vendor' => array($this_plugin_dir . 'Vendor' . DS),
+	'Plugin' => array($thisPluginDir . 'Plugin' . DS),
+	'Vendor' => array($thisPluginDir . 'Vendor' . DS),
 ));
 CakePlugin::load('ArraySort');
-require $this_plugin_dir . 'Lib' . DS . 'Error' . DS . 'exceptions.php';
+require $thisPluginDir . 'Lib' . DS . 'Error' . DS . 'exceptions.php';
