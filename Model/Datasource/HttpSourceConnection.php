@@ -1,5 +1,7 @@
 <?php
 
+App::import('Plugin', 'HttpSocketOauth/HttpSocketOauth');
+
 /**
  * Author: imsamurai <im.samuray@gmail.com>
  * Date: 17.07.2013
@@ -76,7 +78,6 @@ class HttpSourceConnection {
 					$config['auth']['method'] = 'OAuth';
 				}
 
-				App::import('Plugin', 'HttpSocketOauth/HttpSocketOauth');
 				$Transport = new HttpSocketOauth($config);
 			} else {
 				App::uses('HttpSocket', 'Network/Http');
