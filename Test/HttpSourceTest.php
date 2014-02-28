@@ -62,7 +62,8 @@ abstract class HttpSourceTest extends CakeTestCase {
 				'datasource' => 'TestHttpSource.Http/TestHttpSource',
 				'host' => 'raw.github.com',
 				'port' => 443,
-				'timeout' => 5
+				'timeout' => 5,
+				'ssl_verify_host' => false
 			);
 		}
 
