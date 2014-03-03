@@ -15,4 +15,4 @@ App::build(array(
 ));
 CakePlugin::load('ArraySort');
 CakePlugin::load('HttpSocketOauth');
-require $thisPluginDir . 'Lib' . DS . 'Error' . DS . 'exceptions.php';
+require_once $thisPluginDir . 'Lib' . DS . 'Error' . DS . 'exceptions.php';
