@@ -1,6 +1,6 @@
 <?php
 
-App::import('Plugin', 'HttpSocketOauth/HttpSocketOauth');
+App::uses('HttpSocketOauth', 'HttpSocketOauth.');
 
 /**
  * Author: imsamurai <im.samuray@gmail.com>

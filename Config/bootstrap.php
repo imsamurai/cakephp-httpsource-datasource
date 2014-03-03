@@ -14,4 +14,5 @@ App::build(array(
 	'Vendor' => array($thisPluginDir . 'Vendor' . DS),
 ));
 CakePlugin::load('ArraySort');
+CakePlugin::load('HttpSocketOauth');
 require $thisPluginDir . 'Lib' . DS . 'Error' . DS . 'exceptions.php';
