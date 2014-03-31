@@ -336,14 +336,15 @@ abstract class HttpSource extends DataSource {
 
 		$this->logPrepare();
 
-		$this->_requestsLog[] = $this->log_row;
+		$this->_requestsLog[] = $this->_log_row;
 		$this->_requestsTime += $this->took;
 		if (count($this->_requestsLog) > $this->_requestsLogMax) {
 			array_shift($this->_requestsLog);
 		}
 
 		if (!empty($this->error)) {
-			$this->log(get_class($this) . ': ' . $this->error . "\n" . $log['query'], LOG_ERR);
+			$this->_log_row['query'] .= "\nERROR: ".$this->error;
+			$this->log(get_class($this) . ': ' . $this->error . "\n" . $this->_log_row['query'], LOG_ERR);
 		}
 	}
 
@@ -353,7 +354,7 @@ abstract class HttpSource extends DataSource {
 	 * @return void
 	 */
 	public function logPrepare() {
-		$this->log_row = array(
+		$this->_log_row = array(
 			'query' => mb_strlen($this->query) > static::LOG_MAX_LENGTH ? mb_substr($this->query, 0, static::LOG_MAX_LENGTH) . ' ' . static::LOG_TRUNCATED : $this->query,
 			'affected' => $this->affected,
 			'numRows' => $this->numRows,
