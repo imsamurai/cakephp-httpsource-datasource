@@ -185,7 +185,7 @@ abstract class HttpSource extends DataSource {
 	 *
 	 * @var array
 	 */
-	protected $log_row = array();
+	protected $_log_row = array();
 
 	/**
 	 * Constructor
@@ -347,7 +347,7 @@ abstract class HttpSource extends DataSource {
 		}
 	}
 
-	 /**
+	/**
 	 * Log query prepare.
 	 *
 	 * @return void
