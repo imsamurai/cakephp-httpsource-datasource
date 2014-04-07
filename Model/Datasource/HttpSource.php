@@ -181,6 +181,13 @@ abstract class HttpSource extends DataSource {
 	protected $_queryData = array();
 
 	/**
+	 * Row log
+	 *
+	 * @var array
+	 */
+	protected $_logRow = array();
+
+	/**
 	 * Constructor
 	 *
 	 * @param array $config
@@ -322,27 +329,37 @@ abstract class HttpSource extends DataSource {
 	/**
 	 * Log given query.
 	 *
-	 * @param array $params Values binded to the query (prepared statements)
 	 * @return void
 	 */
 	public function logRequest() {
 		$this->_requestsCnt++;
-		$log = array(
-			'query' => strlen($this->query) > static::LOG_MAX_LENGTH ? substr($this->query, 0, static::LOG_MAX_LENGTH) . ' ' . static::LOG_TRUNCATED : $this->query,
-			'error' => $this->error,
-			'affected' => $this->affected,
-			'numRows' => $this->numRows,
-			'took' => $this->took,
-		);
-		$this->_requestsLog[] = $log;
+
+		$this->logPrepare();
+
+		$this->_requestsLog[] = $this->_logRow;
 		$this->_requestsTime += $this->took;
 		if (count($this->_requestsLog) > $this->_requestsLogMax) {
 			array_shift($this->_requestsLog);
 		}
 
 		if (!empty($this->error)) {
-			$this->log(get_class($this) . ': ' . $this->error . "\n" . $log['query'], LOG_ERR);
+			$this->_logRow['query'] .= "\nERROR: " . $this->error;
+			$this->log(get_class($this) . ': ' . $this->error . "\n" . $this->_logRow['query'], LOG_ERR);
 		}
+	}
+
+	/**
+	 * Log query prepare.
+	 *
+	 * @return void
+	 */
+	public function logPrepare() {
+		$this->_logRow = array(
+			'query' => mb_strlen($this->query) > static::LOG_MAX_LENGTH ? mb_substr($this->query, 0, static::LOG_MAX_LENGTH) . ' ' . static::LOG_TRUNCATED : $this->query,
+			'affected' => $this->affected,
+			'numRows' => $this->numRows,
+			'took' => $this->took,
+		);
 	}
 
 	/**
