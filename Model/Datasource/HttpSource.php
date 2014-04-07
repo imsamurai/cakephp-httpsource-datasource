@@ -537,9 +537,7 @@ abstract class HttpSource extends DataSource {
 	public function getQueryCache(array $request) {
 		$key = serialize($request);
 		$cacheName = $this->_currentEndpoint->cacheName();
-		if (isset($this->_queryCache[$key])) {
-			return $this->_queryCache[$key];
-		} elseif ($cacheName) {
+		if ($cacheName) {
 			return Cache::read(md5($key), $cacheName);
 		}
 
@@ -789,7 +787,6 @@ abstract class HttpSource extends DataSource {
 	 */
 	protected function _writeQueryCache(array $request, $data) {
 		$key = serialize($request);
-		$this->_queryCache[$key] = $data;
 		$cacheName = $this->_currentEndpoint->cacheName();
 		if ($cacheName) {
 			Cache::write(md5($key), $data, $cacheName);
