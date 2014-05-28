@@ -549,6 +549,14 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 		$conditions = $this->_process($conditions, $this->_conditions, $model);
 	}
 
+	/**
+	 * Apply renaming and callbacks to items
+	 * 
+	 * @param array $items
+	 * @param array $storage
+	 * @param Model $model
+	 * @return array
+	 */
 	protected function _process($items, $storage, Model $model) {
 		$data = $items;
 
@@ -559,7 +567,7 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 
 			list($callback, $toFieldName) = $storage[$item]->map();
 			unset($data[$item]);
-			$data = Hash::insert($data, $toFieldName, $callback($value, $model));
+			$data = Hash::insert($data, $toFieldName, $callback($value, $model, $data));
 		}
 
 		return $data;
