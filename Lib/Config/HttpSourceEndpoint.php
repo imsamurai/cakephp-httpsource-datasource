@@ -471,6 +471,7 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 		$model->request['uri']['path'] = $this->path();
 		$model->request['uri']['query'] = array();
 		$model->request['body'] = array();
+		$model->request['virtual'] = array();
 		$queryBuilder = $this->queryBuilder();
 		$queryBuilder($model, $usedConditions, $queryData);
 	}
@@ -573,9 +574,10 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 	 */
 	protected function _buildQuery(Model $model, array $usedConditions, array $queryData) {
 		foreach ($usedConditions as $condition) {
-			if (
-					$this->condition($condition)->mustSendInQuery() || ($this->condition($condition)->mustSendInAny() && $this->_mustSendInQuery($model))
-			) {
+			$Condition = $this->condition($condition);
+			if ($Condition->mustSendInVirtual()) {
+				$model->request['virtual'][$condition] = $queryData['conditions'][$condition];
+			} elseif ($Condition->mustSendInQuery() || ($Condition->mustSendInAny() && $this->_mustSendInQuery($model))) {
 				$model->request['uri']['query'][$condition] = $queryData['conditions'][$condition];
 			} else {
 				$model->request['body'][$condition] = $queryData['conditions'][$condition];

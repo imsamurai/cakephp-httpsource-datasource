@@ -22,6 +22,7 @@ class HttpSourceCondition extends HttpSourceField {
 	const SEND_IN_ANY = 'any';
 	const SEND_IN_QUERY = 'query';
 	const SEND_IN_BODY = 'body';
+	const SEND_IN_VIRTUAL = 'virtual';
 
 	/**
 	 * Condition type
@@ -103,6 +104,16 @@ class HttpSourceCondition extends HttpSourceField {
 		$this->_sendIn = static::SEND_IN_BODY;
 		return $this;
 	}
+	
+	/**
+	 * Set condition force to virtual
+	 *
+	 * @return HttpSourceCondition
+	 */
+	public function sendInVirtual() {
+		$this->_sendIn = static::SEND_IN_VIRTUAL;
+		return $this;
+	}
 
 	/**
 	 * Set force send in body or query, depends on current endpoint
@@ -139,6 +150,15 @@ class HttpSourceCondition extends HttpSourceField {
 	 */
 	public function mustSendInAny() {
 		return $this->_sendIn === static::SEND_IN_ANY;
+	}
+	
+	/**
+	 * True if condition must be virtial
+	 *
+	 * @return bool
+	 */
+	public function mustSendInVirtual() {
+		return $this->_sendIn === static::SEND_IN_VIRTUAL;
 	}
 
 	/**
