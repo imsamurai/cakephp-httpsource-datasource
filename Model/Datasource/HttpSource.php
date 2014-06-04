@@ -635,6 +635,60 @@ abstract class HttpSource extends DataSource {
 			}
 		}
 	}
+	
+	/**
+	 * Returns requests array for create schema(s)
+	 * 
+	 * @param CakeSchema $Schema
+	 * @param string $tableName
+	 * @return array
+	 */
+	public function createSchema(CakeSchema $Schema, $tableName = null) {
+		$options = array(
+			'method' => static::METHOD_CREATE,
+			'httpMethod' => static::HTTP_METHOD_CREATE
+		);
+		return $this->_schemaToRequests($Schema, $tableName, $options);
+	}
+
+	/**
+	 * Returns requests array for drop schema(s)
+	 * 
+	 * @param CakeSchema $Schema
+	 * @param string $tableName
+	 * @return array
+	 */
+	public function dropSchema(CakeSchema $Schema, $tableName = null) {
+		$options = array(
+			'method' => static::METHOD_DELETE,
+			'httpMethod' => static::HTTP_METHOD_DELETE
+		);
+		return $this->_schemaToRequests($Schema, $tableName, $options);
+	}
+	
+	/**
+	 * Make requests based on schema
+	 * 
+	 * @param CakeSchema $Schema
+	 * @param string $tableName
+	 * @param array $options
+	 * @return array
+	 */
+	protected function _schemaToRequests(CakeSchema $Schema, $tableName, array $options) {
+		$out = array();
+		
+		foreach ($Schema->tables as $table => $columns) {
+			if ($tableName && $tableName != $table) {
+				continue;
+			}
+			$tableParameters = array('conditions' => (array)Hash::get((array)$columns, 'tableParameters'));
+			$tableParameters['fields'] = $table;
+			$model = $this->_requestToModel(array('method' => $options['httpMethod']));
+			$this->_buildRequest($options['method'], $model, $tableParameters);
+			$out[] = $model->request;
+		}
+		return $out;
+	}
 
 	/**
 	 * Private helper method to remove query metadata in given data array.
