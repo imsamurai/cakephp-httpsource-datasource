@@ -262,6 +262,23 @@ abstract class HttpSource extends DataSource {
 		}
 		return $this->request(null, $request);
 	}
+	
+	/**
+	 * Execute single or multiple requests
+	 * 
+	 * @param array $request
+	 * @return array
+	 */
+	public function execute($request) {
+		if (is_numeric(implode('',array_keys($request)))) {
+			$result = array();
+			foreach($request as $query) {
+				$result[] = $this->query($query);
+			}
+			return $result;
+		}
+		return $this->query($request);
+	}
 
 	/**
 	 * Sends HttpSocket requests. Builds your uri and formats the response too.
@@ -285,7 +302,11 @@ abstract class HttpSource extends DataSource {
 			$responses[] = $this->_singleRequest($subRequest, $requestMethod, $model);
 		}
 
-		$response = $this->afterRequest($model, $this->_joinResponses($responses), $requestMethod);
+		if ($model) {
+			$response = $this->afterRequest($model, $this->_joinResponses($responses), $requestMethod);
+		} else {
+			$response = $this->_joinResponses($responses);
+		}
 
 		return $response;
 	}
@@ -846,6 +867,21 @@ abstract class HttpSource extends DataSource {
 	protected function _joinResponses(array $responses) {
 		$joiner = $this->_currentEndpoint->responseJoiner();
 		return $joiner($responses);
+	}
+	
+	/**
+	 * Fill request parameter of the model, if no model specified - create basic model
+	 * 
+	 * @param array $request
+	 * @param Model $Model
+	 * @return Model
+	 */
+	protected function _requestToModel(array $request, Model $Model = null) {
+		if (is_null($Model)) {
+			$Model = ClassRegistry::init(array('class' => 'AppModel', 'table' => false));
+		}
+		$Model->request = $request;
+		return $Model;
 	}
 
 }
