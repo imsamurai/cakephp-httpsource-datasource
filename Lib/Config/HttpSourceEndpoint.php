@@ -109,6 +109,7 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 	const METHOD_CREATE = 'create';
 	const METHOD_UPDATE = 'update';
 	const METHOD_DELETE = 'delete';
+	const METHOD_CHECK = 'check';
 
 	/**
 	 * Set endpoint method to 'read'
@@ -147,6 +148,16 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 	 */
 	public function methodDelete() {
 		$this->_method = static::METHOD_DELETE;
+		return $this;
+	}
+	
+	/**
+	 * Set endpoint method to 'check'
+	 *
+	 * @return HttpSourceEndpoint
+	 */
+	public function methodCheck() {
+		$this->_method = static::METHOD_CHECK;
 		return $this;
 	}
 
@@ -600,7 +611,7 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 	 * @return bool
 	 */
 	protected function _mustSendInQuery(Model $model) {
-		return in_array(strtoupper($model->request['method']), array('GET', 'DELETE'), true);
+		return in_array(strtoupper($model->request['method']), array('GET', 'DELETE', 'HEAD'), true);
 	}
 
 }

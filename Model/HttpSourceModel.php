@@ -50,10 +50,19 @@ abstract class HttpSourceModel extends AppModel {
 	 * to ascertain the existence of the record in persistent storage.
 	 *
 	 * @param integer|string $id ID of record to check for existence
+	 * @param array $conditions Addiditional conditions
 	 * @return boolean True if such a record exists
 	 */
-	public function exists($id = null) {
-		return true;
+	public function exists($id = null, array $conditions = array()) {
+		if ($id === null) {
+			$id = $this->getID();
+		}
+
+		if ($id === false) {
+			return false;
+		}
+
+		return $this->getDataSource()->exists($this, array($this->primaryKey => $id) + $conditions);
 	}
 
 	/**

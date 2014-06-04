@@ -25,6 +25,7 @@ abstract class HttpSource extends DataSource {
 	const METHOD_CREATE = 'create';
 	const METHOD_UPDATE = 'update';
 	const METHOD_DELETE = 'delete';
+	const METHOD_CHECK = 'check';
 
 	/**
 	 * Http methods constants
@@ -33,6 +34,7 @@ abstract class HttpSource extends DataSource {
 	const HTTP_METHOD_CREATE = 'PUT';
 	const HTTP_METHOD_UPDATE = 'POST';
 	const HTTP_METHOD_DELETE = 'DELETE';
+	const HTTP_METHOD_CHECK = 'HEAD';
 
 	/**
 	 * Maximum log length
@@ -556,6 +558,22 @@ abstract class HttpSource extends DataSource {
 		$this->_buildRequest(HttpSource::METHOD_DELETE, $model, array(), null, null, $conditions);
 		return (bool)$this->request($model, null, HttpSource::METHOD_DELETE);
 	}
+	
+	/**
+	 * Sets method = HEAD
+	 *
+	 * @param Model $model
+	 * @param array $conditions
+	 */
+	public function exists(Model $model, $conditions = array()) {
+		$model->request = array('method' => static::HTTP_METHOD_CHECK);
+		try {
+			$this->_buildRequest(HttpSource::METHOD_CHECK, $model, array(), null, null, $conditions);
+		} catch (Exception $Exception) {
+			return true;
+		}
+		return (bool)$this->request($model, null, HttpSource::METHOD_CHECK);
+	}
 
 	/**
 	 * Returns the result for a query if it is already cached
@@ -760,7 +778,7 @@ abstract class HttpSource extends DataSource {
 			$model->request = $request;
 		}
 
-		$this->numRows = $this->_Connection->getNumRows($response);
+		$this->numRows = ($requestMethod === static::METHOD_CHECK && $response) ? 1 : $this->_Connection->getNumRows($response);
 
 		if (!empty($this->error)) {
 			$this->log(get_class() . ": " . $this->error . " Request: " . $this->query, LOG_ERR);

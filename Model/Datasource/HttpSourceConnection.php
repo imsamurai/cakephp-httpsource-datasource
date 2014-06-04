@@ -289,6 +289,8 @@ class HttpSourceConnection {
 		} elseif (!$this->_Response->isOk()) {
 			$this->_error = $this->_extractRemoteError();
 			$response = false;
+		} elseif ($this->_Response->isOk() && $request['method'] === HttpSource::HTTP_METHOD_CHECK) {
+			$response = array('ok' => true);
 		} elseif ($this->_Response->isOk()) {
 			try {
 				$response = $this->_decode();
