@@ -181,13 +181,6 @@ abstract class HttpSource extends DataSource {
 	protected $_queryData = array();
 
 	/**
-	 * Row log
-	 *
-	 * @var array
-	 */
-	protected $_logRow = array();
-
-	/**
 	 * Constructor
 	 *
 	 * @param array $config
@@ -262,7 +255,7 @@ abstract class HttpSource extends DataSource {
 		}
 		return $this->request(null, $request);
 	}
-	
+
 	/**
 	 * Execute single or multiple requests
 	 * 
@@ -270,9 +263,9 @@ abstract class HttpSource extends DataSource {
 	 * @return array
 	 */
 	public function execute($request) {
-		if (is_numeric(implode('',array_keys($request)))) {
+		if (is_numeric(implode('', array_keys($request)))) {
 			$result = array();
-			foreach($request as $query) {
+			foreach ($request as $query) {
 				$result[] = $this->query($query);
 			}
 			return $result;
@@ -355,31 +348,30 @@ abstract class HttpSource extends DataSource {
 	public function logRequest() {
 		$this->_requestsCnt++;
 
-		$this->logPrepare();
+		$this->_requestsLog[] = $this->getRequestLog();
 
-		$this->_requestsLog[] = $this->_logRow;
 		$this->_requestsTime += $this->took;
 		if (count($this->_requestsLog) > $this->_requestsLogMax) {
 			array_shift($this->_requestsLog);
 		}
 
 		if (!empty($this->error)) {
-			$this->_logRow['query'] .= "\nERROR: " . $this->error;
-			$this->log(get_class($this) . ': ' . $this->error . "\n" . $this->_logRow['query'], LOG_ERR);
+			$this->log(get_class($this) . ': ' . $this->error . "\n" . $this->query, LOG_ERR);
 		}
 	}
 
 	/**
-	 * Log query prepare.
-	 *
-	 * @return void
+	 * Returns record for log
+	 * 
+	 * @return array
 	 */
-	public function logPrepare() {
-		$this->_logRow = array(
+	public function getRequestLog() {
+		return array(
 			'query' => mb_strlen($this->query) > static::LOG_MAX_LENGTH ? mb_substr($this->query, 0, static::LOG_MAX_LENGTH) . ' ' . static::LOG_TRUNCATED : $this->query,
+			'error' => $this->error,
 			'affected' => $this->affected,
 			'numRows' => $this->numRows,
-			'took' => $this->took,
+			'took' => $this->took
 		);
 	}
 
@@ -755,6 +747,7 @@ abstract class HttpSource extends DataSource {
 		$this->error = $this->_Connection->getError();
 		$this->took = $this->_Connection->getTook();
 		$this->query = $this->_Connection->getQuery();
+		$this->affected = $this->_Connection->getAffected();
 
 		if ($model) {
 			if (!$response || $this->error) {
@@ -767,7 +760,7 @@ abstract class HttpSource extends DataSource {
 			$model->request = $request;
 		}
 
-		$this->numRows = is_array($response) ? count($response) : 0;
+		$this->numRows = $this->_Connection->getNumRows($response);
 
 		if (!empty($this->error)) {
 			$this->log(get_class() . ": " . $this->error . " Request: " . $this->query, LOG_ERR);
@@ -868,7 +861,7 @@ abstract class HttpSource extends DataSource {
 		$joiner = $this->_currentEndpoint->responseJoiner();
 		return $joiner($responses);
 	}
-	
+
 	/**
 	 * Fill request parameter of the model, if no model specified - create basic model
 	 * 

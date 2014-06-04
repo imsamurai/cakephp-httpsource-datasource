@@ -23,6 +23,13 @@ class HttpSourceConnection {
 	 * @var int|string
 	 */
 	protected $_took = null;
+	
+	/**
+	 * Affected rows
+	 *
+	 * @var int|string
+	 */
+	protected $_affected = 0;
 
 	/**
 	 * Response object
@@ -62,6 +69,13 @@ class HttpSourceConnection {
 	 * @var array
 	 */
 	protected $_decoders = array();
+	
+	/**
+	 * Last decoded response
+	 *
+	 * @var array
+	 */
+	protected $_lastResponse = null;
 
 	/**
 	 * Constructor
@@ -119,12 +133,31 @@ class HttpSourceConnection {
 	}
 
 	/**
-	 * Returns lst request took time
+	 * Returns last request took time
 	 *
 	 * @return int|string
 	 */
 	public function getTook() {
 		return $this->_took;
+	}
+	
+	/**
+	 * Returns affected rows
+	 *
+	 * @return int|string
+	 */
+	public function getAffected() {
+		return $this->_affected;
+	}
+	
+	/**
+	 * Returns number of rows in result
+	 * 
+	 * @param mixed $result
+	 * @return int|string
+	 */
+	public function getNumRows($result) {
+		return is_array($result) ? count($result) : 0;
 	}
 
 	/**
@@ -264,7 +297,7 @@ class HttpSourceConnection {
 				$response = false;
 			}
 		}
-
+		$this->_lastResponse = $response;
 		return $response;
 	}
 
@@ -275,6 +308,7 @@ class HttpSourceConnection {
 		$this->_error = null;
 		$this->_query = null;
 		$this->_took = null;
+		$this->_affected = 0;
 		$this->_Response = null;
 	}
 
