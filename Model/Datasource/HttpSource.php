@@ -39,7 +39,7 @@ abstract class HttpSource extends DataSource {
 	/**
 	 * Maximum log length
 	 */
-	const LOG_MAX_LENGTH = 500;
+	const LOG_MAX_LENGTH = 1000000;
 
 	/**
 	 * String to replace truncated part of log
