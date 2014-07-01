@@ -51,9 +51,10 @@ abstract class HttpSourceModel extends AppModel {
 	 *
 	 * @param integer|string $id ID of record to check for existence
 	 * @param array $conditions Addiditional conditions
+	 * @param bool $force If true will call exists method if datasource, return true otherwise
 	 * @return boolean True if such a record exists
 	 */
-	public function exists($id = null, array $conditions = array()) {
+	public function exists($id = null, array $conditions = array(), $force = false) {
 		if ($id === null) {
 			$id = $this->getID();
 		}
@@ -62,7 +63,7 @@ abstract class HttpSourceModel extends AppModel {
 			return false;
 		}
 
-		return $this->getDataSource()->exists($this, array($this->primaryKey => $id) + $conditions);
+		return $force ? $this->getDataSource()->exists($this, array($this->primaryKey => $id) + $conditions) : true;
 	}
 
 	/**
