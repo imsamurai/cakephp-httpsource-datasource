@@ -196,10 +196,10 @@ abstract class HttpSource extends DataSource {
 			static::METHOD_DELETE,
 			static::METHOD_CHECK
 		);
-		
+
 		return array_combine($types, $types);
 	}
-	
+
 	/**
 	 * Constructor
 	 *
@@ -220,11 +220,11 @@ abstract class HttpSource extends DataSource {
 			$this->_loadConfig($plugin);
 			$this->map = Configure::read($plugin);
 		}
-		
+
 		if (empty($this->map)) {
 			throw new HttpSourceException('Configuration not found!');
 		}
-		
+
 		//must be after map loading
 		if ((int)Configure::read($plugin . '.config_version') === 2) {
 			$this->_setConfig(Configure::read($plugin . '.config'));
@@ -236,7 +236,7 @@ abstract class HttpSource extends DataSource {
 
 		$this->fullDebug = Configure::read('debug') > 1;
 	}
-	
+
 	/**
 	 * Returns config
 	 * 
@@ -245,7 +245,7 @@ abstract class HttpSource extends DataSource {
 	public function getConfig() {
 		return $this->Config;
 	}
-	
+
 	/**
 	 * Returns connection
 	 * 
@@ -283,7 +283,7 @@ abstract class HttpSource extends DataSource {
 	public function setDecoder($contentType, callable $callback, $replace = false) {
 		$this->_Connection->setDecoder($contentType, $callback, $replace);
 	}
-	
+
 	/**
 	 * Get decoder for given $contentType
 	 *
@@ -385,7 +385,7 @@ abstract class HttpSource extends DataSource {
 		if (empty($uri['query']) || !is_array($uri['query']) || empty($uri['path'])) {
 			return;
 		}
-		
+
 		foreach ($uri['query'] as $token => $value) {
 			if (is_array($value)) {
 				continue;
@@ -622,7 +622,7 @@ abstract class HttpSource extends DataSource {
 		$this->_buildRequest(HttpSource::METHOD_DELETE, $model, array(), null, null, $conditions);
 		return (bool)$this->request($model, null, HttpSource::METHOD_DELETE);
 	}
-	
+
 	/**
 	 * Sets method = HEAD
 	 *
@@ -699,7 +699,7 @@ abstract class HttpSource extends DataSource {
 			}
 		}
 	}
-	
+
 	/**
 	 * Returns requests array for create schema(s)
 	 * 
@@ -729,7 +729,7 @@ abstract class HttpSource extends DataSource {
 		);
 		return $this->_schemaToRequests($Schema, $tableName, $options);
 	}
-	
+
 	/**
 	 * Make requests based on schema
 	 * 
@@ -740,7 +740,7 @@ abstract class HttpSource extends DataSource {
 	 */
 	protected function _schemaToRequests(CakeSchema $Schema, $tableName, array $options) {
 		$out = array();
-		
+
 		foreach ($Schema->tables as $table => $columns) {
 			if ($tableName && $tableName != $table) {
 				continue;
@@ -1010,7 +1010,7 @@ abstract class HttpSource extends DataSource {
 		$Model->request = $request;
 		return $Model;
 	}
-	
+
 	/**
 	 * Load config wrapper
 	 * 
@@ -1024,6 +1024,7 @@ abstract class HttpSource extends DataSource {
 	 * Set config
 	 * 
 	 * @param HttpSourceConfig $Config
+	 * @throws HttpSourceException
 	 */
 	protected function _setConfig($Config) {
 		if (!($Config instanceof HttpSourceConfig)) {
@@ -1031,7 +1032,7 @@ abstract class HttpSource extends DataSource {
 		}
 		$this->Config = $Config;
 	}
-	
+
 	/**
 	 * Return current endpoint or create new
 	 * 
@@ -1043,7 +1044,7 @@ abstract class HttpSource extends DataSource {
 						->endpoint()
 						->id('__default__');
 	}
-	
+
 	/**
 	 * Return current query data
 	 * 

@@ -98,7 +98,7 @@ class HttpSourceCondition extends HttpSourceField {
 			static::SEND_IN_VIRTUAL
 		);
 		return array_combine($types, $types);
-}
+	}
 
 	/**
 	 * Returns all data types
@@ -114,7 +114,8 @@ class HttpSourceCondition extends HttpSourceField {
 			static::TYPE_TEXT,
 		);
 		return array_combine($types, $types);
-}
+	}
+
 	/**
 	 * Set force send in query
 	 *
@@ -134,7 +135,7 @@ class HttpSourceCondition extends HttpSourceField {
 		$this->_sendIn = static::SEND_IN_BODY;
 		return $this;
 	}
-	
+
 	/**
 	 * Set condition force to virtual
 	 *
@@ -181,7 +182,7 @@ class HttpSourceCondition extends HttpSourceField {
 	public function mustSendInAny() {
 		return $this->_sendIn === static::SEND_IN_ANY;
 	}
-	
+
 	/**
 	 * True if condition must be virtial
 	 *
@@ -209,7 +210,7 @@ class HttpSourceCondition extends HttpSourceField {
 		$this->_type = static::TYPE_INT;
 		return $this;
 	}
-	
+
 	/**
 	 * Set type to int
 	 *
@@ -238,7 +239,7 @@ class HttpSourceCondition extends HttpSourceField {
 		$this->_type = static::TYPE_BOOL;
 		return $this;
 	}
-	
+
 	/**
 	 * Set type to bool
 	 *

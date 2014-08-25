@@ -635,7 +635,6 @@ class HttpSourceTest extends CakeTestCase {
 				$Source->expects($this->never())->method('_extractResult');
 			}
 
-
 			$this->assertSame($responseResult, $Source->request($Model, null, $requestMethod));
 			$this->assertSame($responseResult, $Model->response);
 			$this->assertSame($requestFull, $Model->request);
@@ -1266,9 +1265,11 @@ class HttpSourceTest extends CakeTestCase {
 				//log,
 				'',
 				//Endpoint
-				$CF->endpoint()->result($CF->result()->map(function($result) {
-							return array_merge($result, array('Hi Jack!'));
-						}))
+				$CF->endpoint()
+						->result($CF->result()
+								->map(function($result) {
+									return array_merge($result, array('Hi Jack!'));
+								}))
 			),
 			//set #14
 			array(
@@ -1305,9 +1306,12 @@ class HttpSourceTest extends CakeTestCase {
 				//log,
 				'',
 				//Endpoint
-				$CF->endpoint()->result($CF->result()->map(function($result) {
-							return array_merge($result, array('Hi Jack!'));
-						}))
+				$CF->endpoint()
+						->result($CF->result()
+								->map(function($result) {
+									return array_merge($result, array('Hi Jack!'));
+								})
+						)
 			),
 		);
 	}
@@ -1780,9 +1784,13 @@ class HttpSourceTest extends CakeTestCase {
 				//queryData
 				array(),
 				//Endpoint
-				$CF->endpoint()->addField($CF->field()->name('x')->map(function($x) {
-							return $x * 101;
-						}, '_x_'))
+				$CF->endpoint()
+						->addField($CF->field()
+								->name('x')
+								->map(function($x) {
+									return $x * 101;
+								}, '_x_')
+						)
 			),
 		);
 	}
@@ -2064,7 +2072,6 @@ class HttpSourceTest extends CakeTestCase {
 				->setConstructorArgs(array(array('datasource' => 'HttpSource.Http/HttpSource')))
 				->setMethods(array('log', 'getRequestLog'))
 				->getMock();
-
 
 		$at = 0;
 		foreach ($logs as $log) {
@@ -3148,20 +3155,19 @@ class HttpSourceTest extends CakeTestCase {
 				))
 				->getMock();
 
-
 		$Source->expects($this->once())->method('request')->with($Model, null, HttpSource::METHOD_READ)->willReturn($result);
 
 		$this->assertSame($result, $Source->read($Model));
 		$this->assertSame($result, $Source->read($Model));
 		$this->assertSame($result, $Source->read($Model));
 	}
-	
+
 	/**
 	 * Test no query cache
 	 */
 	public function testNoQueryCache() {
 		$result = array(array('result' => 1));
-		
+
 		$Model = new AppModel;
 		$Model->useTable = 'endpoint1';
 		$Model->cacheQueries = true;
@@ -3172,7 +3178,6 @@ class HttpSourceTest extends CakeTestCase {
 					'request',
 				))
 				->getMock();
-
 
 		$Source->expects($this->exactly(3))->method('request')->with($Model, null, HttpSource::METHOD_READ)->willReturn($result);
 
