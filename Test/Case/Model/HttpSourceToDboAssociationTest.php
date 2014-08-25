@@ -6,12 +6,12 @@
  * Time: 5:28:22 PM
  * Format: http://book.cakephp.org/2.0/en/development/testing.html
  */
-App::uses('HttpSourceTest', 'HttpSource.Test');
+App::uses('HttpSourceAppTest', 'HttpSource.Test');
 
 /**
  * HttpSourceToDboAssociationTest
  */
-class HttpSourceToDboAssociationTest extends HttpSourceTest {
+class HttpSourceToDboAssociationTest extends HttpSourceAppTest {
 
 	/**
 	 * User model

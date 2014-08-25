@@ -35,10 +35,7 @@ class HttpSourceConfigFactory {
 	public static function instance($factoryName = 'HttpSource.HttpSourceConfigFactory') {
 		if (empty(static::$_instances[$factoryName])) {
 
-			list($factoryPluginName, $factoryClassName) = pluginSplit($factoryName);
-			if ($factoryPluginName) {
-				$factoryPluginName .= '.';
-			}
+			list($factoryPluginName, $factoryClassName) = pluginSplit($factoryName, true);
 
 			App::uses($factoryClassName, $factoryPluginName . 'Lib/Config');
 

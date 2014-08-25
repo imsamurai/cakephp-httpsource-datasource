@@ -384,6 +384,7 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 		$conditionsList = array();
 		foreach ($this->_conditions as $Condition) {
 			if ($Condition->null() === false) {
+				//TODO: maybe should be mapToName()?
 				$conditionsList[] = $Condition->name();
 			}
 		}
@@ -399,6 +400,7 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 	public function optionalConditions() {
 		$conditionsList = array();
 		foreach ($this->_conditions as $Condition) {
+			//TODO: maybe should be name()?
 			if ($Condition->null() !== false) {
 				$conditionsList[] = $Condition->mapToName();
 			}
@@ -417,6 +419,7 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 		$conditionsList = array();
 		foreach ($this->_conditions as $Condition) {
 			if (!is_null($Condition->defaults())) {
+				//TODO: maybe should be mapToName()?
 				$conditionsList[$Condition->name()] = $Condition->defaults();
 			}
 		}
@@ -461,6 +464,9 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 	 * @param array $queryData
 	 */
 	public function buildRequest(Model $model, array $queryData) {
+		$queryData += array(
+			'conditions' => array()
+		);
 		if ($this->method() === static::METHOD_READ) {
 			$this->_processReadParams($model, $queryData);
 		}
@@ -523,7 +529,7 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 	 */
 	protected function _processReadParams(Model $model, array &$params) {
 		$conditions = &$params['conditions'];
-		foreach ($this->readParams() as $condition => $value) {
+		foreach ((array)$this->readParams() as $condition => $value) {
 			if (isset($conditions[$condition])) {
 				continue;
 			}

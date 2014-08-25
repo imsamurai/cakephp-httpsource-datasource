@@ -27,5 +27,14 @@ abstract class HttpSourceConfigFactoryItem {
 	public function __construct(HttpSourceConfigFactory $ConfigFactory) {
 		$this->_ConfigFactory = $ConfigFactory;
 	}
+	
+	/**
+	 * Retunrn config factory
+	 * 
+	 * @return HttpSourceConfigFactory
+	 */
+	public function getConfigFactory() {
+		return $this->_ConfigFactory;
+	}
 
 }

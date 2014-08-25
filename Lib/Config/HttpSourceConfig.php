@@ -52,7 +52,8 @@ class HttpSourceConfig extends HttpSourceConfigFactoryItem {
 		HttpSourceEndpoint::METHOD_READ,
 		HttpSourceEndpoint::METHOD_CREATE,
 		HttpSourceEndpoint::METHOD_UPDATE,
-		HttpSourceEndpoint::METHOD_DELETE
+		HttpSourceEndpoint::METHOD_DELETE,
+		HttpSourceEndpoint::METHOD_CHECK
 	);
 
 	/**
@@ -188,6 +189,7 @@ class HttpSourceConfig extends HttpSourceConfigFactoryItem {
 		$schema = array();
 		foreach ($this->_methods as $method) {
 			if (!empty($this->_endpoints[$method][$model->useTable])) {
+				//TODO: merge condition of endpoints
 				$endpoints = $this->_endpoints[$method][$model->useTable];
 				$schema = array_merge($schema, $endpoints[key($endpoints)]->schema());
 			}
@@ -207,7 +209,7 @@ class HttpSourceConfig extends HttpSourceConfigFactoryItem {
 			$sources = array_merge($sources, array_keys((array)Hash::get($this->_endpoints, $method)));
 		}
 
-		return array_unique($sources);
+		return array_values(array_unique($sources));
 	}
 
 	/**

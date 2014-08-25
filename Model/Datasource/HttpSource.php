@@ -105,6 +105,7 @@ abstract class HttpSource extends DataSource {
 	/**
 	 * Holds a configuration map
 	 *
+	 * @todo Remove
 	 * @var array
 	 */
 	public $map = array();
@@ -183,6 +184,23 @@ abstract class HttpSource extends DataSource {
 	protected $_queryData = array();
 
 	/**
+	 * List of constants METHOD_*
+	 * 
+	 * @return array
+	 */
+	public static function getMethods() {
+		$types = array(
+			static::METHOD_READ,
+			static::METHOD_CREATE,
+			static::METHOD_UPDATE,
+			static::METHOD_DELETE,
+			static::METHOD_CHECK
+		);
+		
+		return array_combine($types, $types);
+	}
+	
+	/**
 	 * Constructor
 	 *
 	 * @param array $config
@@ -192,27 +210,49 @@ abstract class HttpSource extends DataSource {
 	 */
 	public function __construct($config = array(), HttpSourceConnection $Connection = null) {
 		parent::__construct($config);
+		if (empty($config['datasource'])) {
+			throw new HttpSourceException('Datasource config not found!');
+		}
 		// Store the API configuration map
 		list($plugin, $name) = pluginSplit($config['datasource']);
 
 		if (!$this->map = Configure::read($plugin)) {
-			Configure::load($plugin . '.' . $plugin);
+			$this->_loadConfig($plugin);
 			$this->map = Configure::read($plugin);
 		}
-		//must be after map loading
-		if ((int)Configure::read($plugin . '.config_version') === 2) {
-			$this->Config = Configure::read($plugin . '.config');
-		} else {
-			throw new NotImplementedException('Configs with config_version != 2 are not implemented yet!');
-		}
-
+		
 		if (empty($this->map)) {
 			throw new HttpSourceException('Configuration not found!');
+		}
+		
+		//must be after map loading
+		if ((int)Configure::read($plugin . '.config_version') === 2) {
+			$this->_setConfig(Configure::read($plugin . '.config'));
+		} else {
+			throw new NotImplementedException('Configs with config_version != 2 are not implemented yet!');
 		}
 
 		$this->_Connection = $Connection ? $Connection : new HttpSourceConnection($this->config);
 
 		$this->fullDebug = Configure::read('debug') > 1;
+	}
+	
+	/**
+	 * Returns config
+	 * 
+	 * @return HttpSourceConfig
+	 */
+	public function getConfig() {
+		return $this->Config;
+	}
+	
+	/**
+	 * Returns connection
+	 * 
+	 * @return HttpSourceConnection
+	 */
+	public function getConnection() {
+		return $this->_Connection;
 	}
 
 	/**
@@ -242,6 +282,15 @@ abstract class HttpSource extends DataSource {
 	 */
 	public function setDecoder($contentType, callable $callback, $replace = false) {
 		$this->_Connection->setDecoder($contentType, $callback, $replace);
+	}
+	
+	/**
+	 * Get decoder for given $contentType
+	 *
+	 * @param string $contentType Content type
+	 */
+	public function getDecoder($contentType) {
+		return $this->_Connection->getDecoder($contentType);
 	}
 
 	/**
@@ -283,6 +332,7 @@ abstract class HttpSource extends DataSource {
 	 * @param string $requestMethod read, create, update, delete
 	 *
 	 * @return array|false $response
+	 * @throws HttpSourceException
 	 */
 	public function request(Model $model = null, $requestData = null, $requestMethod = HttpSource::METHOD_READ) {
 		if ($model !== null) {
@@ -291,6 +341,8 @@ abstract class HttpSource extends DataSource {
 			$request = $requestData;
 		} elseif (is_string($requestData)) {
 			$request = array('uri' => $requestData);
+		} else {
+			throw new HttpSourceException('Can\t find data for request!');
 		}
 		$responses = array();
 		foreach ($this->_splitRequest($request) as $subRequest) {
@@ -329,15 +381,19 @@ abstract class HttpSource extends DataSource {
 	 * @param array $request
 	 */
 	public function swapTokens(array &$request) {
-		$query = (array)Hash::get($request, 'uri.query');
-		foreach ($query as $token => $value) {
+		isset($request['uri']) ? $uri = &$request['uri'] : null;
+		if (empty($uri['query']) || !is_array($uri['query']) || empty($uri['path'])) {
+			return;
+		}
+		
+		foreach ($uri['query'] as $token => $value) {
 			if (is_array($value)) {
 				continue;
 			}
 			$count = 0;
-			$request['uri']['path'] = preg_replace('/\:' . preg_quote($token, '/') . '\b/', $value, $request['uri']['path'], 1, $count);
+			$uri['path'] = preg_replace('/\:' . preg_quote($token, '/') . '\b/', $value, $uri['path'], 1, $count);
 			if ($count > 0) {
-				unset($request['uri']['query'][$token]);
+				unset($uri['query'][$token]);
 			}
 		}
 	}
@@ -350,15 +406,16 @@ abstract class HttpSource extends DataSource {
 	public function logRequest() {
 		$this->_requestsCnt++;
 
-		$this->_requestsLog[] = $this->getRequestLog();
+		$log = $this->getRequestLog();
+		$this->_requestsLog[] = $log;
 
-		$this->_requestsTime += $this->took;
+		$this->_requestsTime += $log['took'];
 		if (count($this->_requestsLog) > $this->_requestsLogMax) {
 			array_shift($this->_requestsLog);
 		}
 
-		if (!empty($this->error)) {
-			$this->log(get_class($this) . ': ' . $this->error . "\n" . $this->query, LOG_ERR);
+		if ($log['error']) {
+			$this->log(get_class($this) . ': ' . $log['error'] . "\n" . $log['query'], LOG_ERR);
 		}
 	}
 
@@ -401,17 +458,24 @@ abstract class HttpSource extends DataSource {
 	 * will be rendered and output.  If in a CLI environment, a plain text log is generated.
 	 *
 	 * @param boolean $sorted Get the queries sorted by time taken, defaults to false.
+	 * @param boolean $html True for html output, null for auto
 	 * @return void
 	 */
-	public function showLog($sorted = false) {
+	public function showLog($sorted = false, $html = null) {
 		$log = $this->getLog($sorted, false);
 		if (empty($log['log'])) {
 			return;
 		}
-		if (PHP_SAPI != 'cli') {
-			$controller = null;
-			$View = new View($controller, false);
-			$View->set('logs', array($this->configKeyName => $log));
+		if (is_null($html)) {
+			$html = (PHP_SAPI != 'cli');
+		}
+		if ($html) {
+			App::uses('View', 'View');
+			$View = new View();
+			$View->set(array(
+				'logs' => array(get_class($this) => $log),
+				'sqlLogs' => array(get_class($this) => $log)
+			));
 			echo $View->element('sql_dump', array('_forced_from_dbo_' => true));
 		} else {
 			foreach ($log['log'] as $k => $i) {
@@ -452,7 +516,7 @@ abstract class HttpSource extends DataSource {
 				return $result;
 			}
 
-			$this->_currentEndpoint->processFields($model, $result);
+			$this->_getCurrentEndpoint()->processFields($model, $result);
 
 			//order emulation
 			$this->_emulateOrder($model, $result);
@@ -550,7 +614,7 @@ abstract class HttpSource extends DataSource {
 	 * Sets method = DELETE in request if not already set
 	 *
 	 * @param Model $model
-	 * @param mixed $id
+	 * @param array $conditions
 	 */
 	public function delete(Model $model, $conditions = null) {
 		$model->request = array('method' => static::HTTP_METHOD_DELETE);
@@ -584,7 +648,7 @@ abstract class HttpSource extends DataSource {
 	 */
 	public function getQueryCache(array $request) {
 		$key = serialize($request);
-		$cacheName = $this->_currentEndpoint->cacheName();
+		$cacheName = $this->_getCurrentEndpoint()->cacheName();
 		if ($cacheName) {
 			return Cache::read(md5($key), $cacheName);
 		}
@@ -725,13 +789,12 @@ abstract class HttpSource extends DataSource {
 	 * @return boolean True if function applied
 	 */
 	protected function _emulateFunctions(Model $Model, array &$result) {
-		if (!empty($this->_queryData['fields'])) {
-			if ($this->_queryData['fields'] === static::FUNCTION_COUNT) {
-				$result = array(array('count' => count($result)));
-				$this->_formatResult($Model, $result);
-				return true;
-			}
+		if ($this->_getQueryData('fields') === static::FUNCTION_COUNT) {
+			$result = array(array('count' => count($result)));
+			$this->_formatResult($Model, $result);
+			return true;
 		}
+
 		return false;
 	}
 
@@ -742,8 +805,9 @@ abstract class HttpSource extends DataSource {
 	 * @param array $result
 	 */
 	protected function _emulateOrder(Model $Model, array &$result) {
-		if (!empty($this->_queryData['order'][0])) {
-			$result = ArraySort::multisort($result, $this->_queryData['order'][0]);
+		$order = $this->_getQueryData('order.0');
+		if ($order) {
+			$result = ArraySort::multisort($result, $order);
 		}
 	}
 
@@ -754,12 +818,13 @@ abstract class HttpSource extends DataSource {
 	 * @param array $result
 	 */
 	protected function _emulateFields(Model $Model, array &$result) {
-		if (!empty($this->_queryData['fields'])) {
+		$fields = $this->_getQueryData('fields');
+		if ($fields) {
 			//remove model name from each field
 			$modelName = $Model->name;
 			$fields = array_map(function($field) use ($modelName) {
 				return str_replace("$modelName.", '', $field);
-			}, (array)$this->_queryData['fields']);
+			}, (array)$fields);
 
 			$fieldsKeys = array_flip($fields);
 
@@ -777,13 +842,10 @@ abstract class HttpSource extends DataSource {
 	 * @param array $result
 	 */
 	protected function _emulateLimit(Model $Model, array &$result) {
-		if (!empty($this->_queryData['limit'])) {
-			if (!empty($this->_queryData['offset'])) {
-				$offset = $this->_queryData['offset'];
-			} else {
-				$offset = 0;
-			}
-			$result = array_slice($result, $offset, $this->_queryData['limit']);
+		$limit = (int)$this->_getQueryData('limit');
+		$offset = (int)$this->_getQueryData('offset');
+		if ($limit) {
+			$result = array_slice($result, $offset, $limit);
 		}
 	}
 
@@ -853,7 +915,7 @@ abstract class HttpSource extends DataSource {
 	 * @param array $queryData Query data for read
 	 * @param array $fields Fields for save/create
 	 * @param array $values Fields values for update/create
-	 * @param type $conditions Conditions for update
+	 * @param array $conditions Conditions for update
 	 * @param int $recursive Number of levels of association. NOT USED YET
 	 * @throws HttpSourceException
 	 */
@@ -890,7 +952,7 @@ abstract class HttpSource extends DataSource {
 	 */
 	protected function _writeQueryCache(array $request, $data) {
 		$key = serialize($request);
-		$cacheName = $this->_currentEndpoint->cacheName();
+		$cacheName = $this->_getCurrentEndpoint()->cacheName();
 		if ($cacheName) {
 			Cache::write(md5($key), $data, $cacheName);
 		}
@@ -907,7 +969,7 @@ abstract class HttpSource extends DataSource {
 	 */
 	protected function _extractResult(Model $model, array $result, $requestMethod, $force = false) {
 		if ($force || $requestMethod === static::METHOD_READ) {
-			$this->_currentEndpoint->processResult($model, $result);
+			$this->_getCurrentEndpoint()->processResult($model, $result);
 		}
 		return $result;
 	}
@@ -919,7 +981,7 @@ abstract class HttpSource extends DataSource {
 	 * @return array
 	 */
 	protected function _splitRequest(array $request) {
-		$splitter = $this->_currentEndpoint->requestSplitter();
+		$splitter = $this->_getCurrentEndpoint()->requestSplitter();
 		return $splitter($request);
 	}
 
@@ -930,7 +992,7 @@ abstract class HttpSource extends DataSource {
 	 * @return array
 	 */
 	protected function _joinResponses(array $responses) {
-		$joiner = $this->_currentEndpoint->responseJoiner();
+		$joiner = $this->_getCurrentEndpoint()->responseJoiner();
 		return $joiner($responses);
 	}
 
@@ -947,6 +1009,49 @@ abstract class HttpSource extends DataSource {
 		}
 		$Model->request = $request;
 		return $Model;
+	}
+	
+	/**
+	 * Load config wrapper
+	 * 
+	 * @param string $plugin
+	 */
+	protected function _loadConfig($plugin) {
+		Configure::load($plugin . '.' . $plugin);
+	}
+
+	/**
+	 * Set config
+	 * 
+	 * @param HttpSourceConfig $Config
+	 */
+	protected function _setConfig($Config) {
+		if (!($Config instanceof HttpSourceConfig)) {
+			throw new HttpSourceException('Unknown config type!');
+		}
+		$this->Config = $Config;
+	}
+	
+	/**
+	 * Return current endpoint or create new
+	 * 
+	 * @return HttpSourceEndpoint
+	 */
+	protected function _getCurrentEndpoint() {
+		return $this->_currentEndpoint ? $this->_currentEndpoint : $this->getConfig()
+						->getConfigFactory()
+						->endpoint()
+						->id('__default__');
+	}
+	
+	/**
+	 * Return current query data
+	 * 
+	 * @param string $path
+	 * @return mixed
+	 */
+	protected function _getQueryData($path = null) {
+		return is_null($path) ? $this->_queryData : Hash::get($this->_queryData, $path);
 	}
 
 }

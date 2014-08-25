@@ -6,12 +6,12 @@
  * Time: 6:06:31 PM
  * Format: http://book.cakephp.org/2.0/en/development/testing.html
  */
-App::uses('HttpSourceTest', 'HttpSource.Test');
+App::uses('HttpSourceAppTest', 'HttpSource.Test');
 
 /**
  * BasicsTest
  */
-class HttpSourceBasicsTest extends HttpSourceTest {
+class HttpSourceBasicsTest extends HttpSourceAppTest {
 
 	public function testRead() {
 		$this->HttpModel->setSource('default');

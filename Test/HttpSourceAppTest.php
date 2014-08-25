@@ -15,7 +15,7 @@ require_once dirname(__FILE__) . DS . 'Data' . DS . 'models.php';
 /**
  * Tests
  */
-abstract class HttpSourceTest extends CakeTestCase {
+abstract class HttpSourceAppTest extends CakeTestCase {
 
 	/**
 	 * TestHttpSourceModel Model

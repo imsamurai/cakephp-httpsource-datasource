@@ -86,6 +86,36 @@ class HttpSourceCondition extends HttpSourceField {
 	const KEY_PRIMARY = 'primary';
 
 	/**
+	 * Returns all send in types
+	 * 
+	 * @return array
+	 */
+	public static function getSendInTypes() {
+		$types = array(
+			static::SEND_IN_ANY,
+			static::SEND_IN_QUERY,
+			static::SEND_IN_BODY,
+			static::SEND_IN_VIRTUAL
+		);
+		return array_combine($types, $types);
+}
+
+	/**
+	 * Returns all data types
+	 * 
+	 * @return array
+	 */
+	public static function getDataTypes() {
+		$types = array(
+			static::TYPE_INT,
+			static::TYPE_FLOAT,
+			static::TYPE_BOOL,
+			static::TYPE_STRING,
+			static::TYPE_TEXT,
+		);
+		return array_combine($types, $types);
+}
+	/**
 	 * Set force send in query
 	 *
 	 * @return HttpSourceCondition
@@ -165,12 +195,8 @@ class HttpSourceCondition extends HttpSourceField {
 	 * Returns condition type
 	 *
 	 * @return string
-	 * @throws HttpSourceConfigException If type is null
 	 */
 	public function type() {
-		if (is_null($this->_type)) {
-			throw new HttpSourceConfigException('Condition type is null!');
-		}
 		return $this->_type;
 	}
 
@@ -182,6 +208,15 @@ class HttpSourceCondition extends HttpSourceField {
 	public function typeInt() {
 		$this->_type = static::TYPE_INT;
 		return $this;
+	}
+	
+	/**
+	 * Set type to int
+	 *
+	 * @return HttpSourceCondition
+	 */
+	public function typeInteger() {
+		return $this->typeInt();
 	}
 
 	/**
@@ -202,6 +237,15 @@ class HttpSourceCondition extends HttpSourceField {
 	public function typeBool() {
 		$this->_type = static::TYPE_BOOL;
 		return $this;
+	}
+	
+	/**
+	 * Set type to bool
+	 *
+	 * @return HttpSourceCondition
+	 */
+	public function typeBoolean() {
+		return $this->typeBool();
 	}
 
 	/**
