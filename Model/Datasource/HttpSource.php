@@ -1006,6 +1006,7 @@ abstract class HttpSource extends DataSource {
 	protected function _requestToModel(array $request, Model $Model = null) {
 		if (is_null($Model)) {
 			$Model = ClassRegistry::init(array('class' => 'AppModel', 'table' => false));
+			$Model->useTable = false;
 		}
 		$Model->request = $request;
 		return $Model;
