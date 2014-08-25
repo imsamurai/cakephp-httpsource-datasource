@@ -355,7 +355,7 @@ class HttpSourceTest extends CakeTestCase {
 			$Source->expects($this->once())
 					->method('request')
 					->with(null, $request)
-					->willReturn(true);
+					->will($this->returnValue(true));
 			$this->assertTrue($Source->query($request));
 		}
 	}
@@ -472,12 +472,12 @@ class HttpSourceTest extends CakeTestCase {
 			$this->assertSame($response, $Source->request($Model, $requestData, $requestMethod));
 		}
 
-		$Source->expects($this->once())->method('_splitRequest')->with($request)->willReturn(array($request, $request));
-		$Source->expects($this->at(1))->method('_singleRequest')->with($request, $requestMethod, $Model)->willReturn($response1);
-		$Source->expects($this->at(2))->method('_singleRequest')->with($request, $requestMethod, $Model)->willReturn($response2);
-		$Source->expects($this->once())->method('_joinResponses')->with(array($response1, $response2))->willReturn($response);
+		$Source->expects($this->once())->method('_splitRequest')->with($request)->will($this->returnValue(array($request, $request)));
+		$Source->expects($this->at(1))->method('_singleRequest')->with($request, $requestMethod, $Model)->will($this->returnValue($response1));
+		$Source->expects($this->at(2))->method('_singleRequest')->with($request, $requestMethod, $Model)->will($this->returnValue($response2));
+		$Source->expects($this->once())->method('_joinResponses')->with(array($response1, $response2))->will($this->returnValue($response));
 		if ($Model) {
-			$Source->expects($this->once())->method('afterRequest')->with($Model, $response, $requestMethod)->willReturn($response);
+			$Source->expects($this->once())->method('afterRequest')->with($Model, $response, $requestMethod)->will($this->returnValue($response));
 		}
 
 		$this->assertSame($response, $Source->request($Model, $requestData, $requestMethod));
@@ -576,14 +576,14 @@ class HttpSourceTest extends CakeTestCase {
 					'getNumRows'
 				))
 				->getMock();
-		$Connection->expects($this->once())->method('request')->with($requestFull)->willReturn($response);
-		$Connection->expects($this->once())->method('getError')->willReturn($connectionData['error']);
-		$Connection->expects($this->once())->method('getTook')->willReturn($connectionData['took']);
-		$Connection->expects($this->once())->method('getQuery')->willReturn($connectionData['query']);
-		$Connection->expects($this->once())->method('getAffected')->willReturn($connectionData['affected']);
+		$Connection->expects($this->once())->method('request')->with($requestFull)->will($this->returnValue($response));
+		$Connection->expects($this->once())->method('getError')->will($this->returnValue($connectionData['error']));
+		$Connection->expects($this->once())->method('getTook')->will($this->returnValue($connectionData['took']));
+		$Connection->expects($this->once())->method('getQuery')->will($this->returnValue($connectionData['query']));
+		$Connection->expects($this->once())->method('getAffected')->will($this->returnValue($connectionData['affected']));
 
 		if (isset($connectionData['numRows'])) {
-			$Connection->expects($this->once())->method('getNumRows')->with($responseResult)->willReturn($connectionData['numRows']);
+			$Connection->expects($this->once())->method('getNumRows')->with($responseResult)->will($this->returnValue($connectionData['numRows']));
 		} else {
 			$Connection->expects($this->never())->method('getNumRows');
 			$connectionData['numRows'] = 1;
@@ -607,7 +607,7 @@ class HttpSourceTest extends CakeTestCase {
 				->getMock();
 		$Source->expects($this->once())->method('logRequest');
 		$Source->expects($this->once())->method('swapTokens')->with($requestFull);
-		$Source->expects($this->once())->method('beforeRequest')->with($requestFull, $requestMethod)->willReturnArgument(0);
+		$Source->expects($this->once())->method('beforeRequest')->with($requestFull, $requestMethod)->will($this->returnArgument(0));
 
 		if ($connectionData['error']) {
 			$Source->expects($this->once())->method('log')->with($log, LOG_ERR);
@@ -616,7 +616,7 @@ class HttpSourceTest extends CakeTestCase {
 		if (!$asModel) {
 			$this->assertSame($responseResult, $Source->request(null, $request, $requestMethod));
 		} else {
-			$Source->expects($this->once())->method('afterRequest')->willReturnArgument(1);
+			$Source->expects($this->once())->method('afterRequest')->will($this->returnArgument(1));
 			$Model = $this->getMockBuilder('Model')
 					->setMethods(array(
 						'onError'
@@ -628,9 +628,9 @@ class HttpSourceTest extends CakeTestCase {
 			}
 
 			if ($responseResult && $Endpoint) {
-				$Source->expects($this->any())->method('_getCurrentEndpoint')->willReturn($Endpoint);
+				$Source->expects($this->any())->method('_getCurrentEndpoint')->will($this->returnValue($Endpoint));
 			} elseif ($responseResult) {
-				$Source->expects($this->once())->method('_extractResult')->with($Model, $responseResult, $requestMethod)->willReturnArgument(1);
+				$Source->expects($this->once())->method('_extractResult')->with($Model, $responseResult, $requestMethod)->will($this->returnArgument(1));
 			} else {
 				$Source->expects($this->never())->method('_extractResult');
 			}
@@ -1528,11 +1528,11 @@ class HttpSourceTest extends CakeTestCase {
 				->setConstructorArgs(array(array('datasource' => 'HttpSource.Http/HttpSource')))
 				->setMethods($methods)
 				->getMock();
-		$Source->expects($this->any())->method('_getQueryData')->willReturnCallback(function($path = null) use($queryData) {
+		$Source->expects($this->any())->method('_getQueryData')->will($this->returnCallback(function($path = null) use($queryData) {
 			return is_null($path) ? $queryData : Hash::get($queryData, $path);
-		});
+		}));
 		if ($Endpoint) {
-			$Source->expects($this->once())->method('_getCurrentEndpoint')->willReturn($Endpoint);
+			$Source->expects($this->once())->method('_getCurrentEndpoint')->will($this->returnValue($Endpoint));
 		}
 		$this->assertSame($result, $Source->afterRequest(new Model, $data, $requestMethod));
 		if ($requestMethod === HttpSource::METHOD_READ) {
@@ -1817,10 +1817,10 @@ class HttpSourceTest extends CakeTestCase {
 				->setMethods($mockMethods)
 				->getMock();
 
-		$Source->expects($this->atLeastOnce())->method('_singleRequest')->willReturnArgument(0);
-		$Source->expects($this->atLeastOnce())->method('_joinResponses')->willReturnArgument(0);
+		$Source->expects($this->atLeastOnce())->method('_singleRequest')->will($this->returnArgument(0));
+		$Source->expects($this->atLeastOnce())->method('_joinResponses')->will($this->returnArgument(0));
 		if ($Endpoint) {
-			$Source->expects($this->once())->method('_getCurrentEndpoint')->willReturn($Endpoint);
+			$Source->expects($this->once())->method('_getCurrentEndpoint')->will($this->returnValue($Endpoint));
 		}
 		$this->assertSame($response, $Source->request(null, $request));
 	}
@@ -1881,12 +1881,12 @@ class HttpSourceTest extends CakeTestCase {
 				->setMethods($mockMethods)
 				->getMock();
 
-		$Source->expects($this->atLeastOnce())->method('_singleRequest')->willReturnArgument(0);
-		$Source->expects($this->atLeastOnce())->method('_splitRequest')->willReturnCallback(function($v) {
+		$Source->expects($this->atLeastOnce())->method('_singleRequest')->will($this->returnArgument(0));
+		$Source->expects($this->atLeastOnce())->method('_splitRequest')->will($this->returnCallback(function($v) {
 			return array($v);
-		});
+		}));
 		if ($Endpoint) {
-			$Source->expects($this->once())->method('_getCurrentEndpoint')->willReturn($Endpoint);
+			$Source->expects($this->once())->method('_getCurrentEndpoint')->will($this->returnValue($Endpoint));
 		}
 		$this->assertSame($response, $Source->request(null, $request));
 	}
@@ -2075,7 +2075,7 @@ class HttpSourceTest extends CakeTestCase {
 
 		$at = 0;
 		foreach ($logs as $log) {
-			$Source->expects($this->at($at++))->method('getRequestLog')->willReturn($log);
+			$Source->expects($this->at($at++))->method('getRequestLog')->will($this->returnValue($log));
 			if (!empty($log['error'])) {
 				$Source->expects($this->at($at++))->method('log')->with(get_class($Source) . ': ' . $log['error'] . "\n" . $log['query'], LOG_ERR);
 			}
@@ -2233,7 +2233,7 @@ class HttpSourceTest extends CakeTestCase {
 				->setConstructorArgs(array(array('datasource' => 'HttpSource.Http/HttpSource')))
 				->setMethods(array('getLog'))
 				->getMock();
-		$Source->expects($this->once())->method('getLog')->with($sorted, false)->willReturn($logs);
+		$Source->expects($this->once())->method('getLog')->with($sorted, false)->will($this->returnValue($logs));
 		ob_start();
 		$Source->showLog($sorted, $html);
 		$output = ob_get_clean();
@@ -2490,12 +2490,12 @@ class HttpSourceTest extends CakeTestCase {
 				))
 				->getMock();
 		if ($Model->cacheQueries) {
-			$Source->expects($this->once())->method('getQueryCache')->with($request)->willReturn($cached ? $result : false);
+			$Source->expects($this->once())->method('getQueryCache')->with($request)->will($this->returnValue($cached ? $result : false));
 		} else {
 			$Source->expects($this->never())->method('getQueryCache');
 		}
 		if (!$Model->cacheQueries || !$cached) {
-			$Source->expects($this->once())->method('request')->with($Model, null, HttpSource::METHOD_READ)->willReturn($result);
+			$Source->expects($this->once())->method('request')->with($Model, null, HttpSource::METHOD_READ)->will($this->returnValue($result));
 		} else {
 			$Source->expects($this->never())->method('request');
 		}
@@ -2702,7 +2702,7 @@ class HttpSourceTest extends CakeTestCase {
 				))
 				->getMock();
 
-		$Source->expects($exception ? $this->never() : $this->once())->method('request')->with($Model, null, HttpSource::METHOD_CREATE)->willReturn($result);
+		$Source->expects($exception ? $this->never() : $this->once())->method('request')->with($Model, null, HttpSource::METHOD_CREATE)->will($this->returnValue($result));
 
 		$this->assertSame((bool)$result, $Source->create($Model, $fields, $values));
 		$this->assertSame($request, $Model->request);
@@ -2820,7 +2820,7 @@ class HttpSourceTest extends CakeTestCase {
 				))
 				->getMock();
 
-		$Source->expects($this->once())->method('request')->with($Model, null, HttpSource::METHOD_UPDATE)->willReturn($result);
+		$Source->expects($this->once())->method('request')->with($Model, null, HttpSource::METHOD_UPDATE)->will($this->returnValue($result));
 
 		$this->assertSame((bool)$result, $Source->update($Model, $fields, $values, $conditions));
 		$this->assertSame($request, $Model->request);
@@ -2963,7 +2963,7 @@ class HttpSourceTest extends CakeTestCase {
 				))
 				->getMock();
 
-		$Source->expects($this->once())->method('request')->with($Model, null, HttpSource::METHOD_DELETE)->willReturn($result);
+		$Source->expects($this->once())->method('request')->with($Model, null, HttpSource::METHOD_DELETE)->will($this->returnValue($result));
 
 		$this->assertSame((bool)$result, $Source->delete($Model, $conditions));
 		$this->assertSame($request, $Model->request);
@@ -3048,7 +3048,7 @@ class HttpSourceTest extends CakeTestCase {
 				->getMock();
 
 		if ($endpointConfigured) {
-			$Source->expects($this->once())->method('request')->with($Model, null, HttpSource::METHOD_CHECK)->willReturn($result);
+			$Source->expects($this->once())->method('request')->with($Model, null, HttpSource::METHOD_CHECK)->will($this->returnValue($result));
 		} else {
 			$Source->expects($this->never())->method('request');
 		}
@@ -3155,7 +3155,7 @@ class HttpSourceTest extends CakeTestCase {
 				))
 				->getMock();
 
-		$Source->expects($this->once())->method('request')->with($Model, null, HttpSource::METHOD_READ)->willReturn($result);
+		$Source->expects($this->once())->method('request')->with($Model, null, HttpSource::METHOD_READ)->will($this->returnValue($result));
 
 		$this->assertSame($result, $Source->read($Model));
 		$this->assertSame($result, $Source->read($Model));
@@ -3179,7 +3179,7 @@ class HttpSourceTest extends CakeTestCase {
 				))
 				->getMock();
 
-		$Source->expects($this->exactly(3))->method('request')->with($Model, null, HttpSource::METHOD_READ)->willReturn($result);
+		$Source->expects($this->exactly(3))->method('request')->with($Model, null, HttpSource::METHOD_READ)->will($this->returnValue($result));
 
 		$this->assertSame($result, $Source->read($Model));
 		$this->assertSame($result, $Source->read($Model));

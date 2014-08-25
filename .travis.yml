@@ -9,7 +9,7 @@ env:
   global:
     - PLUGIN_NAME=HttpSource
     - PLUGIN_PATH=Plugin/HttpSource
-    - REQUIRE="phpunit/phpunit:4.1.*"
+    - REQUIRE=""
     - DB=mysql
     - CAKE_VERSION=2.4
   matrix:
@@ -33,16 +33,9 @@ before_script:
     - git clone https://github.com/FriendsOfCake/travis.git --depth 1 ../travis
     - ../travis/before_script.sh
     - if [ "$PHPCS" != 1 ]; then
-            chmod +x fix_vendors.sh;
-            ./fix_vendors.sh;
             echo "
                 CakePlugin::load('HttpSource', array('bootstrap' => true, 'routes' => false));
             " >> ../cakephp/app/Config/bootstrap.php;
-            echo "<?php
-              require_once dirname(dirname(__FILE__)) . '/vendor/autoload.php';
-              require_once dirname(dirname(dirname(__FILE__))) . '/lib/Cake/Console/ShellDispatcher.php';
-              return ShellDispatcher::run(\$argv);
-            " > ../cakephp/app/Console/cake.php;
       fi
     - if [ "$PHPCS" = 1 ]; then
         rm -rf ~/.phpenv/versions/$(phpenv version-name)/pear/PHP/CodeSniffer/Standards/CakePHP;
