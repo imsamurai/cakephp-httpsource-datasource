@@ -244,12 +244,12 @@ class HttpSourceEndpointTest extends CakeTestCase {
 				//required
 				array(
 					'c1',
-					'_c4',
+					'c4',
 				),
 				//optional
 				array(
 					'c2',
-					'_c3',
+					'c3',
 				),
 				//defaults
 				array(

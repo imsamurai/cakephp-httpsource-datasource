@@ -402,7 +402,7 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 		foreach ($this->_conditions as $Condition) {
 			//TODO: maybe should be name()?
 			if ($Condition->null() !== false) {
-				$conditionsList[] = $Condition->mapToName();
+				$conditionsList[] = $Condition->name();
 			}
 		}
 
@@ -473,9 +473,6 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 
 		$conditionsDefaults = $this->conditionsDefaults();
 
-		$this->_processConditions($model, $queryData['conditions']);
-		$this->_processConditions($model, $conditionsDefaults);
-
 		$usedConditions = array_unique(
 				array_merge(
 						array_intersect(
@@ -484,7 +481,7 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 				)
 		);
 		$queryData['conditions'] += $conditionsDefaults;
-
+		$this->_processConditions($model, $queryData['conditions']);
 		$model->request['uri']['path'] = $this->path();
 		$model->request['uri']['query'] = array();
 		$model->request['body'] = array();
@@ -598,8 +595,9 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 	 * @param array $queryData Query data: conditions, limit, etc
 	 */
 	protected function _buildQuery(Model $model, array $usedConditions, array $queryData) {
-		foreach ($usedConditions as $condition) {
-			$Condition = $this->condition($condition);
+		foreach ($usedConditions as $usedCondition) {
+			$Condition = $this->condition($usedCondition);
+			$condition = $Condition->mapToName();
 			if ($Condition->mustSendInVirtual()) {
 				$model->request['virtual'][$condition] = $queryData['conditions'][$condition];
 			} elseif ($Condition->mustSendInQuery() || ($Condition->mustSendInAny() && $this->_mustSendInQuery($model))) {
