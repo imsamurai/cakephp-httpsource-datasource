@@ -33,7 +33,6 @@ before_script:
     - git clone https://github.com/FriendsOfCake/travis.git --depth 1 ../travis
     - ../travis/before_script.sh
     - if [ "$PHPCS" != 1 ]; then
-            ./fix_vendors.sh;
             echo "
                 require_once APP . DS . 'vendor' . DS . 'phpunit' . DS . 'phpunit' . DS . 'PHPUnit' . DS . 'Autoload.php';
                 CakePlugin::load('HttpSource', array('bootstrap' => true, 'routes' => false));
