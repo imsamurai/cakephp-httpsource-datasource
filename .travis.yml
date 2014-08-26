@@ -43,11 +43,10 @@ before_script:
         rm -rf ~/.phpenv/versions/$(phpenv version-name)/pear/PHP/CodeSniffer/Standards/CakePHP;
         git clone https://github.com/imsamurai/cakephp-codesniffer.git --depth 1 ~/.phpenv/versions/$(phpenv version-name)/pear/PHP/CodeSniffer/Standards/CakePHP;
       fi
-    - REPO_PATH=$(pwd)
+    - ls -la
     - cd ../cakephp/app
     - chmod +x Console/cake
     - Console/cake Environment.environment install --consoleHandler php
-    - cd REPO_PATH
 
 script:
   - ../travis/script.sh
