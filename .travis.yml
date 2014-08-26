@@ -35,6 +35,7 @@ before_script:
     - if [ "$PHPCS" != 1 ]; then
             echo "
                 CakePlugin::load('Environment', array('bootstrap' => true));
+                CakePlugin::load('AdvancedShell', array('bootstrap' => true));
                 CakePlugin::load('HttpSource', array('bootstrap' => true, 'routes' => false));
             " >> ../cakephp/app/Config/bootstrap.php;
       fi
