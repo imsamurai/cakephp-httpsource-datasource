@@ -189,7 +189,6 @@ class HttpSourceConfig extends HttpSourceConfigFactoryItem {
 		$schema = array();
 		foreach ($this->_methods as $method) {
 			if (!empty($this->_endpoints[$method][$model->useTable])) {
-				//TODO: merge condition of endpoints
 				$endpoints = $this->_endpoints[$method][$model->useTable];
 				$schema = array_merge($schema, $endpoints[key($endpoints)]->schema());
 			}

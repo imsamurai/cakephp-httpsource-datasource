@@ -103,14 +103,6 @@ abstract class HttpSource extends DataSource {
 	public $error = null;
 
 	/**
-	 * Holds a configuration map
-	 *
-	 * @todo Remove
-	 * @var array
-	 */
-	public $map = array();
-
-	/**
 	 * Configuration object
 	 *
 	 * @var HttpSourceConfig
@@ -216,12 +208,12 @@ abstract class HttpSource extends DataSource {
 		// Store the API configuration map
 		list($plugin, $name) = pluginSplit($config['datasource']);
 
-		if (!$this->map = Configure::read($plugin)) {
+		if (!$map = Configure::read($plugin)) {
 			$this->_loadConfig($plugin);
-			$this->map = Configure::read($plugin);
+			$map = Configure::read($plugin);
 		}
 
-		if (empty($this->map)) {
+		if (empty($map)) {
 			throw new HttpSourceException('Configuration not found!');
 		}
 
