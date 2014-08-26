@@ -269,6 +269,7 @@ class HttpSourceCondition extends HttpSourceField {
 		return $this;
 	}
 
+	//@codingStandardsIgnoreStart
 	/**
 	 * Mark condition as required or not
 	 * If $null = null returns current value
@@ -284,6 +285,7 @@ class HttpSourceCondition extends HttpSourceField {
 		$this->_null = (bool)$null;
 		return $this;
 	}
+	//@codingStandardsIgnoreEnd
 
 	/**
 	 * Mark condition as required
