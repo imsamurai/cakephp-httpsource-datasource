@@ -44,10 +44,10 @@ before_script:
         git clone https://github.com/imsamurai/cakephp-codesniffer.git --depth 1 ~/.phpenv/versions/$(phpenv version-name)/pear/PHP/CodeSniffer/Standards/CakePHP;
       fi
     - ls -la
-    - cd ../
-    - ls -la
+    - cd ../cakephp/app
     - chmod +x Console/cake
     - Console/cake Environment.environment install --consoleHandler php
+    - cd ../../cakephp-httpsource-datasource
 
 script:
   - ../travis/script.sh
