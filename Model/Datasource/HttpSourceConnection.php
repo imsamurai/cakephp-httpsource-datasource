@@ -101,17 +101,16 @@ class HttpSourceConnection {
 		$this->_config = (array)Hash::get($config, 'connection') + $this->_config;
 		$this->_Transport = $Transport;
 
-		$this->setDecoder(array('application/xml', 'application/atom+xml', 'application/rss+xml'), function(HttpSocketResponse $Response) {
-			App::uses('Xml', 'Utility');
-			$Xml = Xml::build((string)$Response);
-			$response = Xml::toArray($Xml);
-
-			return $response;
-		}, false);
-
-		$this->setDecoder(array('application/json', 'application/javascript', 'text/javascript'), function(HttpSocketResponse $Response) {
-			return json_decode((string)$Response, true);
-		}, false);
+		$this->_initDefaultDecoders();
+	}
+	
+	/**
+	 * Return current transport
+	 * 
+	 * @return HttpSocket
+	 */
+	public function getTransport() {
+		return $this->_Transport;
 	}
 
 	/**
@@ -199,6 +198,15 @@ class HttpSourceConnection {
 		}
 
 		return $this->_decoders[$contentType];
+	}
+	
+	/**
+	 * Get decoders
+	 *
+	 * @return array
+	 */
+	public function getDecoders() {
+		return $this->_decoders;
 	}
 
 	/**
@@ -307,11 +315,10 @@ class HttpSourceConnection {
 	 * Reset state variables
 	 */
 	public function reset() {
-		$this->_error = null;
-		$this->_query = null;
-		$this->_took = null;
+		$this->_error = '';
+		$this->_took = 0;
 		$this->_affected = 0;
-		$this->_Response = null;
+		$this->_Response = false;
 	}
 
 	/**
@@ -319,6 +326,23 @@ class HttpSourceConnection {
 	 */
 	public function disconnect() {
 		return $this->_Transport->disconnect();
+	}
+	
+	/**
+	 * Initialize default decoders
+	 */
+	protected function _initDefaultDecoders() {
+		$this->setDecoder(array('application/xml', 'application/atom+xml', 'application/rss+xml'), function(HttpSocketResponse $Response) {
+			App::uses('Xml', 'Utility');
+			$Xml = Xml::build((string)$Response);
+			$response = Xml::toArray($Xml);
+
+			return $response;
+		}, false);
+
+		$this->setDecoder(array('application/json', 'application/javascript', 'text/javascript'), function(HttpSocketResponse $Response) {
+			return json_decode((string)$Response, true);
+		}, false);
 	}
 
 	/**
@@ -331,7 +355,7 @@ class HttpSourceConnection {
 	protected function _request(array $request, $currentAttempt = 1) {
 		try {
 			$Response = $this->_Transport->request($request);
-			$this->_error = null;
+			$this->_error = '';
 		} catch (Exception $Exception) {
 			$this->_error = $Exception->getMessage();
 			$Response = false;
