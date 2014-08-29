@@ -267,6 +267,7 @@ class HttpSourceConnection {
 	 * Quote data
 	 *
 	 * @param mixed $data
+	 * @param int $type
 	 * @return mixed
 	 */
 	public function quote($data, $type = PDO::PARAM_STR) {

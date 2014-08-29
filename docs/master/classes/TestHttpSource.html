@@ -106,7 +106,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">29</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">9</span>
                                 </a>
                             </li>
                             <li>
@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-637681633"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1558280512"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-637681633" class="accordion-body collapse in">
+            <div id="namespace-1558280512" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -1437,16 +1437,16 @@
             <article class="method">
                 <h3 class="public ">query()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">query(  <span class="argument">$request</span>) : array|false</pre>
+                <pre class="signature" style="margin-right: 54px;">query(mixed  <span class="argument">$request</span>) : array|false</pre>
                 <p><em>Http query abstraction</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>mixed</td>
                                 <td>$request </td>
-                                <td></td>
+                                <td><p>Array of request or string uri</p></td>
                             </tr>
                                             </table>
                 
@@ -1611,21 +1611,23 @@
             <article class="method">
                 <h3 class="public ">describe()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">describe(  <span class="argument">$model</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">describe(\Model  <span class="argument">$model</span>) : array</pre>
+                <p><em>{@inheritdoc}</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>\Model</td>
                                 <td>$model </td>
                                 <td></td>
                             </tr>
                                             </table>
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    array
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -1974,8 +1976,8 @@ Filter data by fields, emulate limit, offset, order etc.</em></p>
             <article class="method">
                 <h3 class="public ">read()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">read(string  <span class="argument">$model</span>, string  <span class="argument">$queryData = array()</span>,   <span class="argument">$recursive = null</span>) : mixed</pre>
-                <p><em>Uses standard find conditions.</em></p>
+                <pre class="signature" style="margin-right: 54px;">read(string  <span class="argument">$model</span>, string  <span class="argument">$queryData = array()</span>, integer  <span class="argument">$recursive = null</span>) : mixed</pre>
+                <p><em>{inheritdoc}</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -1991,7 +1993,7 @@ Filter data by fields, emulate limit, offset, order etc.</em></p>
                                 <td><p>An array of query data used to find the data you want</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>integer</td>
                                 <td>$recursive </td>
                                 <td></td>
                             </tr>
@@ -2023,7 +2025,7 @@ Filter data by fields, emulate limit, offset, order etc.</em></p>
                 <h3 class="public ">create()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">create(\AppModel  <span class="argument">$model</span>, array  <span class="argument">$fields = null</span>, array  <span class="argument">$values = null</span>) </pre>
-                <p><em>Sets method = POST in request if not already set</em></p>
+                <p><em>{inheritdoc}</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -2068,8 +2070,8 @@ Filter data by fields, emulate limit, offset, order etc.</em></p>
             <article class="method">
                 <h3 class="public ">update()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">update(\AppModel  <span class="argument">$model</span>, array  <span class="argument">$fields = null</span>, array  <span class="argument">$values = null</span>,   <span class="argument">$conditions = null</span>) </pre>
-                <p><em>Sets method = PUT in request if not already set</em></p>
+                <pre class="signature" style="margin-right: 54px;">update(\AppModel  <span class="argument">$model</span>, array  <span class="argument">$fields = null</span>, array  <span class="argument">$values = null</span>, array  <span class="argument">$conditions = null</span>) </pre>
+                <p><em>{inheritdoc}</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -2082,15 +2084,15 @@ Filter data by fields, emulate limit, offset, order etc.</em></p>
                                                     <tr>
                                 <td>array</td>
                                 <td>$fields </td>
-                                <td><p>Unused</p></td>
+                                <td></td>
                             </tr>
                                                     <tr>
                                 <td>array</td>
                                 <td>$values </td>
-                                <td><p>Unused</p></td>
+                                <td></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>array</td>
                                 <td>$conditions </td>
                                 <td></td>
                             </tr>
@@ -2120,7 +2122,7 @@ Filter data by fields, emulate limit, offset, order etc.</em></p>
                 <h3 class="public ">delete()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">delete(\Model  <span class="argument">$model</span>, array  <span class="argument">$conditions = null</span>) </pre>
-                <p><em>Sets method = DELETE in request if not already set</em></p>
+                <p><em>{inheritdoc}</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -2161,7 +2163,7 @@ Filter data by fields, emulate limit, offset, order etc.</em></p>
                 <h3 class="public ">exists()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">exists(\Model  <span class="argument">$model</span>, array  <span class="argument">$conditions = array()</span>) </pre>
-                <p><em>Sets method = HEAD</em></p>
+                <p><em>Check if record identified by conditions is exists</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -3228,7 +3230,7 @@ Filter data by fields, emulate limit, offset, order etc.</em></p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 29th, 2014 at 14:39.
+                    on August 29th, 2014 at 14:47.
                 </section>
             </section>
         </section>

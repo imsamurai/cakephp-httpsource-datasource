@@ -3439,8 +3439,19 @@ class HttpSourceTest extends CakeTestCase {
 
 }
 
+/**
+ * HttpTestSource
+ * 
+ * @package HttpSourceTest
+ * @subpackage Model.Datasource
+ */
 class HttpTestSource extends HttpSource {
 
+	/**
+	 * {@inheritdoc}
+	 *
+	 * @var int
+	 */
 	protected $_requestsLogMax = 3;
 
 }
