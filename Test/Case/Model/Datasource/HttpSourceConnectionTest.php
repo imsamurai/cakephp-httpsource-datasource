@@ -973,6 +973,9 @@ class HttpSourceConnectionTest extends CakeTestCase {
 				->getMock();
 		
 		foreach ($attempts as $number => $attempt) {
+			if (isset($attempt['lastError'])) {
+				$Transport->setLastError(0, $attempt['lastError']);
+			}
 			if (isset($attempt['exception'])) {
 				$Transport->expects($this->at($number))->method('request')->with($request)->willThrowException(new Exception($attempt['exception']));
 			} else {
@@ -1187,6 +1190,27 @@ class HttpSourceConnectionTest extends CakeTestCase {
 				),
 				//lastError
 				''
+			),
+			//set #7
+			array(
+				//request
+				array(
+					'method' => HttpSource::METHOD_READ
+				),
+				//response
+				false,
+				//attempts
+				array(
+					array(
+						'isOk' => false,
+						'code' => 0,
+						'lastError' => 'Timeout'
+					),
+				),
+				//config
+				array(),
+				//lastError
+				'0: Timeout'
 			),
 		);
 	}

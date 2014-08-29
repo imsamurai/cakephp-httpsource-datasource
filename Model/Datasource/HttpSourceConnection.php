@@ -355,9 +355,13 @@ class HttpSourceConnection {
 	protected function _request(array $request, $currentAttempt = 1) {
 		try {
 			$Response = $this->_Transport->request($request);
-			$this->_error = '';
+			$this->_error = (string)$this->_Transport->lastError();
 		} catch (Exception $Exception) {
-			$this->_error = $Exception->getMessage();
+			$this->_error = $Exception->getMessage() ? $Exception->getMessage() : 'Unknown exception';
+			$Response = false;
+		}
+
+		if ($this->_error) {
 			$Response = false;
 		}
 
