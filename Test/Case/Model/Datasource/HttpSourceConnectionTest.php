@@ -951,6 +951,30 @@ class HttpSourceConnectionTest extends CakeTestCase {
 				//authMethod
 				'addOauth'
 			),
+			//set #7
+			array(
+				//request
+				array(
+					'method' => HttpSource::HTTP_METHOD_READ
+				),
+				//response
+				false,
+				//data
+				array(
+					'isOk' => true,
+					'data' => '',
+					'reasonPhrase' => '',
+					'Content-Type' => '',
+					'error' => "Can't decode unknown format: 'unknown/unknown'",
+					'noResponse' => false,
+					'requestRaw' => '',
+					'requestQuery' => '',
+				),
+				//config
+				array(),
+				//authMethod
+				null
+			),
 		);
 	}
 	

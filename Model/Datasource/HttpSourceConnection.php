@@ -423,6 +423,8 @@ class HttpSourceConnection {
 		// Extract content type from content type header
 		if (preg_match('/^(?P<content_type>[a-z0-9\/\+]+)/i', $this->_Response->getHeader('Content-Type'), $matches)) {
 			$contentType = $matches['content_type'];
+		} else {
+			$contentType = 'unknown/unknown';
 		}
 
 		// Decode response according to content type
