@@ -9,9 +9,10 @@ env:
   global:
     - PLUGIN_NAME=HttpSource
     - PLUGIN_PATH=Plugin/HttpSource
-    - REQUIRE="imsamurai/cakephp-environment:dev-master"
+    - REQUIRE="imsamurai/cakephp-environment:dev-master phpdocumentor/phpdocumentor:2.*"
     - DB=mysql
     - CAKE_VERSION=2.4
+    - secure: gJVq4HkCVB3UZ/f9aBjCqT9IsOby4Ze9N67bp4BXOLcLDeWnpAOfbi85F0HATxXcuQA5A55UOFWqHFYXigVQ2J3w6Um3jseGCUi4ssh09u0orksDzem5OzulPVaJltiM5LC7d9GgSQDVaN5nDAIfP+bZE4SDIWUpwftO0xTuaSY=
   matrix:
     - CAKE_VERSION=2.4
     - CAKE_VERSION=2.5
@@ -27,32 +28,19 @@ matrix:
     - php: 5.4
       env:
         - FOC_VALIDATE=1
+    - php: 5.5
+      env:
+        - PHPDOC=1
 
 before_script:
-    - git clone https://github.com/FriendsOfCake/travis.git --depth 1 ../travis
-    - ../travis/before_script.sh
-    - if [ "$PHPCS" != 1 ]; then
-            echo "
-                CakePlugin::load('Environment', array('bootstrap' => true));
-                CakePlugin::load('AdvancedShell', array('bootstrap' => true));
-                CakePlugin::load('HttpSource', array('bootstrap' => true, 'routes' => false));
-            " >> ../cakephp/app/Config/bootstrap.php;
-            echo "<?php
-                require_once dirname(dirname(__FILE__)) . '/vendor/autoload.php';
-                require_once dirname(dirname(dirname(__FILE__))) . '/lib/Cake/Console/ShellDispatcher.php';
-                return ShellDispatcher::run(\$argv);
-            " > ../cakephp/app/Console/cake.php;
-      fi
-    - if [ "$PHPCS" = 1 ]; then
-        rm -rf ~/.phpenv/versions/$(phpenv version-name)/pear/PHP/CodeSniffer/Standards/CakePHP;
-        git clone https://github.com/imsamurai/cakephp-codesniffer.git --depth 1 ~/.phpenv/versions/$(phpenv version-name)/pear/PHP/CodeSniffer/Standards/CakePHP;
-      fi
+  - chmod +x ./travis/*
+  - ./travis/before_script.sh
 
 script:
-  - ../travis/script.sh
+  - ./travis/script.sh
 
 after_success:
-  - ../travis/after_success.sh
+  - ./travis/after_success.sh
 
 notifications:
   email: im.samuray@gmail.com
