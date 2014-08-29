@@ -4,8 +4,6 @@
  * Author: imsamurai <im.samuray@gmail.com>
  * Date: Oct 29, 2013
  * Time: 5:54:32 PM
- *
- * @package HttpSourceTestSource
  */
 $config['TestHttpSource']['config_version'] = 2;
 
