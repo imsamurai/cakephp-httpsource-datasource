@@ -11,7 +11,7 @@ App::uses('HttpSourceEndpointItem', 'HttpSource.Lib/Config');
  * Http source endpoint field
  * 
  * @package HttpSource
- * @subpackage Lib.Config
+ * @subpackage Config
  */
 class HttpSourceField extends HttpSourceEndpointItem {
 

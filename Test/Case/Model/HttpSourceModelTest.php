@@ -250,6 +250,12 @@ class HttpSourceModelTest extends CakeTestCase {
 
 }
 
+/**
+ * HttpSourceTestModel
+ * 
+ * @package HttpSourceTest
+ * @subpackage Model
+ */
 class HttpSourceTestModel extends HttpSourceModel {
 	
 }

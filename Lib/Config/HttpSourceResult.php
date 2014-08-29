@@ -13,7 +13,7 @@ App::uses('HttpSourceEndpointItem', 'HttpSource.Lib/Config');
  * @method HttpSourceResult map(callable $callback = null)
  * 
  * @package HttpSource
- * @subpackage Lib.Config
+ * @subpackage Config
  */
 class HttpSourceResult extends HttpSourceEndpointItem {
 	

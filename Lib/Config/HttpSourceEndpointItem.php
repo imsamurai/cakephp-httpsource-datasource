@@ -11,7 +11,7 @@ App::uses('HttpSourceConfigFactoryItem', 'HttpSource.Lib/Config');
  * Base class for endpoint items (field, result)
  * 
  * @package HttpSource
- * @subpackage Lib.Config
+ * @subpackage Config
  */
 abstract class HttpSourceEndpointItem extends HttpSourceConfigFactoryItem {
 

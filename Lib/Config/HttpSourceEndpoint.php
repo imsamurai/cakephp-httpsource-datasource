@@ -14,7 +14,7 @@ App::uses('HttpSourceCondition', 'HttpSource.Lib/Config');
  * Http source endpoint
  * 
  * @package HttpSource
- * @subpackage Lib.Config
+ * @subpackage Config
  */
 class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 

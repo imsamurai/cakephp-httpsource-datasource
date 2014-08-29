@@ -1,6 +1,12 @@
 <?php
 
 /**
+ * Author: imsamurai <im.samuray@gmail.com>
+ * Date: Oct 29, 2013
+ * Time: 9:18:11 PM
+ */
+
+/**
  * UsersDocumentFixture
  * 
  * @package HttpSourceTest

@@ -15,7 +15,7 @@ App::uses('HttpSourceResult', 'HttpSource.Lib/Config');
  * Factory to make HttpSource configuration
  * 
  * @package HttpSource
- * @subpackage Lib.Config
+ * @subpackage Config
  */
 class HttpSourceConfigFactory {
 
