@@ -662,12 +662,7 @@ class HttpSourceTest extends CakeTestCase {
 				),
 				//requestFull
 				array(
-					'lol',
-					'uri' => array(
-						'host' => '',
-						'port' => 0,
-						'path' => ''
-					)
+					'lol'
 				),
 				//response
 				array('hello dolly'),
@@ -744,12 +739,7 @@ class HttpSourceTest extends CakeTestCase {
 				),
 				//requestFull
 				array(
-					'lol',
-					'uri' => array(
-						'host' => '',
-						'port' => 0,
-						'path' => ''
-					)
+					'lol'
 				),
 				//response
 				array('hello dolly'),
@@ -1162,12 +1152,7 @@ class HttpSourceTest extends CakeTestCase {
 				),
 				//requestFull
 				array(
-					'lol',
-					'uri' => array(
-						'host' => '',
-						'port' => 0,
-						'path' => ''
-					)
+					'lol'
 				),
 				//response
 				array('hello dolly'),
@@ -1200,12 +1185,7 @@ class HttpSourceTest extends CakeTestCase {
 				),
 				//requestFull
 				array(
-					'lol',
-					'uri' => array(
-						'host' => '',
-						'port' => 0,
-						'path' => ''
-					)
+					'lol'
 				),
 				//response
 				array('hello dolly'),
@@ -1237,12 +1217,7 @@ class HttpSourceTest extends CakeTestCase {
 				),
 				//requestFull
 				array(
-					'lol',
-					'uri' => array(
-						'host' => '',
-						'port' => 0,
-						'path' => ''
-					)
+					'lol'
 				),
 				//response
 				array('hello dolly'),
@@ -1279,12 +1254,7 @@ class HttpSourceTest extends CakeTestCase {
 				),
 				//requestFull
 				array(
-					'lol',
-					'uri' => array(
-						'host' => '',
-						'port' => 0,
-						'path' => ''
-					)
+					'lol'
 				),
 				//response
 				array('hello dolly'),

@@ -850,20 +850,20 @@ abstract class HttpSource extends DataSource {
 	 * @return array|bool
 	 */
 	protected function _singleRequest(array $request, $requestMethod, Model $model = null) {
-		if (empty($request['uri']['host'])) {
-			$request['uri']['host'] = (string)Hash::get($this->config, 'host');
+		if (empty($request['uri']['host']) && !empty($this->config['host'])) {
+			$request['uri']['host'] = (string)$this->config['host'];
 		}
 
-		if (empty($request['uri']['port'])) {
-			$request['uri']['port'] = (int)Hash::get($this->config, 'port');
+		if (empty($request['uri']['port']) && !empty($this->config['port'])) {
+			$request['uri']['port'] = (int)$this->config['port'];
 		}
 
-		if (empty($request['uri']['path'])) {
-			$request['uri']['path'] = (string)Hash::get($this->config, 'path');
+		if (empty($request['uri']['path']) && !empty($this->config['path'])) {
+			$request['uri']['path'] = (string)$this->config['path'];
 		}
 
-		if (empty($request['uri']['scheme']) && Hash::get($this->config, 'scheme')) {
-			$request['uri']['scheme'] = (string)Hash::get($this->config, 'scheme');
+		if (empty($request['uri']['scheme']) && !empty($this->config['scheme'])) {
+			$request['uri']['scheme'] = (string)$this->config['scheme'];
 		}
 
 		$this->swapTokens($request);
