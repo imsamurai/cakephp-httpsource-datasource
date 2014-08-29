@@ -148,50 +148,117 @@ class HttpSourceConfigFactoryTest extends CakeTestCase {
 
 }
 
+/**
+ * HttpSourceConfigFactoryiAmExists
+ * 
+ * @package HttpSourceTest
+ * @subpackage Lib.Config
+ */
 class HttpSourceConfigFactoryiAmExists {
 	
 }
 
+/**
+ * HttpSourceConfigFactoryiAmExistsANDValid
+ * 
+ * @package HttpSourceTest
+ * @subpackage Lib.Config
+ */
 class HttpSourceConfigFactoryiAmExistsANDValid extends HttpSourceConfigFactory {
 
+	/**
+	 * {@inheritdoc}
+	 * 
+	 * @return HttpSourceConfigiAmExistsANDValid
+	 */
 	public function config() {
 		return new HttpSourceConfigiAmExistsANDValid($this);
 	}
 
+	/**
+	 * {@inheritdoc}
+	 * 
+	 * @return HttpSourceEndpointiAmExistsANDValid
+	 */
 	public function endpoint() {
 		return new HttpSourceEndpointiAmExistsANDValid($this);
 	}
 
+	/**
+	 * {@inheritdoc}
+	 * 
+	 * @return HttpSourceConditioniAmExistsANDValid
+	 */
 	public function condition() {
 		return new HttpSourceConditioniAmExistsANDValid($this);
 	}
 
+	/**
+	 * {@inheritdoc}
+	 * 
+	 * @return HttpSourceFieldiAmExistsANDValid
+	 */
 	public function field() {
 		return new HttpSourceFieldiAmExistsANDValid($this);
 	}
 
+	/**
+	 * {@inheritdoc}
+	 * 
+	 * @return HttpSourceResultiAmExistsANDValid
+	 */
 	public function result() {
 		return new HttpSourceResultiAmExistsANDValid($this);
 	}
 
 }
 
+/**
+ * HttpSourceConfigiAmExistsANDValid
+ * 
+ * @package HttpSourceTest
+ * @subpackage Lib.Config
+ */
 class HttpSourceConfigiAmExistsANDValid extends HttpSourceConfig {
 	
 }
 
+/**
+ * HttpSourceEndpointiAmExistsANDValid
+ * 
+ * @package HttpSourceTest
+ * @subpackage Lib.Config
+ */
 class HttpSourceEndpointiAmExistsANDValid extends HttpSourceEndpoint {
 	
 }
 
+/**
+ * HttpSourceConditioniAmExistsANDValid
+ * 
+ * @package HttpSourceTest
+ * @subpackage Lib.Config
+ */
 class HttpSourceConditioniAmExistsANDValid extends HttpSourceCondition {
 	
 }
 
+/**
+ * HttpSourceFieldiAmExistsANDValid
+ * 
+ * @package HttpSourceTest
+ * @subpackage Lib.Config
+ */
 class HttpSourceFieldiAmExistsANDValid extends HttpSourceField {
 	
 }
 
+/**
+ * HttpSourceResultiAmExistsANDValid
+ * 
+ * @package HttpSourceTest
+ * @subpackage Lib.Config
+ */
 class HttpSourceResultiAmExistsANDValid extends HttpSourceResult {
 	
 }

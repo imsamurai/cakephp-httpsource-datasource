@@ -294,7 +294,7 @@ abstract class HttpSource extends DataSource {
 	/**
 	 * Http query abstraction
 	 *
-	 * @param @param mixed $request Array of request or string uri
+	 * @param mixed $request Array of request or string uri
 	 * @return array|false
 	 * @throws NotImplementedException
 	 */
@@ -366,6 +366,12 @@ abstract class HttpSource extends DataSource {
 		return $this->Config->listSources();
 	}
 
+	/**
+	 * {@inheritdoc}
+	 * 
+	 * @param Model $model
+	 * @return array
+	 */
 	public function describe($model) {
 		if ($model instanceof Model) {
 			return $this->Config->describe($model);
@@ -547,10 +553,11 @@ abstract class HttpSource extends DataSource {
 	}
 
 	/**
-	 * Uses standard find conditions.
+	 * {inheritdoc}
 	 *
 	 * @param string $model The model being read.
 	 * @param string $queryData An array of query data used to find the data you want
+	 * @param integer $recursive
 	 * @return mixed
 	 * @access public
 	 */
@@ -579,7 +586,7 @@ abstract class HttpSource extends DataSource {
 	}
 
 	/**
-	 * Sets method = POST in request if not already set
+	 * {inheritdoc}
 	 *
 	 * @param AppModel $model
 	 * @param array $fields Unused
@@ -594,11 +601,12 @@ abstract class HttpSource extends DataSource {
 	}
 
 	/**
-	 * Sets method = PUT in request if not already set
+	 * {inheritdoc}
 	 *
 	 * @param AppModel $model
-	 * @param array $fields Unused
-	 * @param array $values Unused
+	 * @param array $fields
+	 * @param array $values
+	 * @param array $conditions
 	 */
 	public function update(Model $model, $fields = null, $values = null, $conditions = null) {
 		$model->request = array('method' => static::HTTP_METHOD_UPDATE);
@@ -609,7 +617,7 @@ abstract class HttpSource extends DataSource {
 	}
 
 	/**
-	 * Sets method = DELETE in request if not already set
+	 * {inheritdoc}
 	 *
 	 * @param Model $model
 	 * @param array $conditions
@@ -622,7 +630,7 @@ abstract class HttpSource extends DataSource {
 	}
 
 	/**
-	 * Sets method = HEAD
+	 * Check if record identified by conditions is exists
 	 *
 	 * @param Model $model
 	 * @param array $conditions
