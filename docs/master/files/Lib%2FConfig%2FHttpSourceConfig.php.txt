@@ -12,7 +12,7 @@ App::uses('HttpSourceEndpoint', 'HttpSource.Lib/Config');
  * Http source endpoints config
  * 
  * @package HttpSource
- * @subpackage Lib.Config
+ * @subpackage Config
  */
 class HttpSourceConfig extends HttpSourceConfigFactoryItem {
 

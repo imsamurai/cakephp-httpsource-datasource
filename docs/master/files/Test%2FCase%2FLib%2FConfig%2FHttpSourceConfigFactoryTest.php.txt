@@ -12,7 +12,7 @@ App::uses('HttpSourceConfigFactory', 'HttpSource.Lib/Config');
  * HttpSourceConfigFactoryTest
  * 
  * @package HttpSourceTest
- * @subpackage Lib.Config
+ * @subpackage Config
  */
 class HttpSourceConfigFactoryTest extends CakeTestCase {
 
@@ -152,7 +152,7 @@ class HttpSourceConfigFactoryTest extends CakeTestCase {
  * HttpSourceConfigFactoryiAmExists
  * 
  * @package HttpSourceTest
- * @subpackage Lib.Config
+ * @subpackage Config
  */
 class HttpSourceConfigFactoryiAmExists {
 	
@@ -162,7 +162,7 @@ class HttpSourceConfigFactoryiAmExists {
  * HttpSourceConfigFactoryiAmExistsANDValid
  * 
  * @package HttpSourceTest
- * @subpackage Lib.Config
+ * @subpackage Config
  */
 class HttpSourceConfigFactoryiAmExistsANDValid extends HttpSourceConfigFactory {
 
@@ -217,7 +217,7 @@ class HttpSourceConfigFactoryiAmExistsANDValid extends HttpSourceConfigFactory {
  * HttpSourceConfigiAmExistsANDValid
  * 
  * @package HttpSourceTest
- * @subpackage Lib.Config
+ * @subpackage Config
  */
 class HttpSourceConfigiAmExistsANDValid extends HttpSourceConfig {
 	
@@ -227,7 +227,7 @@ class HttpSourceConfigiAmExistsANDValid extends HttpSourceConfig {
  * HttpSourceEndpointiAmExistsANDValid
  * 
  * @package HttpSourceTest
- * @subpackage Lib.Config
+ * @subpackage Config
  */
 class HttpSourceEndpointiAmExistsANDValid extends HttpSourceEndpoint {
 	
@@ -237,7 +237,7 @@ class HttpSourceEndpointiAmExistsANDValid extends HttpSourceEndpoint {
  * HttpSourceConditioniAmExistsANDValid
  * 
  * @package HttpSourceTest
- * @subpackage Lib.Config
+ * @subpackage Config
  */
 class HttpSourceConditioniAmExistsANDValid extends HttpSourceCondition {
 	
@@ -247,7 +247,7 @@ class HttpSourceConditioniAmExistsANDValid extends HttpSourceCondition {
  * HttpSourceFieldiAmExistsANDValid
  * 
  * @package HttpSourceTest
- * @subpackage Lib.Config
+ * @subpackage Config
  */
 class HttpSourceFieldiAmExistsANDValid extends HttpSourceField {
 	
@@ -257,7 +257,7 @@ class HttpSourceFieldiAmExistsANDValid extends HttpSourceField {
  * HttpSourceResultiAmExistsANDValid
  * 
  * @package HttpSourceTest
- * @subpackage Lib.Config
+ * @subpackage Config
  */
 class HttpSourceResultiAmExistsANDValid extends HttpSourceResult {
 	

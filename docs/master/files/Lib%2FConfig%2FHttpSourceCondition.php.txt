@@ -14,7 +14,7 @@ App::uses('HttpSourceField', 'HttpSource.Lib/Config');
  * @method HttpSourceCondition map(callable $callback = null, $map_to_name = null)
  * 
  * @package HttpSource
- * @subpackage Lib.Config
+ * @subpackage Config
  */
 class HttpSourceCondition extends HttpSourceField {
 

@@ -13,7 +13,7 @@ App::uses('HttpSourceConfigFactory', 'HttpSource.Lib/Config');
  * HttpSourceEndpointItemTest
  * 
  * @package HttpSourceTest
- * @subpackage Lib.Config
+ * @subpackage Config
  */
 class HttpSourceEndpointItemTest extends CakeTestCase {
 
@@ -40,6 +40,12 @@ class HttpSourceEndpointItemTest extends CakeTestCase {
 
 }
 
+/**
+ * HttpSourceEndpointItemiAmExistsANDValid
+ * 
+ * @package HttpSourceTest
+ * @subpackage Config
+ */
 class HttpSourceEndpointItemiAmExistsANDValid extends HttpSourceEndpointItem {
 	
 }

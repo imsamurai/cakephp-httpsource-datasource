@@ -10,7 +10,7 @@
  * HttpSource configuration factory item
  * 
  * @package HttpSource
- * @subpackage Lib.Config
+ * @subpackage Config
  */
 abstract class HttpSourceConfigFactoryItem {
 

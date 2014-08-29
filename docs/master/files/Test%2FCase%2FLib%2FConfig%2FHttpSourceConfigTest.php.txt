@@ -17,7 +17,7 @@ App::uses('HttpSourceEndpoint', 'HttpSource.Lib/Config');
  * @property HttpSourceConfig $Config HttpSourceConfig
  * 
  * @package HttpSourceTest
- * @subpackage Lib.Config
+ * @subpackage Config
  */
 class HttpSourceConfigTest extends CakeTestCase {
 
@@ -176,6 +176,7 @@ class HttpSourceConfigTest extends CakeTestCase {
 	}
 
 	/**
+	 * Test find endpoint by method, table, conditions
 	 * 
 	 * @param int|string $id
 	 * @param string $method
