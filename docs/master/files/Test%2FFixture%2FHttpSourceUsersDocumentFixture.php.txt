@@ -2,15 +2,28 @@
 
 /**
  * UsersDocumentFixture
+ * 
+ * @package HttpSourceTest
+ * @subpackage Test.Fixture
  */
 class HttpSourceUsersDocumentFixture extends CakeTestFixture {
 
+	/**
+	 * {@inheritdoc}
+	 *
+	 * @var string
+	 */
 	public $useDbConfig = 'test';
-	
+
+	/**
+	 * {@inheritdoc}
+	 *
+	 * @var string
+	 */
 	public $table = 'users_documents';
 
 	/**
-	 * Fields
+	 * {@inheritdoc}
 	 *
 	 * @var array
 	 */
@@ -21,7 +34,7 @@ class HttpSourceUsersDocumentFixture extends CakeTestFixture {
 	);
 
 	/**
-	 * Records
+	 * {@inheritdoc}
 	 *
 	 * @var array
 	 */

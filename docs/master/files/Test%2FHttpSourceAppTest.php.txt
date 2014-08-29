@@ -5,7 +5,6 @@
  * Date: 29.10.2013
  * Time: 18:00:00
  * Format: http://book.cakephp.org/2.0/en/development/testing.html
- *
  */
 App::uses('ConnectionManager', 'Model');
 App::uses('TestHttpSourceModel', 'TestHttpSource.Model');
@@ -13,7 +12,10 @@ App::uses('TestHttpSourceModel', 'TestHttpSource.Model');
 require_once dirname(__FILE__) . DS . 'Data' . DS . 'models.php';
 
 /**
- * Tests
+ * HttpSource base test case
+ * 
+ * @package HttpSourceTest
+ * @subpackage Test
  */
 abstract class HttpSourceAppTest extends CakeTestCase {
 

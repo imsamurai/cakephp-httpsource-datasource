@@ -4,10 +4,15 @@
  * Author: imsamurai <im.samuray@gmail.com>
  * Date: 16.10.2013
  * Time: 15:23:15
- *
  */
 App::uses('CakeTestFixture', 'TestSuite/Fixture');
 
+/**
+ * Base Fixture for using in HttpSource child plugins
+ * 
+ * @package HttpSource
+ * @subpackage Test.Fixture
+ */
 class HttpSourceTestFixture extends CakeTestFixture {
 
 	/**

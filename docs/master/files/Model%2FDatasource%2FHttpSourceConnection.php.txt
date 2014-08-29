@@ -1,12 +1,17 @@
 <?php
-
-App::uses('HttpSocketOauth', 'HttpSocketOauth.');
-
 /**
  * Author: imsamurai <im.samuray@gmail.com>
  * Date: 17.07.2013
  * Time: 12:42:22
- *
+ */
+
+App::uses('HttpSocketOauth', 'HttpSocketOauth.');
+
+/**
+ * Default HttpSource connection class
+ * 
+ * @package HttpSource
+ * @subpackage Model.Datasource
  */
 class HttpSourceConnection {
 

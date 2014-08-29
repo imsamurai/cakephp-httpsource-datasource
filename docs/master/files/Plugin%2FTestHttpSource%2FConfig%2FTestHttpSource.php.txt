@@ -5,6 +5,8 @@
  * Date: Oct 29, 2013
  * Time: 5:54:32 PM
  *
+ * @package HttpSourceTestSource
+ * @subpackage Config
  */
 $config['TestHttpSource']['config_version'] = 2;
 

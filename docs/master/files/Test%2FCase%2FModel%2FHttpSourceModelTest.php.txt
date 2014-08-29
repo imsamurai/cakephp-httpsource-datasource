@@ -10,6 +10,9 @@ App::uses('HttpSourceModel', 'HttpSource.Model');
 
 /**
  * HttpSourceModelTest
+ * 
+ * @package HttpSourceTest
+ * @subpackage Model
  */
 class HttpSourceModelTest extends CakeTestCase {
 

@@ -10,6 +10,9 @@ App::uses('AppModel', 'Model');
 
 /**
  * Model with patched methods to wirk with save()
+ * 
+ * @package HttpSource
+ * @subpackage Model
  */
 abstract class HttpSourceModel extends AppModel {
 

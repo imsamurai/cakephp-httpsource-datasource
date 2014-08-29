@@ -16,6 +16,9 @@ App::uses('HttpSourceField', 'HttpSource.Lib/Config');
  * HttpSourceEndpointTest
  * 
  * @property HttpSourceEndpoint $Endpoint HttpSourceEndpoint
+ * 
+ * @package HttpSourceTest
+ * @subpackage Lib.Config
  */
 class HttpSourceEndpointTest extends CakeTestCase {
 

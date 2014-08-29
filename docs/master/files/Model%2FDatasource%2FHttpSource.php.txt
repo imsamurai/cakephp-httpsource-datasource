@@ -11,6 +11,12 @@ App::uses('ArraySort', 'ArraySort.Utility');
 App::uses('DataSource', 'Model/Datasource');
 App::uses('HttpSourceConnection', 'HttpSource.Model/Datasource');
 
+/**
+ * Abstract data source for network interaction
+ * 
+ * @package HttpSource
+ * @subpackage Model.Datasource
+ */
 abstract class HttpSource extends DataSource {
 
 	/**

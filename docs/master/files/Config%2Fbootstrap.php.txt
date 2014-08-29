@@ -5,6 +5,8 @@
  * Date: 19.11.2012
  * Time: 11:07:20
  *
+ * @package HttpSource
+ * @subpackage Configname
  */
 App::uses('HttpSourceConfigFactory', 'HttpSource.Lib/Config');
 

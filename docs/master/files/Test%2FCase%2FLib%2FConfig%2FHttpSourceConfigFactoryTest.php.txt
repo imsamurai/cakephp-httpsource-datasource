@@ -10,6 +10,9 @@ App::uses('HttpSourceConfigFactory', 'HttpSource.Lib/Config');
 
 /**
  * HttpSourceConfigFactoryTest
+ * 
+ * @package HttpSourceTest
+ * @subpackage Lib.Config
  */
 class HttpSourceConfigFactoryTest extends CakeTestCase {
 

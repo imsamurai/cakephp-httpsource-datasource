@@ -10,6 +10,9 @@ App::uses('HttpSourceAppTest', 'HttpSource.Test');
 
 /**
  * HttpSourceToDboAssociationTest
+ * 
+ * @package HttpSourceTest
+ * @subpackage Model
  */
 class HttpSourceToDboAssociationTest extends HttpSourceAppTest {
 
@@ -38,6 +41,9 @@ class HttpSourceToDboAssociationTest extends HttpSourceAppTest {
 		'plugin.HttpSource.HttpSourceUsersDocument'
 	);
 
+	/**
+	 * Test has and belongs to many relation
+	 */
 	public function testHABTM() {
 		$this->User->Documents->useDbConfig = 'testHttpSource';
 		$results = $this->User->find('all', array('recursive' => 3));
