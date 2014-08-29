@@ -1,4 +1,4 @@
-HttpSource Plugin
+HttpSource Plugin [![Main page](http://imsamurai.github.io/cakephp-httpsource-datasource/images/octocat-logo.png)](http://imsamurai.github.io/cakephp-httpsource-datasource/)
 =================
 [![Build Status](https://travis-ci.org/imsamurai/cakephp-httpsource-datasource.png)](https://travis-ci.org/imsamurai/cakephp-httpsource-datasource) [![Coverage Status](https://coveralls.io/repos/imsamurai/cakephp-httpsource-datasource/badge.png?branch=master)](https://coveralls.io/r/imsamurai/cakephp-httpsource-datasource?branch=master) [![Latest Stable Version](https://poser.pugx.org/imsamurai/http-source/v/stable.png)](https://packagist.org/packages/imsamurai/http-source) [![Total Downloads](https://poser.pugx.org/imsamurai/http-source/downloads.png)](https://packagist.org/packages/imsamurai/http-source) [![Latest Unstable Version](https://poser.pugx.org/imsamurai/http-source/v/unstable.png)](https://packagist.org/packages/imsamurai/http-source) [![License](https://poser.pugx.org/imsamurai/http-source/license.png)](https://packagist.org/packages/imsamurai/http-source)
 
