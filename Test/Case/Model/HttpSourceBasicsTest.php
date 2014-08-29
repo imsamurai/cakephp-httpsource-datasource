@@ -10,17 +10,26 @@ App::uses('HttpSourceAppTest', 'HttpSource.Test');
 
 /**
  * BasicsTest
+ * 
+ * @package HttpSourceTest
+ * @subpackage Model
  */
 class HttpSourceBasicsTest extends HttpSourceAppTest {
 
-	public function testRead() {
+	/**
+	 * Test field() on real server (github)
+	 */
+	public function testField() {
 		$this->HttpModel->setSource('default');
 		$result = $this->HttpModel->field('name');
 
 		$this->assertSame('imsamurai', $result);
 	}
-
-	public function testRead2() {
+	
+	/**
+	 * Test find() on real server (github)
+	 */
+	public function testFind() {
 		$this->HttpModel->setSource('documents');
 		$result = $this->HttpModel->find('all', array(
 			'conditions' => array(

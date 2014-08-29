@@ -4,7 +4,6 @@
  * Author: imsamurai <im.samuray@gmail.com>
  * Date: 04.12.2012
  * Time: 23:08:58
- *
  */
 App::uses('HttpSourceField', 'HttpSource.Lib/Config');
 
@@ -13,6 +12,9 @@ App::uses('HttpSourceField', 'HttpSource.Lib/Config');
  *
  * @method HttpSourceCondition name($name = null)
  * @method HttpSourceCondition map(callable $callback = null, $map_to_name = null)
+ * 
+ * @package HttpSource
+ * @subpackage Lib.Config
  */
 class HttpSourceCondition extends HttpSourceField {
 

@@ -4,12 +4,14 @@
  * Author: imsamurai <im.samuray@gmail.com>
  * Date: 04.12.2012
  * Time: 23:04:48
- *
  */
 App::uses('HttpSourceConfigFactoryItem', 'HttpSource.Lib/Config');
 
 /**
  * Base class for endpoint items (field, result)
+ * 
+ * @package HttpSource
+ * @subpackage Lib.Config
  */
 abstract class HttpSourceEndpointItem extends HttpSourceConfigFactoryItem {
 

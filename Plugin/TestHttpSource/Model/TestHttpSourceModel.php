@@ -10,6 +10,9 @@ App::uses('HttpSourceModel', 'HttpSource.Model');
 
 /**
  * TestHttpSourceModel Model
+ * 
+ * @package HttpSourceTestSource
+ * @subpackage Model
  */
 class TestHttpSourceModel extends HttpSourceModel {
 

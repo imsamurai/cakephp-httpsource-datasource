@@ -4,7 +4,6 @@
  * Author: imsamurai <im.samuray@gmail.com>
  * Date: 04.12.2012
  * Time: 23:27:31
- *
  */
 App::uses('HttpSourceConfig', 'HttpSource.Lib/Config');
 App::uses('HttpSourceCondition', 'HttpSource.Lib/Config');
@@ -14,6 +13,9 @@ App::uses('HttpSourceResult', 'HttpSource.Lib/Config');
 
 /**
  * Factory to make HttpSource configuration
+ * 
+ * @package HttpSource
+ * @subpackage Lib.Config
  */
 class HttpSourceConfigFactory {
 

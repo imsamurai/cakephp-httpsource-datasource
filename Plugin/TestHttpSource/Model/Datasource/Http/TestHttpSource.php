@@ -4,11 +4,16 @@
  * Author: imsamurai <im.samuray@gmail.com>
  * Date: Oct 29, 2013
  * Time: 5:44:49 PM
- *
  */
 App::uses('HttpSource', 'HttpSource.Model/Datasource');
 App::uses('TestHttpSourceConnection', 'TestHttpSource.Model/Datasource');
 
+/**
+ * Test source
+ * 
+ * @package HttpSourceTestSource
+ * @subpackage Model.Datasource.Http
+ */
 class TestHttpSource extends HttpSource {
 
 	/**

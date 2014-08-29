@@ -5,16 +5,20 @@
  * Date: 19.11.2012
  * Time: 11:01:22
  *
+ * @package HttpSource
+ * @subpackage Lib.Error
  */
 
 /**
- * Exceptions for Http DataSource
+ * HttpSourceException
  */
-
 class HttpSourceException extends CakeException {
 
 }
 
+/**
+ * HttpSourceConfigException
+ */
 class HttpSourceConfigException extends CakeException {
 
 }

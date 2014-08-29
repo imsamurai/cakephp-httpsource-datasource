@@ -13,6 +13,9 @@ App::uses('HttpSourceConfigFactory', 'HttpSource.Lib/Config');
  * HttpSourceConditionTest
  * 
  * @property HttpSourceCondition $Condition HttpSourceCondition
+ * 
+ * @package HttpSourceTest
+ * @subpackage Lib.Config
  */
 class HttpSourceConditionTest extends CakeTestCase {
 

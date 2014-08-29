@@ -14,6 +14,9 @@ App::uses('HttpSocketOauth', 'HttpSocketOauth.');
 
 /**
  * HttpSourceConnectionTest
+ * 
+ * @package HttpSourceTest
+ * @subpackage Model.Datasource
  */
 class HttpSourceConnectionTest extends CakeTestCase {
 

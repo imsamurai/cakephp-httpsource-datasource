@@ -4,11 +4,13 @@
  * Author: imsamurai <im.samuray@gmail.com>
  * Date: 12.07.2013
  * Time: 19:04:01
- *
  */
 
 /**
  * HttpSource configuration factory item
+ * 
+ * @package HttpSource
+ * @subpackage Lib.Config
  */
 abstract class HttpSourceConfigFactoryItem {
 

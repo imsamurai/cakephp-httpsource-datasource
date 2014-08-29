@@ -4,13 +4,15 @@
  * Author: imsamurai <im.samuray@gmail.com>
  * Date: 04.12.2012
  * Time: 22:55:25
- *
  */
 App::uses('HttpSourceConfigFactoryItem', 'HttpSource.Lib/Config');
 App::uses('HttpSourceEndpoint', 'HttpSource.Lib/Config');
 
 /**
  * Http source endpoints config
+ * 
+ * @package HttpSource
+ * @subpackage Lib.Config
  */
 class HttpSourceConfig extends HttpSourceConfigFactoryItem {
 
