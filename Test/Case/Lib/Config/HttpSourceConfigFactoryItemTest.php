@@ -35,6 +35,12 @@ class HttpSourceConfigFactoryItemTest extends CakeTestCase {
 
 }
 
+/**
+ * HttpSourceConfigFactoryItemiAmExistsANDValid
+ * 
+ * @package HttpSourceTest
+ * @subpackage Config
+ */
 class HttpSourceConfigFactoryItemiAmExistsANDValid extends HttpSourceConfigFactoryItem {
 	
 }
