@@ -1,0 +1,3239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">48</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">1</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1295069846"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-1295069846" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/AllHttpSourceTest.html">AllHttpSourceTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSource.html">HttpSource</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceAppTest.html">HttpSourceAppTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceBasicsTest.html">HttpSourceBasicsTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceCondition.html">HttpSourceCondition</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConditioniAmExistsANDValid.html">HttpSourceConditioniAmExistsANDValid</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConditionTest.html">HttpSourceConditionTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfig.html">HttpSourceConfig</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigException.html">HttpSourceConfigException</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigFactory.html">HttpSourceConfigFactory</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryiAmExists.html">HttpSourceConfigFactoryiAmExists</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryiAmExistsANDValid.html">HttpSourceConfigFactoryiAmExistsANDValid</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryItem.html">HttpSourceConfigFactoryItem</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryItemiAmExistsANDValid.html">HttpSourceConfigFactoryItemiAmExistsANDValid</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryItemTest.html">HttpSourceConfigFactoryItemTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryTest.html">HttpSourceConfigFactoryTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigiAmExistsANDValid.html">HttpSourceConfigiAmExistsANDValid</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigTest.html">HttpSourceConfigTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConnection.html">HttpSourceConnection</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConnectionTest.html">HttpSourceConnectionTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceDocument.html">HttpSourceDocument</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceEndpoint.html">HttpSourceEndpoint</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceEndpointiAmExistsANDValid.html">HttpSourceEndpointiAmExistsANDValid</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceEndpointItem.html">HttpSourceEndpointItem</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceEndpointItemiAmExistsANDValid.html">HttpSourceEndpointItemiAmExistsANDValid</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceEndpointItemTest.html">HttpSourceEndpointItemTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceEndpointTest.html">HttpSourceEndpointTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceException.html">HttpSourceException</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceField.html">HttpSourceField</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceFieldiAmExistsANDValid.html">HttpSourceFieldiAmExistsANDValid</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceFieldTest.html">HttpSourceFieldTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceModel.html">HttpSourceModel</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceModelTest.html">HttpSourceModelTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceResult.html">HttpSourceResult</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceResultiAmExistsANDValid.html">HttpSourceResultiAmExistsANDValid</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceResultTest.html">HttpSourceResultTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceTest.html">HttpSourceTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceTestFixture.html">HttpSourceTestFixture</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceTestModel.html">HttpSourceTestModel</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceToDboAssociationTest.html">HttpSourceToDboAssociationTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceUser.html">HttpSourceUser</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceUserFixture.html">HttpSourceUserFixture</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceUsersDocumentFixture.html">HttpSourceUsersDocumentFixture</a></li>
+                                                    <li class="class"><a href="../classes/HttpTestSource.html">HttpTestSource</a></li>
+                                                    <li class="class"><a href="../classes/TestHttpSource.html">TestHttpSource</a></li>
+                                                    <li class="class"><a href="../classes/TestHttpSourceConnection.html">TestHttpSourceConnection</a></li>
+                                                    <li class="class"><a href="../classes/TestHttpSourceModel.html">TestHttpSourceModel</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\</small>TestHttpSource</h1>
+                    <p><em></em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/HttpSource.html#method_getMethods" class="">getMethods()</a><br />
+                                                                    <a href="../classes/TestHttpSource.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_getConfig" class="">getConfig()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_getConnection" class="">getConnection()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_setCredentials" class="">setCredentials()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_getCredentials" class="">getCredentials()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_setDecoder" class="">setDecoder()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_getDecoder" class="">getDecoder()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_query" class="">query()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_execute" class="">execute()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_request" class="">request()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_listSources" class="">listSources()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_describe" class="">describe()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_swapTokens" class="">swapTokens()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_logRequest" class="">logRequest()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_getRequestLog" class="">getRequestLog()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_getLog" class="">getLog()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_showLog" class="">showLog()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_beforeRequest" class="">beforeRequest()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_afterRequest" class="">afterRequest()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_calculate" class="">calculate()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_read" class="">read()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_create" class="">create()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_update" class="">update()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_delete" class="">delete()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_exists" class="">exists()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_getQueryCache" class="">getQueryCache()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_queryAssociation" class="">queryAssociation()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_createSchema" class="">createSchema()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method_dropSchema" class="">dropSchema()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/TestHttpSource.html#property_description" class="">$description</a><br />
+                                                                    <a href="../classes/HttpSource.html#property_fullDebug" class="">$fullDebug</a><br />
+                                                                    <a href="../classes/HttpSource.html#property_config" class="">$config</a><br />
+                                                                    <a href="../classes/HttpSource.html#property_took" class="">$took</a><br />
+                                                                    <a href="../classes/HttpSource.html#property_query" class="">$query</a><br />
+                                                                    <a href="../classes/HttpSource.html#property_affected" class="">$affected</a><br />
+                                                                    <a href="../classes/HttpSource.html#property_numRows" class="">$numRows</a><br />
+                                                                    <a href="../classes/HttpSource.html#property_error" class="">$error</a><br />
+                                                                    <a href="../classes/HttpSource.html#property_Config" class="">$Config</a><br />
+                                                                    <a href="../classes/HttpSource.html#property_columns" class="">$columns</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/HttpSource.html#constant_FUNCTION_COUNT" class="">FUNCTION_COUNT</a><br />
+                                                                    <a href="../classes/HttpSource.html#constant_METHOD_READ" class="">METHOD_READ</a><br />
+                                                                    <a href="../classes/HttpSource.html#constant_METHOD_CREATE" class="">METHOD_CREATE</a><br />
+                                                                    <a href="../classes/HttpSource.html#constant_METHOD_UPDATE" class="">METHOD_UPDATE</a><br />
+                                                                    <a href="../classes/HttpSource.html#constant_METHOD_DELETE" class="">METHOD_DELETE</a><br />
+                                                                    <a href="../classes/HttpSource.html#constant_METHOD_CHECK" class="">METHOD_CHECK</a><br />
+                                                                    <a href="../classes/HttpSource.html#constant_HTTP_METHOD_READ" class="">HTTP_METHOD_READ</a><br />
+                                                                    <a href="../classes/HttpSource.html#constant_HTTP_METHOD_CREATE" class="">HTTP_METHOD_CREATE</a><br />
+                                                                    <a href="../classes/HttpSource.html#constant_HTTP_METHOD_UPDATE" class="">HTTP_METHOD_UPDATE</a><br />
+                                                                    <a href="../classes/HttpSource.html#constant_HTTP_METHOD_DELETE" class="">HTTP_METHOD_DELETE</a><br />
+                                                                    <a href="../classes/HttpSource.html#constant_HTTP_METHOD_CHECK" class="">HTTP_METHOD_CHECK</a><br />
+                                                                    <a href="../classes/HttpSource.html#constant_LOG_MAX_LENGTH" class="">LOG_MAX_LENGTH</a><br />
+                                                                    <a href="../classes/HttpSource.html#constant_LOG_TRUNCATED" class="">LOG_TRUNCATED</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/HttpSource.html#method__schemaToRequests" class="">_schemaToRequests()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method__scrubQueryData" class="">_scrubQueryData()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method__formatResult" class="">_formatResult()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method__emulateFunctions" class="">_emulateFunctions()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method__emulateOrder" class="">_emulateOrder()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method__emulateFields" class="">_emulateFields()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method__emulateLimit" class="">_emulateLimit()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method__singleRequest" class="">_singleRequest()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method__buildRequest" class="">_buildRequest()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method__writeQueryCache" class="">_writeQueryCache()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method__extractResult" class="">_extractResult()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method__splitRequest" class="">_splitRequest()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method__joinResponses" class="">_joinResponses()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method__requestToModel" class="">_requestToModel()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method__loadConfig" class="">_loadConfig()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method__setConfig" class="">_setConfig()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method__getCurrentEndpoint" class="">_getCurrentEndpoint()</a><br />
+                                                                    <a href="../classes/HttpSource.html#method__getQueryData" class="">_getQueryData()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/HttpSource.html#property__Connection" class="">$_Connection</a><br />
+                                                                    <a href="../classes/HttpSource.html#property__currentEndpoint" class="">$_currentEndpoint</a><br />
+                                                                    <a href="../classes/HttpSource.html#property__requestsCnt" class="">$_requestsCnt</a><br />
+                                                                    <a href="../classes/HttpSource.html#property__requestsTime" class="">$_requestsTime</a><br />
+                                                                    <a href="../classes/HttpSource.html#property__requestsLog" class="">$_requestsLog</a><br />
+                                                                    <a href="../classes/HttpSource.html#property__requestsLogMax" class="">$_requestsLogMax</a><br />
+                                                                    <a href="../classes/HttpSource.html#property__requestCache" class="">$_requestCache</a><br />
+                                                                    <a href="../classes/HttpSource.html#property__queryData" class="">$_queryData</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Plugin.TestHttpSource.Model.Datasource.Http.TestHttpSource.html"><div class="path-wrapper">Plugin/TestHttpSource/Model/Datasource/Http/TestHttpSource.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                                        <div class="namespace-wrapper">\DataSource</div>
+                                                                    
+                                        <div class="namespace-wrapper"><a href="../classes/HttpSource.html">\HttpSource</a></div>
+                                                                                                    <div class="namespace-wrapper">\TestHttpSource</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FUNCTION_COUNT" name="constant_FUNCTION_COUNT" class="anchor"></a>
+            <article id="constant_FUNCTION_COUNT" class="constant">
+                <h3 class="">FUNCTION_COUNT</h3>
+                <pre class="signature">FUNCTION_COUNT</pre>
+                <p><em>Count function constant</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_METHOD_READ" name="constant_METHOD_READ" class="anchor"></a>
+            <article id="constant_METHOD_READ" class="constant">
+                <h3 class="">METHOD_READ</h3>
+                <pre class="signature">METHOD_READ</pre>
+                <p><em>CRUD constants</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_METHOD_CREATE" name="constant_METHOD_CREATE" class="anchor"></a>
+            <article id="constant_METHOD_CREATE" class="constant">
+                <h3 class="">METHOD_CREATE</h3>
+                <pre class="signature">METHOD_CREATE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_METHOD_UPDATE" name="constant_METHOD_UPDATE" class="anchor"></a>
+            <article id="constant_METHOD_UPDATE" class="constant">
+                <h3 class="">METHOD_UPDATE</h3>
+                <pre class="signature">METHOD_UPDATE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_METHOD_DELETE" name="constant_METHOD_DELETE" class="anchor"></a>
+            <article id="constant_METHOD_DELETE" class="constant">
+                <h3 class="">METHOD_DELETE</h3>
+                <pre class="signature">METHOD_DELETE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_METHOD_CHECK" name="constant_METHOD_CHECK" class="anchor"></a>
+            <article id="constant_METHOD_CHECK" class="constant">
+                <h3 class="">METHOD_CHECK</h3>
+                <pre class="signature">METHOD_CHECK</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HTTP_METHOD_READ" name="constant_HTTP_METHOD_READ" class="anchor"></a>
+            <article id="constant_HTTP_METHOD_READ" class="constant">
+                <h3 class="">HTTP_METHOD_READ</h3>
+                <pre class="signature">HTTP_METHOD_READ</pre>
+                <p><em>Http methods constants</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HTTP_METHOD_CREATE" name="constant_HTTP_METHOD_CREATE" class="anchor"></a>
+            <article id="constant_HTTP_METHOD_CREATE" class="constant">
+                <h3 class="">HTTP_METHOD_CREATE</h3>
+                <pre class="signature">HTTP_METHOD_CREATE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HTTP_METHOD_UPDATE" name="constant_HTTP_METHOD_UPDATE" class="anchor"></a>
+            <article id="constant_HTTP_METHOD_UPDATE" class="constant">
+                <h3 class="">HTTP_METHOD_UPDATE</h3>
+                <pre class="signature">HTTP_METHOD_UPDATE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HTTP_METHOD_DELETE" name="constant_HTTP_METHOD_DELETE" class="anchor"></a>
+            <article id="constant_HTTP_METHOD_DELETE" class="constant">
+                <h3 class="">HTTP_METHOD_DELETE</h3>
+                <pre class="signature">HTTP_METHOD_DELETE</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_HTTP_METHOD_CHECK" name="constant_HTTP_METHOD_CHECK" class="anchor"></a>
+            <article id="constant_HTTP_METHOD_CHECK" class="constant">
+                <h3 class="">HTTP_METHOD_CHECK</h3>
+                <pre class="signature">HTTP_METHOD_CHECK</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_LOG_MAX_LENGTH" name="constant_LOG_MAX_LENGTH" class="anchor"></a>
+            <article id="constant_LOG_MAX_LENGTH" class="constant">
+                <h3 class="">LOG_MAX_LENGTH</h3>
+                <pre class="signature">LOG_MAX_LENGTH</pre>
+                <p><em>Maximum log length</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_LOG_TRUNCATED" name="constant_LOG_TRUNCATED" class="anchor"></a>
+            <article id="constant_LOG_TRUNCATED" class="constant">
+                <h3 class="">LOG_TRUNCATED</h3>
+                <pre class="signature">LOG_TRUNCATED</pre>
+                <p><em>String to replace truncated part of log</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_description" name="property_description" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$description</h3>
+                <pre class="signature">$description : string</pre>
+                <p><em>The description of this data source</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_fullDebug" name="property_fullDebug" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$fullDebug</h3>
+                <pre class="signature">$fullDebug : boolean</pre>
+                <p><em>Print full query debug info?</em></p>
+                
+
+                                <h4>Type</h4>
+                boolean
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_config" name="property_config" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$config</h3>
+                <pre class="signature">$config : array</pre>
+                <p><em>Holds the datasource configuration</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_took" name="property_took" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$took</h3>
+                <pre class="signature">$took : integer</pre>
+                <p><em>Time the last query took</em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_query" name="property_query" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$query</h3>
+                <pre class="signature">$query : string</pre>
+                <p><em>Last query</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_affected" name="property_affected" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$affected</h3>
+                <pre class="signature">$affected : integer</pre>
+                <p><em>Rows affected</em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_numRows" name="property_numRows" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$numRows</h3>
+                <pre class="signature">$numRows : integer</pre>
+                <p><em>Rows number</em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_error" name="property_error" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$error</h3>
+                <pre class="signature">$error : string</pre>
+                <p><em>Time the last query error</em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_Config" name="property_Config" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$Config</h3>
+                <pre class="signature">$Config : \HttpSourceConfig</pre>
+                <p><em>Configuration object</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/HttpSourceConfig.html">\HttpSourceConfig</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_columns" name="property_columns" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$columns</h3>
+                <pre class="signature">$columns : array</pre>
+                <p><em>Columns info by type.</em></p>
+                <p>Used in Model::save, Model::create methods</p>
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__Connection" name="property__Connection" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$_Connection</h3>
+                <pre class="signature">$_Connection : \HttpSourceConnection</pre>
+                <p><em>Instance of HttpSourceConnection class</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/HttpSourceConnection.html">\HttpSourceConnection</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__currentEndpoint" name="property__currentEndpoint" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$_currentEndpoint</h3>
+                <pre class="signature">$_currentEndpoint : \HttpSourceEndpoint</pre>
+                <p><em>Current requested endpoint</em></p>
+                
+
+                                <h4>Type</h4>
+                <a href="../classes/HttpSourceEndpoint.html">\HttpSourceEndpoint</a>
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__requestsCnt" name="property__requestsCnt" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$_requestsCnt</h3>
+                <pre class="signature">$_requestsCnt : integer</pre>
+                <p><em>Queries count.</em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__requestsTime" name="property__requestsTime" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$_requestsTime</h3>
+                <pre class="signature">$_requestsTime : integer</pre>
+                <p><em>Total duration of all queries.</em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__requestsLog" name="property__requestsLog" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$_requestsLog</h3>
+                <pre class="signature">$_requestsLog : array</pre>
+                <p><em>Log of queries executed by this DataSource</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__requestsLogMax" name="property__requestsLogMax" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$_requestsLogMax</h3>
+                <pre class="signature">$_requestsLogMax : integer</pre>
+                <p><em>Maximum number of items in query log</em></p>
+                <p>This is to prevent query log taking over too much memory.</p>
+
+                                <h4>Type</h4>
+                integer
+                &mdash; Maximum number of queries in the queries log.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__requestCache" name="property__requestCache" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$_requestCache</h3>
+                <pre class="signature">$_requestCache : array</pre>
+                <p><em>Caches serialized results of executed queries</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                &mdash; Cache of results from executed queries.                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property__queryData" name="property__queryData" class="anchor"></a>
+            <article class="property">
+                <h3 class="protected ">$_queryData</h3>
+                <pre class="signature">$_queryData : array</pre>
+                <p><em>Query data passed in read method</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getMethods" name="method_getMethods" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getMethods()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getMethods() : array</pre>
+                <p><em>List of constants METHOD_*</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(array  <span class="argument">$config = array()</span>, \HttpSourceConnection  <span class="argument">$Connection = null</span>) </pre>
+                <p><em>Constructor</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$config </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/HttpSourceConnection.html">\HttpSourceConnection</a></td>
+                                <td>$Connection </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getConfig" name="method_getConfig" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getConfig()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getConfig() : \HttpSourceConfig</pre>
+                <p><em>Returns config</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/HttpSourceConfig.html">\HttpSourceConfig</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getConnection" name="method_getConnection" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getConnection()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getConnection() : \HttpSourceConnection</pre>
+                <p><em>Returns connection</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/HttpSourceConnection.html">\HttpSourceConnection</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setCredentials" name="method_setCredentials" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setCredentials()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setCredentials(array  <span class="argument">$credentials = array()</span>) </pre>
+                <p><em>Sets credentials data</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$credentials </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getCredentials" name="method_getCredentials" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getCredentials()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getCredentials() : array</pre>
+                <p><em>Gets credentials data</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setDecoder" name="method_setDecoder" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setDecoder()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setDecoder(string|array  <span class="argument">$contentType</span>, callable  <span class="argument">$callback</span>, boolean  <span class="argument">$replace = false</span>) </pre>
+                <p><em>Add decoder for given $contentType</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|array</td>
+                                <td>$contentType </td>
+                                <td><p>Content type</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>callable</td>
+                                <td>$callback </td>
+                                <td><p>Function used for decoding</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$replace </td>
+                                <td><p>Replace decoder if already set or not. Default false</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getDecoder" name="method_getDecoder" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getDecoder()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getDecoder(string  <span class="argument">$contentType</span>) </pre>
+                <p><em>Get decoder for given $contentType</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$contentType </td>
+                                <td><p>Content type</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_query" name="method_query" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">query()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">query(  <span class="argument">$request</span>) : array|false</pre>
+                <p><em>Http query abstraction</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$request </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\NotImplementedException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    array|false
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_execute" name="method_execute" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">execute()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">execute(array  <span class="argument">$request</span>) : array</pre>
+                <p><em>Execute single or multiple requests</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$request </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_request" name="method_request" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">request()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">request(\Model  <span class="argument">$model = null</span>, mixed  <span class="argument">$requestData = null</span>, string  <span class="argument">$requestMethod = \HttpSource::METHOD_READ</span>) : array|false</pre>
+                <p><em>Sends HttpSocket requests. Builds your uri and formats the response too.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Model</td>
+                                <td>$model </td>
+                                <td><p>Model object</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$requestData </td>
+                                <td><p>Array of request or string uri</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$requestMethod </td>
+                                <td><p>read, create, update, delete</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\HttpSourceException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    array|false
+                                            &mdash; <p>$response</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_listSources" name="method_listSources" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">listSources()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">listSources(mixed  <span class="argument">$data = null</span>) : array</pre>
+                <p><em>Returns all available sources</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$data </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>Array of sources available in this datasource.</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_describe" name="method_describe" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">describe()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">describe(  <span class="argument">$model</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td></td>
+                                <td>$model </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_swapTokens" name="method_swapTokens" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">swapTokens()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">swapTokens(array  <span class="argument">$request</span>) </pre>
+                <p><em>Iterates through the tokens (passed or request items) and replaces them into the url</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$request </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_logRequest" name="method_logRequest" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">logRequest()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">logRequest() : void</pre>
+                <p><em>Log given query.</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getRequestLog" name="method_getRequestLog" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getRequestLog()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getRequestLog() : array</pre>
+                <p><em>Returns record for log</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getLog" name="method_getLog" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getLog()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getLog(boolean  <span class="argument">$sorted = false</span>, boolean  <span class="argument">$clear = true</span>) : array</pre>
+                <p><em>Get the query log as an array.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$sorted </td>
+                                <td><p>Get the queries sorted by time taken, defaults to false.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$clear </td>
+                                <td><p>If True the existing log will cleared.</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>Array of queries run as an array</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_showLog" name="method_showLog" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">showLog()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">showLog(boolean  <span class="argument">$sorted = false</span>, boolean  <span class="argument">$html = null</span>) : void</pre>
+                <p><em>Outputs the contents of the queries log. If in a non-CLI environment the sql_log element
+will be rendered and output.  If in a CLI environment, a plain text log is generated.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$sorted </td>
+                                <td><p>Get the queries sorted by time taken, defaults to false.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$html </td>
+                                <td><p>True for html output, null for auto</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_beforeRequest" name="method_beforeRequest" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">beforeRequest()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">beforeRequest(array  <span class="argument">$request</span>, string  <span class="argument">$requestMethod</span>) : array</pre>
+                <p><em>Just-In-Time callback for any last-minute request modifications</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$request </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$requestMethod </td>
+                                <td><p>Create, update, read or delete</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>$request</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_afterRequest" name="method_afterRequest" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">afterRequest()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">afterRequest(\Model  <span class="argument">$model</span>, array  <span class="argument">$result</span>, string  <span class="argument">$requestMethod</span>) : array</pre>
+                <p><em>After request callback
+Filter data by fields, emulate limit, offset, order etc.</em></p>
+                <p>Override this method for your DataSource.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Model</td>
+                                <td>$model </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$result </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$requestMethod </td>
+                                <td><p>Create, update, read or delete</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_calculate" name="method_calculate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">calculate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">calculate(\Model  <span class="argument">$model</span>, string  <span class="argument">$func</span>, array  <span class="argument">$params = array()</span>) : string</pre>
+                <p><em>Returns an calculation, i.e. COUNT</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Model</td>
+                                <td>$model </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$func </td>
+                                <td><p>Lowercase name of function, i.e. 'count'</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$params </td>
+                                <td><p>Function parameters (any values must be quoted manually)</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\NotImplementedException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>An calculation function</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_read" name="method_read" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">read()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">read(string  <span class="argument">$model</span>, string  <span class="argument">$queryData = array()</span>,   <span class="argument">$recursive = null</span>) : mixed</pre>
+                <p><em>Uses standard find conditions.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$model </td>
+                                <td><p>The model being read.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$queryData </td>
+                                <td><p>An array of query data used to find the data you want</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$recursive </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_create" name="method_create" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">create()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">create(\AppModel  <span class="argument">$model</span>, array  <span class="argument">$fields = null</span>, array  <span class="argument">$values = null</span>) </pre>
+                <p><em>Sets method = POST in request if not already set</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\AppModel</td>
+                                <td>$model </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$fields </td>
+                                <td><p>Unused</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$values </td>
+                                <td><p>Unused</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_update" name="method_update" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">update()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">update(\AppModel  <span class="argument">$model</span>, array  <span class="argument">$fields = null</span>, array  <span class="argument">$values = null</span>,   <span class="argument">$conditions = null</span>) </pre>
+                <p><em>Sets method = PUT in request if not already set</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\AppModel</td>
+                                <td>$model </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$fields </td>
+                                <td><p>Unused</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$values </td>
+                                <td><p>Unused</p></td>
+                            </tr>
+                                                    <tr>
+                                <td></td>
+                                <td>$conditions </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_delete" name="method_delete" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">delete()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">delete(\Model  <span class="argument">$model</span>, array  <span class="argument">$conditions = null</span>) </pre>
+                <p><em>Sets method = DELETE in request if not already set</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Model</td>
+                                <td>$model </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$conditions </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_exists" name="method_exists" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">exists()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">exists(\Model  <span class="argument">$model</span>, array  <span class="argument">$conditions = array()</span>) </pre>
+                <p><em>Sets method = HEAD</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Model</td>
+                                <td>$model </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$conditions </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getQueryCache" name="method_getQueryCache" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getQueryCache()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getQueryCache(array  <span class="argument">$request</span>) : mixed</pre>
+                <p><em>Returns the result for a query if it is already cached</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$request </td>
+                                <td><p>query</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>results for query if it is cached, false otherwise</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_queryAssociation" name="method_queryAssociation" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">queryAssociation()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">queryAssociation(\Model  <span class="argument">$model</span>, \Model  <span class="argument">$linkModel</span>, string  <span class="argument">$type</span>, string  <span class="argument">$association</span>, array  <span class="argument">$assocData</span>, array  <span class="argument">$queryData</span>, boolean  <span class="argument">$external</span>, array  <span class="argument">$resultSet</span>, integer  <span class="argument">$recursive</span>, array  <span class="argument">$stack</span>) : mixed</pre>
+                <p><em>Queries associations. Used to fetch results on recursive models.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Model</td>
+                                <td>$model </td>
+                                <td><p>Primary Model object</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Model</td>
+                                <td>$linkModel </td>
+                                <td><p>Linked model that</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$type </td>
+                                <td><p>Association type, one of the model association types ie. hasMany</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$association </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$assocData </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$queryData </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$external </td>
+                                <td><p>Whether or not the association query is on an external datasource.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$resultSet </td>
+                                <td><p>Existing results</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$recursive </td>
+                                <td><p>Number of levels of association</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$stack </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\NotImplementedException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_createSchema" name="method_createSchema" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">createSchema()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">createSchema(\CakeSchema  <span class="argument">$Schema</span>, string  <span class="argument">$tableName = null</span>) : array</pre>
+                <p><em>Returns requests array for create schema(s)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\CakeSchema</td>
+                                <td>$Schema </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$tableName </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_dropSchema" name="method_dropSchema" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">dropSchema()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">dropSchema(\CakeSchema  <span class="argument">$Schema</span>, string  <span class="argument">$tableName = null</span>) : array</pre>
+                <p><em>Returns requests array for drop schema(s)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\CakeSchema</td>
+                                <td>$Schema </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$tableName </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__schemaToRequests" name="method__schemaToRequests" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_schemaToRequests()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_schemaToRequests(\CakeSchema  <span class="argument">$Schema</span>, string  <span class="argument">$tableName</span>, array  <span class="argument">$options</span>) : array</pre>
+                <p><em>Make requests based on schema</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\CakeSchema</td>
+                                <td>$Schema </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$tableName </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__scrubQueryData" name="method__scrubQueryData" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_scrubQueryData()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_scrubQueryData(array  <span class="argument">$data</span>) : array</pre>
+                <p><em>Private helper method to remove query metadata in given data array.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__formatResult" name="method__formatResult" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_formatResult()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_formatResult(\Model  <span class="argument">$Model</span>, array  <span class="argument">$result</span>) </pre>
+                <p><em>Format result to match Cake conventions</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Model</td>
+                                <td>$Model </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$result </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__emulateFunctions" name="method__emulateFunctions" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_emulateFunctions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_emulateFunctions(\Model  <span class="argument">$Model</span>, array  <span class="argument">$result</span>) : boolean</pre>
+                <p><em>Apply function if specified in fields</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Model</td>
+                                <td>$Model </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$result </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>True if function applied</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__emulateOrder" name="method__emulateOrder" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_emulateOrder()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_emulateOrder(\Model  <span class="argument">$Model</span>, array  <span class="argument">$result</span>) </pre>
+                <p><em>Sort result</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Model</td>
+                                <td>$Model </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$result </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__emulateFields" name="method__emulateFields" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_emulateFields()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_emulateFields(\Model  <span class="argument">$Model</span>, array  <span class="argument">$result</span>) </pre>
+                <p><em>Remove not specified fields from result</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Model</td>
+                                <td>$Model </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$result </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__emulateLimit" name="method__emulateLimit" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_emulateLimit()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_emulateLimit(\Model  <span class="argument">$Model</span>, array  <span class="argument">$result</span>) </pre>
+                <p><em>Slice result</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Model</td>
+                                <td>$Model </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$result </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__singleRequest" name="method__singleRequest" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_singleRequest()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_singleRequest(array  <span class="argument">$request</span>, string  <span class="argument">$requestMethod</span>, \Model  <span class="argument">$model = null</span>) : array|boolean</pre>
+                <p><em>Single request</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$request </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$requestMethod </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Model</td>
+                                <td>$model </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array|boolean
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__buildRequest" name="method__buildRequest" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_buildRequest()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_buildRequest(string  <span class="argument">$method</span>, \Model  <span class="argument">$model</span>, array  <span class="argument">$queryData = array()</span>, array  <span class="argument">$fields = null</span>, array  <span class="argument">$values = null</span>, array  <span class="argument">$conditions = null</span>, integer  <span class="argument">$recursive = null</span>) </pre>
+                <p><em>Build request depends on parameters and config and store it in $model-&gt;request</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$method </td>
+                                <td><p>create/read/update/delete</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Model</td>
+                                <td>$model </td>
+                                <td><p>The model being read.</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$queryData </td>
+                                <td><p>Query data for read</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$fields </td>
+                                <td><p>Fields for save/create</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$values </td>
+                                <td><p>Fields values for update/create</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$conditions </td>
+                                <td><p>Conditions for update</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$recursive </td>
+                                <td><p>Number of levels of association. NOT USED YET</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\HttpSourceException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__writeQueryCache" name="method__writeQueryCache" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_writeQueryCache()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_writeQueryCache(array  <span class="argument">$request</span>, mixed  <span class="argument">$data</span>) </pre>
+                <p><em>Writes a new key for the in memory query cache and cache specified by current endpoint</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$request </td>
+                                <td><p>Http request</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$data </td>
+                                <td><p>result of $request query</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__extractResult" name="method__extractResult" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_extractResult()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_extractResult(\Model  <span class="argument">$model</span>, array  <span class="argument">$result</span>, string  <span class="argument">$requestMethod</span>, boolean  <span class="argument">$force = false</span>) : array</pre>
+                <p><em>Extract data from decoded response</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Model</td>
+                                <td>$model </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$result </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$requestMethod </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$force </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__splitRequest" name="method__splitRequest" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_splitRequest()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_splitRequest(array  <span class="argument">$request</span>) : array</pre>
+                <p><em>Split request into subequests</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$request </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__joinResponses" name="method__joinResponses" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_joinResponses()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_joinResponses(array  <span class="argument">$responses</span>) : array</pre>
+                <p><em>Join responses into single response</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$responses </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__requestToModel" name="method__requestToModel" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_requestToModel()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_requestToModel(array  <span class="argument">$request</span>, \Model  <span class="argument">$Model = null</span>) : \Model</pre>
+                <p><em>Fill request parameter of the model, if no model specified - create basic model</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$request </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Model</td>
+                                <td>$Model </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Model
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__loadConfig" name="method__loadConfig" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_loadConfig()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_loadConfig(string  <span class="argument">$plugin</span>) </pre>
+                <p><em>Load config wrapper</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$plugin </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__setConfig" name="method__setConfig" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_setConfig()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_setConfig(\HttpSourceConfig  <span class="argument">$Config</span>) </pre>
+                <p><em>Set config</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/HttpSourceConfig.html">\HttpSourceConfig</a></td>
+                                <td>$Config </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\HttpSourceException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__getCurrentEndpoint" name="method__getCurrentEndpoint" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_getCurrentEndpoint()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_getCurrentEndpoint() : \HttpSourceEndpoint</pre>
+                <p><em>Return current endpoint or create new</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/HttpSourceEndpoint.html">\HttpSourceEndpoint</a>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__getQueryData" name="method__getQueryData" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_getQueryData()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_getQueryData(string  <span class="argument">$path = null</span>) : mixed</pre>
+                <p><em>Return current query data</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/HttpSource.html"><div class="path-wrapper">\HttpSource</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">TestHttpSource.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Plugin/TestHttpSource/Model/Datasource/Http/TestHttpSource.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on August 29th, 2014 at 13:31.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
