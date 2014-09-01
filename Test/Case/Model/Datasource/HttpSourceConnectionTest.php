@@ -1036,7 +1036,7 @@ class HttpSourceConnectionTest extends CakeTestCase {
 				$logsCount = $response ? count($attempts) - 1 : count($attempts);
 				$Connection->expects($this->exactly($logsCount))
 						->method('log')
-						->with($this->matches("%x\nError: $lastError\nQuery:\n%s\nDump:\n%s"));
+						->with($this->matches("%x\nError: $lastError\nQuery:\n%s\nDump:\n%s"), 'HttpSourceError');
 			}
 		}
 		$this->assertSame($response, $Connection->request($request));
