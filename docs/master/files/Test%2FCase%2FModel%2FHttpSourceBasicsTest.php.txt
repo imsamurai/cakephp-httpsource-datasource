@@ -49,6 +49,16 @@ class HttpSourceBasicsTest extends HttpSourceAppTest {
 
 		$this->assertSame(1, $result[$this->HttpModel->alias]['id']);
 	}
+	
+	/**
+	 * Test find('all') on real server (github)
+	 */
+	public function testFindAll() {
+		$this->HttpModel->setSource('default');
+		$result = $this->HttpModel->find('all');
+
+		$this->assertCount(1, $result);
+	}
 
 }
 

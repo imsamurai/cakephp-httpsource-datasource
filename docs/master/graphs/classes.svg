@@ -20,490 +20,490 @@
 <path fill="none" stroke="gray" d="M8,-256C8,-250 14,-244 20,-244"/>
 <text text-anchor="middle" x="868" y="-1816.1" font-family="Times Roman,serif" font-size="11.00" fill="gray">Global</text>
 </g>
-<!-- \\TestHttpSourceModel -->
-<g id="node2" class="node"><title>\\TestHttpSourceModel</title>
-<polygon fill="none" stroke="black" points="1648,-1476 1504,-1476 1504,-1440 1648,-1440 1648,-1476"/>
-<text text-anchor="middle" x="1576" y="-1455.1" font-family="Courier,monospace" font-size="11.00">TestHttpSourceModel</text>
-</g>
-<!-- \\HttpSourceModel -->
-<g id="node45" class="node"><title>\\HttpSourceModel</title>
-<polygon fill="none" stroke="black" points="1252,-1449 1134,-1449 1134,-1413 1252,-1413 1252,-1449"/>
-<text text-anchor="start" x="1159" y="-1436.43" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
-<text text-anchor="start" x="1142" y="-1423.23" font-family="Courier,monospace" font-size="11.00">HttpSourceModel</text>
-</g>
-<!-- \\TestHttpSourceModel&#45;&gt;\\HttpSourceModel -->
-<g id="edge3" class="edge"><title>\\TestHttpSourceModel&#45;&gt;\\HttpSourceModel</title>
-<path fill="none" stroke="black" d="M1503.06,-1452.86C1434,-1447.99 1331.04,-1440.73 1262.98,-1435.93"/>
-<polygon fill="none" stroke="black" points="1263,-1432.43 1252.78,-1435.21 1262.51,-1439.41 1263,-1432.43"/>
-</g>
-<!-- \\TestHttpSource -->
-<g id="node3" class="node"><title>\\TestHttpSource</title>
-<polygon fill="none" stroke="black" points="1631,-1692 1521,-1692 1521,-1656 1631,-1656 1631,-1692"/>
-<text text-anchor="middle" x="1576" y="-1671.1" font-family="Courier,monospace" font-size="11.00">TestHttpSource</text>
-</g>
-<!-- \\HttpSource -->
-<g id="node47" class="node"><title>\\HttpSource</title>
-<polygon fill="none" stroke="black" points="1235,-1584 1151,-1584 1151,-1548 1235,-1548 1235,-1584"/>
-<text text-anchor="start" x="1159" y="-1571.43" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
-<text text-anchor="start" x="1159" y="-1558.23" font-family="Courier,monospace" font-size="11.00">HttpSource</text>
-</g>
-<!-- \\TestHttpSource&#45;&gt;\\HttpSource -->
-<g id="edge5" class="edge"><title>\\TestHttpSource&#45;&gt;\\HttpSource</title>
-<path fill="none" stroke="black" d="M1520.22,-1669.55C1492.77,-1665.88 1459.71,-1659.19 1432,-1647 1395.39,-1630.89 1396.81,-1608.65 1360,-1593 1323.75,-1577.59 1279.64,-1570.92 1245.86,-1568.05"/>
-<polygon fill="none" stroke="black" points="1245.97,-1564.55 1235.73,-1567.28 1245.44,-1571.53 1245.97,-1564.55"/>
-</g>
-<!-- \\TestHttpSourceConnection -->
-<g id="node4" class="node"><title>\\TestHttpSourceConnection</title>
-<polygon fill="none" stroke="black" points="1665,-1800 1487,-1800 1487,-1764 1665,-1764 1665,-1800"/>
-<text text-anchor="middle" x="1576" y="-1779.1" font-family="Courier,monospace" font-size="11.00">TestHttpSourceConnection</text>
-</g>
-<!-- \\HttpSourceConnection -->
-<g id="node46" class="node"><title>\\HttpSourceConnection</title>
-<polygon fill="none" stroke="black" points="1269,-1800 1117,-1800 1117,-1764 1269,-1764 1269,-1800"/>
-<text text-anchor="middle" x="1193" y="-1779.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConnection</text>
-</g>
-<!-- \\TestHttpSourceConnection&#45;&gt;\\HttpSourceConnection -->
-<g id="edge7" class="edge"><title>\\TestHttpSourceConnection&#45;&gt;\\HttpSourceConnection</title>
-<path fill="none" stroke="black" d="M1486.2,-1782C1423.69,-1782 1340.79,-1782 1279.1,-1782"/>
-<polygon fill="none" stroke="black" points="1279,-1778.5 1269,-1782 1279,-1785.5 1279,-1778.5"/>
-</g>
-<!-- \\HttpSourceAppTest -->
-<g id="node5" class="node"><title>\\HttpSourceAppTest</title>
-<polygon fill="none" stroke="black" points="1259,-1314 1127,-1314 1127,-1278 1259,-1278 1259,-1314"/>
-<text text-anchor="start" x="1159" y="-1301.43" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
-<text text-anchor="start" x="1135.5" y="-1288.23" font-family="Courier,monospace" font-size="11.00">HttpSourceAppTest</text>
-</g>
-<!-- \\CakeTestCase -->
-<g id="node53" class="node"><title>\\CakeTestCase</title>
-<ellipse fill="none" stroke="black" cx="1193" cy="-72" rx="82.0244" ry="18.3848"/>
-<text text-anchor="middle" x="1193" y="-68.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\CakeTestCase</text>
-</g>
-<!-- \\HttpSourceAppTest&#45;&gt;\\CakeTestCase -->
-<g id="edge9" class="edge"><title>\\HttpSourceAppTest&#45;&gt;\\CakeTestCase</title>
-<path fill="none" stroke="black" d="M1259.38,-1306.77C1305.79,-1310.08 1364.84,-1304.9 1396,-1265 1435.56,-1214.34 1435.56,-158.664 1396,-108 1368,-72.1424 1317.77,-63.0163 1274.28,-62.917"/>
-<polygon fill="none" stroke="black" points="1274.2,-59.4176 1264.25,-63.0498 1274.3,-66.417 1274.2,-59.4176"/>
-</g>
-<!-- \\HttpSourceUserFixture -->
-<g id="node6" class="node"><title>\\HttpSourceUserFixture</title>
-<polygon fill="none" stroke="black" points="1655,-1152 1497,-1152 1497,-1116 1655,-1116 1655,-1152"/>
-<text text-anchor="middle" x="1576" y="-1131.1" font-family="Courier,monospace" font-size="11.00">HttpSourceUserFixture</text>
+<!-- \\HttpSourceTestFixture -->
+<g id="node2" class="node"><title>\\HttpSourceTestFixture</title>
+<polygon fill="none" stroke="black" points="1655,-1260 1497,-1260 1497,-1224 1655,-1224 1655,-1260"/>
+<text text-anchor="middle" x="1576" y="-1239.1" font-family="Courier,monospace" font-size="11.00">HttpSourceTestFixture</text>
 </g>
 <!-- \\CakeTestFixture -->
-<g id="node55" class="node"><title>\\CakeTestFixture</title>
+<g id="node50" class="node"><title>\\CakeTestFixture</title>
 <ellipse fill="none" stroke="black" cx="1193" cy="-218" rx="92.1303" ry="18.3848"/>
 <text text-anchor="middle" x="1193" y="-214.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\CakeTestFixture</text>
 </g>
+<!-- \\HttpSourceTestFixture&#45;&gt;\\CakeTestFixture -->
+<g id="edge3" class="edge"><title>\\HttpSourceTestFixture&#45;&gt;\\CakeTestFixture</title>
+<path fill="none" stroke="black" d="M1496.64,-1244.87C1472.6,-1241.55 1448.28,-1233.2 1432,-1215 1287.19,-1053.05 1509.16,-397.959 1360,-240 1340.06,-218.888 1310.47,-210.844 1281.71,-208.906"/>
+<polygon fill="none" stroke="black" points="1281.73,-205.404 1271.59,-208.464 1281.43,-212.397 1281.73,-205.404"/>
+</g>
+<!-- \\HttpSourceAppTest -->
+<g id="node3" class="node"><title>\\HttpSourceAppTest</title>
+<polygon fill="none" stroke="black" points="1259,-1800 1127,-1800 1127,-1764 1259,-1764 1259,-1800"/>
+<text text-anchor="start" x="1159" y="-1787.43" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
+<text text-anchor="start" x="1135.5" y="-1774.23" font-family="Courier,monospace" font-size="11.00">HttpSourceAppTest</text>
+</g>
+<!-- \\CakeTestCase -->
+<g id="node52" class="node"><title>\\CakeTestCase</title>
+<ellipse fill="none" stroke="black" cx="1193" cy="-126" rx="82.0244" ry="18.3848"/>
+<text text-anchor="middle" x="1193" y="-122.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\CakeTestCase</text>
+</g>
+<!-- \\HttpSourceAppTest&#45;&gt;\\CakeTestCase -->
+<g id="edge5" class="edge"><title>\\HttpSourceAppTest&#45;&gt;\\CakeTestCase</title>
+<path fill="none" stroke="black" d="M1259.31,-1790.77C1305.68,-1792.76 1364.72,-1786.06 1396,-1746 1422.43,-1712.15 1420.62,-235.184 1396,-200 1369.61,-162.293 1321.89,-143.732 1279.34,-134.626"/>
+<polygon fill="none" stroke="black" points="1280,-131.188 1269.51,-132.665 1278.63,-138.052 1280,-131.188"/>
+</g>
+<!-- \\HttpSourceUsersDocumentFixture -->
+<g id="node4" class="node"><title>\\HttpSourceUsersDocumentFixture</title>
+<polygon fill="none" stroke="black" points="1685,-1206 1467,-1206 1467,-1170 1685,-1170 1685,-1206"/>
+<text text-anchor="middle" x="1576" y="-1185.1" font-family="Courier,monospace" font-size="11.00">HttpSourceUsersDocumentFixture</text>
+</g>
+<!-- \\HttpSourceUsersDocumentFixture&#45;&gt;\\CakeTestFixture -->
+<g id="edge7" class="edge"><title>\\HttpSourceUsersDocumentFixture&#45;&gt;\\CakeTestFixture</title>
+<path fill="none" stroke="black" d="M1466.37,-1183.45C1453.32,-1178.59 1441.35,-1171.41 1432,-1161 1294.83,-1008.26 1501.27,-388.956 1360,-240 1340.11,-219.026 1310.68,-210.969 1282.05,-208.981"/>
+<polygon fill="none" stroke="black" points="1282.12,-205.481 1271.97,-208.52 1281.8,-212.474 1282.12,-205.481"/>
+</g>
+<!-- \\HttpSourceUserFixture -->
+<g id="node5" class="node"><title>\\HttpSourceUserFixture</title>
+<polygon fill="none" stroke="black" points="1655,-1152 1497,-1152 1497,-1116 1655,-1116 1655,-1152"/>
+<text text-anchor="middle" x="1576" y="-1131.1" font-family="Courier,monospace" font-size="11.00">HttpSourceUserFixture</text>
+</g>
 <!-- \\HttpSourceUserFixture&#45;&gt;\\CakeTestFixture -->
-<g id="edge11" class="edge"><title>\\HttpSourceUserFixture&#45;&gt;\\CakeTestFixture</title>
+<g id="edge9" class="edge"><title>\\HttpSourceUserFixture&#45;&gt;\\CakeTestFixture</title>
 <path fill="none" stroke="black" d="M1496.73,-1136.79C1472.7,-1133.46 1448.36,-1125.13 1432,-1107 1302.48,-963.472 1493.38,-379.955 1360,-240 1340.06,-219.074 1310.62,-211.028 1281.99,-209.036"/>
 <polygon fill="none" stroke="black" points="1282.06,-205.535 1271.91,-208.572 1281.74,-212.528 1282.06,-205.535"/>
 </g>
-<!-- \\HttpSourceUsersDocumentFixture -->
-<g id="node7" class="node"><title>\\HttpSourceUsersDocumentFixture</title>
-<polygon fill="none" stroke="black" points="1685,-1260 1467,-1260 1467,-1224 1685,-1224 1685,-1260"/>
-<text text-anchor="middle" x="1576" y="-1239.1" font-family="Courier,monospace" font-size="11.00">HttpSourceUsersDocumentFixture</text>
-</g>
-<!-- \\HttpSourceUsersDocumentFixture&#45;&gt;\\CakeTestFixture -->
-<g id="edge13" class="edge"><title>\\HttpSourceUsersDocumentFixture&#45;&gt;\\CakeTestFixture</title>
-<path fill="none" stroke="black" d="M1466.33,-1237.49C1453.29,-1232.62 1441.32,-1225.43 1432,-1215 1287.19,-1053.05 1509.16,-397.959 1360,-240 1340.06,-218.888 1310.47,-210.844 1281.71,-208.906"/>
-<polygon fill="none" stroke="black" points="1281.73,-205.404 1271.59,-208.464 1281.43,-212.397 1281.73,-205.404"/>
-</g>
 <!-- \\HttpSourceDocument -->
-<g id="node8" class="node"><title>\\HttpSourceDocument</title>
+<g id="node6" class="node"><title>\\HttpSourceDocument</title>
 <polygon fill="none" stroke="black" points="1645,-1422 1507,-1422 1507,-1386 1645,-1386 1645,-1422"/>
 <text text-anchor="middle" x="1576" y="-1401.1" font-family="Courier,monospace" font-size="11.00">HttpSourceDocument</text>
 </g>
+<!-- \\HttpSourceModel -->
+<g id="node36" class="node"><title>\\HttpSourceModel</title>
+<polygon fill="none" stroke="black" points="1252,-1395 1134,-1395 1134,-1359 1252,-1359 1252,-1395"/>
+<text text-anchor="start" x="1159" y="-1382.43" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
+<text text-anchor="start" x="1142" y="-1369.23" font-family="Courier,monospace" font-size="11.00">HttpSourceModel</text>
+</g>
 <!-- \\HttpSourceDocument&#45;&gt;\\HttpSourceModel -->
-<g id="edge15" class="edge"><title>\\HttpSourceDocument&#45;&gt;\\HttpSourceModel</title>
-<path fill="none" stroke="black" d="M1506.64,-1408.89C1437.65,-1413.75 1332.34,-1421.18 1263.09,-1426.06"/>
-<polygon fill="none" stroke="black" points="1262.45,-1422.6 1252.72,-1426.79 1262.94,-1429.58 1262.45,-1422.6"/>
+<g id="edge11" class="edge"><title>\\HttpSourceDocument&#45;&gt;\\HttpSourceModel</title>
+<path fill="none" stroke="black" d="M1506.64,-1399.11C1437.65,-1394.25 1332.34,-1386.82 1263.09,-1381.94"/>
+<polygon fill="none" stroke="black" points="1262.94,-1378.42 1252.72,-1381.21 1262.45,-1385.4 1262.94,-1378.42"/>
 </g>
 <!-- \\HttpSourceUser -->
-<g id="node9" class="node"><title>\\HttpSourceUser</title>
+<g id="node7" class="node"><title>\\HttpSourceUser</title>
 <polygon fill="none" stroke="black" points="1631,-1098 1521,-1098 1521,-1062 1631,-1062 1631,-1098"/>
 <text text-anchor="middle" x="1576" y="-1077.1" font-family="Courier,monospace" font-size="11.00">HttpSourceUser</text>
 </g>
 <!-- \\AppModel -->
-<g id="node59" class="node"><title>\\AppModel</title>
+<g id="node57" class="node"><title>\\AppModel</title>
 <ellipse fill="none" stroke="black" cx="814" cy="-164" rx="62.2254" ry="18.3848"/>
 <text text-anchor="middle" x="814" y="-160.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\AppModel</text>
 </g>
 <!-- \\HttpSourceUser&#45;&gt;\\AppModel -->
-<g id="edge17" class="edge"><title>\\HttpSourceUser&#45;&gt;\\AppModel</title>
+<g id="edge13" class="edge"><title>\\HttpSourceUser&#45;&gt;\\AppModel</title>
 <path fill="none" stroke="black" d="M1520.36,-1084.62C1489.82,-1083.92 1453.82,-1077.17 1432,-1053 1303.18,-910.325 1498.21,-324.597 1360,-191 1326.71,-158.824 1026.99,-160.011 886.308,-162.395"/>
 <polygon fill="none" stroke="black" points="885.989,-158.9 876.052,-162.576 886.113,-165.899 885.989,-158.9"/>
 </g>
-<!-- \\AllHttpSourceTest -->
-<g id="node10" class="node"><title>\\AllHttpSourceTest</title>
-<polygon fill="none" stroke="black" points="1641,-1044 1511,-1044 1511,-1008 1641,-1008 1641,-1044"/>
-<text text-anchor="middle" x="1576" y="-1023.1" font-family="Courier,monospace" font-size="11.00">AllHttpSourceTest</text>
+<!-- \\HttpSourceToDboAssociationTest -->
+<g id="node8" class="node"><title>\\HttpSourceToDboAssociationTest</title>
+<polygon fill="none" stroke="black" points="1685,-1746 1467,-1746 1467,-1710 1685,-1710 1685,-1746"/>
+<text text-anchor="middle" x="1576" y="-1725.1" font-family="Courier,monospace" font-size="11.00">HttpSourceToDboAssociationTest</text>
 </g>
-<!-- \\PHPUnit_Framework_TestSuite -->
-<g id="node61" class="node"><title>\\PHPUnit_Framework_TestSuite</title>
-<ellipse fill="none" stroke="black" cx="1193" cy="-126" rx="166.877" ry="18.3848"/>
-<text text-anchor="middle" x="1193" y="-122.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\PHPUnit_Framework_TestSuite</text>
+<!-- \\HttpSourceToDboAssociationTest&#45;&gt;\\HttpSourceAppTest -->
+<g id="edge15" class="edge"><title>\\HttpSourceToDboAssociationTest&#45;&gt;\\HttpSourceAppTest</title>
+<path fill="none" stroke="black" d="M1466.25,-1743.47C1403.17,-1752.37 1325.52,-1763.32 1269.14,-1771.26"/>
+<polygon fill="none" stroke="black" points="1268.64,-1767.8 1259.22,-1772.66 1269.61,-1774.73 1268.64,-1767.8"/>
 </g>
-<!-- \\AllHttpSourceTest&#45;&gt;\\PHPUnit_Framework_TestSuite -->
-<g id="edge19" class="edge"><title>\\AllHttpSourceTest&#45;&gt;\\PHPUnit_Framework_TestSuite</title>
-<path fill="none" stroke="black" d="M1510.19,-1030.14C1482.14,-1028.21 1451.45,-1020.5 1432,-999 1306.16,-859.907 1485.57,-297.343 1360,-158 1354.03,-151.38 1347.15,-145.876 1339.66,-141.317"/>
-<polygon fill="none" stroke="black" points="1341.05,-138.09 1330.59,-136.39 1337.7,-144.24 1341.05,-138.09"/>
+<!-- \\HttpSourceModelTest -->
+<g id="node9" class="node"><title>\\HttpSourceModelTest</title>
+<polygon fill="none" stroke="black" points="1648,-936 1504,-936 1504,-900 1648,-900 1648,-936"/>
+<text text-anchor="middle" x="1576" y="-915.1" font-family="Courier,monospace" font-size="11.00">HttpSourceModelTest</text>
 </g>
-<!-- \\HttpSourceConfigFactoryItemTest -->
-<g id="node11" class="node"><title>\\HttpSourceConfigFactoryItemTest</title>
-<polygon fill="none" stroke="black" points="1689,-990 1463,-990 1463,-954 1689,-954 1689,-990"/>
-<text text-anchor="middle" x="1576" y="-969.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConfigFactoryItemTest</text>
+<!-- \\HttpSourceModelTest&#45;&gt;\\CakeTestCase -->
+<g id="edge17" class="edge"><title>\\HttpSourceModelTest&#45;&gt;\\CakeTestCase</title>
+<path fill="none" stroke="black" d="M1503.26,-921.416C1477.25,-918.696 1449.96,-910.599 1432,-891 1321.43,-770.318 1470.33,-278.901 1360,-158 1340.51,-136.641 1311.48,-126.942 1283.08,-123.107"/>
+<polygon fill="none" stroke="black" points="1283.4,-119.621 1273.07,-121.986 1282.62,-126.578 1283.4,-119.621"/>
 </g>
-<!-- \\HttpSourceConfigFactoryItemTest&#45;&gt;\\CakeTestCase -->
-<g id="edge21" class="edge"><title>\\HttpSourceConfigFactoryItemTest&#45;&gt;\\CakeTestCase</title>
-<path fill="none" stroke="black" d="M1462.9,-966.012C1451.22,-961.211 1440.53,-954.433 1432,-945 1305.45,-805.054 1488.29,-237.35 1360,-99 1339.46,-76.8464 1308.46,-68.1374 1278.72,-65.6451"/>
-<polygon fill="none" stroke="black" points="1278.9,-62.1495 1268.7,-65.0277 1278.47,-69.1362 1278.9,-62.1495"/>
+<!-- \\HttpSourceTestModel -->
+<g id="node10" class="node"><title>\\HttpSourceTestModel</title>
+<polygon fill="none" stroke="black" points="1648,-1368 1504,-1368 1504,-1332 1648,-1332 1648,-1368"/>
+<text text-anchor="middle" x="1576" y="-1347.1" font-family="Courier,monospace" font-size="11.00">HttpSourceTestModel</text>
 </g>
-<!-- \\HttpSourceConfigFactoryItemiAmExistsANDValid -->
-<g id="node12" class="node"><title>\\HttpSourceConfigFactoryItemiAmExistsANDValid</title>
-<polygon fill="none" stroke="black" points="602,-1800 288,-1800 288,-1764 602,-1764 602,-1800"/>
-<text text-anchor="middle" x="445" y="-1779.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConfigFactoryItemiAmExistsANDValid</text>
+<!-- \\HttpSourceTestModel&#45;&gt;\\HttpSourceModel -->
+<g id="edge19" class="edge"><title>\\HttpSourceTestModel&#45;&gt;\\HttpSourceModel</title>
+<path fill="none" stroke="black" d="M1503.06,-1355.14C1434,-1360.01 1331.04,-1367.27 1262.98,-1372.07"/>
+<polygon fill="none" stroke="black" points="1262.51,-1368.59 1252.78,-1372.79 1263,-1375.57 1262.51,-1368.59"/>
 </g>
-<!-- \\HttpSourceConfigFactoryItem -->
-<g id="node42" class="node"><title>\\HttpSourceConfigFactoryItem</title>
-<polygon fill="none" stroke="black" points="216,-1719 16,-1719 16,-1683 216,-1683 216,-1719"/>
-<text text-anchor="start" x="82" y="-1706.43" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
-<text text-anchor="start" x="24.5" y="-1693.23" font-family="Courier,monospace" font-size="11.00">HttpSourceConfigFactoryItem</text>
+<!-- \\HttpSourceBasicsTest -->
+<g id="node11" class="node"><title>\\HttpSourceBasicsTest</title>
+<polygon fill="none" stroke="black" points="1652,-1800 1500,-1800 1500,-1764 1652,-1764 1652,-1800"/>
+<text text-anchor="middle" x="1576" y="-1779.1" font-family="Courier,monospace" font-size="11.00">HttpSourceBasicsTest</text>
 </g>
-<!-- \\HttpSourceConfigFactoryItemiAmExistsANDValid&#45;&gt;\\HttpSourceConfigFactoryItem -->
-<g id="edge23" class="edge"><title>\\HttpSourceConfigFactoryItemiAmExistsANDValid&#45;&gt;\\HttpSourceConfigFactoryItem</title>
-<path fill="none" stroke="black" d="M329.315,-1763.92C315.337,-1761.2 301.307,-1758.22 288,-1755 250.643,-1745.97 209.55,-1733.17 176.899,-1722.31"/>
-<polygon fill="none" stroke="black" points="177.645,-1718.87 167.051,-1719 175.418,-1725.5 177.645,-1718.87"/>
+<!-- \\HttpSourceBasicsTest&#45;&gt;\\HttpSourceAppTest -->
+<g id="edge21" class="edge"><title>\\HttpSourceBasicsTest&#45;&gt;\\HttpSourceAppTest</title>
+<path fill="none" stroke="black" d="M1499.87,-1782C1432.95,-1782 1336.07,-1782 1269.14,-1782"/>
+<polygon fill="none" stroke="black" points="1269.08,-1778.5 1259.08,-1782 1269.08,-1785.5 1269.08,-1778.5"/>
 </g>
-<!-- \\HttpSourceConditionTest -->
-<g id="node13" class="node"><title>\\HttpSourceConditionTest</title>
-<polygon fill="none" stroke="black" points="1662,-882 1490,-882 1490,-846 1662,-846 1662,-882"/>
-<text text-anchor="middle" x="1576" y="-861.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConditionTest</text>
+<!-- \\HttpSourceTest -->
+<g id="node12" class="node"><title>\\HttpSourceTest</title>
+<polygon fill="none" stroke="black" points="1631,-882 1521,-882 1521,-846 1631,-846 1631,-882"/>
+<text text-anchor="middle" x="1576" y="-861.1" font-family="Courier,monospace" font-size="11.00">HttpSourceTest</text>
 </g>
-<!-- \\HttpSourceConditionTest&#45;&gt;\\CakeTestCase -->
-<g id="edge25" class="edge"><title>\\HttpSourceConditionTest&#45;&gt;\\CakeTestCase</title>
-<path fill="none" stroke="black" d="M1489.75,-865.507C1468.12,-861.572 1446.86,-853.228 1432,-837 1320.73,-715.466 1472.79,-219.13 1360,-99 1339.5,-77.1653 1308.83,-68.4417 1279.35,-65.8485"/>
-<polygon fill="none" stroke="black" points="1279.2,-62.3313 1268.99,-65.1755 1278.74,-69.3165 1279.2,-62.3313"/>
+<!-- \\HttpSourceTest&#45;&gt;\\CakeTestCase -->
+<g id="edge23" class="edge"><title>\\HttpSourceTest&#45;&gt;\\CakeTestCase</title>
+<path fill="none" stroke="black" d="M1520.21,-868.431C1489.81,-867.618 1454,-860.827 1432,-837 1226.13,-614.035 1565.42,-381.373 1360,-158 1340.52,-136.813 1311.65,-127.124 1283.37,-123.246"/>
+<polygon fill="none" stroke="black" points="1283.74,-119.766 1273.41,-122.108 1282.95,-126.721 1283.74,-119.766"/>
 </g>
-<!-- \\HttpSourceConfigTest -->
-<g id="node14" class="node"><title>\\HttpSourceConfigTest</title>
-<polygon fill="none" stroke="black" points="1652,-828 1500,-828 1500,-792 1652,-792 1652,-828"/>
-<text text-anchor="middle" x="1576" y="-807.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConfigTest</text>
+<!-- \\HttpTestSource -->
+<g id="node13" class="node"><title>\\HttpTestSource</title>
+<polygon fill="none" stroke="black" points="1631,-1638 1521,-1638 1521,-1602 1631,-1602 1631,-1638"/>
+<text text-anchor="middle" x="1576" y="-1617.1" font-family="Courier,monospace" font-size="11.00">HttpTestSource</text>
 </g>
-<!-- \\HttpSourceConfigTest&#45;&gt;\\CakeTestCase -->
-<g id="edge27" class="edge"><title>\\HttpSourceConfigTest&#45;&gt;\\CakeTestCase</title>
-<path fill="none" stroke="black" d="M1499.97,-812.967C1474.99,-809.904 1449.25,-801.695 1432,-783 1224.72,-558.332 1570.08,-321.053 1360,-99 1339.51,-77.339 1309,-68.6126 1279.65,-65.9682"/>
-<polygon fill="none" stroke="black" points="1279.54,-62.4534 1269.33,-65.2752 1279.08,-69.4377 1279.54,-62.4534"/>
+<!-- \\HttpSource -->
+<g id="node38" class="node"><title>\\HttpSource</title>
+<polygon fill="none" stroke="black" points="1235,-1584 1151,-1584 1151,-1548 1235,-1548 1235,-1584"/>
+<text text-anchor="start" x="1159" y="-1571.43" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
+<text text-anchor="start" x="1159" y="-1558.23" font-family="Courier,monospace" font-size="11.00">HttpSource</text>
 </g>
-<!-- \\HttpSourceEndpointItemTest -->
-<g id="node15" class="node"><title>\\HttpSourceEndpointItemTest</title>
-<polygon fill="none" stroke="black" points="1672,-774 1480,-774 1480,-738 1672,-738 1672,-774"/>
-<text text-anchor="middle" x="1576" y="-753.1" font-family="Courier,monospace" font-size="11.00">HttpSourceEndpointItemTest</text>
+<!-- \\HttpTestSource&#45;&gt;\\HttpSource -->
+<g id="edge25" class="edge"><title>\\HttpTestSource&#45;&gt;\\HttpSource</title>
+<path fill="none" stroke="black" d="M1520.31,-1612.15C1446.75,-1601.78 1318.1,-1583.64 1245.95,-1573.46"/>
+<polygon fill="none" stroke="black" points="1246.11,-1569.95 1235.72,-1572.02 1245.14,-1576.89 1246.11,-1569.95"/>
 </g>
-<!-- \\HttpSourceEndpointItemTest&#45;&gt;\\CakeTestCase -->
-<g id="edge29" class="edge"><title>\\HttpSourceEndpointItemTest&#45;&gt;\\CakeTestCase</title>
-<path fill="none" stroke="black" d="M1479.84,-755.169C1461.8,-750.626 1444.65,-742.591 1432,-729 1239.98,-522.721 1554.59,-302.857 1360,-99 1339.5,-77.5256 1309.15,-68.8001 1279.93,-66.1036"/>
-<polygon fill="none" stroke="black" points="1279.88,-62.5916 1269.66,-65.3903 1279.39,-69.5748 1279.88,-62.5916"/>
+<!-- \\HttpSourceConnectionTest -->
+<g id="node14" class="node"><title>\\HttpSourceConnectionTest</title>
+<polygon fill="none" stroke="black" points="1665,-774 1487,-774 1487,-738 1665,-738 1665,-774"/>
+<text text-anchor="middle" x="1576" y="-753.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConnectionTest</text>
 </g>
-<!-- \\HttpSourceEndpointItemiAmExistsANDValid -->
-<g id="node16" class="node"><title>\\HttpSourceEndpointItemiAmExistsANDValid</title>
-<polygon fill="none" stroke="black" points="954,-1584 674,-1584 674,-1548 954,-1548 954,-1584"/>
-<text text-anchor="middle" x="814" y="-1563.1" font-family="Courier,monospace" font-size="11.00">HttpSourceEndpointItemiAmExistsANDValid</text>
-</g>
-<!-- \\HttpSourceEndpointItem -->
-<g id="node39" class="node"><title>\\HttpSourceEndpointItem</title>
-<polygon fill="none" stroke="black" points="528,-1638 362,-1638 362,-1602 528,-1602 528,-1638"/>
-<text text-anchor="start" x="411" y="-1625.43" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
-<text text-anchor="start" x="370.5" y="-1612.23" font-family="Courier,monospace" font-size="11.00">HttpSourceEndpointItem</text>
-</g>
-<!-- \\HttpSourceEndpointItemiAmExistsANDValid&#45;&gt;\\HttpSourceEndpointItem -->
-<g id="edge31" class="edge"><title>\\HttpSourceEndpointItemiAmExistsANDValid&#45;&gt;\\HttpSourceEndpointItem</title>
-<path fill="none" stroke="black" d="M690.872,-1584.02C641.081,-1591.31 584.561,-1599.58 538.276,-1606.35"/>
-<polygon fill="none" stroke="black" points="537.647,-1602.9 528.26,-1607.82 538.661,-1609.83 537.647,-1602.9"/>
+<!-- \\HttpSourceConnectionTest&#45;&gt;\\CakeTestCase -->
+<g id="edge27" class="edge"><title>\\HttpSourceConnectionTest&#45;&gt;\\CakeTestCase</title>
+<path fill="none" stroke="black" d="M1486.3,-756.502C1465.97,-752.31 1446.21,-744.091 1432,-729 1256.63,-542.795 1535,-344.553 1360,-158 1340.48,-137.195 1311.91,-127.537 1283.89,-123.575"/>
+<polygon fill="none" stroke="black" points="1283.95,-120.058 1273.61,-122.363 1283.13,-127.01 1283.95,-120.058"/>
 </g>
 <!-- \\HttpSourceResultTest -->
-<g id="node17" class="node"><title>\\HttpSourceResultTest</title>
+<g id="node15" class="node"><title>\\HttpSourceResultTest</title>
 <polygon fill="none" stroke="black" points="1652,-720 1500,-720 1500,-684 1652,-684 1652,-720"/>
 <text text-anchor="middle" x="1576" y="-699.1" font-family="Courier,monospace" font-size="11.00">HttpSourceResultTest</text>
 </g>
 <!-- \\HttpSourceResultTest&#45;&gt;\\CakeTestCase -->
-<g id="edge33" class="edge"><title>\\HttpSourceResultTest&#45;&gt;\\CakeTestCase</title>
-<path fill="none" stroke="black" d="M1499.79,-704.732C1474.96,-701.616 1449.34,-693.433 1432,-675 1255.22,-487.094 1539.12,-284.676 1360,-99 1339.39,-77.6341 1309.02,-68.9314 1279.81,-66.2229"/>
-<polygon fill="none" stroke="black" points="1279.76,-62.7112 1269.54,-65.5039 1279.27,-69.6941 1279.76,-62.7112"/>
+<g id="edge29" class="edge"><title>\\HttpSourceResultTest&#45;&gt;\\CakeTestCase</title>
+<path fill="none" stroke="black" d="M1499.94,-704.596C1475.11,-701.467 1449.47,-693.311 1432,-675 1271.85,-507.147 1519.81,-326.171 1360,-158 1340.35,-137.321 1311.74,-127.695 1283.73,-123.722"/>
+<polygon fill="none" stroke="black" points="1283.8,-120.206 1273.46,-122.505 1282.98,-127.157 1283.8,-120.206"/>
 </g>
 <!-- \\HttpSourceFieldTest -->
-<g id="node18" class="node"><title>\\HttpSourceFieldTest</title>
+<g id="node16" class="node"><title>\\HttpSourceFieldTest</title>
 <polygon fill="none" stroke="black" points="1648,-666 1504,-666 1504,-630 1648,-630 1648,-666"/>
 <text text-anchor="middle" x="1576" y="-645.1" font-family="Courier,monospace" font-size="11.00">HttpSourceFieldTest</text>
 </g>
 <!-- \\HttpSourceFieldTest&#45;&gt;\\CakeTestCase -->
-<g id="edge35" class="edge"><title>\\HttpSourceFieldTest&#45;&gt;\\CakeTestCase</title>
-<path fill="none" stroke="black" d="M1503.29,-651.002C1477.44,-648.198 1450.25,-640.151 1432,-621 1270.44,-451.449 1523.67,-266.514 1360,-99 1339.34,-77.8595 1309.12,-69.1675 1280.05,-66.4038"/>
-<polygon fill="none" stroke="black" points="1280.05,-62.8952 1269.83,-65.6628 1279.55,-69.8769 1280.05,-62.8952"/>
+<g id="edge31" class="edge"><title>\\HttpSourceFieldTest&#45;&gt;\\CakeTestCase</title>
+<path fill="none" stroke="black" d="M1503.46,-650.835C1477.63,-648.011 1450.41,-639.994 1432,-621 1287.05,-471.474 1504.65,-307.814 1360,-158 1340.28,-137.573 1311.8,-127.978 1283.93,-123.96"/>
+<polygon fill="none" stroke="black" points="1284.05,-120.45 1273.71,-122.722 1283.21,-127.399 1284.05,-120.45"/>
 </g>
 <!-- \\HttpSourceEndpointTest -->
-<g id="node19" class="node"><title>\\HttpSourceEndpointTest</title>
+<g id="node17" class="node"><title>\\HttpSourceEndpointTest</title>
 <polygon fill="none" stroke="black" points="1658,-612 1494,-612 1494,-576 1658,-576 1658,-612"/>
 <text text-anchor="middle" x="1576" y="-591.1" font-family="Courier,monospace" font-size="11.00">HttpSourceEndpointTest</text>
 </g>
 <!-- \\HttpSourceEndpointTest&#45;&gt;\\CakeTestCase -->
-<g id="edge37" class="edge"><title>\\HttpSourceEndpointTest&#45;&gt;\\CakeTestCase</title>
-<path fill="none" stroke="black" d="M1493.34,-595.477C1470.7,-591.761 1448.01,-583.541 1432,-567 1285.64,-415.778 1508.24,-248.376 1360,-99 1339.27,-78.1143 1309.19,-69.4408 1280.25,-66.6198"/>
-<polygon fill="none" stroke="black" points="1280.32,-63.1147 1270.08,-65.8555 1279.79,-70.095 1280.32,-63.1147"/>
+<g id="edge33" class="edge"><title>\\HttpSourceEndpointTest&#45;&gt;\\CakeTestCase</title>
+<path fill="none" stroke="black" d="M1493.18,-595.197C1470.67,-591.446 1448.1,-583.277 1432,-567 1302.21,-435.765 1489.53,-289.492 1360,-158 1340.17,-137.865 1311.81,-128.314 1284.08,-124.248"/>
+<polygon fill="none" stroke="black" points="1284.26,-120.744 1273.91,-122.989 1283.4,-127.691 1284.26,-120.744"/>
+</g>
+<!-- \\HttpSourceEndpointItemTest -->
+<g id="node18" class="node"><title>\\HttpSourceEndpointItemTest</title>
+<polygon fill="none" stroke="black" points="1672,-558 1480,-558 1480,-522 1672,-522 1672,-558"/>
+<text text-anchor="middle" x="1576" y="-537.1" font-family="Courier,monospace" font-size="11.00">HttpSourceEndpointItemTest</text>
+</g>
+<!-- \\HttpSourceEndpointItemTest&#45;&gt;\\CakeTestCase -->
+<g id="edge35" class="edge"><title>\\HttpSourceEndpointItemTest&#45;&gt;\\CakeTestCase</title>
+<path fill="none" stroke="black" d="M1479.98,-538.127C1462.14,-533.613 1445.04,-525.854 1432,-513 1317.33,-400.006 1474.45,-271.222 1360,-158 1340.09,-138.308 1312.01,-128.815 1284.55,-124.667"/>
+<polygon fill="none" stroke="black" points="1284.84,-121.175 1274.47,-123.371 1283.95,-128.118 1284.84,-121.175"/>
+</g>
+<!-- \\HttpSourceEndpointItemiAmExistsANDValid -->
+<g id="node19" class="node"><title>\\HttpSourceEndpointItemiAmExistsANDValid</title>
+<polygon fill="none" stroke="black" points="954,-1584 674,-1584 674,-1548 954,-1548 954,-1584"/>
+<text text-anchor="middle" x="814" y="-1563.1" font-family="Courier,monospace" font-size="11.00">HttpSourceEndpointItemiAmExistsANDValid</text>
+</g>
+<!-- \\HttpSourceEndpointItem -->
+<g id="node43" class="node"><title>\\HttpSourceEndpointItem</title>
+<polygon fill="none" stroke="black" points="528,-1692 362,-1692 362,-1656 528,-1656 528,-1692"/>
+<text text-anchor="start" x="411" y="-1679.43" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
+<text text-anchor="start" x="370.5" y="-1666.23" font-family="Courier,monospace" font-size="11.00">HttpSourceEndpointItem</text>
+</g>
+<!-- \\HttpSourceEndpointItemiAmExistsANDValid&#45;&gt;\\HttpSourceEndpointItem -->
+<g id="edge37" class="edge"><title>\\HttpSourceEndpointItemiAmExistsANDValid&#45;&gt;\\HttpSourceEndpointItem</title>
+<path fill="none" stroke="black" d="M698.113,-1584.01C689.815,-1586.61 681.695,-1589.59 674,-1593 637.428,-1609.2 638.734,-1631.17 602,-1647 582.157,-1655.55 559.802,-1661.4 538.318,-1665.39"/>
+<polygon fill="none" stroke="black" points="537.441,-1661.99 528.19,-1667.16 538.642,-1668.89 537.441,-1661.99"/>
+</g>
+<!-- \\HttpSourceConfigTest -->
+<g id="node20" class="node"><title>\\HttpSourceConfigTest</title>
+<polygon fill="none" stroke="black" points="1652,-504 1500,-504 1500,-468 1652,-468 1652,-504"/>
+<text text-anchor="middle" x="1576" y="-483.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConfigTest</text>
+</g>
+<!-- \\HttpSourceConfigTest&#45;&gt;\\CakeTestCase -->
+<g id="edge39" class="edge"><title>\\HttpSourceConfigTest&#45;&gt;\\CakeTestCase</title>
+<path fill="none" stroke="black" d="M1499.79,-487.479C1475.39,-484.169 1450.06,-476.185 1432,-459 1332.36,-364.17 1459.45,-253.028 1360,-158 1339.85,-138.747 1311.85,-129.342 1284.53,-125.14"/>
+<polygon fill="none" stroke="black" points="1284.89,-121.656 1274.51,-123.819 1283.97,-128.596 1284.89,-121.656"/>
 </g>
 <!-- \\HttpSourceConfigFactoryTest -->
-<g id="node20" class="node"><title>\\HttpSourceConfigFactoryTest</title>
-<polygon fill="none" stroke="black" points="1675,-558 1477,-558 1477,-522 1675,-522 1675,-558"/>
-<text text-anchor="middle" x="1576" y="-537.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConfigFactoryTest</text>
+<g id="node21" class="node"><title>\\HttpSourceConfigFactoryTest</title>
+<polygon fill="none" stroke="black" points="1675,-450 1477,-450 1477,-414 1675,-414 1675,-450"/>
+<text text-anchor="middle" x="1576" y="-429.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConfigFactoryTest</text>
 </g>
 <!-- \\HttpSourceConfigFactoryTest&#45;&gt;\\CakeTestCase -->
-<g id="edge39" class="edge"><title>\\HttpSourceConfigFactoryTest&#45;&gt;\\CakeTestCase</title>
-<path fill="none" stroke="black" d="M1476.37,-537.518C1459.77,-532.873 1444.06,-525.22 1432,-513 1300.81,-380.074 1492.84,-230.272 1360,-99 1339.26,-78.5025 1309.48,-69.8436 1280.8,-66.9234"/>
-<polygon fill="none" stroke="black" points="1280.97,-63.4255 1270.72,-66.1199 1280.41,-70.4034 1280.97,-63.4255"/>
+<g id="edge41" class="edge"><title>\\HttpSourceConfigFactoryTest&#45;&gt;\\CakeTestCase</title>
+<path fill="none" stroke="black" d="M1476.34,-428.088C1460.04,-423.528 1444.44,-416.273 1432,-405 1347.27,-328.214 1444.58,-234.954 1360,-158 1339.58,-139.421 1311.8,-130.146 1284.75,-125.856"/>
+<polygon fill="none" stroke="black" points="1285.22,-122.388 1274.83,-124.493 1284.26,-129.322 1285.22,-122.388"/>
 </g>
 <!-- \\HttpSourceConfigFactoryiAmExists -->
-<g id="node21" class="node"><title>\\HttpSourceConfigFactoryiAmExists</title>
-<polygon fill="none" stroke="black" points="1692,-936 1460,-936 1460,-900 1692,-900 1692,-936"/>
-<text text-anchor="middle" x="1576" y="-915.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConfigFactoryiAmExists</text>
+<g id="node22" class="node"><title>\\HttpSourceConfigFactoryiAmExists</title>
+<polygon fill="none" stroke="black" points="1692,-828 1460,-828 1460,-792 1692,-792 1692,-828"/>
+<text text-anchor="middle" x="1576" y="-807.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConfigFactoryiAmExists</text>
 </g>
 <!-- \\HttpSourceConfigFactoryiAmExistsANDValid -->
-<g id="node22" class="node"><title>\\HttpSourceConfigFactoryiAmExistsANDValid</title>
-<polygon fill="none" stroke="black" points="1719,-1584 1433,-1584 1433,-1548 1719,-1548 1719,-1584"/>
-<text text-anchor="middle" x="1576" y="-1563.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConfigFactoryiAmExistsANDValid</text>
+<g id="node23" class="node"><title>\\HttpSourceConfigFactoryiAmExistsANDValid</title>
+<polygon fill="none" stroke="black" points="1719,-1530 1433,-1530 1433,-1494 1719,-1494 1719,-1530"/>
+<text text-anchor="middle" x="1576" y="-1509.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConfigFactoryiAmExistsANDValid</text>
 </g>
 <!-- \\HttpSourceConfigFactory -->
-<g id="node40" class="node"><title>\\HttpSourceConfigFactory</title>
+<g id="node46" class="node"><title>\\HttpSourceConfigFactory</title>
 <polygon fill="none" stroke="black" points="1279,-1530 1107,-1530 1107,-1494 1279,-1494 1279,-1530"/>
 <text text-anchor="middle" x="1193" y="-1509.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConfigFactory</text>
 </g>
 <!-- \\HttpSourceConfigFactoryiAmExistsANDValid&#45;&gt;\\HttpSourceConfigFactory -->
-<g id="edge41" class="edge"><title>\\HttpSourceConfigFactoryiAmExistsANDValid&#45;&gt;\\HttpSourceConfigFactory</title>
-<path fill="none" stroke="black" d="M1448.2,-1547.98C1396.31,-1540.67 1337.38,-1532.36 1289.23,-1525.57"/>
-<polygon fill="none" stroke="black" points="1289.52,-1522.07 1279.13,-1524.14 1288.54,-1529 1289.52,-1522.07"/>
+<g id="edge43" class="edge"><title>\\HttpSourceConfigFactoryiAmExistsANDValid&#45;&gt;\\HttpSourceConfigFactory</title>
+<path fill="none" stroke="black" d="M1432.3,-1512C1384.54,-1512 1332.56,-1512 1289.28,-1512"/>
+<polygon fill="none" stroke="black" points="1289.04,-1508.5 1279.04,-1512 1289.04,-1515.5 1289.04,-1508.5"/>
 </g>
 <!-- \\HttpSourceConfigiAmExistsANDValid -->
-<g id="node23" class="node"><title>\\HttpSourceConfigiAmExistsANDValid</title>
+<g id="node24" class="node"><title>\\HttpSourceConfigiAmExistsANDValid</title>
 <polygon fill="none" stroke="black" points="933,-1800 695,-1800 695,-1764 933,-1764 933,-1800"/>
 <text text-anchor="middle" x="814" y="-1779.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConfigiAmExistsANDValid</text>
 </g>
 <!-- \\HttpSourceConfig -->
-<g id="node43" class="node"><title>\\HttpSourceConfig</title>
-<polygon fill="none" stroke="black" points="507,-1746 383,-1746 383,-1710 507,-1710 507,-1746"/>
-<text text-anchor="middle" x="445" y="-1725.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConfig</text>
+<g id="node47" class="node"><title>\\HttpSourceConfig</title>
+<polygon fill="none" stroke="black" points="507,-1800 383,-1800 383,-1764 507,-1764 507,-1800"/>
+<text text-anchor="middle" x="445" y="-1779.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConfig</text>
 </g>
 <!-- \\HttpSourceConfigiAmExistsANDValid&#45;&gt;\\HttpSourceConfig -->
-<g id="edge43" class="edge"><title>\\HttpSourceConfigiAmExistsANDValid&#45;&gt;\\HttpSourceConfig</title>
-<path fill="none" stroke="black" d="M694.451,-1764.51C636.257,-1755.99 568.18,-1746.03 517.859,-1738.66"/>
-<polygon fill="none" stroke="black" points="518.122,-1735.16 507.721,-1737.18 517.109,-1742.09 518.122,-1735.16"/>
+<g id="edge45" class="edge"><title>\\HttpSourceConfigiAmExistsANDValid&#45;&gt;\\HttpSourceConfig</title>
+<path fill="none" stroke="black" d="M694.451,-1782C636.257,-1782 568.18,-1782 517.859,-1782"/>
+<polygon fill="none" stroke="black" points="517.721,-1778.5 507.721,-1782 517.721,-1785.5 517.721,-1778.5"/>
 </g>
 <!-- \\HttpSourceEndpointiAmExistsANDValid -->
-<g id="node24" class="node"><title>\\HttpSourceEndpointiAmExistsANDValid</title>
+<g id="node25" class="node"><title>\\HttpSourceEndpointiAmExistsANDValid</title>
 <polygon fill="none" stroke="black" points="940,-1746 688,-1746 688,-1710 940,-1710 940,-1746"/>
 <text text-anchor="middle" x="814" y="-1725.1" font-family="Courier,monospace" font-size="11.00">HttpSourceEndpointiAmExistsANDValid</text>
 </g>
 <!-- \\HttpSourceEndpoint -->
 <g id="node44" class="node"><title>\\HttpSourceEndpoint</title>
-<polygon fill="none" stroke="black" points="514,-1692 376,-1692 376,-1656 514,-1656 514,-1692"/>
-<text text-anchor="middle" x="445" y="-1671.1" font-family="Courier,monospace" font-size="11.00">HttpSourceEndpoint</text>
+<polygon fill="none" stroke="black" points="514,-1746 376,-1746 376,-1710 514,-1710 514,-1746"/>
+<text text-anchor="middle" x="445" y="-1725.1" font-family="Courier,monospace" font-size="11.00">HttpSourceEndpoint</text>
 </g>
 <!-- \\HttpSourceEndpointiAmExistsANDValid&#45;&gt;\\HttpSourceEndpoint -->
-<g id="edge45" class="edge"><title>\\HttpSourceEndpointiAmExistsANDValid&#45;&gt;\\HttpSourceEndpoint</title>
-<path fill="none" stroke="black" d="M690.872,-1709.98C635.89,-1701.94 572.701,-1692.69 524.151,-1685.58"/>
-<polygon fill="none" stroke="black" points="524.422,-1682.09 514.021,-1684.1 523.409,-1689.01 524.422,-1682.09"/>
+<g id="edge47" class="edge"><title>\\HttpSourceEndpointiAmExistsANDValid&#45;&gt;\\HttpSourceEndpoint</title>
+<path fill="none" stroke="black" d="M687.269,-1728C633.255,-1728 571.894,-1728 524.44,-1728"/>
+<polygon fill="none" stroke="black" points="524.228,-1724.5 514.228,-1728 524.228,-1731.5 524.228,-1724.5"/>
 </g>
 <!-- \\HttpSourceConditioniAmExistsANDValid -->
-<g id="node25" class="node"><title>\\HttpSourceConditioniAmExistsANDValid</title>
-<polygon fill="none" stroke="black" points="1706,-1746 1446,-1746 1446,-1710 1706,-1710 1706,-1746"/>
-<text text-anchor="middle" x="1576" y="-1725.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConditioniAmExistsANDValid</text>
+<g id="node26" class="node"><title>\\HttpSourceConditioniAmExistsANDValid</title>
+<polygon fill="none" stroke="black" points="1706,-1692 1446,-1692 1446,-1656 1706,-1656 1706,-1692"/>
+<text text-anchor="middle" x="1576" y="-1671.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConditioniAmExistsANDValid</text>
 </g>
 <!-- \\HttpSourceCondition -->
-<g id="node41" class="node"><title>\\HttpSourceCondition</title>
+<g id="node48" class="node"><title>\\HttpSourceCondition</title>
 <polygon fill="none" stroke="black" points="1265,-1638 1121,-1638 1121,-1602 1265,-1602 1265,-1638"/>
 <text text-anchor="middle" x="1193" y="-1617.1" font-family="Courier,monospace" font-size="11.00">HttpSourceCondition</text>
 </g>
 <!-- \\HttpSourceConditioniAmExistsANDValid&#45;&gt;\\HttpSourceCondition -->
-<g id="edge47" class="edge"><title>\\HttpSourceConditioniAmExistsANDValid&#45;&gt;\\HttpSourceCondition</title>
-<path fill="none" stroke="black" d="M1456.05,-1709.92C1447.78,-1707.34 1439.68,-1704.38 1432,-1701 1395.39,-1684.89 1396.81,-1662.65 1360,-1647 1333.76,-1635.85 1303.41,-1629.27 1275.83,-1625.4"/>
-<polygon fill="none" stroke="black" points="1276.18,-1621.92 1265.81,-1624.1 1275.28,-1628.86 1276.18,-1621.92"/>
+<g id="edge49" class="edge"><title>\\HttpSourceConditioniAmExistsANDValid&#45;&gt;\\HttpSourceCondition</title>
+<path fill="none" stroke="black" d="M1448.2,-1655.98C1391.42,-1647.98 1326.21,-1638.78 1275.92,-1631.69"/>
+<polygon fill="none" stroke="black" points="1276.13,-1628.19 1265.74,-1630.26 1275.16,-1635.12 1276.13,-1628.19"/>
 </g>
 <!-- \\HttpSourceFieldiAmExistsANDValid -->
-<g id="node26" class="node"><title>\\HttpSourceFieldiAmExistsANDValid</title>
+<g id="node27" class="node"><title>\\HttpSourceFieldiAmExistsANDValid</title>
 <polygon fill="none" stroke="black" points="1309,-1692 1077,-1692 1077,-1656 1309,-1656 1309,-1692"/>
 <text text-anchor="middle" x="1193" y="-1671.1" font-family="Courier,monospace" font-size="11.00">HttpSourceFieldiAmExistsANDValid</text>
 </g>
 <!-- \\HttpSourceField -->
-<g id="node37" class="node"><title>\\HttpSourceField</title>
+<g id="node42" class="node"><title>\\HttpSourceField</title>
 <polygon fill="none" stroke="black" points="873,-1638 755,-1638 755,-1602 873,-1602 873,-1638"/>
 <text text-anchor="middle" x="814" y="-1617.1" font-family="Courier,monospace" font-size="11.00">HttpSourceField</text>
 </g>
 <!-- \\HttpSourceFieldiAmExistsANDValid&#45;&gt;\\HttpSourceField -->
-<g id="edge49" class="edge"><title>\\HttpSourceFieldiAmExistsANDValid&#45;&gt;\\HttpSourceField</title>
+<g id="edge51" class="edge"><title>\\HttpSourceFieldiAmExistsANDValid&#45;&gt;\\HttpSourceField</title>
 <path fill="none" stroke="black" d="M1076.45,-1657.39C1013.2,-1648.38 937.147,-1637.55 883.231,-1629.86"/>
 <polygon fill="none" stroke="black" points="883.486,-1626.37 873.092,-1628.42 882.498,-1633.3 883.486,-1626.37"/>
 </g>
 <!-- \\HttpSourceResultiAmExistsANDValid -->
-<g id="node27" class="node"><title>\\HttpSourceResultiAmExistsANDValid</title>
+<g id="node28" class="node"><title>\\HttpSourceResultiAmExistsANDValid</title>
 <polygon fill="none" stroke="black" points="1312,-1746 1074,-1746 1074,-1710 1312,-1710 1312,-1746"/>
 <text text-anchor="middle" x="1193" y="-1725.1" font-family="Courier,monospace" font-size="11.00">HttpSourceResultiAmExistsANDValid</text>
 </g>
 <!-- \\HttpSourceResult -->
-<g id="node38" class="node"><title>\\HttpSourceResult</title>
+<g id="node41" class="node"><title>\\HttpSourceResult</title>
 <polygon fill="none" stroke="black" points="876,-1692 752,-1692 752,-1656 876,-1656 876,-1692"/>
 <text text-anchor="middle" x="814" y="-1671.1" font-family="Courier,monospace" font-size="11.00">HttpSourceResult</text>
 </g>
 <!-- \\HttpSourceResultiAmExistsANDValid&#45;&gt;\\HttpSourceResult -->
-<g id="edge51" class="edge"><title>\\HttpSourceResultiAmExistsANDValid&#45;&gt;\\HttpSourceResult</title>
+<g id="edge53" class="edge"><title>\\HttpSourceResultiAmExistsANDValid&#45;&gt;\\HttpSourceResult</title>
 <path fill="none" stroke="black" d="M1073.34,-1710.95C1012,-1702.21 939.31,-1691.85 886.517,-1684.33"/>
 <polygon fill="none" stroke="black" points="886.959,-1680.86 876.565,-1682.91 885.972,-1687.79 886.959,-1680.86"/>
 </g>
-<!-- \\HttpSourceBasicsTest -->
-<g id="node28" class="node"><title>\\HttpSourceBasicsTest</title>
-<polygon fill="none" stroke="black" points="1652,-1314 1500,-1314 1500,-1278 1652,-1278 1652,-1314"/>
-<text text-anchor="middle" x="1576" y="-1293.1" font-family="Courier,monospace" font-size="11.00">HttpSourceBasicsTest</text>
+<!-- \\HttpSourceConfigFactoryItemTest -->
+<g id="node29" class="node"><title>\\HttpSourceConfigFactoryItemTest</title>
+<polygon fill="none" stroke="black" points="1689,-990 1463,-990 1463,-954 1689,-954 1689,-990"/>
+<text text-anchor="middle" x="1576" y="-969.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConfigFactoryItemTest</text>
 </g>
-<!-- \\HttpSourceBasicsTest&#45;&gt;\\HttpSourceAppTest -->
-<g id="edge53" class="edge"><title>\\HttpSourceBasicsTest&#45;&gt;\\HttpSourceAppTest</title>
-<path fill="none" stroke="black" d="M1499.87,-1296C1432.95,-1296 1336.07,-1296 1269.14,-1296"/>
-<polygon fill="none" stroke="black" points="1269.08,-1292.5 1259.08,-1296 1269.08,-1299.5 1269.08,-1292.5"/>
+<!-- \\HttpSourceConfigFactoryItemTest&#45;&gt;\\CakeTestCase -->
+<g id="edge55" class="edge"><title>\\HttpSourceConfigFactoryItemTest&#45;&gt;\\CakeTestCase</title>
+<path fill="none" stroke="black" d="M1462.96,-965.959C1451.27,-961.168 1440.56,-954.406 1432,-945 1313.8,-815.114 1477.94,-288.12 1360,-158 1340.58,-136.576 1311.57,-126.861 1283.16,-123.033"/>
+<polygon fill="none" stroke="black" points="1283.47,-119.546 1273.15,-121.914 1282.7,-126.503 1283.47,-119.546"/>
 </g>
-<!-- \\HttpSourceToDboAssociationTest -->
-<g id="node29" class="node"><title>\\HttpSourceToDboAssociationTest</title>
-<polygon fill="none" stroke="black" points="1685,-1368 1467,-1368 1467,-1332 1685,-1332 1685,-1368"/>
-<text text-anchor="middle" x="1576" y="-1347.1" font-family="Courier,monospace" font-size="11.00">HttpSourceToDboAssociationTest</text>
+<!-- \\HttpSourceConfigFactoryItemiAmExistsANDValid -->
+<g id="node30" class="node"><title>\\HttpSourceConfigFactoryItemiAmExistsANDValid</title>
+<polygon fill="none" stroke="black" points="602,-1638 288,-1638 288,-1602 602,-1602 602,-1638"/>
+<text text-anchor="middle" x="445" y="-1617.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConfigFactoryItemiAmExistsANDValid</text>
 </g>
-<!-- \\HttpSourceToDboAssociationTest&#45;&gt;\\HttpSourceAppTest -->
-<g id="edge55" class="edge"><title>\\HttpSourceToDboAssociationTest&#45;&gt;\\HttpSourceAppTest</title>
-<path fill="none" stroke="black" d="M1466.25,-1334.53C1403.17,-1325.63 1325.52,-1314.68 1269.14,-1306.74"/>
-<polygon fill="none" stroke="black" points="1269.61,-1303.27 1259.22,-1305.34 1268.64,-1310.2 1269.61,-1303.27"/>
+<!-- \\HttpSourceConfigFactoryItem -->
+<g id="node45" class="node"><title>\\HttpSourceConfigFactoryItem</title>
+<polygon fill="none" stroke="black" points="216,-1719 16,-1719 16,-1683 216,-1683 216,-1719"/>
+<text text-anchor="start" x="82" y="-1706.43" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
+<text text-anchor="start" x="24.5" y="-1693.23" font-family="Courier,monospace" font-size="11.00">HttpSourceConfigFactoryItem</text>
 </g>
-<!-- \\HttpSourceModelTest -->
-<g id="node30" class="node"><title>\\HttpSourceModelTest</title>
-<polygon fill="none" stroke="black" points="1648,-450 1504,-450 1504,-414 1648,-414 1648,-450"/>
-<text text-anchor="middle" x="1576" y="-429.1" font-family="Courier,monospace" font-size="11.00">HttpSourceModelTest</text>
-</g>
-<!-- \\HttpSourceModelTest&#45;&gt;\\CakeTestCase -->
-<g id="edge57" class="edge"><title>\\HttpSourceModelTest&#45;&gt;\\CakeTestCase</title>
-<path fill="none" stroke="black" d="M1503.47,-433.987C1477.95,-431.002 1450.94,-423.097 1432,-405 1330.97,-308.492 1462.23,-194.234 1360,-99 1339.14,-79.5656 1310.08,-70.988 1282.05,-67.8279"/>
-<polygon fill="none" stroke="black" points="1282.06,-64.3146 1271.79,-66.8987 1281.43,-71.2861 1282.06,-64.3146"/>
-</g>
-<!-- \\HttpSourceTestModel -->
-<g id="node31" class="node"><title>\\HttpSourceTestModel</title>
-<polygon fill="none" stroke="black" points="1648,-1530 1504,-1530 1504,-1494 1648,-1494 1648,-1530"/>
-<text text-anchor="middle" x="1576" y="-1509.1" font-family="Courier,monospace" font-size="11.00">HttpSourceTestModel</text>
-</g>
-<!-- \\HttpSourceTestModel&#45;&gt;\\HttpSourceModel -->
-<g id="edge59" class="edge"><title>\\HttpSourceTestModel&#45;&gt;\\HttpSourceModel</title>
-<path fill="none" stroke="black" d="M1503.38,-1498.92C1480.5,-1494.66 1455.17,-1489.79 1432,-1485 1374.83,-1473.19 1310.27,-1458.52 1262.67,-1447.45"/>
-<polygon fill="none" stroke="black" points="1263.32,-1444.01 1252.78,-1445.15 1261.73,-1450.83 1263.32,-1444.01"/>
-</g>
-<!-- \\HttpSourceConnectionTest -->
-<g id="node32" class="node"><title>\\HttpSourceConnectionTest</title>
-<polygon fill="none" stroke="black" points="1665,-396 1487,-396 1487,-360 1665,-360 1665,-396"/>
-<text text-anchor="middle" x="1576" y="-375.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConnectionTest</text>
-</g>
-<!-- \\HttpSourceConnectionTest&#45;&gt;\\CakeTestCase -->
-<g id="edge61" class="edge"><title>\\HttpSourceConnectionTest&#45;&gt;\\CakeTestCase</title>
-<path fill="none" stroke="black" d="M1486.35,-376.615C1466.5,-372.383 1446.95,-364.619 1432,-351 1345.9,-272.551 1447.08,-176.365 1360,-99 1338.98,-80.324 1310.32,-71.8408 1282.68,-68.5387"/>
-<polygon fill="none" stroke="black" points="1282.86,-65.0389 1272.56,-67.5472 1282.17,-72.0056 1282.86,-65.0389"/>
-</g>
-<!-- \\HttpSourceTest -->
-<g id="node33" class="node"><title>\\HttpSourceTest</title>
-<polygon fill="none" stroke="black" points="1631,-504 1521,-504 1521,-468 1631,-468 1631,-504"/>
-<text text-anchor="middle" x="1576" y="-483.1" font-family="Courier,monospace" font-size="11.00">HttpSourceTest</text>
-</g>
-<!-- \\HttpSourceTest&#45;&gt;\\CakeTestCase -->
-<g id="edge63" class="edge"><title>\\HttpSourceTest&#45;&gt;\\CakeTestCase</title>
-<path fill="none" stroke="black" d="M1520.31,-489.623C1490.32,-488.472 1454.89,-481.614 1432,-459 1315.93,-344.319 1477.5,-212.217 1360,-99 1339.19,-78.9478 1309.7,-70.3215 1281.29,-67.3001"/>
-<polygon fill="none" stroke="black" points="1281.56,-63.8104 1271.3,-66.4556 1280.97,-70.7856 1281.56,-63.8104"/>
-</g>
-<!-- \\HttpTestSource -->
-<g id="node34" class="node"><title>\\HttpTestSource</title>
-<polygon fill="none" stroke="black" points="1631,-1638 1521,-1638 1521,-1602 1631,-1602 1631,-1638"/>
-<text text-anchor="middle" x="1576" y="-1617.1" font-family="Courier,monospace" font-size="11.00">HttpTestSource</text>
-</g>
-<!-- \\HttpTestSource&#45;&gt;\\HttpSource -->
-<g id="edge65" class="edge"><title>\\HttpTestSource&#45;&gt;\\HttpSource</title>
-<path fill="none" stroke="black" d="M1520.31,-1612.15C1446.75,-1601.78 1318.1,-1583.64 1245.95,-1573.46"/>
-<polygon fill="none" stroke="black" points="1246.11,-1569.95 1235.72,-1572.02 1245.14,-1576.89 1246.11,-1569.95"/>
-</g>
-<!-- \\HttpSourceException -->
-<g id="node35" class="node"><title>\\HttpSourceException</title>
-<polygon fill="none" stroke="black" points="1648,-288 1504,-288 1504,-252 1648,-252 1648,-288"/>
-<text text-anchor="middle" x="1576" y="-267.1" font-family="Courier,monospace" font-size="11.00">HttpSourceException</text>
-</g>
-<!-- \\CakeException -->
-<g id="node86" class="node"><title>\\CakeException</title>
-<ellipse fill="none" stroke="black" cx="1193" cy="-18" rx="85.7684" ry="18.3848"/>
-<text text-anchor="middle" x="1193" y="-14.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\CakeException</text>
-</g>
-<!-- \\HttpSourceException&#45;&gt;\\CakeException -->
-<g id="edge67" class="edge"><title>\\HttpSourceException&#45;&gt;\\CakeException</title>
-<path fill="none" stroke="black" d="M1564.79,-251.951C1536.52,-208.171 1457.59,-96.1826 1360,-45 1338.17,-33.5499 1312.7,-26.7056 1288.33,-22.6778"/>
-<polygon fill="none" stroke="black" points="1288.74,-19.2003 1278.33,-21.1687 1287.69,-26.1219 1288.74,-19.2003"/>
-</g>
-<!-- \\HttpSourceConfigException -->
-<g id="node36" class="node"><title>\\HttpSourceConfigException</title>
-<polygon fill="none" stroke="black" points="1668,-342 1484,-342 1484,-306 1668,-306 1668,-342"/>
-<text text-anchor="middle" x="1576" y="-321.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConfigException</text>
-</g>
-<!-- \\HttpSourceConfigException&#45;&gt;\\CakeException -->
-<g id="edge69" class="edge"><title>\\HttpSourceConfigException&#45;&gt;\\CakeException</title>
-<path fill="none" stroke="black" d="M1483.36,-321.949C1464.54,-317.587 1446.2,-309.934 1432,-297 1345.9,-218.551 1447.08,-122.365 1360,-45 1340.24,-27.4437 1313.73,-18.8947 1287.66,-15.1896"/>
-<polygon fill="none" stroke="black" points="1288.05,-11.7115 1277.71,-13.998 1287.22,-18.6618 1288.05,-11.7115"/>
-</g>
-<!-- \\HttpSourceField&#45;&gt;\\HttpSourceEndpointItem -->
-<g id="edge71" class="edge"><title>\\HttpSourceField&#45;&gt;\\HttpSourceEndpointItem</title>
-<path fill="none" stroke="black" d="M754.714,-1620C696.386,-1620 606.447,-1620 538.488,-1620"/>
-<polygon fill="none" stroke="black" points="538.203,-1616.5 528.203,-1620 538.203,-1623.5 538.203,-1616.5"/>
-</g>
-<!-- \\HttpSourceResult&#45;&gt;\\HttpSourceEndpointItem -->
-<g id="edge73" class="edge"><title>\\HttpSourceResult&#45;&gt;\\HttpSourceEndpointItem</title>
-<path fill="none" stroke="black" d="M751.404,-1664.84C692.926,-1656.28 604.873,-1643.4 538.145,-1633.63"/>
-<polygon fill="none" stroke="black" points="538.446,-1630.14 528.044,-1632.15 537.432,-1637.06 538.446,-1630.14"/>
-</g>
-<!-- \\HttpSourceEndpointItem&#45;&gt;\\HttpSourceConfigFactoryItem -->
-<g id="edge75" class="edge"><title>\\HttpSourceEndpointItem&#45;&gt;\\HttpSourceConfigFactoryItem</title>
-<path fill="none" stroke="black" d="M361.871,-1632.16C337.896,-1636.24 311.791,-1641.25 288,-1647 250.643,-1656.03 209.55,-1668.83 176.899,-1679.69"/>
+<!-- \\HttpSourceConfigFactoryItemiAmExistsANDValid&#45;&gt;\\HttpSourceConfigFactoryItem -->
+<g id="edge57" class="edge"><title>\\HttpSourceConfigFactoryItemiAmExistsANDValid&#45;&gt;\\HttpSourceConfigFactoryItem</title>
+<path fill="none" stroke="black" d="M329.315,-1638.08C315.337,-1640.8 301.307,-1643.78 288,-1647 250.643,-1656.03 209.55,-1668.83 176.899,-1679.69"/>
 <polygon fill="none" stroke="black" points="175.418,-1676.5 167.051,-1683 177.645,-1683.13 175.418,-1676.5"/>
 </g>
-<!-- \\HttpSourceCondition&#45;&gt;\\HttpSourceField -->
-<g id="edge77" class="edge"><title>\\HttpSourceCondition&#45;&gt;\\HttpSourceField</title>
-<path fill="none" stroke="black" d="M1120.37,-1620C1051.99,-1620 950.284,-1620 883.08,-1620"/>
-<polygon fill="none" stroke="black" points="883.012,-1616.5 873.012,-1620 883.012,-1623.5 883.012,-1616.5"/>
+<!-- \\HttpSourceConditionTest -->
+<g id="node31" class="node"><title>\\HttpSourceConditionTest</title>
+<polygon fill="none" stroke="black" points="1662,-1044 1490,-1044 1490,-1008 1662,-1008 1662,-1044"/>
+<text text-anchor="middle" x="1576" y="-1023.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConditionTest</text>
 </g>
-<!-- \\HttpSourceConfig&#45;&gt;\\HttpSourceConfigFactoryItem -->
-<g id="edge79" class="edge"><title>\\HttpSourceConfig&#45;&gt;\\HttpSourceConfigFactoryItem</title>
-<path fill="none" stroke="black" d="M382.343,-1722.86C338.385,-1719.25 278.429,-1714.33 226.533,-1710.07"/>
-<polygon fill="none" stroke="black" points="226.521,-1706.56 216.269,-1709.23 225.949,-1713.54 226.521,-1706.56"/>
+<!-- \\HttpSourceConditionTest&#45;&gt;\\CakeTestCase -->
+<g id="edge59" class="edge"><title>\\HttpSourceConditionTest&#45;&gt;\\CakeTestCase</title>
+<path fill="none" stroke="black" d="M1490,-1027.69C1468.23,-1023.78 1446.85,-1015.41 1432,-999 1306.16,-859.907 1485.57,-297.343 1360,-158 1340.55,-136.421 1311.39,-126.703 1282.84,-122.916"/>
+<polygon fill="none" stroke="black" points="1283.11,-119.425 1272.79,-121.814 1282.34,-126.383 1283.11,-119.425"/>
 </g>
-<!-- \\HttpSourceEndpoint&#45;&gt;\\HttpSourceConfigFactoryItem -->
-<g id="edge81" class="edge"><title>\\HttpSourceEndpoint&#45;&gt;\\HttpSourceConfigFactoryItem</title>
-<path fill="none" stroke="black" d="M375.63,-1679.69C332.33,-1683.25 275.632,-1687.9 226.27,-1691.95"/>
-<polygon fill="none" stroke="black" points="225.859,-1688.47 216.179,-1692.78 226.432,-1695.45 225.859,-1688.47"/>
+<!-- \\AllHttpSourceTest -->
+<g id="node32" class="node"><title>\\AllHttpSourceTest</title>
+<polygon fill="none" stroke="black" points="1641,-396 1511,-396 1511,-360 1641,-360 1641,-396"/>
+<text text-anchor="middle" x="1576" y="-375.1" font-family="Courier,monospace" font-size="11.00">AllHttpSourceTest</text>
+</g>
+<!-- \\PHPUnit_Framework_TestSuite -->
+<g id="node82" class="node"><title>\\PHPUnit_Framework_TestSuite</title>
+<ellipse fill="none" stroke="black" cx="1193" cy="-72" rx="166.877" ry="18.3848"/>
+<text text-anchor="middle" x="1193" y="-68.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\PHPUnit_Framework_TestSuite</text>
+</g>
+<!-- \\AllHttpSourceTest&#45;&gt;\\PHPUnit_Framework_TestSuite -->
+<g id="edge61" class="edge"><title>\\AllHttpSourceTest&#45;&gt;\\PHPUnit_Framework_TestSuite</title>
+<path fill="none" stroke="black" d="M1510.19,-380.161C1482.98,-377.685 1452.96,-370.101 1432,-351 1345.9,-272.551 1447.08,-176.365 1360,-99 1354.49,-94.1051 1348.46,-89.9103 1342.05,-86.3256"/>
+<polygon fill="none" stroke="black" points="1343.61,-83.1919 1333.11,-81.8068 1340.46,-89.4399 1343.61,-83.1919"/>
+</g>
+<!-- \\TestHttpSourceModel -->
+<g id="node33" class="node"><title>\\TestHttpSourceModel</title>
+<polygon fill="none" stroke="black" points="1648,-1476 1504,-1476 1504,-1440 1648,-1440 1648,-1476"/>
+<text text-anchor="middle" x="1576" y="-1455.1" font-family="Courier,monospace" font-size="11.00">TestHttpSourceModel</text>
+</g>
+<!-- \\TestHttpSourceModel&#45;&gt;\\HttpSourceModel -->
+<g id="edge63" class="edge"><title>\\TestHttpSourceModel&#45;&gt;\\HttpSourceModel</title>
+<path fill="none" stroke="black" d="M1503.38,-1444.92C1480.5,-1440.66 1455.17,-1435.79 1432,-1431 1374.83,-1419.19 1310.27,-1404.52 1262.67,-1393.45"/>
+<polygon fill="none" stroke="black" points="1263.32,-1390.01 1252.78,-1391.15 1261.73,-1396.83 1263.32,-1390.01"/>
+</g>
+<!-- \\TestHttpSourceConnection -->
+<g id="node34" class="node"><title>\\TestHttpSourceConnection</title>
+<polygon fill="none" stroke="black" points="1665,-1314 1487,-1314 1487,-1278 1665,-1278 1665,-1314"/>
+<text text-anchor="middle" x="1576" y="-1293.1" font-family="Courier,monospace" font-size="11.00">TestHttpSourceConnection</text>
+</g>
+<!-- \\HttpSourceConnection -->
+<g id="node37" class="node"><title>\\HttpSourceConnection</title>
+<polygon fill="none" stroke="black" points="1269,-1314 1117,-1314 1117,-1278 1269,-1278 1269,-1314"/>
+<text text-anchor="middle" x="1193" y="-1293.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConnection</text>
+</g>
+<!-- \\TestHttpSourceConnection&#45;&gt;\\HttpSourceConnection -->
+<g id="edge65" class="edge"><title>\\TestHttpSourceConnection&#45;&gt;\\HttpSourceConnection</title>
+<path fill="none" stroke="black" d="M1486.2,-1296C1423.69,-1296 1340.79,-1296 1279.1,-1296"/>
+<polygon fill="none" stroke="black" points="1279,-1292.5 1269,-1296 1279,-1299.5 1279,-1292.5"/>
+</g>
+<!-- \\TestHttpSource -->
+<g id="node35" class="node"><title>\\TestHttpSource</title>
+<polygon fill="none" stroke="black" points="1631,-1584 1521,-1584 1521,-1548 1631,-1548 1631,-1584"/>
+<text text-anchor="middle" x="1576" y="-1563.1" font-family="Courier,monospace" font-size="11.00">TestHttpSource</text>
+</g>
+<!-- \\TestHttpSource&#45;&gt;\\HttpSource -->
+<g id="edge67" class="edge"><title>\\TestHttpSource&#45;&gt;\\HttpSource</title>
+<path fill="none" stroke="black" d="M1520.31,-1566C1446.75,-1566 1318.1,-1566 1245.95,-1566"/>
+<polygon fill="none" stroke="black" points="1245.72,-1562.5 1235.72,-1566 1245.72,-1569.5 1245.72,-1562.5"/>
 </g>
 <!-- \\HttpSourceModel&#45;&gt;\\AppModel -->
-<g id="edge83" class="edge"><title>\\HttpSourceModel&#45;&gt;\\AppModel</title>
-<path fill="none" stroke="black" d="M1142.31,-1412.92C1103.27,-1396.1 1051.75,-1366.94 1026,-1323 898.545,-1105.53 1120.57,-380.187 954,-191 936.816,-171.482 910.159,-163.436 884.698,-160.734"/>
+<g id="edge69" class="edge"><title>\\HttpSourceModel&#45;&gt;\\AppModel</title>
+<path fill="none" stroke="black" d="M1133.26,-1373.98C1096.31,-1368.72 1051.25,-1355.48 1026,-1323 871.299,-1123.99 1120.57,-380.187 954,-191 936.816,-171.482 910.159,-163.436 884.698,-160.734"/>
 <polygon fill="none" stroke="black" points="884.895,-157.239 874.647,-159.926 884.334,-164.216 884.895,-157.239"/>
 </g>
 <!-- \\DataSource -->
-<g id="node96" class="node"><title>\\DataSource</title>
+<g id="node88" class="node"><title>\\DataSource</title>
 <ellipse fill="none" stroke="black" cx="814" cy="-218" rx="72.1249" ry="18.3848"/>
 <text text-anchor="middle" x="814" y="-214.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\DataSource</text>
 </g>
 <!-- \\HttpSource&#45;&gt;\\DataSource -->
-<g id="edge85" class="edge"><title>\\HttpSource&#45;&gt;\\DataSource</title>
+<g id="edge71" class="edge"><title>\\HttpSource&#45;&gt;\\DataSource</title>
 <path fill="none" stroke="black" d="M1150.49,-1572.45C1111.96,-1575.63 1056.65,-1573.05 1026,-1539 832.569,-1324.13 1147.91,-454.442 954,-240 938.332,-222.672 915.027,-215.172 891.906,-212.592"/>
 <polygon fill="none" stroke="black" points="891.932,-209.083 881.679,-211.755 891.36,-216.059 891.932,-209.083"/>
 </g>
-<!-- \\HttpSourceTestFixture -->
-<g id="node48" class="node"><title>\\HttpSourceTestFixture</title>
-<polygon fill="none" stroke="black" points="1655,-1206 1497,-1206 1497,-1170 1655,-1170 1655,-1206"/>
-<text text-anchor="middle" x="1576" y="-1185.1" font-family="Courier,monospace" font-size="11.00">HttpSourceTestFixture</text>
+<!-- \\HttpSourceException -->
+<g id="node39" class="node"><title>\\HttpSourceException</title>
+<polygon fill="none" stroke="black" points="1648,-288 1504,-288 1504,-252 1648,-252 1648,-288"/>
+<text text-anchor="middle" x="1576" y="-267.1" font-family="Courier,monospace" font-size="11.00">HttpSourceException</text>
 </g>
-<!-- \\HttpSourceTestFixture&#45;&gt;\\CakeTestFixture -->
-<g id="edge87" class="edge"><title>\\HttpSourceTestFixture&#45;&gt;\\CakeTestFixture</title>
-<path fill="none" stroke="black" d="M1496.68,-1190.83C1472.64,-1187.51 1448.32,-1179.17 1432,-1161 1294.83,-1008.26 1501.27,-388.956 1360,-240 1340.11,-219.026 1310.68,-210.969 1282.05,-208.981"/>
-<polygon fill="none" stroke="black" points="1282.12,-205.481 1271.97,-208.52 1281.8,-212.474 1282.12,-205.481"/>
+<!-- \\CakeException -->
+<g id="node90" class="node"><title>\\CakeException</title>
+<ellipse fill="none" stroke="black" cx="1193" cy="-18" rx="85.7684" ry="18.3848"/>
+<text text-anchor="middle" x="1193" y="-14.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\CakeException</text>
+</g>
+<!-- \\HttpSourceException&#45;&gt;\\CakeException -->
+<g id="edge73" class="edge"><title>\\HttpSourceException&#45;&gt;\\CakeException</title>
+<path fill="none" stroke="black" d="M1564.79,-251.951C1536.52,-208.171 1457.59,-96.1826 1360,-45 1338.17,-33.5499 1312.7,-26.7056 1288.33,-22.6778"/>
+<polygon fill="none" stroke="black" points="1288.74,-19.2003 1278.33,-21.1687 1287.69,-26.1219 1288.74,-19.2003"/>
+</g>
+<!-- \\HttpSourceConfigException -->
+<g id="node40" class="node"><title>\\HttpSourceConfigException</title>
+<polygon fill="none" stroke="black" points="1668,-342 1484,-342 1484,-306 1668,-306 1668,-342"/>
+<text text-anchor="middle" x="1576" y="-321.1" font-family="Courier,monospace" font-size="11.00">HttpSourceConfigException</text>
+</g>
+<!-- \\HttpSourceConfigException&#45;&gt;\\CakeException -->
+<g id="edge75" class="edge"><title>\\HttpSourceConfigException&#45;&gt;\\CakeException</title>
+<path fill="none" stroke="black" d="M1483.36,-321.949C1464.54,-317.587 1446.2,-309.934 1432,-297 1345.9,-218.551 1447.08,-122.365 1360,-45 1340.24,-27.4437 1313.73,-18.8947 1287.66,-15.1896"/>
+<polygon fill="none" stroke="black" points="1288.05,-11.7115 1277.71,-13.998 1287.22,-18.6618 1288.05,-11.7115"/>
+</g>
+<!-- \\HttpSourceResult&#45;&gt;\\HttpSourceEndpointItem -->
+<g id="edge77" class="edge"><title>\\HttpSourceResult&#45;&gt;\\HttpSourceEndpointItem</title>
+<path fill="none" stroke="black" d="M751.404,-1674C692.926,-1674 604.873,-1674 538.145,-1674"/>
+<polygon fill="none" stroke="black" points="538.044,-1670.5 528.044,-1674 538.044,-1677.5 538.044,-1670.5"/>
+</g>
+<!-- \\HttpSourceField&#45;&gt;\\HttpSourceEndpointItem -->
+<g id="edge79" class="edge"><title>\\HttpSourceField&#45;&gt;\\HttpSourceEndpointItem</title>
+<path fill="none" stroke="black" d="M754.714,-1628.68C696.386,-1637.21 606.447,-1650.37 538.488,-1660.32"/>
+<polygon fill="none" stroke="black" points="537.59,-1656.91 528.203,-1661.82 538.604,-1663.84 537.59,-1656.91"/>
+</g>
+<!-- \\HttpSourceEndpointItem&#45;&gt;\\HttpSourceConfigFactoryItem -->
+<g id="edge81" class="edge"><title>\\HttpSourceEndpointItem&#45;&gt;\\HttpSourceConfigFactoryItem</title>
+<path fill="none" stroke="black" d="M361.979,-1680.81C320.831,-1684.19 270.583,-1688.31 226.253,-1691.95"/>
+<polygon fill="none" stroke="black" points="225.689,-1688.49 216.009,-1692.79 226.262,-1695.46 225.689,-1688.49"/>
+</g>
+<!-- \\HttpSourceEndpoint&#45;&gt;\\HttpSourceConfigFactoryItem -->
+<g id="edge83" class="edge"><title>\\HttpSourceEndpoint&#45;&gt;\\HttpSourceConfigFactoryItem</title>
+<path fill="none" stroke="black" d="M375.63,-1722.31C332.33,-1718.75 275.632,-1714.1 226.27,-1710.05"/>
+<polygon fill="none" stroke="black" points="226.432,-1706.55 216.179,-1709.22 225.859,-1713.53 226.432,-1706.55"/>
+</g>
+<!-- \\HttpSourceConfig&#45;&gt;\\HttpSourceConfigFactoryItem -->
+<g id="edge85" class="edge"><title>\\HttpSourceConfig&#45;&gt;\\HttpSourceConfigFactoryItem</title>
+<path fill="none" stroke="black" d="M382.339,-1773.19C353.434,-1768.63 318.78,-1762.44 288,-1755 250.643,-1745.97 209.55,-1733.17 176.899,-1722.31"/>
+<polygon fill="none" stroke="black" points="177.645,-1718.87 167.051,-1719 175.418,-1725.5 177.645,-1718.87"/>
+</g>
+<!-- \\HttpSourceCondition&#45;&gt;\\HttpSourceField -->
+<g id="edge87" class="edge"><title>\\HttpSourceCondition&#45;&gt;\\HttpSourceField</title>
+<path fill="none" stroke="black" d="M1120.37,-1620C1051.99,-1620 950.284,-1620 883.08,-1620"/>
+<polygon fill="none" stroke="black" points="883.012,-1616.5 873.012,-1620 883.012,-1623.5 883.012,-1616.5"/>
 </g>
 </g>
 </svg>
