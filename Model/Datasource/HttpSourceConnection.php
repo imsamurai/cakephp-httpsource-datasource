@@ -392,7 +392,7 @@ class HttpSourceConnection extends Object {
 					($this->_Transport->request['raw'] ? $this->_Transport->request['raw'] : '*none*') .
 					"\nDump:\n" . ($Response ? '*none*' : $Response->raw);
 			$messageId = sha1($message . microtime(true));
-			$this->log("$messageId\n" . $message, 'HttpSource');
+			$this->log("$messageId\n" . $message, 'HttpSourceError');
 		} else {
 			$messageId = false;
 		}
