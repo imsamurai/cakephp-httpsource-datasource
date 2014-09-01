@@ -13,7 +13,7 @@ App::uses('HttpSocketOauth', 'HttpSocketOauth.');
  * @package HttpSource
  * @subpackage Model.Datasource
  */
-class HttpSourceConnection {
+class HttpSourceConnection extends Object {
 
 	/**
 	 * Request error
@@ -368,6 +368,8 @@ class HttpSourceConnection {
 		}
 
 		if ($this->_error) {
+			$messageId = $this->_logDump($Response);
+			$this->_error .= $messageId ? " [log id: $messageId]" : '';
 			$Response = false;
 		}
 
@@ -376,6 +378,25 @@ class HttpSourceConnection {
 			return $this->_request($request, ++$currentAttempt);
 		}
 		return $Response;
+	}
+	
+	/**
+	 * Save dump into log 
+	 * 
+	 * @param HttpSocketResponse|bool $Response
+	 * @return boolean
+	 */
+	protected function _logDump($Response) {
+		if (Configure::read('debug') >= 3) {
+			$message = "Error: {$this->_error}\nQuery:\n" .
+					($this->_Transport->request['raw'] ? $this->_Transport->request['raw'] : '*none*') .
+					"\nDump:\n" . ($Response ? '*none*' : $Response->raw);
+			$messageId = sha1($message . microtime(true));
+			$this->log("$messageId\n" . $message, 'HttpSource');
+		} else {
+			$messageId = false;
+		}
+		return $messageId;
 	}
 
 	/**

@@ -989,9 +989,10 @@ class HttpSourceConnectionTest extends CakeTestCase {
 	 * @param array $attempts
 	 * @param array $config
 	 * @param string $lastError
+	 * @param int $debugLevel
 	 * @dataProvider requestAttemptProvider
 	 */
-	public function testRequestAttempt(array $request, $response, array $attempts, array $config, $lastError) {
+	public function testRequestAttempt(array $request, $response, array $attempts, array $config, $lastError, $debugLevel = null) {
 		$Transport = $this->getMockBuilder('HttpSocket')
 				->setConstructorArgs(array($config))
 				->setMethods(array(
@@ -1022,14 +1023,27 @@ class HttpSourceConnectionTest extends CakeTestCase {
 		$Connection = $this->getMockBuilder('HttpSourceConnection')
 				->setConstructorArgs(array($config, $Transport))
 				->setMethods(array(
-					'_decode'
+					'_decode',
+					'log'
 				))
 				->getMock();
 		$Connection->expects($this->any())->method('_decode')->willReturn($response);
+		
+		$oldDebugLevel = Configure::read('debug');
+		if (!is_null($debugLevel)) {
+			Configure::write('debug', $debugLevel);
+			if ($debugLevel >= 3 && $lastError) {
+				$logsCount = $response ? count($attempts) - 1 : count($attempts);
+				$Connection->expects($this->exactly($logsCount))
+						->method('log')
+						->with($this->matches("%x\nError: $lastError\nQuery:\n%s\nDump:\n%s"));
+			}
+		}
 		$this->assertSame($response, $Connection->request($request));
-		$this->assertSame($lastError, $Connection->getError());
+		Configure::write('debug', $oldDebugLevel);
+		$this->assertStringMatchesFormat($lastError . (!$response && $debugLevel >= 3 ? ' [log id: %x]' : ''), $Connection->getError());
 	}
-	
+
 	/**
 	 * Data provider for testRequestAttempt
 	 * 
@@ -1057,7 +1071,9 @@ class HttpSourceConnectionTest extends CakeTestCase {
 				//config
 				array(),
 				//lastError
-				''
+				'',
+				//debugLevel
+				2
 			),
 			//set #1
 			array(
@@ -1076,7 +1092,9 @@ class HttpSourceConnectionTest extends CakeTestCase {
 				//config
 				array(),
 				//lastError
-				'Exception'
+				'Exception',
+				//debugLevel
+				2
 			),
 			//set #2
 			array(
@@ -1104,7 +1122,9 @@ class HttpSourceConnectionTest extends CakeTestCase {
 				//config
 				array(),
 				//lastError
-				''
+				'',
+				//debugLevel
+				2
 			),
 			//set #3
 			array(
@@ -1134,7 +1154,9 @@ class HttpSourceConnectionTest extends CakeTestCase {
 				//config
 				array(),
 				//lastError
-				''
+				'',
+				//debugLevel
+				2
 			),
 			//set #4
 			array(
@@ -1160,7 +1182,9 @@ class HttpSourceConnectionTest extends CakeTestCase {
 				//config
 				array(),
 				//lastError
-				''
+				'',
+				//debugLevel
+				2
 			),
 			//set #5
 			array(
@@ -1180,7 +1204,9 @@ class HttpSourceConnectionTest extends CakeTestCase {
 				//config
 				array(),
 				//lastError
-				''
+				'',
+				//debugLevel
+				2
 			),
 			//set #6
 			array(
@@ -1216,7 +1242,9 @@ class HttpSourceConnectionTest extends CakeTestCase {
 					)
 				),
 				//lastError
-				''
+				'',
+				//debugLevel
+				2
 			),
 			//set #7
 			array(
@@ -1237,7 +1265,56 @@ class HttpSourceConnectionTest extends CakeTestCase {
 				//config
 				array(),
 				//lastError
-				'0: Timeout'
+				'0: Timeout',
+				//debugLevel
+				2
+			),
+			//set #8
+			array(
+				//request
+				array(
+					'method' => HttpSource::METHOD_READ
+				),
+				//response
+				array(
+					'a' => 1
+				),
+				//attempts
+				array(
+					array(
+						'isOk' => true,
+						'code' => 200
+					)
+				),
+				//config
+				array(),
+				//lastError
+				'',
+				//debugLevel
+				3
+			),
+			//set #9
+			array(
+				//request
+				array(
+					'method' => HttpSource::METHOD_READ
+				),
+				//response
+				false,
+				//attempts
+				array(
+					array(
+						'isOk' => false,
+						'code' => 0,
+						'lastError' => 'Timeout'
+					),
+				),
+				//config
+				array(),
+				//lastError
+				'0: Timeout',
+				//debugLevel
+				3
 			),
 		);
 	}
