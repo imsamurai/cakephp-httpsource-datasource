@@ -31,7 +31,7 @@ $Config
 				->path('/imsamurai/cakephp-httpsource-datasource/master/Test/Data/documents:id.json')
 				->addCondition($CF->condition()->name('id')
 						->map(function($v) {
-							return implode('.', $v);
+							return implode('.', (array)$v);
 						})
 				)
 				->result($CF->result()

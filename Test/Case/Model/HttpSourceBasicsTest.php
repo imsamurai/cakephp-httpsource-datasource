@@ -39,5 +39,15 @@ class HttpSourceBasicsTest extends HttpSourceAppTest {
 
 		$this->assertCount(2, $result);
 	}
+	
+	/**
+	 * Test read() on real server (github)
+	 */
+	public function testRead() {
+		$this->HttpModel->setSource('documents');
+		$result = $this->HttpModel->read(null, 1);
+
+		$this->assertSame(1, $result[$this->HttpModel->alias]['id']);
+	}
 
 }
