@@ -1,12 +1,11 @@
 <?php
 
-use Symfony\Component\Process\Process;
-
 /**
  * Author: imsamurai <im.samuray@gmail.com>
  * Date: 01.09.2014
  * Time: 13:47:56
  */
+use Symfony\Component\Process\Process;
 
 /**
  * HttpSource Utility
