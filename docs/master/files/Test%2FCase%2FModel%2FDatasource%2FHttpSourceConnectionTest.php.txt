@@ -887,7 +887,7 @@ class HttpSourceConnectionTest extends CakeTestCase {
 					'error' => "",
 					'noResponse' => false,
 					'requestRaw' => "GET /_all//_mapping\nHTTP/1.1\nHost: elasticsearch.dev:9200\nConnection: close\nUser-Agent: CakePHP",
-					'requestQuery' => 'GET /_all//_mapping HTTP/1.1 Host: elasticsearch.dev:9200 Connection: close User-Agent: CakePHP',
+					'requestQuery' => "GET /_all//_mapping\nHTTP/1.1\nHost: elasticsearch.dev:9200\nConnection: close\nUser-Agent: CakePHP",
 				),
 				//config
 				array(),

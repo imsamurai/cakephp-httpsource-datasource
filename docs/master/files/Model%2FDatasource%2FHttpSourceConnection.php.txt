@@ -170,7 +170,7 @@ class HttpSourceConnection extends Object {
 	 * @return string
 	 */
 	public function getQuery() {
-		return str_replace(array("\n", "\r"), ' ', $this->_Transport->request['raw']);
+		return $this->_Transport->request['raw'];
 	}
 
 	/**
@@ -388,8 +388,8 @@ class HttpSourceConnection extends Object {
 	 */
 	protected function _logDump($Response) {
 		if (Configure::read('debug') >= 3) {
-			$message = "Error: {$this->_error}\nQuery:\n" .
-					($this->_Transport->request['raw'] ? $this->_Transport->request['raw'] : '*none*') .
+			$message = "Error: " . $this->getError() . "\nQuery:\n" .
+					($this->getQuery() ? $this->getQuery() : '*none*') .
 					"\nDump:\n" . ($Response ? '*none*' : $Response->raw);
 			$messageId = sha1($message . microtime(true));
 			$this->log("$messageId\n" . $message, 'HttpSourceError');

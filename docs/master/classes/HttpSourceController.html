@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">1</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-418114504"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-418114504" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/AllHttpSourceTest.html">AllHttpSourceTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSource.html">HttpSource</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceAppTest.html">HttpSourceAppTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceBasicsTest.html">HttpSourceBasicsTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceCondition.html">HttpSourceCondition</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConditioniAmExistsANDValid.html">HttpSourceConditioniAmExistsANDValid</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConditionTest.html">HttpSourceConditionTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfig.html">HttpSourceConfig</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigException.html">HttpSourceConfigException</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigFactory.html">HttpSourceConfigFactory</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryiAmExists.html">HttpSourceConfigFactoryiAmExists</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryiAmExistsANDValid.html">HttpSourceConfigFactoryiAmExistsANDValid</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryItem.html">HttpSourceConfigFactoryItem</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryItemiAmExistsANDValid.html">HttpSourceConfigFactoryItemiAmExistsANDValid</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryItemTest.html">HttpSourceConfigFactoryItemTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryTest.html">HttpSourceConfigFactoryTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigiAmExistsANDValid.html">HttpSourceConfigiAmExistsANDValid</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConfigTest.html">HttpSourceConfigTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConnection.html">HttpSourceConnection</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceConnectionTest.html">HttpSourceConnectionTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceController.html">HttpSourceController</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceControllerTest.html">HttpSourceControllerTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceDocument.html">HttpSourceDocument</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceEndpoint.html">HttpSourceEndpoint</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceEndpointiAmExistsANDValid.html">HttpSourceEndpointiAmExistsANDValid</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceEndpointItem.html">HttpSourceEndpointItem</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceEndpointItemiAmExistsANDValid.html">HttpSourceEndpointItemiAmExistsANDValid</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceEndpointItemTest.html">HttpSourceEndpointItemTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceEndpointTest.html">HttpSourceEndpointTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceException.html">HttpSourceException</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceField.html">HttpSourceField</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceFieldiAmExistsANDValid.html">HttpSourceFieldiAmExistsANDValid</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceFieldTest.html">HttpSourceFieldTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceModel.html">HttpSourceModel</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceModelTest.html">HttpSourceModelTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceResult.html">HttpSourceResult</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceResultiAmExistsANDValid.html">HttpSourceResultiAmExistsANDValid</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceResultTest.html">HttpSourceResultTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceTest.html">HttpSourceTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceTestFixture.html">HttpSourceTestFixture</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceTestModel.html">HttpSourceTestModel</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceToDboAssociationTest.html">HttpSourceToDboAssociationTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceUser.html">HttpSourceUser</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceUserFixture.html">HttpSourceUserFixture</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceUsersDocumentFixture.html">HttpSourceUsersDocumentFixture</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceUtility.html">HttpSourceUtility</a></li>
+                                                    <li class="class"><a href="../classes/HttpSourceUtilityTest.html">HttpSourceUtilityTest</a></li>
+                                                    <li class="class"><a href="../classes/HttpTestSource.html">HttpTestSource</a></li>
+                                                    <li class="class"><a href="../classes/TestHttpSource.html">TestHttpSource</a></li>
+                                                    <li class="class"><a href="../classes/TestHttpSourceConnection.html">TestHttpSourceConnection</a></li>
+                                                    <li class="class"><a href="../classes/TestHttpSourceModel.html">TestHttpSourceModel</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\</small>HttpSourceController</h1>
+                    <p><em>HttpSourceController</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/HttpSourceController.html#method_explain" class="">explain()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/HttpSourceController.html#property_uses" class="">$uses</a><br />
+                                                                    <a href="../classes/HttpSourceController.html#property_HttpSourceModel" class="">$HttpSourceModel</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <a href="../classes/HttpSourceController.html#method__checkRequest" class="">_checkRequest()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Controller.HttpSourceController.html"><div class="path-wrapper">Controller/HttpSourceController.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">HttpSource\Controller</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper">\AppController</div>
+                                                                                                    <div class="namespace-wrapper">\HttpSourceController</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_uses" name="property_uses" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$uses</h3>
+                <pre class="signature">$uses : array</pre>
+                <p><em>{@inheritdoc}</em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_HttpSourceModel" name="property_HttpSourceModel" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$HttpSourceModel</h3>
+                <pre class="signature">$HttpSourceModel : \HttpSourceModel</pre>
+                <p><em></em></p>
+                <p>HttpSource Model</p>
+
+                                <h4>Type</h4>
+                \HttpSourceModel
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_explain" name="method_explain" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">explain()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">explain() </pre>
+                <p><em>Run explain/profiling on queries.</em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\BadRequestException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method__checkRequest" name="method__checkRequest" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">_checkRequest()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">_checkRequest() </pre>
+                <p><em>Checks the hash + the hashed queries,
+if there is mismatch a 404 will be rendered. If debug == 0 a 404 will also be
+rendered. No explain will be run if a 404 is made.</em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\BadRequestException</dt>
+                            <dd></dd>
+                                                                    </dl>
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">HttpSourceController.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Controller/HttpSourceController.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on September 2nd, 2014 at 10:26.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
