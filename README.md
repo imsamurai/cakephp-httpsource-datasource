@@ -67,7 +67,7 @@ public $useTable = 'myapi_table';
 :: bootstrap.php ::
 ```
 ```php
-CakePlugin::load('HttpSource', array('bootstrap' => true, 'routes' => false));
+CakePlugin::load('HttpSource', array('bootstrap' => true, 'routes' => true));
 CakePlugin::load('MyPlugin');
 ```
 

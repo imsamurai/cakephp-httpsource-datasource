@@ -1,8 +1,14 @@
 #!/bin/bash
 
+sudo apt-get -qq update;
+sudo apt-get -qq install netcat;
+which netcat;
+
+echo 'answer' | nc.traditional -l -p 12345 &
+curl http://0.0.0.0:12345 &
+
 if [ "$PHPDOC" = 1 ]; then
-	sudo apt-get -qq update > /dev/null;
-	sudo apt-get -qq install graphviz > /dev/null;
+	sudo apt-get -qq install graphviz;
 fi;
 
 git clone https://github.com/FriendsOfCake/travis.git --depth 1 ../travis;
@@ -11,7 +17,7 @@ if [ "$PHPCS" != 1 ]; then
 	echo "
 		CakePlugin::load('Environment', array('bootstrap' => true));
 		CakePlugin::load('AdvancedShell', array('bootstrap' => true));
-		CakePlugin::load('HttpSource', array('bootstrap' => true, 'routes' => false));
+		CakePlugin::load('HttpSource', array('bootstrap' => true, 'routes' => true));
 	" >> ../cakephp/app/Config/bootstrap.php;
 	echo "<?php
 		require_once dirname(dirname(__FILE__)) . '/vendor/autoload.php';

@@ -7,6 +7,7 @@
  * Format: http://book.cakephp.org/2.0/en/models.html
  */
 App::uses('AppModel', 'Model');
+App::uses('HttpSourceUtility', 'HttpSource.Utility');
 
 /**
  * Model with patched methods to wirk with save()
@@ -14,7 +15,7 @@ App::uses('AppModel', 'Model');
  * @package HttpSource
  * @subpackage Model
  */
-abstract class HttpSourceModel extends AppModel {
+class HttpSourceModel extends AppModel {
 
 	/**
 	 * Model name
@@ -108,6 +109,17 @@ abstract class HttpSourceModel extends AppModel {
 	 */
 	public function deleteAll($conditions, $cascade = true, $callbacks = false) {
 		return parent::deleteAll($conditions, false, false);
+	}
+	
+	/**
+	 * Explain query
+	 * 
+	 * @param string $ds
+	 * @param string $query
+	 * @return string
+	 */
+	public function explain($ds, $query) {
+		return HttpSourceUtility::explainQuery($query);
 	}
 
 }

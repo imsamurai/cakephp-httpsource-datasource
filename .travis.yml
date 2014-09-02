@@ -9,7 +9,7 @@ env:
   global:
     - PLUGIN_NAME=HttpSource
     - PLUGIN_PATH=Plugin/HttpSource
-    - REQUIRE="imsamurai/cakephp-environment:dev-master phpdocumentor/phpdocumentor:2.*"
+    - REQUIRE="imsamurai/cakephp-environment:dev-master phpdocumentor/phpdocumentor:2.* symfony/process: 2.4.*"
     - DB=mysql
     - CAKE_VERSION=2.4
     - secure: gJVq4HkCVB3UZ/f9aBjCqT9IsOby4Ze9N67bp4BXOLcLDeWnpAOfbi85F0HATxXcuQA5A55UOFWqHFYXigVQ2J3w6Um3jseGCUi4ssh09u0orksDzem5OzulPVaJltiM5LC7d9GgSQDVaN5nDAIfP+bZE4SDIWUpwftO0xTuaSY=

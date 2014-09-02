@@ -1,35 +1,39 @@
 {
-  "name": "imsamurai/http-source",
-  "description": "Provides base class for datasorses with Http protocol",
-  "type": "cakephp-plugin",
-  "keywords": [
-    "cakephp",
-    "database",
-	"datasource",
-	"http",
-    "plugin"
-  ],
-  "homepage": "http://github.com/imsamurai/cakephp-httpsource-datasource",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Shamray Alexander",
-      "email": "im.samuray@gmail.com",
-      "homepage": "https://imsamurai.me",
-      "role": "Maintainer"
-    }
-  ],
-  "require": {
-    "composer/installers": "*",
-    "imsamurai/arraysort": "1.0.*",
-    "imsamurai/http-socket-oauth": "1.0.*"
-  },
-  "support": {
-    "email": "im.samuray@gmail.com",
-    "issues": "https://github.com/imsamurai/cakephp-httpsource-datasource/issues",
-    "source": "https://github.com/imsamurai/cakephp-httpsource-datasource"
-  },
-  "extra": {
-    "installer-name": "HttpSource"
-  }
+	"name": "imsamurai/http-source",
+	"description": "Provides base class for datasorses with Http protocol",
+	"type": "cakephp-plugin",
+	"keywords": [
+		"cakephp",
+		"database",
+		"datasource",
+		"http",
+		"plugin"
+	],
+	"homepage": "http://github.com/imsamurai/cakephp-httpsource-datasource",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Shamray Alexander",
+			"email": "im.samuray@gmail.com",
+			"homepage": "https://imsamurai.me",
+			"role": "Maintainer"
+		}
+	],
+	"require": {
+		"composer/installers": "*",
+		"imsamurai/arraysort": "1.0.*",
+		"imsamurai/http-socket-oauth": "1.0.*"
+	},
+	"suggest": {
+		"symfony/process": "For explain http queries in debug toolbar",
+		"ext-curl": "For explain http queries in debug toolbar"
+	},
+	"support": {
+		"email": "im.samuray@gmail.com",
+		"issues": "https://github.com/imsamurai/cakephp-httpsource-datasource/issues",
+		"source": "https://github.com/imsamurai/cakephp-httpsource-datasource"
+	},
+	"extra": {
+		"installer-name": "HttpSource"
+	}
 }

@@ -47,7 +47,6 @@ class HttpSourceToDboAssociationTest extends HttpSourceAppTest {
 	public function testHABTM() {
 		$this->User->Documents->useDbConfig = 'testHttpSource';
 		$results = $this->User->find('all', array('recursive' => 3));
-		debug($results);
 		foreach ($results as $result) {
 			$this->assertNotEmpty($result['Documents']);
 		}
