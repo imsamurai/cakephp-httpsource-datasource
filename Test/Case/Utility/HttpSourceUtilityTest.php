@@ -47,7 +47,7 @@ class HttpSourceUtilityTest extends CakeTestCase {
 				//query
 				"GET /documents/document/_search?size=10 HTTP/1.1" .
 				"\n" .
-				"Host: 0.0.0.0:9200" .
+				"Host: localhost:9200" .
 				"\n" .
 				"Connection: close" .
 				"\n" .
@@ -63,7 +63,7 @@ class HttpSourceUtilityTest extends CakeTestCase {
 					'method' => 'GET',
 					'path' => '/documents/document/_search?size=10',
 					'httpVer' => 'HTTP/1.1',
-					'host' => '0.0.0.0',
+					'host' => 'localhost',
 					'port' => 9200,
 					'headers' => array(
 						'Connection: close',
@@ -79,7 +79,7 @@ class HttpSourceUtilityTest extends CakeTestCase {
 				//query
 				"GET /documents/document/_search?size=10 HTTP/1.1" .
 				"\n" .
-				"Host: 0.0.0.0" .
+				"Host: localhost" .
 				"\n" .
 				"Connection: close" .
 				"\n" .
@@ -95,7 +95,7 @@ class HttpSourceUtilityTest extends CakeTestCase {
 					'method' => 'GET',
 					'path' => '/documents/document/_search?size=10',
 					'httpVer' => 'HTTP/1.1',
-					'host' => '0.0.0.0',
+					'host' => 'localhost',
 					'port' => 80,
 					'headers' => array(
 						'Connection: close',
@@ -111,7 +111,7 @@ class HttpSourceUtilityTest extends CakeTestCase {
 				//query
 				"DELETE / HTTP/1.1" .
 				"\n" .
-				"Host: 0.0.0.0" .
+				"Host: localhost" .
 				"\n" .
 				"Connection: close" .
 				"\n" .
@@ -127,7 +127,7 @@ class HttpSourceUtilityTest extends CakeTestCase {
 					'method' => 'DELETE',
 					'path' => '/',
 					'httpVer' => 'HTTP/1.1',
-					'host' => '0.0.0.0',
+					'host' => 'localhost',
 					'port' => 80,
 					'headers' => array(
 						'Connection: close',
@@ -158,7 +158,7 @@ class HttpSourceUtilityTest extends CakeTestCase {
 	public function testExplainQuery($query, array $explain) {
 		$this->skipIf(`which nc.traditional` === '', 'Netcat must be installed');
 		$this->skipUnless(class_exists('Symfony\Component\Process\Process'), 'You must install symfony/process for this test');
-		$Process = new Symfony\Component\Process\Process("echo 'answer' | nc.traditional -l -p 12345");
+		$Process = new Symfony\Component\Process\Process("printf 'HTTP/1.1 200 OK\nContent-length: 6\n\nanswer' | nc.traditional -l -p 12345");
 		$Process->start();
 		$result = HttpSourceUtility::explainQuery($query);
 		foreach ($explain as $pattern) {
@@ -178,7 +178,7 @@ class HttpSourceUtilityTest extends CakeTestCase {
 				//query
 				"GET /documents/document/_search?size=10 HTTP/1.1" .
 				"\n" .
-				"Host: 0.0.0.0:12345" .
+				"Host: localhost:12345" .
 				"\n" .
 				"Connection: close" .
 				"\n" .
@@ -191,10 +191,10 @@ class HttpSourceUtilityTest extends CakeTestCase {
 				'{"facets":{"tag":{"terms":{"field":"terms","size":4000}}},"query":{"filtered":{"filter":{"bool":{"must":[{"terms":{"labels":["Criminal"],"execution":"and"}}]}}}}}',
 				//explain
 				array(
-					'About to connect() to 0.0.0.0 port 12345',
-					'Connected to 0.0.0.0 (0.0.0.0) port 12345',
+					'About to connect() to localhost port 12345',
+					'Connected to localhost (127.0.0.1) port 12345',
 					'GET /documents/document/_search?size=10',
-					'Host: 0.0.0.0:12345',
+					'Host: localhost:12345',
 					'User-Agent: CakePHP',
 					'Content-Type: application/x-www-form-urlencoded',
 					'Content-Length: 162',
@@ -206,7 +206,7 @@ class HttpSourceUtilityTest extends CakeTestCase {
 				//query
 				"GET /documents/document/_search?size=10 HTTP/1.1" .
 				"\n" .
-				"Host: 0.0.0.0:54321" .
+				"Host: localhost:54321" .
 				"\n" .
 				"Connection: close" .
 				"\n" .
@@ -219,7 +219,7 @@ class HttpSourceUtilityTest extends CakeTestCase {
 				'{"facets":{"tag":{"terms":{"field":"terms","size":4000}}},"query":{"filtered":{"filter":{"bool":{"must":[{"terms":{"labels":["Criminal"],"execution":"and"}}]}}}}}',
 				//explain
 				array(
-					'About to connect() to 0.0.0.0 port 54321',
+					'About to connect() to localhost port 54321',
 					'couldn\'t connect to host'
 				)
 			),
