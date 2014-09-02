@@ -33,7 +33,7 @@ class HttpSourceUtility {
 
 		$command = "curl '{$data['host']}:{$data['port']}{$data['path']}'" .
 				' -s' .
-				' --connect-timeout ' . (int)$timeout .
+				//' --connect-timeout ' . (int)$timeout .
 				" -" . str_repeat('v', $verboseLevel) .
 				" -X{$data['method']}" .
 				' ' . implode('', array_map(function($h) { 
