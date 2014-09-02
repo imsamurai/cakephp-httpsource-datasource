@@ -192,7 +192,6 @@ class HttpSourceUtilityTest extends CakeTestCase {
 				//explain
 				array(
 					'About to connect() to localhost port 12345',
-					'Connected to localhost (127.0.0.1) port 12345',
 					'GET /documents/document/_search?size=10',
 					'Host: localhost:12345',
 					'User-Agent: CakePHP',
