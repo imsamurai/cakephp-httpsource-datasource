@@ -2,10 +2,6 @@
 
 sudo apt-get -qq update;
 sudo apt-get -qq install netcat;
-which netcat;
-
-echo 'answer' | nc.traditional -l -p 12345 &
-curl http://0.0.0.0:12345 &
 
 if [ "$PHPDOC" = 1 ]; then
 	sudo apt-get -qq install graphviz;
