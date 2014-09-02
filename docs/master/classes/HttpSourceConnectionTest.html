@@ -3,1121 +3,1064 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <meta charset="utf-8"/>
-    <title>API Documentation</title>
+    <title>    API Documentation &raquo; \HttpSourceConnectionTest
+</title>
     <meta name="author" content=""/>
     <meta name="description" content=""/>
 
-    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/prism.css" rel="stylesheet" media="all"/>
-    <link href="../css/template.css" rel="stylesheet" media="all"/>
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
     
-    <!--[if lt IE 9]>
-    <script src="../js/html5.js"></script>
-    <![endif]-->
-    <script src="../js/jquery-1.11.0.min.js"></script>
-    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery.smooth-scroll.js"></script>
-    <script src="../js/prism.min.js"></script>
-    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-    <script type="text/javascript">
-    function loadExternalCodeSnippets() {
-        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
-            var src = pre.getAttribute('data-src');
-            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-            var language = 'php';
-
-            var code = document.createElement('code');
-            code.className = 'language-' + language;
-
-            pre.textContent = '';
-
-            code.textContent = 'Loading…';
-
-            pre.appendChild(code);
-
-            var xhr = new XMLHttpRequest();
-
-            xhr.open('GET', src, true);
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
-
-                    if (xhr.status < 400 && xhr.responseText) {
-                        code.textContent = xhr.responseText;
-
-                        Prism.highlightElement(code);
-                    }
-                    else if (xhr.status >= 400) {
-                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                    }
-                    else {
-                        code.textContent = '✖ Error: File does not exist or is empty';
-                    }
-                }
-            };
-
-            xhr.send(null);
-        });
-    }
-
-    $(document).ready(function(){
-        loadExternalCodeSnippets();
-    });
-    $('#source-view').on('shown', function () {
-        loadExternalCodeSnippets();
-    })
-</script>
-
-    <link rel="shortcut icon" href="../images/favicon.ico"/>
-    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
-    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
-    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
-</head>
+            <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
 <body>
 
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <i class="icon-ellipsis-vertical"></i>
-            </a>
-            <a class="brand" href="../index.html">API Documentation</a>
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">API Documentation</a>
 
-            <div class="nav-collapse">
-                <ul class="nav pull-right">
-                                        <li class="dropdown" id="charts-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Charts <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../graphs/class.html">
-                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown" id="reports-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Reports <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/deprecated.html">
-                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">1</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!--<div class="go_to_top">-->
-    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
-    <!--</div>-->
-</div>
-
-<div id="___" class="container-fluid">
-        <section class="row-fluid">
-        <div class="span2 sidebar">
-                                <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1025006104"></a>
-                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
-            </div>
-            <div id="namespace-1025006104" class="accordion-body collapse in">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/AllHttpSourceTest.html">AllHttpSourceTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSource.html">HttpSource</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceAppTest.html">HttpSourceAppTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceBasicsTest.html">HttpSourceBasicsTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceCondition.html">HttpSourceCondition</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConditioniAmExistsANDValid.html">HttpSourceConditioniAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConditionTest.html">HttpSourceConditionTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfig.html">HttpSourceConfig</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigException.html">HttpSourceConfigException</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigFactory.html">HttpSourceConfigFactory</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryiAmExists.html">HttpSourceConfigFactoryiAmExists</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryiAmExistsANDValid.html">HttpSourceConfigFactoryiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryItem.html">HttpSourceConfigFactoryItem</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryItemiAmExistsANDValid.html">HttpSourceConfigFactoryItemiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryItemTest.html">HttpSourceConfigFactoryItemTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryTest.html">HttpSourceConfigFactoryTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigiAmExistsANDValid.html">HttpSourceConfigiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigTest.html">HttpSourceConfigTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConnection.html">HttpSourceConnection</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConnectionTest.html">HttpSourceConnectionTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceController.html">HttpSourceController</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceControllerTest.html">HttpSourceControllerTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceDocument.html">HttpSourceDocument</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceEndpoint.html">HttpSourceEndpoint</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceEndpointiAmExistsANDValid.html">HttpSourceEndpointiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceEndpointItem.html">HttpSourceEndpointItem</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceEndpointItemiAmExistsANDValid.html">HttpSourceEndpointItemiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceEndpointItemTest.html">HttpSourceEndpointItemTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceEndpointTest.html">HttpSourceEndpointTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceException.html">HttpSourceException</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceField.html">HttpSourceField</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceFieldiAmExistsANDValid.html">HttpSourceFieldiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceFieldTest.html">HttpSourceFieldTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceModel.html">HttpSourceModel</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceModelTest.html">HttpSourceModelTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceResult.html">HttpSourceResult</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceResultiAmExistsANDValid.html">HttpSourceResultiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceResultTest.html">HttpSourceResultTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceTest.html">HttpSourceTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceTestFixture.html">HttpSourceTestFixture</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceTestModel.html">HttpSourceTestModel</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceToDboAssociationTest.html">HttpSourceToDboAssociationTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceUser.html">HttpSourceUser</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceUserFixture.html">HttpSourceUserFixture</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceUsersDocumentFixture.html">HttpSourceUsersDocumentFixture</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceUtility.html">HttpSourceUtility</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceUtilityTest.html">HttpSourceUtilityTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpTestSource.html">HttpTestSource</a></li>
-                                                    <li class="class"><a href="../classes/TestHttpSource.html">TestHttpSource</a></li>
-                                                    <li class="class"><a href="../classes/TestHttpSourceConnection.html">TestHttpSourceConnection</a></li>
-                                                    <li class="class"><a href="../classes/TestHttpSourceModel.html">TestHttpSourceModel</a></li>
-                                            </ul>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                                            </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </div>
-
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
         </div>
-    </section>
-    <section class="row-fluid">
-        <div class="span10 offset2">
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <nav>
-                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
-                                            </nav>
-                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
-
-                    <h1><small>\</small>HttpSourceConnectionTest</h1>
-                    <p><em>HttpSourceConnectionTest</em></p>
-                    
-                    
-                                        
-                    <section id="summary">
-                        <h2>Summary</h2>
-                        <section class="row-fluid heading">
-                            <section class="span4">
-                                <a href="#methods">Methods</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#properties">Properties</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#constants">Constants</a>
-                            </section>
-                        </section>
-                        <section class="row-fluid public">
-                            <section class="span4">
-                                                                    <a href="../classes/HttpSourceConnectionTest.html#method_setUp" class="">setUp()</a><br />
-                                                                    <a href="../classes/HttpSourceConnectionTest.html#method_testConstruct" class="">testConstruct()</a><br />
-                                                                    <a href="../classes/HttpSourceConnectionTest.html#method_constructProvider" class="">constructProvider()</a><br />
-                                                                    <a href="../classes/HttpSourceConnectionTest.html#method_testDecoders" class="">testDecoders()</a><br />
-                                                                    <a href="../classes/HttpSourceConnectionTest.html#method_decodersProvider" class="">decodersProvider()</a><br />
-                                                                    <a href="../classes/HttpSourceConnectionTest.html#method_testCredentials" class="">testCredentials()</a><br />
-                                                                    <a href="../classes/HttpSourceConnectionTest.html#method_testAddOauth" class="">testAddOauth()</a><br />
-                                                                    <a href="../classes/HttpSourceConnectionTest.html#method_addAuthProvider" class="">addAuthProvider()</a><br />
-                                                                    <a href="../classes/HttpSourceConnectionTest.html#method_testQuote" class="">testQuote()</a><br />
-                                                                    <a href="../classes/HttpSourceConnectionTest.html#method_quoteProvider" class="">quoteProvider()</a><br />
-                                                                    <a href="../classes/HttpSourceConnectionTest.html#method_testRequest" class="">testRequest()</a><br />
-                                                                    <a href="../classes/HttpSourceConnectionTest.html#method_requestProvider" class="">requestProvider()</a><br />
-                                                                    <a href="../classes/HttpSourceConnectionTest.html#method_testRequestAttempt" class="">testRequestAttempt()</a><br />
-                                                                    <a href="../classes/HttpSourceConnectionTest.html#method_requestAttemptProvider" class="">requestAttemptProvider()</a><br />
-                                                                    <a href="../classes/HttpSourceConnectionTest.html#method_testGetNumRows" class="">testGetNumRows()</a><br />
-                                                                    <a href="../classes/HttpSourceConnectionTest.html#method_getNumRowsProvider" class="">getNumRowsProvider()</a><br />
-                                                                    <a href="../classes/HttpSourceConnectionTest.html#method_testDisconnect" class="">testDisconnect()</a><br />
-                                                                    <a href="../classes/HttpSourceConnectionTest.html#method_testDefaultDecoders" class="">testDefaultDecoders()</a><br />
-                                                                    <a href="../classes/HttpSourceConnectionTest.html#method_defaultDecodersProvider" class="">defaultDecodersProvider()</a><br />
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No public properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No constants found</em>
-                                                            </section>
-                        </section>
-                        <section class="row-fluid protected">
-                            <section class="span4">
-                                                                    <em>No protected methods found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No protected properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                        <section class="row-fluid private">
-                            <section class="span4">
-                                                                    <em>No private methods found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No private properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                    </section>
-                </div>
-                <aside class="span4 detailsbar">
-                                        
-                    
-                    <dl>
-                        <dt>File</dt>
-                            <dd><a href="../files/Test.Case.Model.Datasource.HttpSourceConnectionTest.html"><div class="path-wrapper">Test/Case/Model/Datasource/HttpSourceConnectionTest.php</div></a></dd>
-                                                <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">HttpSourceTest\Model.Datasource</div></dd>
-                                                <dt>Class hierarchy</dt>
-                            <dd class="hierarchy">
-                                                                                                                                                                                                                                                                                                
-                                        <div class="namespace-wrapper">\CakeTestCase</div>
-                                                                                                    <div class="namespace-wrapper">\HttpSourceConnectionTest</div>
-                            </dd>
-
-                        
-                        
-                        
-                        
-                                                                        </dl>
-                    <h2>Tags</h2>
-                    <table class="table table-condensed">
-                                            <tr><td colspan="2"><em>None found</em></td></tr>
-                                        </table>
-                </aside>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
             </div>
+        </noscript>
 
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public">
+        <a href="#method_addAuthProvider" title="addAuthProvider :: Data provider for testAddOauth">
+            <span class="description">Data provider for testAddOauth</span><pre>addAuthProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_constructProvider" title="constructProvider :: Data provider for construct">
+            <span class="description">Data provider for construct</span><pre>constructProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_decodersProvider" title="decodersProvider :: Data provider for testDecoders">
+            <span class="description">Data provider for testDecoders</span><pre>decodersProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_defaultDecodersProvider" title="defaultDecodersProvider :: Data provider for testDefaultDecoders">
+            <span class="description">Data provider for testDefaultDecoders</span><pre>defaultDecodersProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getNumRowsProvider" title="getNumRowsProvider :: Data provider fortestGetNumRows">
+            <span class="description">Data provider fortestGetNumRows</span><pre>getNumRowsProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_quoteProvider" title="quoteProvider :: Data provider for testQuote">
+            <span class="description">Data provider for testQuote</span><pre>quoteProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_requestAttemptProvider" title="requestAttemptProvider :: Data provider for testRequestAttempt">
+            <span class="description">Data provider for testRequestAttempt</span><pre>requestAttemptProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_requestProvider" title="requestProvider :: Data provider for testRequest">
+            <span class="description">Data provider for testRequest</span><pre>requestProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setUp" title="setUp :: {@inheritdoc}">
+            <span class="description">{@inheritdoc}</span><pre>setUp</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testAddOauth" title="testAddOauth :: Test adding oauth to request">
+            <span class="description">Test adding oauth to request</span><pre>testAddOauth</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testConstruct" title="testConstruct :: TEst constructor">
+            <span class="description">TEst constructor</span><pre>testConstruct</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testCredentials" title="testCredentials :: Test set/get credentials">
+            <span class="description">Test set/get credentials</span><pre>testCredentials</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testDecoders" title="testDecoders :: Test get/set decoders">
+            <span class="description">Test get/set decoders</span><pre>testDecoders</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testDefaultDecoders" title="testDefaultDecoders :: Test default decoders">
+            <span class="description">Test default decoders</span><pre>testDefaultDecoders</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testDisconnect" title="testDisconnect :: Test disconnect">
+            <span class="description">Test disconnect</span><pre>testDisconnect</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testGetNumRows" title="testGetNumRows :: Test get num rows">
+            <span class="description">Test get num rows</span><pre>testGetNumRows</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testQuote" title="testQuote :: Test quote">
+            <span class="description">Test quote</span><pre>testQuote</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testRequest" title="testRequest :: Test request">
+            <span class="description">Test request</span><pre>testRequest</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testRequestAttempt" title="testRequestAttempt :: Test request attempt">
+            <span class="description">Test request attempt</span><pre>testRequestAttempt</pre>
+        </a>
+    </li>
+
+                                                </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>HttpSourceConnectionTest</h1>
+                <small style="display: block; text-align: right">
+                                            Extends \CakeTestCase
+                                                        </small>
+                <p class="short_description">HttpSourceConnectionTest</p>
+                <div class="details">
+                    <div class="long_description">
                         
-                        
-                                    <a id="methods" name="methods"></a>
-            <div class="row-fluid">
-                <div class="span8 content class"><h2>Methods</h2></div>
-                <aside class="span4 detailsbar"></aside>
-            </div>
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>HttpSourceTest</p>
+                                    </td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        subpackage
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Model.Datasource</p>
+                                    </td>
+                                </tr>
+                                                                                                                            </table>
 
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_setUp" name="method_setUp" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">setUp()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setUp() </pre>
-                <p><em>{@inheritdoc}</em></p>
-                
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method_addAuthProvider"></a>
+                        <div class="element clickable method public  method_addAuthProvider" data-toggle="collapse" data-target=".method_addAuthProvider .collapse">
+                            <h2>Data provider for testAddOauth</h2>
+                            <pre>addAuthProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
 
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
 
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_testConstruct" name="method_testConstruct" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">testConstruct()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">testConstruct(array  <span class="argument">$config</span>, string  <span class="argument">$transportName</span>, array  <span class="argument">$transportConfig</span>, \HttpSocket  <span class="argument">$Transport = null</span>) </pre>
-                <p><em>TEst constructor</em></p>
-                
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
 
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array</td>
-                                <td>$config </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$transportName </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$transportConfig </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>\HttpSocket</td>
-                                <td>$Transport </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            dataProvider
-                        </th>
-                        <td>
-                                                                                            <p>constructProvider</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_constructProvider" name="method_constructProvider" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">constructProvider()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">constructProvider() : array</pre>
-                <p><em>Data provider for construct</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    array
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_testDecoders" name="method_testDecoders" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">testDecoders()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">testDecoders(array  <span class="argument">$setDecoders</span>, array  <span class="argument">$getDecoders</span>, string  <span class="argument">$exception</span>) </pre>
-                <p><em>Test get/set decoders</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array</td>
-                                <td>$setDecoders </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$getDecoders </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$exception </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            dataProvider
-                        </th>
-                        <td>
-                                                                                            <p>decodersProvider</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_decodersProvider" name="method_decodersProvider" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">decodersProvider()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">decodersProvider() : array</pre>
-                <p><em>Data provider for testDecoders</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    array
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_testCredentials" name="method_testCredentials" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">testCredentials()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">testCredentials() </pre>
-                <p><em>Test set/get credentials</em></p>
-                
-
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_testAddOauth" name="method_testAddOauth" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">testAddOauth()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">testAddOauth(string  <span class="argument">$name</span>, array  <span class="argument">$request</span>, array  <span class="argument">$result</span>, array  <span class="argument">$config</span>, array  <span class="argument">$credentials</span>, string  <span class="argument">$exception</span>) </pre>
-                <p><em>Test adding oauth to request</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$name </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$request </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$result </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$config </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$credentials </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$exception </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            dataProvider
-                        </th>
-                        <td>
-                                                                                            <p>addAuthProvider</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_addAuthProvider" name="method_addAuthProvider" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">addAuthProvider()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">addAuthProvider() : array</pre>
-                <p><em>Data provider for testAddOauth</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    array
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_testQuote" name="method_testQuote" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">testQuote()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">testQuote(mixed  <span class="argument">$data</span>, integer  <span class="argument">$type</span>) </pre>
-                <p><em>Test quote</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>mixed</td>
-                                <td>$data </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>integer</td>
-                                <td>$type </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            dataProvider
-                        </th>
-                        <td>
-                                                                                            <p>quoteProvider</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_quoteProvider" name="method_quoteProvider" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">quoteProvider()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">quoteProvider() : array</pre>
-                <p><em>Data provider for testQuote</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    array
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_testRequest" name="method_testRequest" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">testRequest()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">testRequest(array  <span class="argument">$request</span>, \array_bool  <span class="argument">$response</span>, array  <span class="argument">$data</span>, array  <span class="argument">$config</span>, string  <span class="argument">$authMethod</span>) </pre>
-                <p><em>Test request</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array</td>
-                                <td>$request </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>\array_bool</td>
-                                <td>$response </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$data </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$config </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$authMethod </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            dataProvider
-                        </th>
-                        <td>
-                                                                                            <p>requestProvider</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_requestProvider" name="method_requestProvider" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">requestProvider()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">requestProvider() : array</pre>
-                <p><em>Data provider for testRequest</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    array
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_testRequestAttempt" name="method_testRequestAttempt" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">testRequestAttempt()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">testRequestAttempt(array  <span class="argument">$request</span>, array|boolean  <span class="argument">$response</span>, array  <span class="argument">$attempts</span>, array  <span class="argument">$config</span>, string  <span class="argument">$lastError</span>, integer  <span class="argument">$debugLevel = null</span>) </pre>
-                <p><em>Test request attempt</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array</td>
-                                <td>$request </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>array|boolean</td>
-                                <td>$response </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$attempts </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$config </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$lastError </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>integer</td>
-                                <td>$debugLevel </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            dataProvider
-                        </th>
-                        <td>
-                                                                                            <p>requestAttemptProvider</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_requestAttemptProvider" name="method_requestAttemptProvider" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">requestAttemptProvider()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">requestAttemptProvider() : array</pre>
-                <p><em>Data provider for testRequestAttempt</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    array
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_testGetNumRows" name="method_testGetNumRows" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">testGetNumRows()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">testGetNumRows(mixed  <span class="argument">$data</span>, integer  <span class="argument">$numRows</span>) </pre>
-                <p><em>Test get num rows</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>mixed</td>
-                                <td>$data </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>integer</td>
-                                <td>$numRows </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            dataProvider
-                        </th>
-                        <td>
-                                                                                            <p>getNumRowsProvider</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_getNumRowsProvider" name="method_getNumRowsProvider" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">getNumRowsProvider()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getNumRowsProvider() : array</pre>
-                <p><em>Data provider fortestGetNumRows</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    array
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_testDisconnect" name="method_testDisconnect" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">testDisconnect()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">testDisconnect() </pre>
-                <p><em>Test disconnect</em></p>
-                
-
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_testDefaultDecoders" name="method_testDefaultDecoders" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">testDefaultDecoders()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">testDefaultDecoders(string  <span class="argument">$contentType</span>, string  <span class="argument">$encoded</span>, array  <span class="argument">$decoded</span>) </pre>
-                <p><em>Test default decoders</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$contentType </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$encoded </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$decoded </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            dataProvider
-                        </th>
-                        <td>
-                                                                                            <p>defaultDecodersProvider</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_defaultDecodersProvider" name="method_defaultDecodersProvider" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">defaultDecodersProvider()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">defaultDecodersProvider() : array</pre>
-                <p><em>Data provider for testDefaultDecoders</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    array
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
                                                                     </div>
-    </section>
+                            </div>
 
-    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label">HttpSourceConnectionTest.php</h3>
-        </div>
-        <div class="modal-body">
-            <pre data-src="../files/Test/Case/Model/Datasource/HttpSourceConnectionTest.php.txt" class="language-php line-numbers"></pre>
+                        </div>
+                                            <a id="method_constructProvider"></a>
+                        <div class="element clickable method public  method_constructProvider" data-toggle="collapse" data-target=".method_constructProvider .collapse">
+                            <h2>Data provider for construct</h2>
+                            <pre>constructProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_decodersProvider"></a>
+                        <div class="element clickable method public  method_decodersProvider" data-toggle="collapse" data-target=".method_decodersProvider .collapse">
+                            <h2>Data provider for testDecoders</h2>
+                            <pre>decodersProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_defaultDecodersProvider"></a>
+                        <div class="element clickable method public  method_defaultDecodersProvider" data-toggle="collapse" data-target=".method_defaultDecodersProvider .collapse">
+                            <h2>Data provider for testDefaultDecoders</h2>
+                            <pre>defaultDecodersProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getNumRowsProvider"></a>
+                        <div class="element clickable method public  method_getNumRowsProvider" data-toggle="collapse" data-target=".method_getNumRowsProvider .collapse">
+                            <h2>Data provider fortestGetNumRows</h2>
+                            <pre>getNumRowsProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_quoteProvider"></a>
+                        <div class="element clickable method public  method_quoteProvider" data-toggle="collapse" data-target=".method_quoteProvider .collapse">
+                            <h2>Data provider for testQuote</h2>
+                            <pre>quoteProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_requestAttemptProvider"></a>
+                        <div class="element clickable method public  method_requestAttemptProvider" data-toggle="collapse" data-target=".method_requestAttemptProvider .collapse">
+                            <h2>Data provider for testRequestAttempt</h2>
+                            <pre>requestAttemptProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_requestProvider"></a>
+                        <div class="element clickable method public  method_requestProvider" data-toggle="collapse" data-target=".method_requestProvider .collapse">
+                            <h2>Data provider for testRequest</h2>
+                            <pre>requestProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setUp"></a>
+                        <div class="element clickable method public  method_setUp" data-toggle="collapse" data-target=".method_setUp .collapse">
+                            <h2>{@inheritdoc}</h2>
+                            <pre>setUp() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testAddOauth"></a>
+                        <div class="element clickable method public  method_testAddOauth" data-toggle="collapse" data-target=".method_testAddOauth .collapse">
+                            <h2>Test adding oauth to request</h2>
+                            <pre>testAddOauth(string $name, array $request, array $result, array $config, array $credentials, string $exception) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>addAuthProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$name</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$result</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$config</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$credentials</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$exception</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testConstruct"></a>
+                        <div class="element clickable method public  method_testConstruct" data-toggle="collapse" data-target=".method_testConstruct .collapse">
+                            <h2>TEst constructor</h2>
+                            <pre>testConstruct(array $config, string $transportName, array $transportConfig, \HttpSocket $Transport = null) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>constructProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$config</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$transportName</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$transportConfig</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Transport</h4>
+                                                <code>\HttpSocket</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testCredentials"></a>
+                        <div class="element clickable method public  method_testCredentials" data-toggle="collapse" data-target=".method_testCredentials .collapse">
+                            <h2>Test set/get credentials</h2>
+                            <pre>testCredentials() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testDecoders"></a>
+                        <div class="element clickable method public  method_testDecoders" data-toggle="collapse" data-target=".method_testDecoders .collapse">
+                            <h2>Test get/set decoders</h2>
+                            <pre>testDecoders(array $setDecoders, array $getDecoders, string $exception) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>decodersProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$setDecoders</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$getDecoders</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$exception</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testDefaultDecoders"></a>
+                        <div class="element clickable method public  method_testDefaultDecoders" data-toggle="collapse" data-target=".method_testDefaultDecoders .collapse">
+                            <h2>Test default decoders</h2>
+                            <pre>testDefaultDecoders(string $contentType, string $encoded, array $decoded) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>defaultDecodersProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$contentType</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$encoded</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$decoded</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testDisconnect"></a>
+                        <div class="element clickable method public  method_testDisconnect" data-toggle="collapse" data-target=".method_testDisconnect .collapse">
+                            <h2>Test disconnect</h2>
+                            <pre>testDisconnect() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testGetNumRows"></a>
+                        <div class="element clickable method public  method_testGetNumRows" data-toggle="collapse" data-target=".method_testGetNumRows .collapse">
+                            <h2>Test get num rows</h2>
+                            <pre>testGetNumRows(mixed $data, integer $numRows) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>getNumRowsProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code>mixed</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$numRows</h4>
+                                                <code>integer</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testQuote"></a>
+                        <div class="element clickable method public  method_testQuote" data-toggle="collapse" data-target=".method_testQuote .collapse">
+                            <h2>Test quote</h2>
+                            <pre>testQuote(mixed $data, integer $type) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>quoteProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code>mixed</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$type</h4>
+                                                <code>integer</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testRequest"></a>
+                        <div class="element clickable method public  method_testRequest" data-toggle="collapse" data-target=".method_testRequest .collapse">
+                            <h2>Test request</h2>
+                            <pre>testRequest(array $request, \array_bool $response, array $data, array $config, string $authMethod) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>requestProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$response</h4>
+                                                <code>\array_bool</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$config</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$authMethod</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testRequestAttempt"></a>
+                        <div class="element clickable method public  method_testRequestAttempt" data-toggle="collapse" data-target=".method_testRequestAttempt .collapse">
+                            <h2>Test request attempt</h2>
+                            <pre>testRequestAttempt(array $request, array|boolean $response, array $attempts, array $config, string $lastError, integer $debugLevel = null) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>requestAttemptProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$response</h4>
+                                                <code>array|boolean</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$attempts</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$config</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$lastError</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$debugLevel</h4>
+                                                <code>integer</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                    
+                    
+                                                        </div>
+            </div>
+            <a id="\HttpSourceConnectionTest"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/default.html">\</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/HttpSourceConnectionTest.html">HttpSourceConnectionTest</a></li>
+            </ul>
         </div>
     </div>
 
-    <footer class="row-fluid">
-        <section class="span10 offset2">
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <section class="row-fluid footer-sections">
-                        <section class="span4">
-                                                        <h1><i class="icon-code"></i></h1>
-                            <div>
-                                <ul>
-                                                                    </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-bar-chart"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-pushpin"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../reports/errors.html">Errors</a></li>
-                                    <li><a href="../reports/markers.html">Markers</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                    </section>
-                </section>
-            </section>
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <hr />
-                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on September 2nd, 2014 at 12:13.
-                </section>
-            </section>
-        </section>
-    </footer>
-</div>
+    </div>
 
-</body>
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Tue, 02 Sep 2014 12:26:43 +0000.<br/>
+    </footer>
+    </body>
 </html>

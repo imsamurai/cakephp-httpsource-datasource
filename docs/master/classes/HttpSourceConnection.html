@@ -3,1491 +3,1407 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <meta charset="utf-8"/>
-    <title>API Documentation</title>
+    <title>    API Documentation &raquo; \HttpSourceConnection
+</title>
     <meta name="author" content=""/>
     <meta name="description" content=""/>
 
-    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="../css/font-awesome.min.css" rel="stylesheet">
-    <link href="../css/prism.css" rel="stylesheet" media="all"/>
-    <link href="../css/template.css" rel="stylesheet" media="all"/>
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
     
-    <!--[if lt IE 9]>
-    <script src="../js/html5.js"></script>
-    <![endif]-->
-    <script src="../js/jquery-1.11.0.min.js"></script>
-    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery.smooth-scroll.js"></script>
-    <script src="../js/prism.min.js"></script>
-    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-    <script type="text/javascript">
-    function loadExternalCodeSnippets() {
-        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
-            var src = pre.getAttribute('data-src');
-            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-            var language = 'php';
-
-            var code = document.createElement('code');
-            code.className = 'language-' + language;
-
-            pre.textContent = '';
-
-            code.textContent = 'Loading…';
-
-            pre.appendChild(code);
-
-            var xhr = new XMLHttpRequest();
-
-            xhr.open('GET', src, true);
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
-
-                    if (xhr.status < 400 && xhr.responseText) {
-                        code.textContent = xhr.responseText;
-
-                        Prism.highlightElement(code);
-                    }
-                    else if (xhr.status >= 400) {
-                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                    }
-                    else {
-                        code.textContent = '✖ Error: File does not exist or is empty';
-                    }
-                }
-            };
-
-            xhr.send(null);
-        });
-    }
-
-    $(document).ready(function(){
-        loadExternalCodeSnippets();
-    });
-    $('#source-view').on('shown', function () {
-        loadExternalCodeSnippets();
-    })
-</script>
-
-    <link rel="shortcut icon" href="../images/favicon.ico"/>
-    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
-    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
-    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
-</head>
+            <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
 <body>
 
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <i class="icon-ellipsis-vertical"></i>
-            </a>
-            <a class="brand" href="../index.html">API Documentation</a>
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">API Documentation</a>
 
-            <div class="nav-collapse">
-                <ul class="nav pull-right">
-                                        <li class="dropdown" id="charts-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Charts <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../graphs/class.html">
-                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown" id="reports-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Reports <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="../reports/deprecated.html">
-                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">1</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!--<div class="go_to_top">-->
-    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
-    <!--</div>-->
-</div>
-
-<div id="___" class="container-fluid">
-        <section class="row-fluid">
-        <div class="span2 sidebar">
-                                <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-854609387"></a>
-                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
-            </div>
-            <div id="namespace-854609387" class="accordion-body collapse in">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/AllHttpSourceTest.html">AllHttpSourceTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSource.html">HttpSource</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceAppTest.html">HttpSourceAppTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceBasicsTest.html">HttpSourceBasicsTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceCondition.html">HttpSourceCondition</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConditioniAmExistsANDValid.html">HttpSourceConditioniAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConditionTest.html">HttpSourceConditionTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfig.html">HttpSourceConfig</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigException.html">HttpSourceConfigException</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigFactory.html">HttpSourceConfigFactory</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryiAmExists.html">HttpSourceConfigFactoryiAmExists</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryiAmExistsANDValid.html">HttpSourceConfigFactoryiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryItem.html">HttpSourceConfigFactoryItem</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryItemiAmExistsANDValid.html">HttpSourceConfigFactoryItemiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryItemTest.html">HttpSourceConfigFactoryItemTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigFactoryTest.html">HttpSourceConfigFactoryTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigiAmExistsANDValid.html">HttpSourceConfigiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConfigTest.html">HttpSourceConfigTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConnection.html">HttpSourceConnection</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceConnectionTest.html">HttpSourceConnectionTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceController.html">HttpSourceController</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceControllerTest.html">HttpSourceControllerTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceDocument.html">HttpSourceDocument</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceEndpoint.html">HttpSourceEndpoint</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceEndpointiAmExistsANDValid.html">HttpSourceEndpointiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceEndpointItem.html">HttpSourceEndpointItem</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceEndpointItemiAmExistsANDValid.html">HttpSourceEndpointItemiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceEndpointItemTest.html">HttpSourceEndpointItemTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceEndpointTest.html">HttpSourceEndpointTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceException.html">HttpSourceException</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceField.html">HttpSourceField</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceFieldiAmExistsANDValid.html">HttpSourceFieldiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceFieldTest.html">HttpSourceFieldTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceModel.html">HttpSourceModel</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceModelTest.html">HttpSourceModelTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceResult.html">HttpSourceResult</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceResultiAmExistsANDValid.html">HttpSourceResultiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceResultTest.html">HttpSourceResultTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceTest.html">HttpSourceTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceTestFixture.html">HttpSourceTestFixture</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceTestModel.html">HttpSourceTestModel</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceToDboAssociationTest.html">HttpSourceToDboAssociationTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceUser.html">HttpSourceUser</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceUserFixture.html">HttpSourceUserFixture</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceUsersDocumentFixture.html">HttpSourceUsersDocumentFixture</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceUtility.html">HttpSourceUtility</a></li>
-                                                    <li class="class"><a href="../classes/HttpSourceUtilityTest.html">HttpSourceUtilityTest</a></li>
-                                                    <li class="class"><a href="../classes/HttpTestSource.html">HttpTestSource</a></li>
-                                                    <li class="class"><a href="../classes/TestHttpSource.html">TestHttpSource</a></li>
-                                                    <li class="class"><a href="../classes/TestHttpSourceConnection.html">TestHttpSourceConnection</a></li>
-                                                    <li class="class"><a href="../classes/TestHttpSourceModel.html">TestHttpSourceModel</a></li>
-                                            </ul>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                                            </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
     </div>
 
-        </div>
-    </section>
-    <section class="row-fluid">
-        <div class="span10 offset2">
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <nav>
-                                                <a href="../namespaces/default.html">\</a> <i class="icon-level-up"></i>
-                                            </nav>
-                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public">
+        <a href="#method___construct" title="__construct :: Constructor">
+            <span class="description">Constructor</span><pre>__construct</pre>
+        </a>
+    </li>
 
-                    <h1><small>\</small>HttpSourceConnection</h1>
-                    <p><em>Default HttpSource connection class</em></p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="method public">
+        <a href="#method_addOauth" title="addOauth :: Supplements a request array with oauth credentials">
+            <span class="description">Supplements a request array with oauth credentials</span><pre>addOauth</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_addOauthV2" title="addOauthV2 :: Supplements a request array with oauth credentials">
+            <span class="description">Supplements a request array with oauth credentials</span><pre>addOauthV2</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_disconnect" title="disconnect :: Disconnect">
+            <span class="description">Disconnect</span><pre>disconnect</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getAffected" title="getAffected :: Returns affected rows">
+            <span class="description">Returns affected rows</span><pre>getAffected</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getCredentials" title="getCredentials :: Gets credentials data">
+            <span class="description">Gets credentials data</span><pre>getCredentials</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getDecoder" title="getDecoder :: Get decoder by given $contentType.">
+            <span class="description">Get decoder by given $contentType.</span><pre>getDecoder</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getDecoders" title="getDecoders :: Get decoders">
+            <span class="description">Get decoders</span><pre>getDecoders</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getError" title="getError :: Returns last error">
+            <span class="description">Returns last error</span><pre>getError</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getNumRows" title="getNumRows :: Returns number of rows in result">
+            <span class="description">Returns number of rows in result</span><pre>getNumRows</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getQuery" title="getQuery :: Returns lst request query">
+            <span class="description">Returns lst request query</span><pre>getQuery</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getResponse" title="getResponse :: Returns last Response">
+            <span class="description">Returns last Response</span><pre>getResponse</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getTook" title="getTook :: Returns last request took time">
+            <span class="description">Returns last request took time</span><pre>getTook</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getTransport" title="getTransport :: Return current transport">
+            <span class="description">Return current transport</span><pre>getTransport</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_quote" title="quote :: Quote data">
+            <span class="description">Quote data</span><pre>quote</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_request" title="request :: Issue the specified request and decode it on success">
+            <span class="description">Issue the specified request and decode it on success</span><pre>request</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_reset" title="reset :: Reset state variables">
+            <span class="description">Reset state variables</span><pre>reset</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setCredentials" title="setCredentials :: Sets credentials data">
+            <span class="description">Sets credentials data</span><pre>setCredentials</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setDecoder" title="setDecoder :: Add decoder for given $contentType">
+            <span class="description">Add decoder for given $contentType</span><pre>setDecoder</pre>
+        </a>
+    </li>
+
+                                                </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                <li class="method protected">
+                            <a href="#method__canRetryRequest" title="_canRetryRequest :: Checks if we can retry request">
+                                <span class="description">Checks if we can retry request</span><pre>_canRetryRequest</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected">
+                            <a href="#method__decode" title="_decode :: Decodes the response based on the content type">
+                                <span class="description">Decodes the response based on the content type</span><pre>_decode</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected">
+                            <a href="#method__extractRemoteError" title="_extractRemoteError :: Extract remote error from response">
+                                <span class="description">Extract remote error from response</span><pre>_extractRemoteError</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected">
+                            <a href="#method__initDefaultDecoders" title="_initDefaultDecoders :: Initialize default decoders">
+                                <span class="description">Initialize default decoders</span><pre>_initDefaultDecoders</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected">
+                            <a href="#method__logDump" title="_logDump :: Save dump into log">
+                                <span class="description">Save dump into log</span><pre>_logDump</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected">
+                            <a href="#method__request" title="_request :: Make attempts to request">
+                                <span class="description">Make attempts to request</span><pre>_request</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected">
+                            <a href="#method__requestDelay" title="_requestDelay :: Delay before newt request">
+                                <span class="description">Delay before newt request</span><pre>_requestDelay</pre>
+                            </a>
+                        </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>HttpSourceConnection</h1>
+                <small style="display: block; text-align: right">
+                                            Extends \Object
+                                                        </small>
+                <p class="short_description">Default HttpSource connection class</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>HttpSource</p>
+                                    </td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        subpackage
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Model.Datasource</p>
+                                    </td>
+                                </tr>
+                                                                                                                            </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method___construct"></a>
+                        <div class="element clickable method public  method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+                            <h2>Constructor</h2>
+                            <pre>__construct(array $config = array(), \HttpSocket $Transport = null) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$config</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Transport</h4>
+                                                <code>\HttpSocket</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method__canRetryRequest"></a>
+                        <div class="element clickable method protected  method__canRetryRequest" data-toggle="collapse" data-target=".method__canRetryRequest .collapse">
+                            <h2>Checks if we can retry request</h2>
+                            <pre>_canRetryRequest(\HttpSocketResponse $Response, integer $currentAttempt) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Response</h4>
+                                                <code>\HttpSocketResponse</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$currentAttempt</h4>
+                                                <code>integer</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method__decode"></a>
+                        <div class="element clickable method protected  method__decode" data-toggle="collapse" data-target=".method__decode .collapse">
+                            <h2>Decodes the response based on the content type</h2>
+                            <pre>_decode() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>If content type decoder not found or response is not an object</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>Decoded response</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method__extractRemoteError"></a>
+                        <div class="element clickable method protected  method__extractRemoteError" data-toggle="collapse" data-target=".method__extractRemoteError .collapse">
+                            <h2>Extract remote error from response</h2>
+                            <pre>_extractRemoteError() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method__initDefaultDecoders"></a>
+                        <div class="element clickable method protected  method__initDefaultDecoders" data-toggle="collapse" data-target=".method__initDefaultDecoders .collapse">
+                            <h2>Initialize default decoders</h2>
+                            <pre>_initDefaultDecoders() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method__logDump"></a>
+                        <div class="element clickable method protected  method__logDump" data-toggle="collapse" data-target=".method__logDump .collapse">
+                            <h2>Save dump into log</h2>
+                            <pre>_logDump(\HttpSocketResponse|boolean $Response) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Response</h4>
+                                                <code>\HttpSocketResponse|boolean</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method__request"></a>
+                        <div class="element clickable method protected  method__request" data-toggle="collapse" data-target=".method__request .collapse">
+                            <h2>Make attempts to request</h2>
+                            <pre>_request(array $request, integer $currentAttempt = 1) : boolean</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$currentAttempt</h4>
+                                                <code>integer</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method__requestDelay"></a>
+                        <div class="element clickable method protected  method__requestDelay" data-toggle="collapse" data-target=".method__requestDelay .collapse">
+                            <h2>Delay before newt request</h2>
+                            <pre>_requestDelay(\HttpSocketResponse $Response, integer $currentAttempt) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Response</h4>
+                                                <code>\HttpSocketResponse</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$currentAttempt</h4>
+                                                <code>integer</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_addOauth"></a>
+                        <div class="element clickable method public  method_addOauth" data-toggle="collapse" data-target=".method_addOauth .collapse">
+                            <h2>Supplements a request array with oauth credentials</h2>
+                            <pre>addOauth(array $request) : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>$request</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_addOauthV2"></a>
+                        <div class="element clickable method public  method_addOauthV2" data-toggle="collapse" data-target=".method_addOauthV2 .collapse">
+                            <h2>Supplements a request array with oauth credentials</h2>
+                            <pre>addOauthV2(array $request) : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>$request</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_disconnect"></a>
+                        <div class="element clickable method public  method_disconnect" data-toggle="collapse" data-target=".method_disconnect .collapse">
+                            <h2>Disconnect</h2>
+                            <pre>disconnect() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getAffected"></a>
+                        <div class="element clickable method public  method_getAffected" data-toggle="collapse" data-target=".method_getAffected .collapse">
+                            <h2>Returns affected rows</h2>
+                            <pre>getAffected() : integer|string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>integer|string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getCredentials"></a>
+                        <div class="element clickable method public  method_getCredentials" data-toggle="collapse" data-target=".method_getCredentials .collapse">
+                            <h2>Gets credentials data</h2>
+                            <pre>getCredentials() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getDecoder"></a>
+                        <div class="element clickable method public  method_getDecoder" data-toggle="collapse" data-target=".method_getDecoder .collapse">
+                            <h2>Get decoder by given $contentType.</h2>
+                            <pre>getDecoder(string $contentType) : callable</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>If decoder not found writes log and throw exception.</p></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$contentType</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>callable</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getDecoders"></a>
+                        <div class="element clickable method public  method_getDecoders" data-toggle="collapse" data-target=".method_getDecoders .collapse">
+                            <h2>Get decoders</h2>
+                            <pre>getDecoders() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getError"></a>
+                        <div class="element clickable method public  method_getError" data-toggle="collapse" data-target=".method_getError .collapse">
+                            <h2>Returns last error</h2>
+                            <pre>getError() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getNumRows"></a>
+                        <div class="element clickable method public  method_getNumRows" data-toggle="collapse" data-target=".method_getNumRows .collapse">
+                            <h2>Returns number of rows in result</h2>
+                            <pre>getNumRows(mixed $result) : integer|string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$result</h4>
+                                                <code>mixed</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>integer|string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getQuery"></a>
+                        <div class="element clickable method public  method_getQuery" data-toggle="collapse" data-target=".method_getQuery .collapse">
+                            <h2>Returns lst request query</h2>
+                            <pre>getQuery() : string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getResponse"></a>
+                        <div class="element clickable method public  method_getResponse" data-toggle="collapse" data-target=".method_getResponse .collapse">
+                            <h2>Returns last Response</h2>
+                            <pre>getResponse() : \HttpSocketResponse</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>\HttpSocketResponse</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getTook"></a>
+                        <div class="element clickable method public  method_getTook" data-toggle="collapse" data-target=".method_getTook .collapse">
+                            <h2>Returns last request took time</h2>
+                            <pre>getTook() : integer|string</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>integer|string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getTransport"></a>
+                        <div class="element clickable method public  method_getTransport" data-toggle="collapse" data-target=".method_getTransport .collapse">
+                            <h2>Return current transport</h2>
+                            <pre>getTransport() : \HttpSocket</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>\HttpSocket</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_quote"></a>
+                        <div class="element clickable method public  method_quote" data-toggle="collapse" data-target=".method_quote .collapse">
+                            <h2>Quote data</h2>
+                            <pre>quote(mixed $data, integer $type = \PDO::PARAM_STR) : mixed</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code>mixed</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$type</h4>
+                                                <code>integer</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_request"></a>
+                        <div class="element clickable method public  method_request" data-toggle="collapse" data-target=".method_request .collapse">
+                            <h2>Issue the specified request and decode it on success</h2>
+                            <pre>request(array $request = array()) : mixed</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p><p>false on error, decoded response array on success</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_reset"></a>
+                        <div class="element clickable method public  method_reset" data-toggle="collapse" data-target=".method_reset .collapse">
+                            <h2>Reset state variables</h2>
+                            <pre>reset() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setCredentials"></a>
+                        <div class="element clickable method public  method_setCredentials" data-toggle="collapse" data-target=".method_setCredentials .collapse">
+                            <h2>Sets credentials data</h2>
+                            <pre>setCredentials(array $credentials = array()) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$credentials</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setDecoder"></a>
+                        <div class="element clickable method public  method_setDecoder" data-toggle="collapse" data-target=".method_setDecoder .collapse">
+                            <h2>Add decoder for given $contentType</h2>
+                            <pre>setDecoder(string|array $contentType, callable $callback, boolean $replace = false) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$contentType</h4>
+                                                <code>string|array</code><p><p>Content type</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$callback</h4>
+                                                <code>callable</code><p><p>Function used for decoding</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$replace</h4>
+                                                <code>boolean</code><p><p>Replace decoder if already set or not. Default false</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
                     
                     
-                                        
-                    <section id="summary">
-                        <h2>Summary</h2>
-                        <section class="row-fluid heading">
-                            <section class="span4">
-                                <a href="#methods">Methods</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#properties">Properties</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#constants">Constants</a>
-                            </section>
-                        </section>
-                        <section class="row-fluid public">
-                            <section class="span4">
-                                                                    <a href="../classes/HttpSourceConnection.html#method___construct" class="">__construct()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method_getTransport" class="">getTransport()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method_getResponse" class="">getResponse()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method_getError" class="">getError()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method_getTook" class="">getTook()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method_getAffected" class="">getAffected()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method_getNumRows" class="">getNumRows()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method_getQuery" class="">getQuery()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method_setDecoder" class="">setDecoder()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method_getDecoder" class="">getDecoder()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method_getDecoders" class="">getDecoders()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method_setCredentials" class="">setCredentials()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method_getCredentials" class="">getCredentials()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method_addOauth" class="">addOauth()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method_addOauthV2" class="">addOauthV2()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method_quote" class="">quote()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method_request" class="">request()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method_reset" class="">reset()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method_disconnect" class="">disconnect()</a><br />
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No public properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No constants found</em>
-                                                            </section>
-                        </section>
-                        <section class="row-fluid protected">
-                            <section class="span4">
-                                                                    <a href="../classes/HttpSourceConnection.html#method__initDefaultDecoders" class="">_initDefaultDecoders()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method__request" class="">_request()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method__logDump" class="">_logDump()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method__canRetryRequest" class="">_canRetryRequest()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method__requestDelay" class="">_requestDelay()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method__extractRemoteError" class="">_extractRemoteError()</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#method__decode" class="">_decode()</a><br />
-                                                            </section>
-                            <section class="span4">
-                                                                    <a href="../classes/HttpSourceConnection.html#property__error" class="">$_error</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#property__took" class="">$_took</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#property__affected" class="">$_affected</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#property__Response" class="">$_Response</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#property__Transport" class="">$_Transport</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#property__config" class="">$_config</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#property__credentials" class="">$_credentials</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#property__decoders" class="">$_decoders</a><br />
-                                                                    <a href="../classes/HttpSourceConnection.html#property__lastResponse" class="">$_lastResponse</a><br />
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                        <section class="row-fluid private">
-                            <section class="span4">
-                                                                    <em>No private methods found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No private properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                    </section>
-                </div>
-                <aside class="span4 detailsbar">
-                                        
+                                                                <h3><i class="icon-custom icon-property"></i> Properties</h3>
+                                                    <a id="property__error"> </a>
+                            <div class="element clickable property  protected property__error" data-toggle="collapse" data-target=".property__error .collapse">
+                                <h2>Request error</h2>
+                                <pre>_error : string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property__took"> </a>
+                            <div class="element clickable property  protected property__took" data-toggle="collapse" data-target=".property__took .collapse">
+                                <h2>Request time</h2>
+                                <pre>_took : integer|string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>integer|string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property__affected"> </a>
+                            <div class="element clickable property  protected property__affected" data-toggle="collapse" data-target=".property__affected .collapse">
+                                <h2>Affected rows</h2>
+                                <pre>_affected : integer|string</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>integer|string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property__Response"> </a>
+                            <div class="element clickable property  protected property__Response" data-toggle="collapse" data-target=".property__Response .collapse">
+                                <h2>Response object</h2>
+                                <pre>_Response : \HttpSocketResponse</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>\HttpSocketResponse</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property__Transport"> </a>
+                            <div class="element clickable property  protected property__Transport" data-toggle="collapse" data-target=".property__Transport .collapse">
+                                <h2>Object for requests</h2>
+                                <pre>_Transport : \HttpSocket</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>\HttpSocket</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property__config"> </a>
+                            <div class="element clickable property  protected property__config" data-toggle="collapse" data-target=".property__config .collapse">
+                                <h2>Connection config</h2>
+                                <pre>_config : array</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property__credentials"> </a>
+                            <div class="element clickable property  protected property__credentials" data-toggle="collapse" data-target=".property__credentials .collapse">
+                                <h2>Credentials for request, for ex: login, password, token, etc</h2>
+                                <pre>_credentials : array</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property__decoders"> </a>
+                            <div class="element clickable property  protected property__decoders" data-toggle="collapse" data-target=".property__decoders .collapse">
+                                <h2>Contains all possible decoders</h2>
+                                <pre>_decoders : array</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property__lastResponse"> </a>
+                            <div class="element clickable property  protected property__lastResponse" data-toggle="collapse" data-target=".property__lastResponse .collapse">
+                                <h2>Last decoded response</h2>
+                                <pre>_lastResponse : array</pre>
+                                <div class="labels">
+                                                                                                        </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                            </div>
+            </div>
+            <a id="\HttpSourceConnection"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
                     
-                    <dl>
-                        <dt>File</dt>
-                            <dd><a href="../files/Model.Datasource.HttpSourceConnection.html"><div class="path-wrapper">Model/Datasource/HttpSourceConnection.php</div></a></dd>
-                                                <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">HttpSource\Model.Datasource</div></dd>
-                                                <dt>Class hierarchy</dt>
-                            <dd class="hierarchy">
-                                                                                                                                                                                                                                                                                                
-                                        <div class="namespace-wrapper">\Object</div>
-                                                                                                    <div class="namespace-wrapper">\HttpSourceConnection</div>
-                            </dd>
-
-                        
-                        
-                        
-                        
-                                                                        </dl>
-                    <h2>Tags</h2>
-                    <table class="table table-condensed">
-                                            <tr><td colspan="2"><em>None found</em></td></tr>
-                                        </table>
-                </aside>
-            </div>
-
-                        
-                                    <a id="properties" name="properties"></a>
-            <div class="row-fluid">
-                <div class="span8 content class">
-                    <h2>Properties</h2>
-                </div>
-                <aside class="span4 detailsbar"></aside>
-            </div>
-
-                                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property__error" name="property__error" class="anchor"></a>
-            <article class="property">
-                <h3 class="protected ">$_error</h3>
-                <pre class="signature">$_error : string</pre>
-                <p><em>Request error</em></p>
-                
-
-                                <h4>Type</h4>
-                string
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property__took" name="property__took" class="anchor"></a>
-            <article class="property">
-                <h3 class="protected ">$_took</h3>
-                <pre class="signature">$_took : integer|string</pre>
-                <p><em>Request time</em></p>
-                
-
-                                <h4>Type</h4>
-                integer|string
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property__affected" name="property__affected" class="anchor"></a>
-            <article class="property">
-                <h3 class="protected ">$_affected</h3>
-                <pre class="signature">$_affected : integer|string</pre>
-                <p><em>Affected rows</em></p>
-                
-
-                                <h4>Type</h4>
-                integer|string
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property__Response" name="property__Response" class="anchor"></a>
-            <article class="property">
-                <h3 class="protected ">$_Response</h3>
-                <pre class="signature">$_Response : \HttpSocketResponse</pre>
-                <p><em>Response object</em></p>
-                
-
-                                <h4>Type</h4>
-                \HttpSocketResponse
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property__Transport" name="property__Transport" class="anchor"></a>
-            <article class="property">
-                <h3 class="protected ">$_Transport</h3>
-                <pre class="signature">$_Transport : \HttpSocket</pre>
-                <p><em>Object for requests</em></p>
-                
-
-                                <h4>Type</h4>
-                \HttpSocket
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property__config" name="property__config" class="anchor"></a>
-            <article class="property">
-                <h3 class="protected ">$_config</h3>
-                <pre class="signature">$_config : array</pre>
-                <p><em>Connection config</em></p>
-                
-
-                                <h4>Type</h4>
-                array
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property__credentials" name="property__credentials" class="anchor"></a>
-            <article class="property">
-                <h3 class="protected ">$_credentials</h3>
-                <pre class="signature">$_credentials : array</pre>
-                <p><em>Credentials for request, for ex: login, password, token, etc</em></p>
-                
-
-                                <h4>Type</h4>
-                array
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property__decoders" name="property__decoders" class="anchor"></a>
-            <article class="property">
-                <h3 class="protected ">$_decoders</h3>
-                <pre class="signature">$_decoders : array</pre>
-                <p><em>Contains all possible decoders</em></p>
-                
-
-                                <h4>Type</h4>
-                array
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="property__lastResponse" name="property__lastResponse" class="anchor"></a>
-            <article class="property">
-                <h3 class="protected ">$_lastResponse</h3>
-                <pre class="signature">$_lastResponse : array</pre>
-                <p><em>Last decoded response</em></p>
-                
-
-                                <h4>Type</h4>
-                array
-                                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                            
-                                    <a id="methods" name="methods"></a>
-            <div class="row-fluid">
-                <div class="span8 content class"><h2>Methods</h2></div>
-                <aside class="span4 detailsbar"></aside>
-            </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method___construct" name="method___construct" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">__construct()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct(array  <span class="argument">$config = array()</span>, \HttpSocket  <span class="argument">$Transport = null</span>) </pre>
-                <p><em>Constructor</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array</td>
-                                <td>$config </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>\HttpSocket</td>
-                                <td>$Transport </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_getTransport" name="method_getTransport" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">getTransport()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getTransport() : \HttpSocket</pre>
-                <p><em>Return current transport</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    \HttpSocket
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_getResponse" name="method_getResponse" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">getResponse()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getResponse() : \HttpSocketResponse</pre>
-                <p><em>Returns last Response</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    \HttpSocketResponse
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_getError" name="method_getError" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">getError()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getError() : string</pre>
-                <p><em>Returns last error</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_getTook" name="method_getTook" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">getTook()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getTook() : integer|string</pre>
-                <p><em>Returns last request took time</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    integer|string
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_getAffected" name="method_getAffected" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">getAffected()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getAffected() : integer|string</pre>
-                <p><em>Returns affected rows</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    integer|string
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_getNumRows" name="method_getNumRows" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">getNumRows()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getNumRows(mixed  <span class="argument">$result</span>) : integer|string</pre>
-                <p><em>Returns number of rows in result</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>mixed</td>
-                                <td>$result </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    integer|string
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_getQuery" name="method_getQuery" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">getQuery()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getQuery() : string</pre>
-                <p><em>Returns lst request query</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_setDecoder" name="method_setDecoder" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">setDecoder()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setDecoder(string|array  <span class="argument">$contentType</span>, callable  <span class="argument">$callback</span>, boolean  <span class="argument">$replace = false</span>) </pre>
-                <p><em>Add decoder for given $contentType</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string|array</td>
-                                <td>$contentType </td>
-                                <td><p>Content type</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>callable</td>
-                                <td>$callback </td>
-                                <td><p>Function used for decoding</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>boolean</td>
-                                <td>$replace </td>
-                                <td><p>Replace decoder if already set or not. Default false</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_getDecoder" name="method_getDecoder" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">getDecoder()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getDecoder(string  <span class="argument">$contentType</span>) : callable</pre>
-                <p><em>Get decoder by given $contentType.</em></p>
-                <p>If decoder not found writes log and throw exception.</p>
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$contentType </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\HttpSourceException</dt>
-                            <dd></dd>
-                                                                    </dl>
-                
-                                    <h4>Returns</h4>
-                    callable
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_getDecoders" name="method_getDecoders" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">getDecoders()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getDecoders() : array</pre>
-                <p><em>Get decoders</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    array
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_setCredentials" name="method_setCredentials" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">setCredentials()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">setCredentials(array  <span class="argument">$credentials = array()</span>) </pre>
-                <p><em>Sets credentials data</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array</td>
-                                <td>$credentials </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_getCredentials" name="method_getCredentials" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">getCredentials()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getCredentials() : array</pre>
-                <p><em>Gets credentials data</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    array
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_addOauth" name="method_addOauth" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">addOauth()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">addOauth(array  <span class="argument">$request</span>) : array</pre>
-                <p><em>Supplements a request array with oauth credentials</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array</td>
-                                <td>$request </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\HttpSourceConfigException</dt>
-                            <dd></dd>
-                                                                    </dl>
-                
-                                    <h4>Returns</h4>
-                    array
-                                            &mdash; <p>$request</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_addOauthV2" name="method_addOauthV2" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">addOauthV2()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">addOauthV2(array  <span class="argument">$request</span>) : array</pre>
-                <p><em>Supplements a request array with oauth credentials</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array</td>
-                                <td>$request </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    array
-                                            &mdash; <p>$request</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_quote" name="method_quote" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">quote()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">quote(mixed  <span class="argument">$data</span>, integer  <span class="argument">$type = \PDO::PARAM_STR</span>) : mixed</pre>
-                <p><em>Quote data</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>mixed</td>
-                                <td>$data </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>integer</td>
-                                <td>$type </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    mixed
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_request" name="method_request" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">request()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">request(array  <span class="argument">$request = array()</span>) : mixed</pre>
-                <p><em>Issue the specified request and decode it on success</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array</td>
-                                <td>$request </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\HttpSourceConfigException</dt>
-                            <dd></dd>
-                                                                    </dl>
-                
-                                    <h4>Returns</h4>
-                    mixed
-                                            &mdash; <p>false on error, decoded response array on success</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_reset" name="method_reset" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">reset()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">reset() </pre>
-                <p><em>Reset state variables</em></p>
-                
-
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_disconnect" name="method_disconnect" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">disconnect()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">disconnect() </pre>
-                <p><em>Disconnect</em></p>
-                
-
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method__initDefaultDecoders" name="method__initDefaultDecoders" class="anchor"></a>
-            <article class="method">
-                <h3 class="protected ">_initDefaultDecoders()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">_initDefaultDecoders() </pre>
-                <p><em>Initialize default decoders</em></p>
-                
-
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method__request" name="method__request" class="anchor"></a>
-            <article class="method">
-                <h3 class="protected ">_request()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">_request(array  <span class="argument">$request</span>, integer  <span class="argument">$currentAttempt = 1</span>) : boolean</pre>
-                <p><em>Make attempts to request</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>array</td>
-                                <td>$request </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>integer</td>
-                                <td>$currentAttempt </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    boolean
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method__logDump" name="method__logDump" class="anchor"></a>
-            <article class="method">
-                <h3 class="protected ">_logDump()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">_logDump(\HttpSocketResponse|boolean  <span class="argument">$Response</span>) : boolean</pre>
-                <p><em>Save dump into log</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\HttpSocketResponse|boolean</td>
-                                <td>$Response </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    boolean
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method__canRetryRequest" name="method__canRetryRequest" class="anchor"></a>
-            <article class="method">
-                <h3 class="protected ">_canRetryRequest()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">_canRetryRequest(\HttpSocketResponse  <span class="argument">$Response</span>, integer  <span class="argument">$currentAttempt</span>) : boolean</pre>
-                <p><em>Checks if we can retry request</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\HttpSocketResponse</td>
-                                <td>$Response </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>integer</td>
-                                <td>$currentAttempt </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    boolean
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method__requestDelay" name="method__requestDelay" class="anchor"></a>
-            <article class="method">
-                <h3 class="protected ">_requestDelay()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">_requestDelay(\HttpSocketResponse  <span class="argument">$Response</span>, integer  <span class="argument">$currentAttempt</span>) </pre>
-                <p><em>Delay before newt request</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\HttpSocketResponse</td>
-                                <td>$Response </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>integer</td>
-                                <td>$currentAttempt </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method__extractRemoteError" name="method__extractRemoteError" class="anchor"></a>
-            <article class="method">
-                <h3 class="protected ">_extractRemoteError()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">_extractRemoteError() : string</pre>
-                <p><em>Extract remote error from response</em></p>
-                
-
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method__decode" name="method__decode" class="anchor"></a>
-            <article class="method">
-                <h3 class="protected ">_decode()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">_decode() : array</pre>
-                <p><em>Decodes the response based on the content type</em></p>
-                
-
-                
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\HttpSourceException</dt>
-                            <dd><p>If content type decoder not found or response is not an object</p></dd>
-                                                                    </dl>
-                
-                                    <h4>Returns</h4>
-                    array
-                                            &mdash; <p>Decoded response</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                                    </div>
-    </section>
-
-    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label">HttpSourceConnection.php</h3>
-        </div>
-        <div class="modal-body">
-            <pre data-src="../files/Model/Datasource/HttpSourceConnection.php.txt" class="language-php line-numbers"></pre>
+    
+    <li><span class="divider">\</span><a href="../namespaces/default.html">\</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/HttpSourceConnection.html">HttpSourceConnection</a></li>
+            </ul>
         </div>
     </div>
 
-    <footer class="row-fluid">
-        <section class="span10 offset2">
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <section class="row-fluid footer-sections">
-                        <section class="span4">
-                                                        <h1><i class="icon-code"></i></h1>
-                            <div>
-                                <ul>
-                                                                    </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-bar-chart"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-pushpin"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="../reports/errors.html">Errors</a></li>
-                                    <li><a href="../reports/markers.html">Markers</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                    </section>
-                </section>
-            </section>
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <hr />
-                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on September 2nd, 2014 at 12:13.
-                </section>
-            </section>
-        </section>
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Tue, 02 Sep 2014 12:26:41 +0000.<br/>
     </footer>
-</div>
-
-</body>
+    </body>
 </html>

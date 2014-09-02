@@ -7,432 +7,157 @@
     <meta name="author" content=""/>
     <meta name="description" content=""/>
 
-    <link href="css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prism.css" rel="stylesheet" media="all"/>
-    <link href="css/template.css" rel="stylesheet" media="all"/>
+            <link href="css/template.css" rel="stylesheet" media="all"/>
     
-    <!--[if lt IE 9]>
-    <script src="js/html5.js"></script>
-    <![endif]-->
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/ui/1.10.4/jquery-ui.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.smooth-scroll.js"></script>
-    <script src="js/prism.min.js"></script>
-    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+            <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.js" type="text/javascript"></script>
+        <script src="js/template.js" type="text/javascript"></script>
+        <script src="js/prettify/prettify.min.js" type="text/javascript"></script>
     
-    <link rel="shortcut icon" href="images/favicon.ico"/>
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png"/>
-    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png"/>
-    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png"/>
-</head>
+            <link rel="shortcut icon" href="img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png"/>
+    </head>
 <body>
 
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <i class="icon-ellipsis-vertical"></i>
-            </a>
-            <a class="brand" href="index.html">API Documentation</a>
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="index.html">API Documentation</a>
 
-            <div class="nav-collapse">
-                <ul class="nav pull-right">
-                                        <li class="dropdown" id="charts-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Charts <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="graphs/class.html">
-                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown" id="reports-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Reports <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="reports/deprecated.html">
-                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">1</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!--<div class="go_to_top">-->
-    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
-    <!--</div>-->
-</div>
-
-<div id="___" class="container-fluid">
-        <section class="row-fluid">
-        <div class="span2 sidebar">
-                                <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1731907217"></a>
-                                <a href="namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
-            </div>
-            <div id="namespace-1731907217" class="accordion-body collapse in">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="classes/AllHttpSourceTest.html">AllHttpSourceTest</a></li>
-                                                    <li class="class"><a href="classes/HttpSource.html">HttpSource</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceAppTest.html">HttpSourceAppTest</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceBasicsTest.html">HttpSourceBasicsTest</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceCondition.html">HttpSourceCondition</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceConditioniAmExistsANDValid.html">HttpSourceConditioniAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceConditionTest.html">HttpSourceConditionTest</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceConfig.html">HttpSourceConfig</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceConfigException.html">HttpSourceConfigException</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceConfigFactory.html">HttpSourceConfigFactory</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceConfigFactoryiAmExists.html">HttpSourceConfigFactoryiAmExists</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceConfigFactoryiAmExistsANDValid.html">HttpSourceConfigFactoryiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceConfigFactoryItem.html">HttpSourceConfigFactoryItem</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceConfigFactoryItemiAmExistsANDValid.html">HttpSourceConfigFactoryItemiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceConfigFactoryItemTest.html">HttpSourceConfigFactoryItemTest</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceConfigFactoryTest.html">HttpSourceConfigFactoryTest</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceConfigiAmExistsANDValid.html">HttpSourceConfigiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceConfigTest.html">HttpSourceConfigTest</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceConnection.html">HttpSourceConnection</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceConnectionTest.html">HttpSourceConnectionTest</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceController.html">HttpSourceController</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceControllerTest.html">HttpSourceControllerTest</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceDocument.html">HttpSourceDocument</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceEndpoint.html">HttpSourceEndpoint</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceEndpointiAmExistsANDValid.html">HttpSourceEndpointiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceEndpointItem.html">HttpSourceEndpointItem</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceEndpointItemiAmExistsANDValid.html">HttpSourceEndpointItemiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceEndpointItemTest.html">HttpSourceEndpointItemTest</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceEndpointTest.html">HttpSourceEndpointTest</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceException.html">HttpSourceException</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceField.html">HttpSourceField</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceFieldiAmExistsANDValid.html">HttpSourceFieldiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceFieldTest.html">HttpSourceFieldTest</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceModel.html">HttpSourceModel</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceModelTest.html">HttpSourceModelTest</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceResult.html">HttpSourceResult</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceResultiAmExistsANDValid.html">HttpSourceResultiAmExistsANDValid</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceResultTest.html">HttpSourceResultTest</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceTest.html">HttpSourceTest</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceTestFixture.html">HttpSourceTestFixture</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceTestModel.html">HttpSourceTestModel</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceToDboAssociationTest.html">HttpSourceToDboAssociationTest</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceUser.html">HttpSourceUser</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceUserFixture.html">HttpSourceUserFixture</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceUsersDocumentFixture.html">HttpSourceUsersDocumentFixture</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceUtility.html">HttpSourceUtility</a></li>
-                                                    <li class="class"><a href="classes/HttpSourceUtilityTest.html">HttpSourceUtilityTest</a></li>
-                                                    <li class="class"><a href="classes/HttpTestSource.html">HttpTestSource</a></li>
-                                                    <li class="class"><a href="classes/TestHttpSource.html">TestHttpSource</a></li>
-                                                    <li class="class"><a href="classes/TestHttpSourceConnection.html">TestHttpSourceConnection</a></li>
-                                                    <li class="class"><a href="classes/TestHttpSourceModel.html">TestHttpSourceModel</a></li>
-                                            </ul>
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                                            </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+            <div class="hero-unit">
+        <h1>API Documentation</h1>
+        <h2>Documentation</h2>
     </div>
 
+            <div class="row">
+        <div class="span7">
+                            <div class="well">
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Namespaces</li>
+                                                    <li><a href="namespaces/default.html">Global (\)</a></li>
+                                                                        </ul>
+                </div>
+            
+                            <div class="well">
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Packages</li>
+                                                    <li><a href="packages/default.html">Global (\)</a></li>
+                                                            <li><a href="packages/Default.html">Default</a></li>
+                                                            <li><a href="packages/HttpSource.html">HttpSource</a></li>
+                                                            <li><a href="packages/HttpSourceTest.html">HttpSourceTest</a></li>
+                                                            <li><a href="packages/HttpSourceTestSource.html">HttpSourceTestSource</a></li>
+                                                                        </ul>
+                </div>
+            
         </div>
-    </section>
-    <section class="row-fluid">
-        <div class="span10 offset2">
-            <div class="row-fluid">
-                <div class="span8 content namespace">
-                    <nav>
-                                                
-                                            </nav>
-                    <h1><small></small>\</h1>
-
-                    
-                    
-                    
-                                        <h2>Classes</h2>
-                    <table class="table table-hover">
-                                            <tr>
-                            <td><a href="classes/AllHttpSourceTest.html">AllHttpSourceTest</a></td>
-                            <td><em>All HttpSource test suite</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSource.html">HttpSource</a></td>
-                            <td><em>Abstract data source for network interaction</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceAppTest.html">HttpSourceAppTest</a></td>
-                            <td><em>HttpSource base test case</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceBasicsTest.html">HttpSourceBasicsTest</a></td>
-                            <td><em>BasicsTest</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceCondition.html">HttpSourceCondition</a></td>
-                            <td><em>Http source endpoint condition</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceConditioniAmExistsANDValid.html">HttpSourceConditioniAmExistsANDValid</a></td>
-                            <td><em>HttpSourceConditioniAmExistsANDValid</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceConditionTest.html">HttpSourceConditionTest</a></td>
-                            <td><em>HttpSourceConditionTest</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceConfig.html">HttpSourceConfig</a></td>
-                            <td><em>Http source endpoints config</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceConfigException.html">HttpSourceConfigException</a></td>
-                            <td><em>HttpSourceConfigException</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceConfigFactory.html">HttpSourceConfigFactory</a></td>
-                            <td><em>Factory to make HttpSource configuration</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceConfigFactoryiAmExists.html">HttpSourceConfigFactoryiAmExists</a></td>
-                            <td><em>HttpSourceConfigFactoryiAmExists</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceConfigFactoryiAmExistsANDValid.html">HttpSourceConfigFactoryiAmExistsANDValid</a></td>
-                            <td><em>HttpSourceConfigFactoryiAmExistsANDValid</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceConfigFactoryItem.html">HttpSourceConfigFactoryItem</a></td>
-                            <td><em>HttpSource configuration factory item</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceConfigFactoryItemiAmExistsANDValid.html">HttpSourceConfigFactoryItemiAmExistsANDValid</a></td>
-                            <td><em>HttpSourceConfigFactoryItemiAmExistsANDValid</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceConfigFactoryItemTest.html">HttpSourceConfigFactoryItemTest</a></td>
-                            <td><em>HttpSourceConfigFactoryItemTest</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceConfigFactoryTest.html">HttpSourceConfigFactoryTest</a></td>
-                            <td><em>HttpSourceConfigFactoryTest</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceConfigiAmExistsANDValid.html">HttpSourceConfigiAmExistsANDValid</a></td>
-                            <td><em>HttpSourceConfigiAmExistsANDValid</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceConfigTest.html">HttpSourceConfigTest</a></td>
-                            <td><em>HttpSourceConfigTest</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceConnection.html">HttpSourceConnection</a></td>
-                            <td><em>Default HttpSource connection class</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceConnectionTest.html">HttpSourceConnectionTest</a></td>
-                            <td><em>HttpSourceConnectionTest</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceController.html">HttpSourceController</a></td>
-                            <td><em>HttpSourceController</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceControllerTest.html">HttpSourceControllerTest</a></td>
-                            <td><em>HttpSourceControllerTest</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceDocument.html">HttpSourceDocument</a></td>
-                            <td><em>Test Document model</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceEndpoint.html">HttpSourceEndpoint</a></td>
-                            <td><em>Http source endpoint</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceEndpointiAmExistsANDValid.html">HttpSourceEndpointiAmExistsANDValid</a></td>
-                            <td><em>HttpSourceEndpointiAmExistsANDValid</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceEndpointItem.html">HttpSourceEndpointItem</a></td>
-                            <td><em>Base class for endpoint items (field, result)</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceEndpointItemiAmExistsANDValid.html">HttpSourceEndpointItemiAmExistsANDValid</a></td>
-                            <td><em>HttpSourceEndpointItemiAmExistsANDValid</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceEndpointItemTest.html">HttpSourceEndpointItemTest</a></td>
-                            <td><em>HttpSourceEndpointItemTest</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceEndpointTest.html">HttpSourceEndpointTest</a></td>
-                            <td><em>HttpSourceEndpointTest</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceException.html">HttpSourceException</a></td>
-                            <td><em>HttpSourceException</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceField.html">HttpSourceField</a></td>
-                            <td><em>Http source endpoint field</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceFieldiAmExistsANDValid.html">HttpSourceFieldiAmExistsANDValid</a></td>
-                            <td><em>HttpSourceFieldiAmExistsANDValid</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceFieldTest.html">HttpSourceFieldTest</a></td>
-                            <td><em>HttpSourceFieldTest</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceModel.html">HttpSourceModel</a></td>
-                            <td><em>Model with patched methods to wirk with save()</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceModelTest.html">HttpSourceModelTest</a></td>
-                            <td><em>HttpSourceModelTest</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceResult.html">HttpSourceResult</a></td>
-                            <td><em>Handler for endpoint request result</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceResultiAmExistsANDValid.html">HttpSourceResultiAmExistsANDValid</a></td>
-                            <td><em>HttpSourceResultiAmExistsANDValid</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceResultTest.html">HttpSourceResultTest</a></td>
-                            <td><em>HttpSourceResultTest</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceTest.html">HttpSourceTest</a></td>
-                            <td><em>HttpSourceTest</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceTestFixture.html">HttpSourceTestFixture</a></td>
-                            <td><em>Base Fixture for using in HttpSource child plugins</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceTestModel.html">HttpSourceTestModel</a></td>
-                            <td><em>HttpSourceTestModel</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceToDboAssociationTest.html">HttpSourceToDboAssociationTest</a></td>
-                            <td><em>HttpSourceToDboAssociationTest</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceUser.html">HttpSourceUser</a></td>
-                            <td><em>Test User model</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceUserFixture.html">HttpSourceUserFixture</a></td>
-                            <td><em>User Fixture</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceUsersDocumentFixture.html">HttpSourceUsersDocumentFixture</a></td>
-                            <td><em>UsersDocumentFixture</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceUtility.html">HttpSourceUtility</a></td>
-                            <td><em>HttpSource Utility</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpSourceUtilityTest.html">HttpSourceUtilityTest</a></td>
-                            <td><em>HttpSourceUtilityTest</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/HttpTestSource.html">HttpTestSource</a></td>
-                            <td><em>HttpTestSource</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/TestHttpSource.html">TestHttpSource</a></td>
-                            <td><em>Test source</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/TestHttpSourceConnection.html">TestHttpSourceConnection</a></td>
-                            <td><em>Test source connection</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="classes/TestHttpSourceModel.html">TestHttpSourceModel</a></td>
-                            <td><em>TestHttpSourceModel Model</em></td>
-                        </tr>
-                                        </table>
-                                    </div>
-
-                <aside class="span4 detailsbar">
-                    <dl>
-                        <dt>Namespace hierarchy</dt>
-                        <dd class="hierarchy">
-                                                                                                                                                <div class="namespace-wrapper">\</div>
-                        </dd>
-                    </dl>
-                </aside>
+        <div class="span5">
+            <div class="well">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Charts</li>
+                                            <li><a href="graph_class.html"><i class="icon-list-alt"></i> Class inheritance diagram</a></li>
+                                    </ul>
             </div>
+            <div class="well">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Reports</li>
+                                            <li>
+                            <a href="errors.html">
+                                <i class="icon-list-alt"></i> Errors                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <span class="label label-info">0</span>
 
-            
-            
+                            </a>
+                        </li>
+                        <li>
+                            <a href="deprecated.html">
+                                <i class="icon-list-alt"></i> Deprecated                         <span class="label label-info">1</span>
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="markers.html">
+                                <i class="icon-list-alt"></i> Markers                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <span class="label label-info">0</span>
+
+                            </a>
+                        </li>
+                                    </ul>
+            </div>
         </div>
-    </section>
+    </div>
+    </div>
 
-    <footer class="row-fluid">
-        <section class="span10 offset2">
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <section class="row-fluid footer-sections">
-                        <section class="span4">
-                                                        <h1><i class="icon-code"></i></h1>
-                            <div>
-                                <ul>
-                                                                    </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-bar-chart"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="graphs/class.html">Class Hierarchy Diagram</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                        <section class="span4">
-                                                        <h1><i class="icon-pushpin"></i></h1>
-                            <div>
-                                <ul>
-                                    <li><a href="reports/errors.html">Errors</a></li>
-                                    <li><a href="reports/markers.html">Markers</a></li>
-                                </ul>
-                            </div>
-                        </section>
-                    </section>
-                </section>
-            </section>
-            <section class="row-fluid">
-                <section class="span10 offset1">
-                    <hr />
-                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on September 2nd, 2014 at 12:13.
-                </section>
-            </section>
-        </section>
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Tue, 02 Sep 2014 12:26:38 +0000.<br/>
     </footer>
-</div>
-
-</body>
+    </body>
 </html>
