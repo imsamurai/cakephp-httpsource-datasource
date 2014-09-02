@@ -427,6 +427,11 @@ class HttpSourceConfigTest extends CakeTestCase {
 						'key' => 'primary',
 						'default' => null
 					),
+					'condition2' => array(
+						'type' => 'string',
+						'null' => true,
+						'default' => null
+					),
 				)
 			),
 		);
