@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>    API Documentation &raquo; \TestHttpSourceConnection
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
+<body>
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">API Documentation</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                                            </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public inherited">
+        <a href="#method___construct" title="__construct :: Constructor">
+            <span class="description">Constructor</span><pre>__construct</pre>
+        </a>
+    </li>
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="method public inherited">
+        <a href="#method_addOauth" title="addOauth :: Supplements a request array with oauth credentials">
+            <span class="description">Supplements a request array with oauth credentials</span><pre>addOauth</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_addOauthV2" title="addOauthV2 :: Supplements a request array with oauth credentials">
+            <span class="description">Supplements a request array with oauth credentials</span><pre>addOauthV2</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_disconnect" title="disconnect :: Disconnect">
+            <span class="description">Disconnect</span><pre>disconnect</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_getAffected" title="getAffected :: Returns affected rows">
+            <span class="description">Returns affected rows</span><pre>getAffected</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_getCredentials" title="getCredentials :: Gets credentials data">
+            <span class="description">Gets credentials data</span><pre>getCredentials</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_getDecoder" title="getDecoder :: Get decoder by given $contentType.">
+            <span class="description">Get decoder by given $contentType.</span><pre>getDecoder</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_getDecoders" title="getDecoders :: Get decoders">
+            <span class="description">Get decoders</span><pre>getDecoders</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_getError" title="getError :: Returns last error">
+            <span class="description">Returns last error</span><pre>getError</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_getNumRows" title="getNumRows :: Returns number of rows in result">
+            <span class="description">Returns number of rows in result</span><pre>getNumRows</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_getQuery" title="getQuery :: Returns lst request query">
+            <span class="description">Returns lst request query</span><pre>getQuery</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_getResponse" title="getResponse :: Returns last Response">
+            <span class="description">Returns last Response</span><pre>getResponse</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_getTook" title="getTook :: Returns last request took time">
+            <span class="description">Returns last request took time</span><pre>getTook</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_getTransport" title="getTransport :: Return current transport">
+            <span class="description">Return current transport</span><pre>getTransport</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_quote" title="quote :: Quote data">
+            <span class="description">Quote data</span><pre>quote</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_request" title="request :: Issue the specified request and decode it on success">
+            <span class="description">Issue the specified request and decode it on success</span><pre>request</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_reset" title="reset :: Reset state variables">
+            <span class="description">Reset state variables</span><pre>reset</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_setCredentials" title="setCredentials :: Sets credentials data">
+            <span class="description">Sets credentials data</span><pre>setCredentials</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_setDecoder" title="setDecoder :: Add decoder for given $contentType">
+            <span class="description">Add decoder for given $contentType</span><pre>setDecoder</pre>
+        </a>
+    </li>
+
+                                                </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                <li class="method protected inherited">
+                            <a href="#method__canRetryRequest" title="_canRetryRequest :: Checks if we can retry request">
+                                <span class="description">Checks if we can retry request</span><pre>_canRetryRequest</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected inherited">
+                            <a href="#method__decode" title="_decode :: Decodes the response based on the content type">
+                                <span class="description">Decodes the response based on the content type</span><pre>_decode</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected inherited">
+                            <a href="#method__extractRemoteError" title="_extractRemoteError :: Extract remote error from response">
+                                <span class="description">Extract remote error from response</span><pre>_extractRemoteError</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected inherited">
+                            <a href="#method__initDefaultDecoders" title="_initDefaultDecoders :: Initialize default decoders">
+                                <span class="description">Initialize default decoders</span><pre>_initDefaultDecoders</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected inherited">
+                            <a href="#method__logDump" title="_logDump :: Save dump into log">
+                                <span class="description">Save dump into log</span><pre>_logDump</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected inherited">
+                            <a href="#method__request" title="_request :: Make attempts to request">
+                                <span class="description">Make attempts to request</span><pre>_request</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected inherited">
+                            <a href="#method__requestDelay" title="_requestDelay :: Delay before newt request">
+                                <span class="description">Delay before newt request</span><pre>_requestDelay</pre>
+                            </a>
+                        </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>TestHttpSourceConnection</h1>
+                <small style="display: block; text-align: right">
+                                            Extends <a href="../classes/HttpSourceConnection.html">\HttpSourceConnection</a>
+                                                        </small>
+                <p class="short_description">Test source connection</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>HttpSourceTestSource</p>
+                                    </td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        subpackage
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Model.Datasource</p>
+                                    </td>
+                                </tr>
+                                                                                                                            </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method___construct"></a>
+                        <div class="element clickable method public  method___construct inherited" data-toggle="collapse" data-target=".method___construct .collapse">
+                            <h2>Constructor</h2>
+                            <pre>__construct(array $config = array(), \HttpSocket $Transport = null) </pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$config</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Transport</h4>
+                                                <code>\HttpSocket</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method__canRetryRequest"></a>
+                        <div class="element clickable method protected  method__canRetryRequest inherited" data-toggle="collapse" data-target=".method__canRetryRequest .collapse">
+                            <h2>Checks if we can retry request</h2>
+                            <pre>_canRetryRequest(\HttpSocketResponse $Response, integer $currentAttempt) : boolean</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Response</h4>
+                                                <code>\HttpSocketResponse</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$currentAttempt</h4>
+                                                <code>integer</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method__decode"></a>
+                        <div class="element clickable method protected  method__decode inherited" data-toggle="collapse" data-target=".method__decode .collapse">
+                            <h2>Decodes the response based on the content type</h2>
+                            <pre>_decode() : array</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>If content type decoder not found or response is not an object</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>Decoded response</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method__extractRemoteError"></a>
+                        <div class="element clickable method protected  method__extractRemoteError inherited" data-toggle="collapse" data-target=".method__extractRemoteError .collapse">
+                            <h2>Extract remote error from response</h2>
+                            <pre>_extractRemoteError() : string</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method__initDefaultDecoders"></a>
+                        <div class="element clickable method protected  method__initDefaultDecoders inherited" data-toggle="collapse" data-target=".method__initDefaultDecoders .collapse">
+                            <h2>Initialize default decoders</h2>
+                            <pre>_initDefaultDecoders() </pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method__logDump"></a>
+                        <div class="element clickable method protected  method__logDump inherited" data-toggle="collapse" data-target=".method__logDump .collapse">
+                            <h2>Save dump into log</h2>
+                            <pre>_logDump(\HttpSocketResponse|boolean $Response) : boolean</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Response</h4>
+                                                <code>\HttpSocketResponse|boolean</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method__request"></a>
+                        <div class="element clickable method protected  method__request inherited" data-toggle="collapse" data-target=".method__request .collapse">
+                            <h2>Make attempts to request</h2>
+                            <pre>_request(array $request, integer $currentAttempt = 1) : boolean</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$currentAttempt</h4>
+                                                <code>integer</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method__requestDelay"></a>
+                        <div class="element clickable method protected  method__requestDelay inherited" data-toggle="collapse" data-target=".method__requestDelay .collapse">
+                            <h2>Delay before newt request</h2>
+                            <pre>_requestDelay(\HttpSocketResponse $Response, integer $currentAttempt) </pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Response</h4>
+                                                <code>\HttpSocketResponse</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$currentAttempt</h4>
+                                                <code>integer</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_addOauth"></a>
+                        <div class="element clickable method public  method_addOauth inherited" data-toggle="collapse" data-target=".method_addOauth .collapse">
+                            <h2>Supplements a request array with oauth credentials</h2>
+                            <pre>addOauth(array $request) : array</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>$request</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_addOauthV2"></a>
+                        <div class="element clickable method public  method_addOauthV2 inherited" data-toggle="collapse" data-target=".method_addOauthV2 .collapse">
+                            <h2>Supplements a request array with oauth credentials</h2>
+                            <pre>addOauthV2(array $request) : array</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p><p>$request</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_disconnect"></a>
+                        <div class="element clickable method public  method_disconnect inherited" data-toggle="collapse" data-target=".method_disconnect .collapse">
+                            <h2>Disconnect</h2>
+                            <pre>disconnect() </pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getAffected"></a>
+                        <div class="element clickable method public  method_getAffected inherited" data-toggle="collapse" data-target=".method_getAffected .collapse">
+                            <h2>Returns affected rows</h2>
+                            <pre>getAffected() : integer|string</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>integer|string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getCredentials"></a>
+                        <div class="element clickable method public  method_getCredentials inherited" data-toggle="collapse" data-target=".method_getCredentials .collapse">
+                            <h2>Gets credentials data</h2>
+                            <pre>getCredentials() : array</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getDecoder"></a>
+                        <div class="element clickable method public  method_getDecoder inherited" data-toggle="collapse" data-target=".method_getDecoder .collapse">
+                            <h2>Get decoder by given $contentType.</h2>
+                            <pre>getDecoder(string $contentType) : callable</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"><p>If decoder not found writes log and throw exception.</p></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$contentType</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>callable</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getDecoders"></a>
+                        <div class="element clickable method public  method_getDecoders inherited" data-toggle="collapse" data-target=".method_getDecoders .collapse">
+                            <h2>Get decoders</h2>
+                            <pre>getDecoders() : array</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getError"></a>
+                        <div class="element clickable method public  method_getError inherited" data-toggle="collapse" data-target=".method_getError .collapse">
+                            <h2>Returns last error</h2>
+                            <pre>getError() : string</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getNumRows"></a>
+                        <div class="element clickable method public  method_getNumRows inherited" data-toggle="collapse" data-target=".method_getNumRows .collapse">
+                            <h2>Returns number of rows in result</h2>
+                            <pre>getNumRows(mixed $result) : integer|string</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$result</h4>
+                                                <code>mixed</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>integer|string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getQuery"></a>
+                        <div class="element clickable method public  method_getQuery inherited" data-toggle="collapse" data-target=".method_getQuery .collapse">
+                            <h2>Returns lst request query</h2>
+                            <pre>getQuery() : string</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getResponse"></a>
+                        <div class="element clickable method public  method_getResponse inherited" data-toggle="collapse" data-target=".method_getResponse .collapse">
+                            <h2>Returns last Response</h2>
+                            <pre>getResponse() : \HttpSocketResponse</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>\HttpSocketResponse</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getTook"></a>
+                        <div class="element clickable method public  method_getTook inherited" data-toggle="collapse" data-target=".method_getTook .collapse">
+                            <h2>Returns last request took time</h2>
+                            <pre>getTook() : integer|string</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>integer|string</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getTransport"></a>
+                        <div class="element clickable method public  method_getTransport inherited" data-toggle="collapse" data-target=".method_getTransport .collapse">
+                            <h2>Return current transport</h2>
+                            <pre>getTransport() : \HttpSocket</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>\HttpSocket</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_quote"></a>
+                        <div class="element clickable method public  method_quote inherited" data-toggle="collapse" data-target=".method_quote .collapse">
+                            <h2>Quote data</h2>
+                            <pre>quote(mixed $data, integer $type = \PDO::PARAM_STR) : mixed</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code>mixed</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$type</h4>
+                                                <code>integer</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_request"></a>
+                        <div class="element clickable method public  method_request inherited" data-toggle="collapse" data-target=".method_request .collapse">
+                            <h2>Issue the specified request and decode it on success</h2>
+                            <pre>request(array $request = array()) : mixed</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    throws
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>mixed</code><p><p>false on error, decoded response array on success</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_reset"></a>
+                        <div class="element clickable method public  method_reset inherited" data-toggle="collapse" data-target=".method_reset .collapse">
+                            <h2>Reset state variables</h2>
+                            <pre>reset() </pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setCredentials"></a>
+                        <div class="element clickable method public  method_setCredentials inherited" data-toggle="collapse" data-target=".method_setCredentials .collapse">
+                            <h2>Sets credentials data</h2>
+                            <pre>setCredentials(array $credentials = array()) </pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$credentials</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setDecoder"></a>
+                        <div class="element clickable method public  method_setDecoder inherited" data-toggle="collapse" data-target=".method_setDecoder .collapse">
+                            <h2>Add decoder for given $contentType</h2>
+                            <pre>setDecoder(string|array $contentType, callable $callback, boolean $replace = false) </pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$contentType</h4>
+                                                <code>string|array</code><p><p>Content type</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$callback</h4>
+                                                <code>callable</code><p><p>Function used for decoding</p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$replace</h4>
+                                                <code>boolean</code><p><p>Replace decoder if already set or not. Default false</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                    
+                    
+                                                                <h3><i class="icon-custom icon-property"></i> Properties</h3>
+                                                    <a id="property__error"> </a>
+                            <div class="element clickable property  protected property__error inherited" data-toggle="collapse" data-target=".property__error .collapse">
+                                <h2>Request error</h2>
+                                <pre>_error : string</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property__took"> </a>
+                            <div class="element clickable property  protected property__took inherited" data-toggle="collapse" data-target=".property__took .collapse">
+                                <h2>Request time</h2>
+                                <pre>_took : integer|string</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>integer|string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property__affected"> </a>
+                            <div class="element clickable property  protected property__affected inherited" data-toggle="collapse" data-target=".property__affected .collapse">
+                                <h2>Affected rows</h2>
+                                <pre>_affected : integer|string</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>integer|string</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property__Response"> </a>
+                            <div class="element clickable property  protected property__Response inherited" data-toggle="collapse" data-target=".property__Response .collapse">
+                                <h2>Response object</h2>
+                                <pre>_Response : \HttpSocketResponse</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>\HttpSocketResponse</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property__Transport"> </a>
+                            <div class="element clickable property  protected property__Transport inherited" data-toggle="collapse" data-target=".property__Transport .collapse">
+                                <h2>Object for requests</h2>
+                                <pre>_Transport : \HttpSocket</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>\HttpSocket</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property__config"> </a>
+                            <div class="element clickable property  protected property__config inherited" data-toggle="collapse" data-target=".property__config .collapse">
+                                <h2>Connection config</h2>
+                                <pre>_config : array</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property__credentials"> </a>
+                            <div class="element clickable property  protected property__credentials inherited" data-toggle="collapse" data-target=".property__credentials .collapse">
+                                <h2>Credentials for request, for ex: login, password, token, etc</h2>
+                                <pre>_credentials : array</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property__decoders"> </a>
+                            <div class="element clickable property  protected property__decoders inherited" data-toggle="collapse" data-target=".property__decoders .collapse">
+                                <h2>Contains all possible decoders</h2>
+                                <pre>_decoders : array</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property__lastResponse"> </a>
+                            <div class="element clickable property  protected property__lastResponse inherited" data-toggle="collapse" data-target=".property__lastResponse .collapse">
+                                <h2>Last decoded response</h2>
+                                <pre>_lastResponse : array</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                            </div>
+            </div>
+            <a id="\TestHttpSourceConnection"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/default.html">\</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/TestHttpSourceConnection.html">TestHttpSourceConnection</a></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Tue, 02 Sep 2014 15:31:23 +0000.<br/>
+    </footer>
+    </body>
+</html>
