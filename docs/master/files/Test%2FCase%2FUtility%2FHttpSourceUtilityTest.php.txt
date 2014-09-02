@@ -156,9 +156,9 @@ class HttpSourceUtilityTest extends CakeTestCase {
 	 * @dataProvider explainQueryProvider
 	 */
 	public function testExplainQuery($query, array $explain) {
-		$this->skipIf(`which nc` === '', 'Netcat must be installed');
+		$this->skipIf(`which netcat` === '', 'Netcat must be installed');
 		$this->skipUnless(class_exists('Symfony\Component\Process\Process'), 'You must install symfony/process for this test');
-		$Process = new Symfony\Component\Process\Process("echo 'answer' | nc -l -p 12345");
+		$Process = new Symfony\Component\Process\Process("echo 'answer' | netcat -l -p 12345 localhost");
 		$Process->start();
 		$result = HttpSourceUtility::explainQuery($query);
 		debug($result);
