@@ -5,7 +5,7 @@ if [ "$PHPDOC" != 1 ] || [ "$GH_TOKEN" = "" ]; then
 fi;
 
 mkdir -p $HOME/build/docs;
-../cakephp/app/vendor/bin/phpdoc -d . -t $HOME/build/docs --template ../cakephp/app/vendor/phpdocumentor/templates/clean
+../cakephp/app/vendor/bin/phpdoc -d . -t $HOME/build/docs --template ../cakephp/app/vendor/phpdocumentor/templates/responsive-twig
 
 if [ "$?" -gt 0 ]; then
     exit 1
