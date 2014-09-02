@@ -420,6 +420,9 @@ abstract class HttpSource extends DataSource {
 
 		if ($log['error']) {
 			$this->log(get_class($this) . ': ' . $log['error'] . "\n" . $log['query'], LOG_ERR);
+		} else {
+			$query = str_replace(array("\n", "\r"), array('\n', '\r'), $log['query']);
+			$this->log("$query | took: {$log['took']} | affected: {$log['affected']} | numRows: {$log['numRows']}", get_class($this) . 'Query');
 		}
 	}
 

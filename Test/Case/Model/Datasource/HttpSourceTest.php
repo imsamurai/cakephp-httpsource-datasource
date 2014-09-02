@@ -2051,6 +2051,9 @@ class HttpSourceTest extends CakeTestCase {
 			$Source->expects($this->at($at++))->method('getRequestLog')->will($this->returnValue($log));
 			if (!empty($log['error'])) {
 				$Source->expects($this->at($at++))->method('log')->with(get_class($Source) . ': ' . $log['error'] . "\n" . $log['query'], LOG_ERR);
+			} else {
+				$query = str_replace(array("\n", "\r"), array('\n', '\r'), $log['query']);
+				$Source->expects($this->at($at++))->method('log')->with("$query | took: {$log['took']} | affected: {$log['affected']} | numRows: {$log['numRows']}", get_class($Source) . 'Query');
 			}
 		}
 
