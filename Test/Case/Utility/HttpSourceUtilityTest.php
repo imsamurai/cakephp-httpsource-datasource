@@ -160,6 +160,7 @@ class HttpSourceUtilityTest extends CakeTestCase {
 		$this->skipUnless(class_exists('Symfony\Component\Process\Process'), 'You must install symfony/process for this test');
 		$Process = new Symfony\Component\Process\Process("printf 'HTTP/1.1 200 OK\nContent-length: 6\n\nanswer' | nc.traditional -l -p 12345");
 		$Process->start();
+		sleep(1);
 		$result = HttpSourceUtility::explainQuery($query);
 		foreach ($explain as $pattern) {
 			$this->assertContains($pattern, $result);
