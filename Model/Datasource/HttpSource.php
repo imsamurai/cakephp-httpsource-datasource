@@ -588,7 +588,7 @@ abstract class HttpSource extends DataSource {
 	/**
 	 * {inheritdoc}
 	 *
-	 * @param AppModel $model
+	 * @param Model $model
 	 * @param array $fields Unused
 	 * @param array $values Unused
 	 */
@@ -603,7 +603,7 @@ abstract class HttpSource extends DataSource {
 	/**
 	 * {inheritdoc}
 	 *
-	 * @param AppModel $model
+	 * @param Model $model
 	 * @param array $fields
 	 * @param array $values
 	 * @param array $conditions
@@ -1009,7 +1009,7 @@ abstract class HttpSource extends DataSource {
 	 * 
 	 * @param array $request
 	 * @param Model $Model
-	 * @return Model
+	 * @return AppModel
 	 */
 	protected function _requestToModel(array $request, Model $Model = null) {
 		if (is_null($Model)) {
