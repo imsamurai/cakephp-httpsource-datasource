@@ -12,6 +12,9 @@ App::uses('HttpSourceController', 'HttpSource.Controller');
 
 /**
  * HttpSourceControllerTest
+ * 
+ * @package HttpSourceTest
+ * @subpackage Controller
  */
 class HttpSourceControllerTest extends ControllerTestCase {
 
