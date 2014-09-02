@@ -196,8 +196,7 @@ class HttpSourceUtilityTest extends CakeTestCase {
 					'Host: localhost:12345',
 					'User-Agent: CakePHP',
 					'Content-Type: application/x-www-form-urlencoded',
-					'Content-Length: 162',
-					'upload completely sent off: 162 out of 162 bytes'
+					'Content-Length: 162'
 				)
 			),
 			//set #1
