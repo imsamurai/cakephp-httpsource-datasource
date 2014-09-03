@@ -416,9 +416,9 @@ class HttpSourceConfigTest extends CakeTestCase {
 				'table',
 				//schema
 				array(
-					'condition1' => array(
+					'condition2' => array(
 						'type' => 'string',
-						'null' => false,
+						'null' => true,
 						'default' => null
 					),
 					'id' => array(
@@ -427,9 +427,9 @@ class HttpSourceConfigTest extends CakeTestCase {
 						'key' => 'primary',
 						'default' => null
 					),
-					'condition2' => array(
+					'condition1' => array(
 						'type' => 'string',
-						'null' => true,
+						'null' => false,
 						'default' => null
 					),
 				)
