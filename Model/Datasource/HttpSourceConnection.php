@@ -390,7 +390,7 @@ class HttpSourceConnection extends Object {
 		if (Configure::read('debug') >= 3) {
 			$message = "Error: " . $this->getError() . "\nQuery:\n" .
 					($this->getQuery() ? $this->getQuery() : '*none*') .
-					"\nDump:\n" . ($Response ? '*none*' : $Response->raw);
+					"\nDump:\n" . ($Response ? $Response->raw : '*none*');
 			$messageId = sha1($message . microtime(true));
 			$this->log("$messageId\n" . $message, 'HttpSourceError');
 		} else {

@@ -1016,6 +1016,7 @@ class HttpSourceConnectionTest extends CakeTestCase {
 
 				$Response->expects($this->any())->method('isOk')->willReturn($attempt['isOk']);
 				$Response->code = $attempt['code'];
+				$Response->raw = 'raw request';
 				$Transport->expects($this->at($number))->method('request')->with($request)->willReturn($Response);
 			}
 		}
@@ -1313,6 +1314,27 @@ class HttpSourceConnectionTest extends CakeTestCase {
 				array(),
 				//lastError
 				'0: Timeout',
+				//debugLevel
+				3
+			),
+			//set #10
+			array(
+				//request
+				array(
+					'method' => HttpSource::METHOD_READ
+				),
+				//response
+				false,
+				//attempts
+				array(
+					array(
+						'exception' => 'Exception'
+					)
+				),
+				//config
+				array(),
+				//lastError
+				'Exception',
 				//debugLevel
 				3
 			),
