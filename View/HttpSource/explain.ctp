@@ -6,6 +6,6 @@
  * Format: http://book.cakephp.org/2.0/en/views.html
  */
 ?>
-<table class="sql-log-query-explain debug-table">
+<div class="sql-log-query-explain debug-table" style="white-space:pre;">
 	<?= $result; ?>
-</table>
+</div>

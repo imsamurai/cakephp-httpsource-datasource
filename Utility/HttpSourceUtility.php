@@ -47,7 +47,7 @@ class HttpSourceUtility {
 		}
 
 		$Process->run();
-		return $Process->getOutput();
+		return trim($Process->getOutput());
 	}
 
 	/**
@@ -57,7 +57,7 @@ class HttpSourceUtility {
 	 * @return boolean
 	 */
 	public static function parseQuery($query) {
-		$success = preg_match("/^(?P<method>GET|POST|PUT|DELETE|HEAD)\s(?P<path>\S+)\s(?P<httpVer>\S+)\sHost:\s(?P<host>[^\s:]+)(:(?P<port>[0-9]+)|)\s(?P<headers>.*)\n\n(?P<body>.*)$/ims", ltrim($query), $matches);
+		$success = preg_match("/^(?P<method>GET|POST|PUT|DELETE|HEAD)\s(?P<path>\S+)\s(?P<httpVer>\S+)\s*Host:\s(?P<host>[^\s:]+)(:(?P<port>[0-9]+)|)\s*(?P<headers>.*)\s{2,}(?P<body>.*)$/ims", ltrim($query), $matches);
 		if (!$success) {
 			return false;
 		}
@@ -67,7 +67,7 @@ class HttpSourceUtility {
 			'httpVer' => $matches['httpVer'],
 			'host' => $matches['host'],
 			'port' => empty($matches['port']) ? 80 : (int)$matches['port'],
-			'headers' => explode("\n", $matches['headers']),
+			'headers' => array_filter(array_map('trim', explode("\n", $matches['headers']))),
 			'body' => $matches['body']
 		);
 	}

@@ -62,7 +62,7 @@ class HttpSourceControllerTest extends ControllerTestCase {
 			'return' => 'view'
 		));
 		
-		$this->assertStringMatchesFormat('%w<table class="sql-log-query-explain debug-table">%w' . $explaination . '%w</table>%w', $view);
+		$this->assertStringMatchesFormat('%w<div class="sql-log-query-explain debug-table" style="white-space:pre;">%w' . $explaination . '%w</div>%w', $view);
 	}
 
 	/**
