@@ -300,6 +300,8 @@ class HttpSourceConnection extends Object {
 
 		if (!$this->_Response) {
 			$response = false;
+		} elseif (!$this->_Response->isOk() && $request['method'] === HttpSource::HTTP_METHOD_CHECK) {
+			$response = false;
 		} elseif (!$this->_Response->isOk()) {
 			$this->_error = $this->_extractRemoteError();
 			$response = false;

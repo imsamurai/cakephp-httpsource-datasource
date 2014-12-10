@@ -801,7 +801,9 @@ class HttpSourceConnectionTest extends CakeTestCase {
 			//set #1
 			array(
 				//request
-				array(),
+				array(
+					'method' => HttpSource::HTTP_METHOD_READ
+				),
 				//response
 				false,
 				//data
@@ -969,6 +971,30 @@ class HttpSourceConnectionTest extends CakeTestCase {
 					'reasonPhrase' => '',
 					'Content-Type' => '',
 					'error' => "Can't decode unknown format: 'unknown/unknown'",
+					'noResponse' => false,
+					'requestRaw' => '',
+					'requestQuery' => '',
+				),
+				//config
+				array(),
+				//authMethod
+				null
+			),
+			//set #8
+			array(
+				//request
+				array(
+					'method' => HttpSource::HTTP_METHOD_CHECK
+				),
+				//response
+				false,
+				//data
+				array(
+					'isOk' => false,
+					'data' => '',
+					'reasonPhrase' => '',
+					'Content-Type' => 'application/json',
+					'error' => '',
 					'noResponse' => false,
 					'requestRaw' => '',
 					'requestQuery' => '',
