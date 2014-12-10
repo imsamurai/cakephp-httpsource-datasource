@@ -33,8 +33,8 @@ class HttpSourceResultTest extends CakeTestCase {
 		$map = $Result->map();
 		$this->assertSame(123, $map(123));
 		$map = $Result->map(function($v) {
-					return $v * 3;
-				})->map();
+								return $v * 3;
+		})->map();
 		$this->assertSame(333, $map(111));
 	}
 

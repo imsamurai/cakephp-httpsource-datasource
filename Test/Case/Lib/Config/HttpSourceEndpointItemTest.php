@@ -34,7 +34,7 @@ class HttpSourceEndpointItemTest extends CakeTestCase {
 		$this->assertSame(123, $map(123));
 		$map = $Item->map(function($v) {
 					return $v * 3;
-				})->map();
+		})->map();
 		$this->assertSame(333, $map(111));
 	}
 
