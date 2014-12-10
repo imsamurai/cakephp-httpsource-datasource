@@ -31,7 +31,10 @@ matrix:
     - php: 5.5
       env:
         - PHPDOC=1
-
+        
+before_install:
+  - sudo apt-get -qq install netcat
+  
 before_script:
   - git clone git://github.com/imsamurai/travis-plugin-build.git --depth 1 travis
   - chmod +x ./travis/*
