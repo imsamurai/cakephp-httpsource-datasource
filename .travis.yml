@@ -33,6 +33,7 @@ matrix:
         - PHPDOC=1
 
 before_script:
+  - git clone git://github.com/imsamurai/travis-plugin-build.git --depth 1 travis
   - chmod +x ./travis/*
   - ./travis/before_script.sh
 
