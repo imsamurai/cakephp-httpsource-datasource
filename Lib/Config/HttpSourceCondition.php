@@ -64,6 +64,13 @@ class HttpSourceCondition extends HttpSourceField {
 	 * @var mixed
 	 */
 	protected $_default = null;
+	
+	/**
+	 * Extract values
+	 *
+	 * @var bool
+	 */
+	protected $_extract = false;
 
 	/**
 	 * Sepecified where to place condition - in body, in query
@@ -345,6 +352,21 @@ class HttpSourceCondition extends HttpSourceField {
 			return $this->_default;
 		}
 		$this->_default = $value;
+		return $this;
+	}
+	
+	/**
+	 * Sets or gets should we extract value or not
+	 *
+	 * @param bool $value
+	 * @return HttpSourceCondition
+	 * @return mixed
+	 */
+	public function extract($value = null) {
+		if (is_null($value)) {
+			return $this->_extract;
+		}
+		$this->_extract = $value;
 		return $this;
 	}
 

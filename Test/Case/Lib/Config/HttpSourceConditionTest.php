@@ -190,10 +190,20 @@ class HttpSourceConditionTest extends CakeTestCase {
 		$this->assertSame(null, $this->Condition->length());
 		$this->assertSame(null, $this->Condition->key());
 		$this->assertSame(null, $this->Condition->defaults());
+		$this->assertSame(false, $this->Condition->extract());
 		$this->assertSame(null, $this->Condition->mapToName());
 		list($callback, $mapToName) = $this->Condition->map();
 		$this->assertSame(1, $callback(1));
 		$this->assertSame(null, $mapToName);
 	}
 
+	/**
+	 * Test extract
+	 */
+	public function testExtract() {
+		$this->Condition->extract(true);
+		$this->assertSame(true, $this->Condition->extract());
+		$this->Condition->extract(false);
+		$this->assertSame(false, $this->Condition->extract());
+	}
 }

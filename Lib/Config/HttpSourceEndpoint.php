@@ -598,11 +598,17 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 			$Condition = $this->condition($usedCondition);
 			$condition = $Condition->mapToName();
 			if ($Condition->mustSendInVirtual()) {
-				$model->request['virtual'][$condition] = $queryData['conditions'][$condition];
+				$point = &$model->request['virtual'];
 			} elseif ($Condition->mustSendInQuery() || ($Condition->mustSendInAny() && $this->_mustSendInQuery($model))) {
-				$model->request['uri']['query'][$condition] = $queryData['conditions'][$condition];
+				$point = &$model->request['uri']['query'];
 			} else {
-				$model->request['body'][$condition] = $queryData['conditions'][$condition];
+				$point = &$model->request['body'];
+			}
+			
+			if ($Condition->extract()) {
+				$point = array_merge($point, (array)$queryData['conditions'][$condition]);
+			} else {
+				$point[$condition] = $queryData['conditions'][$condition];
 			}
 		}
 	}

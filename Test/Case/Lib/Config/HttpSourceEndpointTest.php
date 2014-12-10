@@ -539,7 +539,81 @@ class HttpSourceEndpointTest extends CakeTestCase {
 					'body' => array(),
 					'virtual' => array()
 				),
-			)
+			),
+			//set #5
+			array(
+				//conditions
+				array(
+					$CF->condition()->name('x')->sendInQuery(),
+					$CF->condition()->name('y')->sendInBody()->extract(true),
+				),
+				//method
+				HttpSourceEndpoint::METHOD_READ,
+				//path
+				'path',
+				//readParams
+				array(),
+				//queryData
+				array(
+					'conditions' => array(
+						'x' => 2,
+						'y' => array(
+							'one' => 1,
+							'two' => 2
+						)
+					)
+				),
+				//request
+				array(
+					'method' => 'GET',
+					'uri' => array(
+						'path' => 'path',
+						'query' => array(
+							'x' => 2
+						)
+					),
+					'body' => array(
+						'one' => 1,
+						'two' => 2
+					),
+					'virtual' => array()
+				),
+			),
+			//set #6
+			array(
+				//conditions
+				array(
+					$CF->condition()->name('x')->sendInQuery(),
+					$CF->condition()->name('y')->sendInBody()->extract(true),
+				),
+				//method
+				HttpSourceEndpoint::METHOD_READ,
+				//path
+				'path',
+				//readParams
+				array(),
+				//queryData
+				array(
+					'conditions' => array(
+						'x' => 2,
+						'y' => 111
+					)
+				),
+				//request
+				array(
+					'method' => 'GET',
+					'uri' => array(
+						'path' => 'path',
+						'query' => array(
+							'x' => 2
+						)
+					),
+					'body' => array(
+						111
+					),
+					'virtual' => array()
+				),
+			),
 		);
 	}
 
