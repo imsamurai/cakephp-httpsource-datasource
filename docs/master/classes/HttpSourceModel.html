@@ -142,6 +142,12 @@
     </li>
 
                                                                                                         <li class="method public">
+        <a href="#method_getTransactionParams" title="getTransactionParams :: Return transaction params">
+            <span class="description">Return transaction params</span><pre>getTransactionParams</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
         <a href="#method_hasField" title="hasField :: Returns true if the supplied field exists in the model&#039;s database table.">
             <span class="description">Returns true if the supplied field exists in the model&#039;s database table.</span><pre>hasField</pre>
         </a>
@@ -150,6 +156,12 @@
                                                                                                         <li class="method public">
         <a href="#method_setCredentials" title="setCredentials :: Sets credentials data">
             <span class="description">Sets credentials data</span><pre>setCredentials</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setTransactionParams" title="setTransactionParams :: Set parameters for endpoint wich handle transactions">
+            <span class="description">Set parameters for endpoint wich handle transactions</span><pre>setTransactionParams</pre>
         </a>
     </li>
 
@@ -163,11 +175,11 @@
         </li>
         <li class="nav-header protected">» Protected
             <ul>
-                                                                                                                                                                                                                                                                                                        </ul>
+                                                                                                                                                                                                                                                                                                                                                                                </ul>
         </li>
         <li class="nav-header private">» Private
             <ul>
-                                                                                                                                                                                                                                                                                                        </ul>
+                                                                                                                                                                                                                                                                                                                                                                                </ul>
         </li>
         <li class="nav-header">
             <i class="icon-custom icon-constant"></i> Constants
@@ -364,6 +376,35 @@ to ascertain the existence of the record in persistent storage.</p></div>
                             </div>
 
                         </div>
+                                            <a id="method_getTransactionParams"></a>
+                        <div class="element clickable method public  method_getTransactionParams" data-toggle="collapse" data-target=".method_getTransactionParams .collapse">
+                            <h2>Return transaction params</h2>
+                            <pre>getTransactionParams() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
                                             <a id="method_hasField"></a>
                         <div class="element clickable method public  method_hasField" data-toggle="collapse" data-target=".method_hasField .collapse">
                             <h2>Returns true if the supplied field exists in the model&#039;s database table.</h2>
@@ -423,6 +464,50 @@ to ascertain the existence of the record in persistent storage.</p></div>
                                                                                     <div class="subelement argument">
                                                 <h4>$credentials</h4>
                                                 <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setTransactionParams"></a>
+                        <div class="element clickable method public  method_setTransactionParams" data-toggle="collapse" data-target=".method_setTransactionParams .collapse">
+                            <h2>Set parameters for endpoint wich handle transactions</h2>
+                            <pre>setTransactionParams(string $table, array $params = array(), string $transactionsField = &#039;transactions&#039;, string $method = \HttpSource::METHOD_CREATE) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$table</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$params</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$transactionsField</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$method</h4>
+                                                <code>string</code><p></p>
                                             </div>
                                                                             
                                                                     </div>
@@ -524,7 +609,7 @@ If an array, allows control of validate, callbacks, and fieldList</p></p>
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Wed, 10 Dec 2014 11:39:59 +0000.<br/>
+            generated on Thu, 11 Dec 2014 13:38:41 +0000.<br/>
     </footer>
     </body>
 </html>

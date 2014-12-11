@@ -123,7 +123,7 @@
         </a>
     </li>
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <li class="method public inherited">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <li class="method public inherited">
         <a href="#method_afterRequest" title="afterRequest :: After request callback
 Filter data by fields, emulate limit, offset, order etc.">
             <span class="description">After request callback
@@ -138,8 +138,20 @@ Filter data by fields, emulate limit, offset, order etc.</span><pre>afterRequest
     </li>
 
                                                                                                         <li class="method public inherited">
+        <a href="#method_begin" title="begin :: {@inheritdoc}">
+            <span class="description">{@inheritdoc}</span><pre>begin</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
         <a href="#method_calculate" title="calculate :: Returns an calculation, i.e. COUNT">
             <span class="description">Returns an calculation, i.e. COUNT</span><pre>calculate</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_commit" title="commit :: {@inheritdoc}">
+            <span class="description">{@inheritdoc}</span><pre>commit</pre>
         </a>
     </li>
 
@@ -234,6 +246,12 @@ Filter data by fields, emulate limit, offset, order etc.</span><pre>afterRequest
     </li>
 
                                                                                                         <li class="method public inherited">
+        <a href="#method_getTransactionParams" title="getTransactionParams :: Return transaction params">
+            <span class="description">Return transaction params</span><pre>getTransactionParams</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
         <a href="#method_listSources" title="listSources :: Returns all available sources">
             <span class="description">Returns all available sources</span><pre>listSources</pre>
         </a>
@@ -270,6 +288,12 @@ Filter data by fields, emulate limit, offset, order etc.</span><pre>afterRequest
     </li>
 
                                                                                                         <li class="method public inherited">
+        <a href="#method_rollback" title="rollback :: {@inheritdoc}">
+            <span class="description">{@inheritdoc}</span><pre>rollback</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
         <a href="#method_setCredentials" title="setCredentials :: Sets credentials data">
             <span class="description">Sets credentials data</span><pre>setCredentials</pre>
         </a>
@@ -278,6 +302,12 @@ Filter data by fields, emulate limit, offset, order etc.</span><pre>afterRequest
                                                                                                         <li class="method public inherited">
         <a href="#method_setDecoder" title="setDecoder :: Add decoder for given $contentType">
             <span class="description">Add decoder for given $contentType</span><pre>setDecoder</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public inherited">
+        <a href="#method_setTransactionParams" title="setTransactionParams :: Set parameters for endpoint wich handle transactions">
+            <span class="description">Set parameters for endpoint wich handle transactions</span><pre>setTransactionParams</pre>
         </a>
     </li>
 
@@ -306,6 +336,11 @@ will be rendered and output.  If in a CLI environment, a plain text log is gener
         <li class="nav-header protected">» Protected
             <ul>
                                                                                                                 <li class="method protected inherited">
+                            <a href="#method__addTransaction" title="_addTransaction :: Store request transaction">
+                                <span class="description">Store request transaction</span><pre>_addTransaction</pre>
+                            </a>
+                        </li>
+                                                                                <li class="method protected inherited">
                             <a href="#method__buildRequest" title="_buildRequest :: Build request depends on parameters and config and store it in $model-&gt;request">
                                 <span class="description">Build request depends on parameters and config and store it in $model-&gt;request</span><pre>_buildRequest</pre>
                             </a>
@@ -395,11 +430,11 @@ will be rendered and output.  If in a CLI environment, a plain text log is gener
                                 <span class="description">Writes a new key for the in memory query cache and cache specified by current endpoint</span><pre>_writeQueryCache</pre>
                             </a>
                         </li>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </ul>
         </li>
         <li class="nav-header private">» Private
             <ul>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ul>
         </li>
         <li class="nav-header">
             <i class="icon-custom icon-constant"></i> Constants
@@ -552,6 +587,33 @@ will be rendered and output.  If in a CLI environment, a plain text log is gener
                                                 <code><a href="../classes/HttpSourceConnection.html">\HttpSourceConnection</a></code><p></p>
                                             </div>
                                                                             
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method__addTransaction"></a>
+                        <div class="element clickable method protected  method__addTransaction inherited" data-toggle="collapse" data-target=".method__addTransaction .collapse">
+                            <h2>Store request transaction</h2>
+                            <pre>_addTransaction(\type $request) : boolean</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>\type</code><p></p>
+                                            </div>
+                                                                            
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p></p>
                                                                     </div>
                             </div>
 
@@ -1249,6 +1311,35 @@ Filter data by fields, emulate limit, offset, order etc.</h2>
                             </div>
 
                         </div>
+                                            <a id="method_begin"></a>
+                        <div class="element clickable method public  method_begin inherited" data-toggle="collapse" data-target=".method_begin .collapse">
+                            <h2>{@inheritdoc}</h2>
+                            <pre>begin() : boolean</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>Returns true if a transaction is not in progress</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
                                             <a id="method_calculate"></a>
                         <div class="element clickable method public  method_calculate inherited" data-toggle="collapse" data-target=".method_calculate .collapse">
                             <h2>Returns an calculation, i.e. COUNT</h2>
@@ -1289,6 +1380,35 @@ Filter data by fields, emulate limit, offset, order etc.</h2>
                                                                             
                                                                             <h3>Response</h3>
                                         <code>string</code><p><p>An calculation function</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_commit"></a>
+                        <div class="element clickable method public  method_commit inherited" data-toggle="collapse" data-target=".method_commit .collapse">
+                            <h2>{@inheritdoc}</h2>
+                            <pre>commit() : boolean</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>Returns true if a transaction is in progress</p></p>
                                                                     </div>
                             </div>
 
@@ -1756,6 +1876,35 @@ Filter data by fields, emulate limit, offset, order etc.</h2>
                             </div>
 
                         </div>
+                                            <a id="method_getTransactionParams"></a>
+                        <div class="element clickable method public  method_getTransactionParams inherited" data-toggle="collapse" data-target=".method_getTransactionParams .collapse">
+                            <h2>Return transaction params</h2>
+                            <pre>getTransactionParams() : array</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
                                             <a id="method_listSources"></a>
                         <div class="element clickable method public  method_listSources inherited" data-toggle="collapse" data-target=".method_listSources .collapse">
                             <h2>Returns all available sources</h2>
@@ -2006,6 +2155,35 @@ Filter data by fields, emulate limit, offset, order etc.</h2>
                             </div>
 
                         </div>
+                                            <a id="method_rollback"></a>
+                        <div class="element clickable method public  method_rollback inherited" data-toggle="collapse" data-target=".method_rollback .collapse">
+                            <h2>{@inheritdoc}</h2>
+                            <pre>rollback() : boolean</pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>boolean</code><p><p>Returns true if a transaction is in progress</p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
                                             <a id="method_setCredentials"></a>
                         <div class="element clickable method public  method_setCredentials inherited" data-toggle="collapse" data-target=".method_setCredentials .collapse">
                             <h2>Sets credentials data</h2>
@@ -2072,6 +2250,50 @@ Filter data by fields, emulate limit, offset, order etc.</h2>
                                                                                     <div class="subelement argument">
                                                 <h4>$replace</h4>
                                                 <code>boolean</code><p><p>Replace decoder if already set or not. Default false</p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setTransactionParams"></a>
+                        <div class="element clickable method public  method_setTransactionParams inherited" data-toggle="collapse" data-target=".method_setTransactionParams .collapse">
+                            <h2>Set parameters for endpoint wich handle transactions</h2>
+                            <pre>setTransactionParams(string $table, array $params, string $transactionsField, string $method) </pre>
+                            <div class="labels">
+                                <span class="label">inherited</span>                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$table</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$params</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$transactionsField</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$method</h4>
+                                                <code>string</code><p></p>
                                             </div>
                                                                             
                                                                     </div>
@@ -2929,6 +3151,58 @@ will be rendered and output.  If in a CLI environment, a plain text log is gener
                                                                             </div>
                                 </div>
                             </div>
+                                                    <a id="property__transactionParams"> </a>
+                            <div class="element clickable property  protected property__transactionParams inherited" data-toggle="collapse" data-target=".property__transactionParams .collapse">
+                                <h2>Params for commit transaction</h2>
+                                <pre>_transactionParams : array</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array</code>
+                                                                            </div>
+                                </div>
+                            </div>
+                                                    <a id="property__transactions"> </a>
+                            <div class="element clickable property  protected property__transactions inherited" data-toggle="collapse" data-target=".property__transactions .collapse">
+                                <h2>Transactions</h2>
+                                <pre>_transactions : array</pre>
+                                <div class="labels">
+                                    <span class="label">inherited</span>                                                                    </div>
+                                <div class="row collapse">
+                                    <div class="detail-description">
+                                        <div class="long_description"></div>
+
+                                        <table class="table">
+                                                                                            <tr>
+                                                    <th>
+                                                        var
+                                                    </th>
+                                                    <td>
+                                                                                                                    
+                                                                                                            </td>
+                                                </tr>
+                                                                                    </table>
+
+                                                                                    <h3>Type(s)</h3>
+                                            <code>array</code>
+                                                                            </div>
+                                </div>
+                            </div>
                                                             </div>
             </div>
             <a id="\HttpTestSource"></a>
@@ -2949,7 +3223,7 @@ will be rendered and output.  If in a CLI environment, a plain text log is gener
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Wed, 10 Dec 2014 11:39:58 +0000.<br/>
+            generated on Thu, 11 Dec 2014 13:38:40 +0000.<br/>
     </footer>
     </body>
 </html>
