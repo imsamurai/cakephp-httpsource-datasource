@@ -583,8 +583,8 @@ abstract class HttpSource extends DataSource {
 
 		$model->request = array('method' => static::HTTP_METHOD_READ);
 
-		$this->_buildRequest(HttpSource::METHOD_READ, $model, $queryData, null, null, null, $recursive);
-		if ($this->_addTransaction($model->request)) {
+		$this->_buildRequest(static::METHOD_READ, $model, $queryData, null, null, null, $recursive);
+		if ($this->_addTransaction(static::METHOD_READ, $model->request)) {
 			return true;
 		}
 		$request = $model->request;
@@ -595,7 +595,7 @@ abstract class HttpSource extends DataSource {
 			}
 		}
 
-		$result = $this->request($model, null, HttpSource::METHOD_READ);
+		$result = $this->request($model, null, static::METHOD_READ);
 
 		if ($model->cacheQueries && $result !== false) {
 			$this->_writeQueryCache($request, $result);
@@ -614,12 +614,12 @@ abstract class HttpSource extends DataSource {
 	public function create(Model $model, $fields = null, $values = null) {
 		$model->request = array('method' => static::HTTP_METHOD_CREATE);
 
-		$this->_buildRequest(HttpSource::METHOD_CREATE, $model, array(), $fields, $values);
-		if ($this->_addTransaction($model->request)) {
+		$this->_buildRequest(static::METHOD_CREATE, $model, array(), $fields, $values);
+		if ($this->_addTransaction(static::METHOD_CREATE, $model->request)) {
 			return true;
 		}
 
-		return (bool)$this->request($model, null, HttpSource::METHOD_CREATE);
+		return (bool)$this->request($model, null, static::METHOD_CREATE);
 	}
 
 	/**
@@ -633,12 +633,12 @@ abstract class HttpSource extends DataSource {
 	public function update(Model $model, $fields = null, $values = null, $conditions = null) {
 		$model->request = array('method' => static::HTTP_METHOD_UPDATE);
 
-		$this->_buildRequest(HttpSource::METHOD_UPDATE, $model, array(), $fields, $values, $conditions);
-		if ($this->_addTransaction($model->request)) {
+		$this->_buildRequest(static::METHOD_UPDATE, $model, array(), $fields, $values, $conditions);
+		if ($this->_addTransaction(static::METHOD_UPDATE, $model->request)) {
 			return true;
 		}
 
-		return (bool)$this->request($model, null, HttpSource::METHOD_UPDATE);
+		return (bool)$this->request($model, null, static::METHOD_UPDATE);
 	}
 
 	/**
@@ -650,11 +650,11 @@ abstract class HttpSource extends DataSource {
 	public function delete(Model $model, $conditions = null) {
 		$model->request = array('method' => static::HTTP_METHOD_DELETE);
 
-		$this->_buildRequest(HttpSource::METHOD_DELETE, $model, array(), null, null, $conditions);
-		if ($this->_addTransaction($model->request)) {
+		$this->_buildRequest(static::METHOD_DELETE, $model, array(), null, null, $conditions);
+		if ($this->_addTransaction(static::METHOD_DELETE, $model->request)) {
 			return true;
 		}
-		return (bool)$this->request($model, null, HttpSource::METHOD_DELETE);
+		return (bool)$this->request($model, null, static::METHOD_DELETE);
 	}
 
 	/**
@@ -666,14 +666,14 @@ abstract class HttpSource extends DataSource {
 	public function exists(Model $model, $conditions = array()) {
 		$model->request = array('method' => static::HTTP_METHOD_CHECK);
 		try {
-			$this->_buildRequest(HttpSource::METHOD_CHECK, $model, array(), null, null, $conditions);
+			$this->_buildRequest(static::METHOD_CHECK, $model, array(), null, null, $conditions);
 		} catch (Exception $Exception) {
 			return true;
 		}
-		if ($this->_addTransaction($model->request)) {
+		if ($this->_addTransaction(static::METHOD_CHECK, $model->request)) {
 			return true;
 		}
-		return (bool)$this->request($model, null, HttpSource::METHOD_CHECK);
+		return (bool)$this->request($model, null, static::METHOD_CHECK);
 	}
 
 	/**
@@ -868,14 +868,15 @@ abstract class HttpSource extends DataSource {
 	/**
 	 * Store request transaction
 	 * 
-	 * @param type $request
+	 * @param string $method
+	 * @param array $request
 	 * @return bool
 	 */
-	protected function _addTransaction($request) {
+	protected function _addTransaction($method, array $request) {
 		if (!$this->_transactionStarted) {
 			return false;
 		}
-		$this->_transactions[] = $request;
+		$this->_transactions[] = array($method, $request);
 		return true;
 	}
 

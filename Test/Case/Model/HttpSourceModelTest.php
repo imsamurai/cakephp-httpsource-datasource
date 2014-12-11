@@ -152,45 +152,54 @@ class HttpSourceModelTest extends CakeTestCase {
 					),
 					'body' => array(
 						'transactions' => array(
-							array(
-								'method' => 'PUT',
-								'uri' => array(
-									'path' => 'simple_table',
-									'query' => array(
-										'q1' => '1'
-									)
-								),
-								'body' => array(
-									'b1' => '_1'
-								),
-								'virtual' => array()
+							(int)0 => array(
+								(int)0 => 'create',
+								(int)1 => array(
+									'method' => 'PUT',
+									'uri' => array(
+										'path' => 'simple_table',
+										'query' => array(
+											'q1' => '1'
+										)
+									),
+									'body' => array(
+										'b1' => '_1'
+									),
+									'virtual' => array()
+								)
 							),
-							array(
-								'method' => 'PUT',
-								'uri' => array(
-									'path' => 'simple_table',
-									'query' => array(
-										'q1' => '11'
-									)
-								),
-								'body' => array(
-									'b1' => '_11'
-								),
-								'virtual' => array()
+							(int)1 => array(
+								(int)0 => 'create',
+								(int)1 => array(
+									'method' => 'PUT',
+									'uri' => array(
+										'path' => 'simple_table',
+										'query' => array(
+											'q1' => '11'
+										)
+									),
+									'body' => array(
+										'b1' => '_11'
+									),
+									'virtual' => array()
+								)
 							),
-							array(
-								'method' => 'PUT',
-								'uri' => array(
-									'path' => 'simple_table',
-									'query' => array(
-										'q1' => '111'
-									)
-								),
-								'body' => array(
-									'b1' => '_111'
-								),
-								'virtual' => array()
-							),
+							(int)2 => array(
+								(int)0 => 'create',
+								(int)1 => array(
+									'method' => 'PUT',
+									'uri' => array(
+										'path' => 'simple_table',
+										'query' => array(
+											'q1' => '111'
+										)
+									),
+									'body' => array(
+										'b1' => '_111'
+									),
+									'virtual' => array()
+								)
+							)
 						)
 					),
 					'virtual' => array()
@@ -231,98 +240,122 @@ class HttpSourceModelTest extends CakeTestCase {
 					'body' => array(
 						'transactions' => array(
 							(int)0 => array(
-								'method' => 'PUT',
-								'uri' => array(
-									'path' => 'simple_table',
-									'query' => array(
-										'q1' => '1'
-									)
-								),
-								'body' => array(
-									'b1' => '_1'
-								),
-								'virtual' => array()
+								(int)0 => 'create',
+								(int)1 => array(
+									'method' => 'PUT',
+									'uri' => array(
+										'path' => 'simple_table',
+										'query' => array(
+											'q1' => '1'
+										)
+									),
+									'body' => array(
+										'b1' => '_1'
+									),
+									'virtual' => array()
+								)
 							),
 							(int)1 => array(
-								'method' => 'PUT',
-								'uri' => array(
-									'path' => 'simple_table',
-									'query' => array()
-								),
-								'body' => array(
-									'b1' => '_2'
-								),
-								'virtual' => array()
+								(int)0 => 'create',
+								(int)1 => array(
+									'method' => 'PUT',
+									'uri' => array(
+										'path' => 'simple_table',
+										'query' => array()
+									),
+									'body' => array(
+										'b1' => '_2'
+									),
+									'virtual' => array()
+								)
 							),
 							(int)2 => array(
-								'method' => 'POST',
-								'uri' => array(
-									'path' => 'simple_table',
-									'query' => array(
-										'q3' => '3'
-									)
-								),
-								'body' => array(),
-								'virtual' => array()
+								(int)0 => 'update',
+								(int)1 => array(
+									'method' => 'POST',
+									'uri' => array(
+										'path' => 'simple_table',
+										'query' => array(
+											'q3' => '3'
+										)
+									),
+									'body' => array(),
+									'virtual' => array()
+								)
 							),
 							(int)3 => array(
-								'method' => 'POST',
-								'uri' => array(
-									'path' => 'simple_table',
-									'query' => array(
-										'q3' => '3'
-									)
-								),
-								'body' => array(),
-								'virtual' => array()
+								(int)0 => 'update',
+								(int)1 => array(
+									'method' => 'POST',
+									'uri' => array(
+										'path' => 'simple_table',
+										'query' => array(
+											'q3' => '3'
+										)
+									),
+									'body' => array(),
+									'virtual' => array()
+								)
 							),
 							(int)4 => array(
-								'method' => 'DELETE',
-								'uri' => array(
-									'path' => 'simple_table',
-									'query' => array()
-								),
-								'body' => array(),
-								'virtual' => array()
+								(int)0 => 'delete',
+								(int)1 => array(
+									'method' => 'DELETE',
+									'uri' => array(
+										'path' => 'simple_table',
+										'query' => array()
+									),
+									'body' => array(),
+									'virtual' => array()
+								)
 							),
 							(int)5 => array(
-								'method' => 'DELETE',
-								'uri' => array(
-									'path' => 'simple_table',
-									'query' => array(
-										'q2' => '2'
-									)
-								),
-								'body' => array(
-									'b2' => '_2'
-								),
-								'virtual' => array()
+								(int)0 => 'delete',
+								(int)1 => array(
+									'method' => 'DELETE',
+									'uri' => array(
+										'path' => 'simple_table',
+										'query' => array(
+											'q2' => '2'
+										)
+									),
+									'body' => array(
+										'b2' => '_2'
+									),
+									'virtual' => array()
+								)
 							),
 							(int)6 => array(
-								'method' => 'HEAD',
-								'uri' => array(
-									'path' => 'simple_table',
-									'query' => array(
-										'q4' => '4'
-									)
-								),
-								'body' => array(
-									'b4' => '_4'
-								),
-								'virtual' => array()
+								(int)0 => 'check',
+								(int)1 => array(
+									'method' => 'HEAD',
+									'uri' => array(
+										'path' => 'simple_table',
+										'query' => array(
+											'q4' => '4'
+										)
+									),
+									'body' => array(
+										'b4' => '_4'
+									),
+									'virtual' => array()
+								)
 							),
 							(int)7 => array(
-								'method' => 'GET',
-								'uri' => array(
-									'path' => 'simple_table',
-									'query' => array(
-										'q5' => '5'
-									)
-								),
-								'body' => array(
-									'b5' => '_5'
-								),
-								'virtual' => array()
+								(int)0 => 'read',
+								(int)1 => array(
+									'method' => 'GET',
+									'uri' => array(
+										'path' => 'simple_table',
+										'query' => array(
+											'q5' => '5'
+										)
+									),
+									'body' => array(
+										'b5' => '_5'
+									),
+									'virtual' => array()
+								)
 							)
 						)
 					),
