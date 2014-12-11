@@ -81,10 +81,8 @@ class HttpSourceModelTest extends CakeTestCase {
 							->addCondition($CF->condition()->name('transactions')->sendInBody())
 							->addCondition($CF->condition()->name('q6')->sendInQuery())
 					)
-					
 		));
 	}
-	
 	
 	/**
 	 * Test transactions

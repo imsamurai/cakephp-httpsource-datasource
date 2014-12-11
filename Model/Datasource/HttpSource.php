@@ -851,7 +851,6 @@ abstract class HttpSource extends DataSource {
 				break;
 		}
 		
-		
 		$queryData['httpMethod'] = $httpMethod;
 		$queryData['conditions'][$queryData['transactionsField']] = $this->_transactions;
 		$this->_transactions = array();
