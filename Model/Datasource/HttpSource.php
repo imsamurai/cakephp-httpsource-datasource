@@ -584,9 +584,7 @@ abstract class HttpSource extends DataSource {
 		$model->request = array('method' => static::HTTP_METHOD_READ);
 
 		$this->_buildRequest(static::METHOD_READ, $model, $queryData, null, null, null, $recursive);
-		if ($this->_addTransaction(static::METHOD_READ, $model->request)) {
-			return true;
-		}
+
 		$request = $model->request;
 		if ($model->cacheQueries) {
 			$result = $this->getQueryCache($request);
@@ -668,9 +666,6 @@ abstract class HttpSource extends DataSource {
 		try {
 			$this->_buildRequest(static::METHOD_CHECK, $model, array(), null, null, $conditions);
 		} catch (Exception $Exception) {
-			return true;
-		}
-		if ($this->_addTransaction(static::METHOD_CHECK, $model->request)) {
 			return true;
 		}
 		return (bool)$this->request($model, null, static::METHOD_CHECK);

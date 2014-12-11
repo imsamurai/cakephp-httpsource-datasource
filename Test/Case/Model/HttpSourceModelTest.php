@@ -324,38 +324,6 @@ class HttpSourceModelTest extends CakeTestCase {
 									),
 									'virtual' => array()
 								)
-							),
-							(int)6 => array(
-								(int)0 => 'check',
-								(int)1 => array(
-									'method' => 'HEAD',
-									'uri' => array(
-										'path' => 'simple_table',
-										'query' => array(
-											'q4' => '4'
-										)
-									),
-									'body' => array(
-										'b4' => '_4'
-									),
-									'virtual' => array()
-								)
-							),
-							(int)7 => array(
-								(int)0 => 'read',
-								(int)1 => array(
-									'method' => 'GET',
-									'uri' => array(
-										'path' => 'simple_table',
-										'query' => array(
-											'q5' => '5'
-										)
-									),
-									'body' => array(
-										'b5' => '_5'
-									),
-									'virtual' => array()
-								)
 							)
 						)
 					),
