@@ -182,6 +182,20 @@ abstract class HttpSource extends DataSource {
 	protected $_queryData = array();
 
 	/**
+	 * Params for commit transaction
+	 *
+	 * @var array
+	 */
+	protected $_transactionParams = array();
+	
+	/**
+	 * Transactions
+	 *
+	 * @var array
+	 */
+	protected $_transactions = array();
+
+	/**
 	 * List of constants METHOD_*
 	 * 
 	 * @return array
@@ -570,7 +584,9 @@ abstract class HttpSource extends DataSource {
 		$model->request = array('method' => static::HTTP_METHOD_READ);
 
 		$this->_buildRequest(HttpSource::METHOD_READ, $model, $queryData, null, null, null, $recursive);
-
+		if ($this->_addTransaction($model->request)) {
+			return true;
+		}
 		$request = $model->request;
 		if ($model->cacheQueries) {
 			$result = $this->getQueryCache($request);
@@ -599,6 +615,9 @@ abstract class HttpSource extends DataSource {
 		$model->request = array('method' => static::HTTP_METHOD_CREATE);
 
 		$this->_buildRequest(HttpSource::METHOD_CREATE, $model, array(), $fields, $values);
+		if ($this->_addTransaction($model->request)) {
+			return true;
+		}
 
 		return (bool)$this->request($model, null, HttpSource::METHOD_CREATE);
 	}
@@ -615,6 +634,9 @@ abstract class HttpSource extends DataSource {
 		$model->request = array('method' => static::HTTP_METHOD_UPDATE);
 
 		$this->_buildRequest(HttpSource::METHOD_UPDATE, $model, array(), $fields, $values, $conditions);
+		if ($this->_addTransaction($model->request)) {
+			return true;
+		}
 
 		return (bool)$this->request($model, null, HttpSource::METHOD_UPDATE);
 	}
@@ -629,6 +651,9 @@ abstract class HttpSource extends DataSource {
 		$model->request = array('method' => static::HTTP_METHOD_DELETE);
 
 		$this->_buildRequest(HttpSource::METHOD_DELETE, $model, array(), null, null, $conditions);
+		if ($this->_addTransaction($model->request)) {
+			return true;
+		}
 		return (bool)$this->request($model, null, HttpSource::METHOD_DELETE);
 	}
 
@@ -643,6 +668,9 @@ abstract class HttpSource extends DataSource {
 		try {
 			$this->_buildRequest(HttpSource::METHOD_CHECK, $model, array(), null, null, $conditions);
 		} catch (Exception $Exception) {
+			return true;
+		}
+		if ($this->_addTransaction($model->request)) {
 			return true;
 		}
 		return (bool)$this->request($model, null, HttpSource::METHOD_CHECK);
@@ -737,6 +765,118 @@ abstract class HttpSource extends DataSource {
 			'httpMethod' => static::HTTP_METHOD_DELETE
 		);
 		return $this->_schemaToRequests($Schema, $tableName, $options);
+	}
+	
+	/**
+	 * Set parameters for endpoint wich handle transactions
+	 * 
+	 * @param string $table
+	 * @param array $params
+	 * @param string $transactionsField
+	 * @param string $method
+	 */
+	public function setTransactionParams($table, array $params, $transactionsField, $method) {
+		$this->_transactionParams = compact('table', 'params', 'transactionsField', 'method');
+	}
+	
+	/**
+	 * Return transaction params
+	 * 
+	 * @return array
+	 */
+	public function getTransactionParams() {
+		return $this->_transactionParams;
+	}
+	
+	/**
+	 * {@inheritdoc}
+	 *
+	 * @return bool Returns true if a transaction is not in progress
+	 */
+	public function begin() {
+		if ($this->_transactionStarted) {
+			return $this->_transactionStarted;
+		}
+		$this->_transactions = array();
+		return $this->_transactionStarted = (bool)$this->_transactionParams;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 *
+	 * @return bool Returns true if a transaction is in progress
+	 */
+	public function rollback() {
+		if (!$this->_transactionStarted) {
+			return false;
+		}
+		$this->_transactionStarted = false;
+		$this->_transactions = array();
+		$this->_transactionParams = array();
+		return true;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 *
+	 * @return bool Returns true if a transaction is in progress
+	 */
+	public function commit() {
+		if (!$this->_transactionStarted) {
+			$this->_transactionParams = array();
+			return false;
+		}
+		$this->_transactionStarted = false;
+		if (!$this->_transactions) {
+			$this->_transactionParams = array();
+			return true;
+		}
+		
+		$queryData = $this->_transactionParams['params'];
+		$queryData['method'] = $this->_transactionParams['method'];
+		$queryData['fields'] = $this->_transactionParams['table'];
+		$queryData['transactionsField'] = $this->_transactionParams['transactionsField'];
+		$this->_transactionParams = array();
+		
+		switch ($queryData['method']) {
+			case static::METHOD_CHECK: 
+				$httpMethod = static::HTTP_METHOD_CHECK; 
+				break;
+			case static::METHOD_READ: 
+				$httpMethod = static::HTTP_METHOD_READ; 
+				break;
+			case static::METHOD_CREATE: 
+				$httpMethod = static::HTTP_METHOD_CREATE; 
+				break;
+			case static::METHOD_UPDATE: 
+				$httpMethod = static::HTTP_METHOD_UPDATE; 
+				break;
+			case static::METHOD_DELETE: 
+				$httpMethod = static::HTTP_METHOD_DELETE; 
+				break;
+		}
+		
+		
+		$queryData['httpMethod'] = $httpMethod;
+		$queryData['conditions'][$queryData['transactionsField']] = $this->_transactions;
+		$this->_transactions = array();
+		$Model = $this->_requestToModel(array('method' => $httpMethod));
+		$this->_buildRequest($queryData['method'], $Model, $queryData);
+		return (bool)$this->execute($Model->request);
+	}
+	
+	/**
+	 * Store request transaction
+	 * 
+	 * @param type $request
+	 * @return bool
+	 */
+	protected function _addTransaction($request) {
+		if (!$this->_transactionStarted) {
+			return false;
+		}
+		$this->_transactions[] = $request;
+		return true;
 	}
 
 	/**

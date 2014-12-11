@@ -8,6 +8,7 @@
  */
 App::uses('AppModel', 'Model');
 App::uses('HttpSourceUtility', 'HttpSource.Utility');
+App::uses('HttpSource', 'HttpSource.Model/Datasource');
 
 /**
  * Model with patched methods to wirk with save()
@@ -120,6 +121,29 @@ class HttpSourceModel extends AppModel {
 	 */
 	public function explain($ds, $query) {
 		return HttpSourceUtility::explainQuery($query);
+	}
+	
+	/**
+	 * Set parameters for endpoint wich handle transactions
+	 * 
+	 * 
+	 * @param string $table
+	 * @param array $params
+	 * @param string $transactionsField
+	 * @param string $method
+	 * 
+	 */
+	public function setTransactionParams($table, array $params = array(), $transactionsField = 'transactions', $method = HttpSource::METHOD_CREATE) {
+		$this->getDataSource()->setTransactionParams($table, $params, $transactionsField, $method);
+	}
+	
+	/**
+	 * Return transaction params
+	 * 
+	 * @return array
+	 */
+	public function getTransactionParams() {
+		return $this->getDataSource()->getTransactionParams();
 	}
 
 }

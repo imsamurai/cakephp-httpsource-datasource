@@ -21,6 +21,317 @@ class HttpSourceModelTest extends CakeTestCase {
 	 */
 	public function setUp() {
 		parent::setUp();
+		$CF = HttpSourceConfigFactory::instance();
+		Configure::write('HttpSource', array(
+			'config_version' => 2,
+			'config' => $CF->config()
+					->add(
+							$CF->endpoint()
+							->id(1)
+							->methodCreate()
+							->table('simple_table')
+							->addCondition($CF->condition()->name('q1')->sendInQuery()->required())
+							->addCondition($CF->condition()->name('b1')->sendInBody())
+					)
+					->add(
+							$CF->endpoint()
+							->id(2)
+							->methodCreate()
+							->table('simple_table')
+							->addCondition($CF->condition()->name('q1')->sendInQuery())
+							->addCondition($CF->condition()->name('b1')->sendInBody())
+					)
+					->add(
+							$CF->endpoint()
+							->id(3)
+							->methodDelete()
+							->table('simple_table')
+							->addCondition($CF->condition()->name('q2')->sendInQuery())
+							->addCondition($CF->condition()->name('b2')->sendInBody())
+					)
+					->add(
+							$CF->endpoint()
+							->id(4)
+							->methodUpdate()
+							->table('simple_table')
+							->addCondition($CF->condition()->name('q3')->sendInQuery())
+							->addCondition($CF->condition()->name('b3')->sendInBody())
+					)
+					->add(
+							$CF->endpoint()
+							->id(5)
+							->methodCheck()
+							->table('simple_table')
+							->addCondition($CF->condition()->name('q4')->sendInQuery())
+							->addCondition($CF->condition()->name('b4')->sendInBody())
+					)
+					->add(
+							$CF->endpoint()
+							->id(6)
+							->methodRead()
+							->table('simple_table')
+							->addCondition($CF->condition()->name('q5')->sendInQuery())
+							->addCondition($CF->condition()->name('b5')->sendInBody())
+					)
+					->add(
+							$CF->endpoint()
+							->id(7)
+							->methodCreate()
+							->table('transactions_table')
+							->addCondition($CF->condition()->name('transactions')->sendInBody())
+							->addCondition($CF->condition()->name('q6')->sendInQuery())
+					)
+					
+		));
+	}
+	
+	
+	/**
+	 * Test transactions
+	 * 
+	 * @param array $params
+	 * @param array $transactions
+	 * @param array $result
+	 * @param bool $autoTransactions
+	 * 
+	 * @dataProvider transactionsProvider
+	 */
+	public function testTransactions($params, $transactions, $result, $autoTransactions) {		
+		$HttpSource = $this->getMock('HttpSource', array('execute'), array(array('datasource' => 'HttpSource.Http/HttpSource')));
+		$HttpSource->expects($this->once())->method('execute')->with($result);
+		$Model = $this->getMockForAbstractClass('HttpSourceModel', array(false, false, null), '', true, true, true, array('getDataSource'));
+		$Model->expects($this->atLeastOnce())->method('getDataSource')->will($this->returnValue($HttpSource));
+		$Model->useTable = 'simple_table';
+		$Model->setTransactionParams($params['table'], $params['params'], $params['transactionsField'], $params['method']);
+		if (!$autoTransactions) {
+			$Model->getDataSource()->begin();
+		}
+		foreach ($transactions as $transaction) {
+			list($method, $options) = $transaction;
+			call_user_func_array(array($Model, $method), $options);
+		}
+		if (!$autoTransactions) {
+			$Model->getDataSource()->commit();
+		}
+		$this->assertEmpty($Model->getDataSource()->getTransactionParams());
+	}
+	
+	/**
+	 * Data source for testTransactions
+	 * 
+	 * @return array
+	 */
+	public function transactionsProvider() {
+		return array(
+			//set #0
+			array(
+				//params
+				array(
+					'table' => 'transactions_table',
+					'params' => array(
+						'q6' => '123'
+					),
+					'transactionsField' => 'transactions',
+					'method' => HttpSource::METHOD_CREATE
+				),
+				//transactions
+				array(
+					array('saveAll', array(
+							array(
+								array('q1' => '1', 'b1' => '_1'),
+								array('q1' => '11', 'b1' => '_11'),
+								array('q1' => '111', 'b1' => '_111'),
+							)
+						))),
+				//result
+				array(
+					'method' => 'PUT',
+					'uri' => array(
+						'path' => 'transactions_table',
+						'query' => array()
+					),
+					'body' => array(
+						'transactions' => array(
+							array(
+								'method' => 'PUT',
+								'uri' => array(
+									'path' => 'simple_table',
+									'query' => array(
+										'q1' => '1'
+									)
+								),
+								'body' => array(
+									'b1' => '_1'
+								),
+								'virtual' => array()
+							),
+							array(
+								'method' => 'PUT',
+								'uri' => array(
+									'path' => 'simple_table',
+									'query' => array(
+										'q1' => '11'
+									)
+								),
+								'body' => array(
+									'b1' => '_11'
+								),
+								'virtual' => array()
+							),
+							array(
+								'method' => 'PUT',
+								'uri' => array(
+									'path' => 'simple_table',
+									'query' => array(
+										'q1' => '111'
+									)
+								),
+								'body' => array(
+									'b1' => '_111'
+								),
+								'virtual' => array()
+							),
+						)
+					),
+					'virtual' => array()
+				),
+				//autoTransactions
+				true
+			),
+			//set #1
+			array(
+				//params
+				array(
+					'table' => 'transactions_table',
+					'params' => array(
+						'q6' => '123'
+					),
+					'transactionsField' => 'transactions',
+					'method' => HttpSource::METHOD_CREATE
+				),
+				//transactions
+				array(
+					array('create', array(array())),
+					array('save', array(array('q1' => '1', 'b1' => '_1'))),
+					array('save', array(array('b1' => '_2'))),
+					array('save', array(array('id' => 1, 'q3' => '3'))),
+					array('update', array(array('q3' => '3'))),
+					array('delete', array(1)),
+					array('deleteAll', array(array('q2' => '2', 'b2' => '_2'))),
+					array('exists', array(1, array('q4' => '4', 'b4' => '_4'), true)),
+					array('find', array('first', array('conditions' => array('q5' => '5', 'b5' => '_5')))),
+				),
+				//result
+				array(
+					'method' => 'PUT',
+					'uri' => array(
+						'path' => 'transactions_table',
+						'query' => array()
+					),
+					'body' => array(
+						'transactions' => array(
+							(int)0 => array(
+								'method' => 'PUT',
+								'uri' => array(
+									'path' => 'simple_table',
+									'query' => array(
+										'q1' => '1'
+									)
+								),
+								'body' => array(
+									'b1' => '_1'
+								),
+								'virtual' => array()
+							),
+							(int)1 => array(
+								'method' => 'PUT',
+								'uri' => array(
+									'path' => 'simple_table',
+									'query' => array()
+								),
+								'body' => array(
+									'b1' => '_2'
+								),
+								'virtual' => array()
+							),
+							(int)2 => array(
+								'method' => 'POST',
+								'uri' => array(
+									'path' => 'simple_table',
+									'query' => array(
+										'q3' => '3'
+									)
+								),
+								'body' => array(),
+								'virtual' => array()
+							),
+							(int)3 => array(
+								'method' => 'POST',
+								'uri' => array(
+									'path' => 'simple_table',
+									'query' => array(
+										'q3' => '3'
+									)
+								),
+								'body' => array(),
+								'virtual' => array()
+							),
+							(int)4 => array(
+								'method' => 'DELETE',
+								'uri' => array(
+									'path' => 'simple_table',
+									'query' => array()
+								),
+								'body' => array(),
+								'virtual' => array()
+							),
+							(int)5 => array(
+								'method' => 'DELETE',
+								'uri' => array(
+									'path' => 'simple_table',
+									'query' => array(
+										'q2' => '2'
+									)
+								),
+								'body' => array(
+									'b2' => '_2'
+								),
+								'virtual' => array()
+							),
+							(int)6 => array(
+								'method' => 'HEAD',
+								'uri' => array(
+									'path' => 'simple_table',
+									'query' => array(
+										'q4' => '4'
+									)
+								),
+								'body' => array(
+									'b4' => '_4'
+								),
+								'virtual' => array()
+							),
+							(int)7 => array(
+								'method' => 'GET',
+								'uri' => array(
+									'path' => 'simple_table',
+									'query' => array(
+										'q5' => '5'
+									)
+								),
+								'body' => array(
+									'b5' => '_5'
+								),
+								'virtual' => array()
+							)
+						)
+					),
+					'virtual' => array()
+				),
+				//autoTransactions
+				false
+			)
+		);
 	}
 
 	/**
@@ -36,6 +347,25 @@ class HttpSourceModelTest extends CakeTestCase {
 		$Model = $this->getMockForAbstractClass('HttpSourceModel', array(false, false, null), '', true, true, true, array('getDataSource'));
 		$Model->expects($this->once())->method('getDataSource')->will($this->returnValue($HttpSource));
 		$Model->setCredentials($credentials);
+	}
+	
+	/**
+	 * Test setTransactionParams
+	 */
+	public function testTransactionParams() {
+		$params = array(
+			'table' => 'transactions_table', 
+			'params' => array(
+				'param1' => true
+			), 
+			'transactionsField' => 'transactions', 
+			'method' => HttpSource::METHOD_CREATE
+		);
+		$HttpSource = $this->getMock('HttpSource_', array('setTransactionParams'));
+		$HttpSource->expects($this->once())->method('setTransactionParams')->with($params['table'], $params['params'], $params['transactionsField'], $params['method']);
+		$Model = $this->getMockForAbstractClass('HttpSourceModel', array(false, false, null), '', true, true, true, array('getDataSource'));
+		$Model->expects($this->once())->method('getDataSource')->will($this->returnValue($HttpSource));
+		$Model->setTransactionParams($params['table'], $params['params'], $params['transactionsField'], $params['method']);
 	}
 
 	/**

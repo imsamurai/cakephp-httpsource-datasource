@@ -320,6 +320,23 @@ class HttpSourceTest extends CakeTestCase {
 		$Source->setCredentials($credentials);
 		$this->assertSame($credentials, $Source->getCredentials());
 	}
+	
+	/**
+	 * Test transaction params
+	 */
+	public function testTransactionParams() {
+		$Source = new HttpTestSource(array('datasource' => 'HttpSource.Http/HttpSource'));
+		$params = array(
+			'table' => 'transactions_table', 
+			'params' => array(
+				'param1' => true
+			), 
+			'transactionsField' => 'transactions', 
+			'method' => HttpSource::METHOD_CREATE
+		);
+		$Source->setTransactionParams($params['table'], $params['params'], $params['transactionsField'], $params['method']);
+		$this->assertSame($params, $Source->getTransactionParams());
+	}
 
 	/**
 	 * Test decoders
@@ -3438,6 +3455,43 @@ class HttpSourceTest extends CakeTestCase {
 				'app_models'
 			),
 		);
+	}
+	
+	/**
+	 * Test transactions
+	 */
+	public function testTransactions() {
+		$params = array(
+			'table' => 'transactions_table',
+			'params' => array(
+				'q6' => '123'
+			),
+			'transactionsField' => 'transactions',
+			'method' => HttpSource::METHOD_CREATE
+		);
+		$Source = new HttpTestSource(array('datasource' => 'HttpSource.Http/HttpSource'));
+		
+		$this->assertFalse($Source->begin());
+		$this->assertFalse($Source->commit());
+		$this->assertEmpty($Source->getTransactionParams());
+		$this->assertFalse($Source->rollback());
+		
+		$Source->setTransactionParams($params['table'], $params['params'], $params['transactionsField'], $params['method']);
+		$this->assertTrue($Source->begin());
+		$this->assertTrue($Source->begin());
+		$this->assertTrue($Source->commit());
+		$this->assertEmpty($Source->getTransactionParams());
+		
+		$Source->setTransactionParams($params['table'], $params['params'], $params['transactionsField'], $params['method']);
+		$this->assertFalse($Source->commit());
+		$this->assertEmpty($Source->getTransactionParams());
+		$this->assertFalse($Source->rollback());
+		
+		$Source->setTransactionParams($params['table'], $params['params'], $params['transactionsField'], $params['method']);
+		$this->assertTrue($Source->begin());
+		$this->assertTrue($Source->rollback());
+		$this->assertEmpty($Source->getTransactionParams());
+		$this->assertFalse($Source->rollback());
 	}
 
 }
