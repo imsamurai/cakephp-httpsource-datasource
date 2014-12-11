@@ -594,7 +594,7 @@ will be rendered and output.  If in a CLI environment, a plain text log is gener
                                             <a id="method__addTransaction"></a>
                         <div class="element clickable method protected  method__addTransaction inherited" data-toggle="collapse" data-target=".method__addTransaction .collapse">
                             <h2>Store request transaction</h2>
-                            <pre>_addTransaction(\type $request) : boolean</pre>
+                            <pre>_addTransaction(string $method, array $request) : boolean</pre>
                             <div class="labels">
                                 <span class="label">inherited</span>                                                                                                                                                            </div>
 
@@ -608,8 +608,12 @@ will be rendered and output.  If in a CLI environment, a plain text log is gener
 
                                                                             <h3>Arguments</h3>
                                                                                     <div class="subelement argument">
+                                                <h4>$method</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
                                                 <h4>$request</h4>
-                                                <code>\type</code><p></p>
+                                                <code>array</code><p></p>
                                             </div>
                                                                             
                                                                             <h3>Response</h3>
@@ -3223,7 +3227,7 @@ will be rendered and output.  If in a CLI environment, a plain text log is gener
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Thu, 11 Dec 2014 13:38:40 +0000.<br/>
+            generated on Thu, 11 Dec 2014 14:18:55 +0000.<br/>
     </footer>
     </body>
 </html>
