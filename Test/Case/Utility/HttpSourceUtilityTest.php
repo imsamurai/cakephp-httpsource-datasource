@@ -192,7 +192,6 @@ class HttpSourceUtilityTest extends CakeTestCase {
 				'{"facets":{"tag":{"terms":{"field":"terms","size":4000}}},"query":{"filtered":{"filter":{"bool":{"must":[{"terms":{"labels":["Criminal"],"execution":"and"}}]}}}}}',
 				//explain
 				array(
-					'About to connect() to localhost port 12345',
 					'GET /documents/document/_search?size=10',
 					'Host: localhost:12345',
 					'User-Agent: CakePHP',
