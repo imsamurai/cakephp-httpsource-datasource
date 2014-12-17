@@ -163,7 +163,7 @@ class HttpSourceUtilityTest extends CakeTestCase {
 		sleep(1);
 		$result = HttpSourceUtility::explainQuery($query);
 		foreach ($explain as $pattern) {
-			$this->assertContains($pattern, $result);
+			$this->assertContains($pattern, $result, '', true);
 		}
 	}
 
@@ -217,8 +217,7 @@ class HttpSourceUtilityTest extends CakeTestCase {
 				'{"facets":{"tag":{"terms":{"field":"terms","size":4000}}},"query":{"filtered":{"filter":{"bool":{"must":[{"terms":{"labels":["Criminal"],"execution":"and"}}]}}}}}',
 				//explain
 				array(
-					'About to connect() to localhost port 54321',
-					'couldn\'t connect to host'
+					'Connection refused'
 				)
 			),
 			//set #2
