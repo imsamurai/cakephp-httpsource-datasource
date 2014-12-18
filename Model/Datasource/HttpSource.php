@@ -1045,9 +1045,9 @@ abstract class HttpSource extends DataSource {
 		}
 
 		// Log the request in the query log
-		//if ($this->fullDebug) {
-		$this->logRequest();
-		//}
+		if ($this->fullDebug) {
+			$this->logRequest();
+		}
 		return $response;
 	}
 
