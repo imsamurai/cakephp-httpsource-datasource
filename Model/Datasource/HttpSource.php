@@ -1039,14 +1039,11 @@ abstract class HttpSource extends DataSource {
 		}
 
 		$this->numRows = ($requestMethod === static::METHOD_CHECK && $response) ? 1 : $this->_Connection->getNumRows($response);
-
-		if (!empty($this->error)) {
-			$this->log(get_class() . ": " . $this->error . " Request: " . $this->query, LOG_ERR);
-		}
-
 		// Log the request in the query log
 		if ($this->fullDebug) {
 			$this->logRequest();
+		} elseif (!empty($this->error)) {
+			$this->log(get_class() . ": " . $this->error . " Request: " . $this->query, LOG_ERR);
 		}
 		return $response;
 	}
