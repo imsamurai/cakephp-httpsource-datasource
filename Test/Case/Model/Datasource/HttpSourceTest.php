@@ -573,6 +573,7 @@ class HttpSourceTest extends CakeTestCase {
 	/**
 	 * Test single request
 	 * 
+	 * @param int $debug
 	 * @param array $request
 	 * @param array $requestFull
 	 * @param array $response
@@ -585,7 +586,8 @@ class HttpSourceTest extends CakeTestCase {
 	 * @param HttpSourceEndpoint $Endpoint
 	 * @dataProvider singleRequestProvider
 	 */
-	public function testSingleRequest($request, $requestFull, $response, $responseResult, $asModel, $requestMethod, array $config, array $connectionData, $log, $Endpoint = null) {
+	public function testSingleRequest($debug, $request, $requestFull, $response, $responseResult, $asModel, $requestMethod, array $config, array $connectionData, $log, $Endpoint = null) {
+		Configure::write('debug', $debug);
 		$Connection = $this->getMockBuilder('HttpSourceConnection')
 				->setMethods(array(
 					'request',
@@ -625,11 +627,13 @@ class HttpSourceTest extends CakeTestCase {
 				->setConstructorArgs(array(array('datasource' => 'HttpSource.Http/HttpSource') + $config, $Connection))
 				->setMethods($sourceMethods)
 				->getMock();
-		$Source->expects($this->once())->method('logRequest');
+		if ($debug > 1) {
+			$Source->expects($this->once())->method('logRequest');
+		}
 		$Source->expects($this->once())->method('swapTokens')->with($requestFull);
 		$Source->expects($this->once())->method('beforeRequest')->with($requestFull, $requestMethod)->will($this->returnArgument(0));
 
-		if ($connectionData['error']) {
+		if ($debug < 2 && $connectionData['error']) {
 			$Source->expects($this->once())->method('log')->with($log, LOG_ERR);
 		}
 
@@ -676,6 +680,8 @@ class HttpSourceTest extends CakeTestCase {
 		return array(
 			//set #0
 			array(
+				//debug
+				2,
 				//request
 				array(
 					'lol'
@@ -709,6 +715,8 @@ class HttpSourceTest extends CakeTestCase {
 			),
 			//set #1
 			array(
+				//debug
+				2,
 				//request
 				array(
 					'lol'
@@ -753,6 +761,8 @@ class HttpSourceTest extends CakeTestCase {
 			),
 			//set #2
 			array(
+				//debug
+				2,
 				//request
 				array(
 					'lol'
@@ -786,6 +796,8 @@ class HttpSourceTest extends CakeTestCase {
 			),
 			//set #3
 			array(
+				//debug
+				2,
 				//request
 				array(
 					'lol'
@@ -830,6 +842,8 @@ class HttpSourceTest extends CakeTestCase {
 			),
 			//set #4
 			array(
+				//debug
+				2,
 				//request
 				array(
 					'lol'
@@ -874,6 +888,8 @@ class HttpSourceTest extends CakeTestCase {
 			),
 			//set #5
 			array(
+				//debug
+				2,
 				//request
 				array(
 					'lol'
@@ -918,6 +934,8 @@ class HttpSourceTest extends CakeTestCase {
 			),
 			//set #6
 			array(
+				//debug
+				2,
 				//request
 				array(
 					'lol',
@@ -967,6 +985,8 @@ class HttpSourceTest extends CakeTestCase {
 			),
 			//set #7
 			array(
+				//debug
+				2,
 				//request
 				array(
 					'lol',
@@ -1016,6 +1036,8 @@ class HttpSourceTest extends CakeTestCase {
 			),
 			//set #8
 			array(
+				//debug
+				2,
 				//request
 				array(
 					'lol',
@@ -1066,6 +1088,8 @@ class HttpSourceTest extends CakeTestCase {
 			),
 			//set #9
 			array(
+				//debug
+				2,
 				//request
 				array(
 					'lol',
@@ -1116,6 +1140,8 @@ class HttpSourceTest extends CakeTestCase {
 			),
 			//set #10
 			array(
+				//debug
+				2,
 				//request
 				array(
 					'lol',
@@ -1166,6 +1192,8 @@ class HttpSourceTest extends CakeTestCase {
 			),
 			//set #11
 			array(
+				//debug
+				2,
 				//request
 				array(
 					'lol'
@@ -1199,6 +1227,8 @@ class HttpSourceTest extends CakeTestCase {
 			),
 			//set #12
 			array(
+				//debug
+				2,
 				//request
 				array(
 					'lol'
@@ -1231,6 +1261,8 @@ class HttpSourceTest extends CakeTestCase {
 			),
 			//set #13
 			array(
+				//debug
+				2,
 				//request
 				array(
 					'lol'
@@ -1268,6 +1300,8 @@ class HttpSourceTest extends CakeTestCase {
 			),
 			//set #14
 			array(
+				//debug
+				2,
 				//request
 				array(
 					'lol'
@@ -1302,6 +1336,188 @@ class HttpSourceTest extends CakeTestCase {
 									return array_merge($result, array('Hi Jack!'));
 								})
 						)
+			),
+			//set #15
+			array(
+				//debug
+				0,
+				//request
+				array(
+					'lol'
+				),
+				//requestFull
+				array(
+					'lol'
+				),
+				//response
+				array('hello dolly'),
+				//responseResult
+				array('hello dolly'),
+				//asModel
+				true,
+				//requestMethod
+				HttpSource::METHOD_CHECK,
+				//config
+				array(),
+				//connectionData
+				array(
+					'error' => '',
+					'took' => 10,
+					'query' => 'GET somethong',
+					'affected' => 1,
+				),
+				//log,
+				'',
+				//Endpoint
+				$CF->endpoint()
+						->result($CF->result()
+								->map(function($result) {
+									return array_merge($result, array('Hi Jack!'));
+								})
+						)
+			),
+			//set #16
+			array(
+				//debug
+				0,
+				//request
+				array(
+					'lol',
+					'uri' => array(
+						'host' => 'example2.com',
+						'port' => 2880,
+						'path' => '/api2',
+						'scheme' => 'https'
+					)
+				),
+				//requestFull
+				array(
+					'lol',
+					'uri' => array(
+						'host' => 'example2.com',
+						'port' => 2880,
+						'path' => '/api2',
+						'scheme' => 'https'
+					)
+				),
+				//response
+				array(),
+				//responseResult
+				array(),
+				//asModel
+				false,
+				//requestMethod
+				HttpSource::METHOD_CHECK,
+				//config
+				array(
+					'path' => '/api',
+					'scheme' => 'http',
+					'port' => 7880,
+					'host' => 'example.com'
+				),
+				//connectionData
+				array(
+					'error' => 'oh crap!',
+					'took' => 10,
+					'query' => 'GET somethong',
+					'affected' => 1,
+					'numRows' => 0
+				),
+				//log,
+				'HttpSource: oh crap! Request: GET somethong',
+				//Endpoint
+				null
+			),
+			//set #17
+			array(
+				//debug
+				1,
+				//request
+				array(
+					'lol'
+				),
+				//requestFull
+				array(
+					'lol'
+				),
+				//response
+				array('hello dolly'),
+				//responseResult
+				array('hello dolly'),
+				//asModel
+				true,
+				//requestMethod
+				HttpSource::METHOD_CHECK,
+				//config
+				array(),
+				//connectionData
+				array(
+					'error' => '',
+					'took' => 10,
+					'query' => 'GET somethong',
+					'affected' => 1,
+				),
+				//log,
+				'',
+				//Endpoint
+				$CF->endpoint()
+						->result($CF->result()
+								->map(function($result) {
+									return array_merge($result, array('Hi Jack!'));
+								})
+						)
+			),
+			//set #18
+			array(
+				//debug
+				1,
+				//request
+				array(
+					'lol',
+					'uri' => array(
+						'host' => 'example2.com',
+						'port' => 2880,
+						'path' => '/api2',
+						'scheme' => 'https'
+					)
+				),
+				//requestFull
+				array(
+					'lol',
+					'uri' => array(
+						'host' => 'example2.com',
+						'port' => 2880,
+						'path' => '/api2',
+						'scheme' => 'https'
+					)
+				),
+				//response
+				array(),
+				//responseResult
+				array(),
+				//asModel
+				false,
+				//requestMethod
+				HttpSource::METHOD_CHECK,
+				//config
+				array(
+					'path' => '/api',
+					'scheme' => 'http',
+					'port' => 7880,
+					'host' => 'example.com'
+				),
+				//connectionData
+				array(
+					'error' => 'oh crap!',
+					'took' => 10,
+					'query' => 'GET somethong',
+					'affected' => 1,
+					'numRows' => 0
+				),
+				//log,
+				'HttpSource: oh crap! Request: GET somethong',
+				//Endpoint
+				null
 			),
 		);
 	}
