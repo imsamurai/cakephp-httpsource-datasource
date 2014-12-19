@@ -497,7 +497,9 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 	 */
 	public function processFields(Model $model, array &$results) {
 		foreach ($results as &$result) {
-			$result += array_fill_keys(array_keys($this->_fields), null);
+			foreach (array_keys($this->_fields) as $fieldName) {
+				$result[$fieldName] = isset($result[$fieldName]) ? $result[$fieldName] : null;
+			}
 			$result = $this->_process($result, $this->_fields, $model);
 		}
 		unset($result);
