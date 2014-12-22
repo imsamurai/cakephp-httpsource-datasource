@@ -1,0 +1,2580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>    API Documentation &raquo; \HttpSourceTest
+</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+            <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+            <!--[if lt IE 9]>
+        <script src="https://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+        <![endif]-->
+        <script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+        <script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script>
+        <script src="../js/bootstrap.js" type="text/javascript"></script>
+        <script src="../js/template.js" type="text/javascript"></script>
+        <script src="../js/prettify/prettify.min.js" type="text/javascript"></script>
+    
+            <link rel="shortcut icon" href="../img/favicon.ico"/>
+        <link rel="apple-touch-icon" href="../img/apple-touch-icon.png"/>
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png"/>
+        <link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png"/>
+    </head>
+<body>
+
+        <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span>
+                    <span class="icon-bar"></span> </a>
+                <a class="brand" href="../index.html">API Documentation</a>
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="dropdown">
+                            <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                API Documentation <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                                                                            </ul>
+                        </li>
+                        <li class="dropdown" id="charts-menu">
+                            <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                Charts <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../graph_class.html">
+                                        <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" id="reports-menu">
+                            <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                Reports <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="../errors.html">
+                                        <i class="icon-list-alt"></i>&#160;Errors
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../markers.html">
+                                        <i class="icon-list-alt"></i>&#160;Markers
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../deprecated.html">
+                                        <i class="icon-list-alt"></i>&#160;Deprecated
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="go_to_top">
+            <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
+        </div>
+    </div>
+    
+    <div id="___" class="container">
+        <noscript>
+            <div class="alert alert-warning">
+                Javascript is disabled; several features are only available if Javascript is enabled.
+            </div>
+        </noscript>
+
+        
+            <style>
+        .deprecated h2 {
+            text-decoration: line-through;
+        }
+    </style>
+    <div class="row">
+        <div class="span4">
+                    <div class="btn-group view pull-right" data-toggle="buttons-radio">
+        <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+        <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+    </div>
+    <div class="btn-group visibility" data-toggle="buttons-checkbox">
+        <button class="btn public active" title="Show public elements">Public</button>
+        <button class="btn protected" title="Show protected elements">Protected</button>
+        <button class="btn private" title="Show private elements">Private</button>
+        <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+    </div>
+
+        <ul class="side-nav nav nav-list">
+        <li class="nav-header">
+            <i class="icon-custom icon-method"></i> Methods
+            <ul>
+                                                                                                    <li class="method public">
+        <a href="#method_afterRequestProvider" title="afterRequestProvider :: Data provider for testAfterRequest">
+            <span class="description">Data provider for testAfterRequest</span><pre>afterRequestProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_beforeRequestProvider" title="beforeRequestProvider :: Data provider for testBeforeRequest">
+            <span class="description">Data provider for testBeforeRequest</span><pre>beforeRequestProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_calculateProvider" title="calculateProvider :: Data provider for testCalculate">
+            <span class="description">Data provider for testCalculate</span><pre>calculateProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_constructProvider" title="constructProvider :: Data provider for">
+            <span class="description">Data provider for</span><pre>constructProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_createProvider" title="createProvider :: Data provider for testCreate">
+            <span class="description">Data provider for testCreate</span><pre>createProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_createSchemaProvider" title="createSchemaProvider :: Data provider for testCreateSchema">
+            <span class="description">Data provider for testCreateSchema</span><pre>createSchemaProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_deleteProvider" title="deleteProvider :: Data provider for testDelete">
+            <span class="description">Data provider for testDelete</span><pre>deleteProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_dropSchemaProvider" title="dropSchemaProvider :: Data provider for testDropSchema">
+            <span class="description">Data provider for testDropSchema</span><pre>dropSchemaProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_executeProvider" title="executeProvider :: Data provider for testExecute">
+            <span class="description">Data provider for testExecute</span><pre>executeProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_existsProvider" title="existsProvider :: Data provider for testExists">
+            <span class="description">Data provider for testExists</span><pre>existsProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_getRequestLogProvider" title="getRequestLogProvider :: Data provider for testGetRequestLog">
+            <span class="description">Data provider for testGetRequestLog</span><pre>getRequestLogProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_joinResponsesProvider" title="joinResponsesProvider :: Data provider for testJoinResponses">
+            <span class="description">Data provider for testJoinResponses</span><pre>joinResponsesProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_logRequestProvider" title="logRequestProvider :: Data provider for testLogRequest">
+            <span class="description">Data provider for testLogRequest</span><pre>logRequestProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_queryProvider" title="queryProvider :: Data provider for testQuery">
+            <span class="description">Data provider for testQuery</span><pre>queryProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_readProvider" title="readProvider :: Data provider for testRead">
+            <span class="description">Data provider for testRead</span><pre>readProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_requestFlowProvider" title="requestFlowProvider :: Data provider for testRequestFlow">
+            <span class="description">Data provider for testRequestFlow</span><pre>requestFlowProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_setUp" title="setUp :: {@inheritdoc}">
+            <span class="description">{@inheritdoc}</span><pre>setUp</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_showLogProvider" title="showLogProvider :: Data provider for testShowLog">
+            <span class="description">Data provider for testShowLog</span><pre>showLogProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_singleRequestProvider" title="singleRequestProvider :: Data provider for testSingleRequest">
+            <span class="description">Data provider for testSingleRequest</span><pre>singleRequestProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_splitRequestProvider" title="splitRequestProvider :: Data provider for testSplitRequest">
+            <span class="description">Data provider for testSplitRequest</span><pre>splitRequestProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_swapTokensProvider" title="swapTokensProvider :: Data provider for testSwapTokens">
+            <span class="description">Data provider for testSwapTokens</span><pre>swapTokensProvider</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_tearDown" title="tearDown :: {@inheritdoc}">
+            <span class="description">{@inheritdoc}</span><pre>tearDown</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testAfterRequest" title="testAfterRequest :: Test afterRequest">
+            <span class="description">Test afterRequest</span><pre>testAfterRequest</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testBeforeRequest" title="testBeforeRequest :: Test beforeRequest">
+            <span class="description">Test beforeRequest</span><pre>testBeforeRequest</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testCalculate" title="testCalculate :: Test calculate">
+            <span class="description">Test calculate</span><pre>testCalculate</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testConstruct" title="testConstruct :: Test construct">
+            <span class="description">Test construct</span><pre>testConstruct</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testCreate" title="testCreate :: Test create">
+            <span class="description">Test create</span><pre>testCreate</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testCreateSchema" title="testCreateSchema :: Test create schema">
+            <span class="description">Test create schema</span><pre>testCreateSchema</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testCredentials" title="testCredentials :: Test credentials">
+            <span class="description">Test credentials</span><pre>testCredentials</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testDecoders" title="testDecoders :: Test decoders">
+            <span class="description">Test decoders</span><pre>testDecoders</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testDelete" title="testDelete :: Test delete">
+            <span class="description">Test delete</span><pre>testDelete</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testDescribe" title="testDescribe :: Test describe">
+            <span class="description">Test describe</span><pre>testDescribe</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testDropSchema" title="testDropSchema :: Test drop schema">
+            <span class="description">Test drop schema</span><pre>testDropSchema</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testExecute" title="testExecute :: Test execute">
+            <span class="description">Test execute</span><pre>testExecute</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testExists" title="testExists :: Test exists">
+            <span class="description">Test exists</span><pre>testExists</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testGetRequestLog" title="testGetRequestLog :: Test getRequestLog">
+            <span class="description">Test getRequestLog</span><pre>testGetRequestLog</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testJoinResponses" title="testJoinResponses :: Test join responses">
+            <span class="description">Test join responses</span><pre>testJoinResponses</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testListSources" title="testListSources :: Test list sources">
+            <span class="description">Test list sources</span><pre>testListSources</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testLogRequest" title="testLogRequest :: Test logRequest ans getLog">
+            <span class="description">Test logRequest ans getLog</span><pre>testLogRequest</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testNoQueryCache" title="testNoQueryCache :: Test no query cache">
+            <span class="description">Test no query cache</span><pre>testNoQueryCache</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testQuery" title="testQuery :: Test query">
+            <span class="description">Test query</span><pre>testQuery</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testQueryCache" title="testQueryCache :: Test query cache">
+            <span class="description">Test query cache</span><pre>testQueryCache</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testRead" title="testRead :: Test read">
+            <span class="description">Test read</span><pre>testRead</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testRequestFlow" title="testRequestFlow :: Test request method flow">
+            <span class="description">Test request method flow</span><pre>testRequestFlow</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testShowLog" title="testShowLog :: Test showLog">
+            <span class="description">Test showLog</span><pre>testShowLog</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testSingleRequest" title="testSingleRequest :: Test single request">
+            <span class="description">Test single request</span><pre>testSingleRequest</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testSplitRequest" title="testSplitRequest :: Test request splitter">
+            <span class="description">Test request splitter</span><pre>testSplitRequest</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testSwapTokens" title="testSwapTokens :: Test swapTokens">
+            <span class="description">Test swapTokens</span><pre>testSwapTokens</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testTransactionParams" title="testTransactionParams :: Test transaction params">
+            <span class="description">Test transaction params</span><pre>testTransactionParams</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testTransactions" title="testTransactions :: Test transactions">
+            <span class="description">Test transactions</span><pre>testTransactions</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_testUpdate" title="testUpdate :: Test update">
+            <span class="description">Test update</span><pre>testUpdate</pre>
+        </a>
+    </li>
+
+                                                                                                        <li class="method public">
+        <a href="#method_updateProvider" title="updateProvider :: Data provider for testUpdate">
+            <span class="description">Data provider for testUpdate</span><pre>updateProvider</pre>
+        </a>
+    </li>
+
+                                                </ul>
+        </li>
+        <li class="nav-header protected">» Protected
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </ul>
+        </li>
+        <li class="nav-header private">» Private
+            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </ul>
+        </li>
+        <li class="nav-header">
+            <i class="icon-custom icon-constant"></i> Constants
+            <ul>
+                            </ul>
+        </li>
+    </ul>
+
+
+        </div>
+
+        <div class="span8">
+            <div class="element class">
+                <h1>HttpSourceTest</h1>
+                <small style="display: block; text-align: right">
+                                            Extends \CakeTestCase
+                                                        </small>
+                <p class="short_description">HttpSourceTest</p>
+                <div class="details">
+                    <div class="long_description">
+                        
+                    </div>
+                    <table class="table table-bordered">
+                                                                                    <tr>
+                                    <th>
+                                        package
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>HttpSourceTest</p>
+                                    </td>
+                                </tr>
+                                                                                                                <tr>
+                                    <th>
+                                        subpackage
+                                                                            </th>
+                                    <td>
+                                                                                    
+                                                                                <p>Model.Datasource</p>
+                                    </td>
+                                </tr>
+                                                                                                                            </table>
+
+                    <h3><i class="icon-custom icon-method"></i> Methods</h3>
+                                                                <a id="method_afterRequestProvider"></a>
+                        <div class="element clickable method public  method_afterRequestProvider" data-toggle="collapse" data-target=".method_afterRequestProvider .collapse">
+                            <h2>Data provider for testAfterRequest</h2>
+                            <pre>afterRequestProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_beforeRequestProvider"></a>
+                        <div class="element clickable method public  method_beforeRequestProvider" data-toggle="collapse" data-target=".method_beforeRequestProvider .collapse">
+                            <h2>Data provider for testBeforeRequest</h2>
+                            <pre>beforeRequestProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_calculateProvider"></a>
+                        <div class="element clickable method public  method_calculateProvider" data-toggle="collapse" data-target=".method_calculateProvider .collapse">
+                            <h2>Data provider for testCalculate</h2>
+                            <pre>calculateProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_constructProvider"></a>
+                        <div class="element clickable method public  method_constructProvider" data-toggle="collapse" data-target=".method_constructProvider .collapse">
+                            <h2>Data provider for</h2>
+                            <pre>constructProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_createProvider"></a>
+                        <div class="element clickable method public  method_createProvider" data-toggle="collapse" data-target=".method_createProvider .collapse">
+                            <h2>Data provider for testCreate</h2>
+                            <pre>createProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_createSchemaProvider"></a>
+                        <div class="element clickable method public  method_createSchemaProvider" data-toggle="collapse" data-target=".method_createSchemaProvider .collapse">
+                            <h2>Data provider for testCreateSchema</h2>
+                            <pre>createSchemaProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_deleteProvider"></a>
+                        <div class="element clickable method public  method_deleteProvider" data-toggle="collapse" data-target=".method_deleteProvider .collapse">
+                            <h2>Data provider for testDelete</h2>
+                            <pre>deleteProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_dropSchemaProvider"></a>
+                        <div class="element clickable method public  method_dropSchemaProvider" data-toggle="collapse" data-target=".method_dropSchemaProvider .collapse">
+                            <h2>Data provider for testDropSchema</h2>
+                            <pre>dropSchemaProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_executeProvider"></a>
+                        <div class="element clickable method public  method_executeProvider" data-toggle="collapse" data-target=".method_executeProvider .collapse">
+                            <h2>Data provider for testExecute</h2>
+                            <pre>executeProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_existsProvider"></a>
+                        <div class="element clickable method public  method_existsProvider" data-toggle="collapse" data-target=".method_existsProvider .collapse">
+                            <h2>Data provider for testExists</h2>
+                            <pre>existsProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_getRequestLogProvider"></a>
+                        <div class="element clickable method public  method_getRequestLogProvider" data-toggle="collapse" data-target=".method_getRequestLogProvider .collapse">
+                            <h2>Data provider for testGetRequestLog</h2>
+                            <pre>getRequestLogProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_joinResponsesProvider"></a>
+                        <div class="element clickable method public  method_joinResponsesProvider" data-toggle="collapse" data-target=".method_joinResponsesProvider .collapse">
+                            <h2>Data provider for testJoinResponses</h2>
+                            <pre>joinResponsesProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_logRequestProvider"></a>
+                        <div class="element clickable method public  method_logRequestProvider" data-toggle="collapse" data-target=".method_logRequestProvider .collapse">
+                            <h2>Data provider for testLogRequest</h2>
+                            <pre>logRequestProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_queryProvider"></a>
+                        <div class="element clickable method public  method_queryProvider" data-toggle="collapse" data-target=".method_queryProvider .collapse">
+                            <h2>Data provider for testQuery</h2>
+                            <pre>queryProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_readProvider"></a>
+                        <div class="element clickable method public  method_readProvider" data-toggle="collapse" data-target=".method_readProvider .collapse">
+                            <h2>Data provider for testRead</h2>
+                            <pre>readProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_requestFlowProvider"></a>
+                        <div class="element clickable method public  method_requestFlowProvider" data-toggle="collapse" data-target=".method_requestFlowProvider .collapse">
+                            <h2>Data provider for testRequestFlow</h2>
+                            <pre>requestFlowProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_setUp"></a>
+                        <div class="element clickable method public  method_setUp" data-toggle="collapse" data-target=".method_setUp .collapse">
+                            <h2>{@inheritdoc}</h2>
+                            <pre>setUp() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_showLogProvider"></a>
+                        <div class="element clickable method public  method_showLogProvider" data-toggle="collapse" data-target=".method_showLogProvider .collapse">
+                            <h2>Data provider for testShowLog</h2>
+                            <pre>showLogProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_singleRequestProvider"></a>
+                        <div class="element clickable method public  method_singleRequestProvider" data-toggle="collapse" data-target=".method_singleRequestProvider .collapse">
+                            <h2>Data provider for testSingleRequest</h2>
+                            <pre>singleRequestProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_splitRequestProvider"></a>
+                        <div class="element clickable method public  method_splitRequestProvider" data-toggle="collapse" data-target=".method_splitRequestProvider .collapse">
+                            <h2>Data provider for testSplitRequest</h2>
+                            <pre>splitRequestProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_swapTokensProvider"></a>
+                        <div class="element clickable method public  method_swapTokensProvider" data-toggle="collapse" data-target=".method_swapTokensProvider .collapse">
+                            <h2>Data provider for testSwapTokens</h2>
+                            <pre>swapTokensProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_tearDown"></a>
+                        <div class="element clickable method public  method_tearDown" data-toggle="collapse" data-target=".method_tearDown .collapse">
+                            <h2>{@inheritdoc}</h2>
+                            <pre>tearDown() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testAfterRequest"></a>
+                        <div class="element clickable method public  method_testAfterRequest" data-toggle="collapse" data-target=".method_testAfterRequest .collapse">
+                            <h2>Test afterRequest</h2>
+                            <pre>testAfterRequest(array $data, array $result, string $requestMethod, array $queryData, \HttpSourceEndpoint $Endpoint = null) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>afterRequestProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$data</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$result</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$requestMethod</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$queryData</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Endpoint</h4>
+                                                <code><a href="../classes/HttpSourceEndpoint.html">\HttpSourceEndpoint</a></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testBeforeRequest"></a>
+                        <div class="element clickable method public  method_testBeforeRequest" data-toggle="collapse" data-target=".method_testBeforeRequest .collapse">
+                            <h2>Test beforeRequest</h2>
+                            <pre>testBeforeRequest(string $requestMethod) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>beforeRequestProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$requestMethod</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testCalculate"></a>
+                        <div class="element clickable method public  method_testCalculate" data-toggle="collapse" data-target=".method_testCalculate .collapse">
+                            <h2>Test calculate</h2>
+                            <pre>testCalculate(string $func, string $result, string $exception) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>calculateProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$func</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$result</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$exception</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testConstruct"></a>
+                        <div class="element clickable method public  method_testConstruct" data-toggle="collapse" data-target=".method_testConstruct .collapse">
+                            <h2>Test construct</h2>
+                            <pre>testConstruct(array $sourceConfig, array $config, string|\HttpSourceConnection|null $Connection, string $exception, integer $debugLevel) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>constructProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$sourceConfig</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$config</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Connection</h4>
+                                                <code>string|<a href="../classes/HttpSourceConnection.html">\HttpSourceConnection</a>|null</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$exception</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$debugLevel</h4>
+                                                <code>integer</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testCreate"></a>
+                        <div class="element clickable method public  method_testCreate" data-toggle="collapse" data-target=".method_testCreate .collapse">
+                            <h2>Test create</h2>
+                            <pre>testCreate(\Model $Model, array $fields, array $values, array $result, array $request, string $exception) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>createProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Model</h4>
+                                                <code>\Model</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fields</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$values</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$result</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$exception</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testCreateSchema"></a>
+                        <div class="element clickable method public  method_testCreateSchema" data-toggle="collapse" data-target=".method_testCreateSchema .collapse">
+                            <h2>Test create schema</h2>
+                            <pre>testCreateSchema(array $schema, array $result, string $tableName) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>createSchemaProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$schema</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$result</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$tableName</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testCredentials"></a>
+                        <div class="element clickable method public  method_testCredentials" data-toggle="collapse" data-target=".method_testCredentials .collapse">
+                            <h2>Test credentials</h2>
+                            <pre>testCredentials() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testDecoders"></a>
+                        <div class="element clickable method public  method_testDecoders" data-toggle="collapse" data-target=".method_testDecoders .collapse">
+                            <h2>Test decoders</h2>
+                            <pre>testDecoders() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testDelete"></a>
+                        <div class="element clickable method public  method_testDelete" data-toggle="collapse" data-target=".method_testDelete .collapse">
+                            <h2>Test delete</h2>
+                            <pre>testDelete(\Model $Model, array $conditions, array $result, array $request) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>deleteProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Model</h4>
+                                                <code>\Model</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$conditions</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$result</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testDescribe"></a>
+                        <div class="element clickable method public  method_testDescribe" data-toggle="collapse" data-target=".method_testDescribe .collapse">
+                            <h2>Test describe</h2>
+                            <pre>testDescribe() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testDropSchema"></a>
+                        <div class="element clickable method public  method_testDropSchema" data-toggle="collapse" data-target=".method_testDropSchema .collapse">
+                            <h2>Test drop schema</h2>
+                            <pre>testDropSchema(array $schema, array $result, string $tableName) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>dropSchemaProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$schema</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$result</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$tableName</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testExecute"></a>
+                        <div class="element clickable method public  method_testExecute" data-toggle="collapse" data-target=".method_testExecute .collapse">
+                            <h2>Test execute</h2>
+                            <pre>testExecute(array $request, array $result) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>executeProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$result</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testExists"></a>
+                        <div class="element clickable method public  method_testExists" data-toggle="collapse" data-target=".method_testExists .collapse">
+                            <h2>Test exists</h2>
+                            <pre>testExists(\Model $Model, array $conditions, array $result, array $request, boolean $endpointConfigured) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>existsProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Model</h4>
+                                                <code>\Model</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$conditions</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$result</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$endpointConfigured</h4>
+                                                <code>boolean</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testGetRequestLog"></a>
+                        <div class="element clickable method public  method_testGetRequestLog" data-toggle="collapse" data-target=".method_testGetRequestLog .collapse">
+                            <h2>Test getRequestLog</h2>
+                            <pre>testGetRequestLog(string $query, string $error, integer $affected, integer $numRows, integer $took, array $result) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>getRequestLogProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$query</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$error</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$affected</h4>
+                                                <code>integer</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$numRows</h4>
+                                                <code>integer</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$took</h4>
+                                                <code>integer</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$result</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testJoinResponses"></a>
+                        <div class="element clickable method public  method_testJoinResponses" data-toggle="collapse" data-target=".method_testJoinResponses .collapse">
+                            <h2>Test join responses</h2>
+                            <pre>testJoinResponses(array $request, array $response, \HttpSourceEndpoint $Endpoint = null) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>joinResponsesProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$response</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Endpoint</h4>
+                                                <code><a href="../classes/HttpSourceEndpoint.html">\HttpSourceEndpoint</a></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testListSources"></a>
+                        <div class="element clickable method public  method_testListSources" data-toggle="collapse" data-target=".method_testListSources .collapse">
+                            <h2>Test list sources</h2>
+                            <pre>testListSources() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testLogRequest"></a>
+                        <div class="element clickable method public  method_testLogRequest" data-toggle="collapse" data-target=".method_testLogRequest .collapse">
+                            <h2>Test logRequest ans getLog</h2>
+                            <pre>testLogRequest(array $logs, array $result) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>logRequestProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$logs</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$result</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testNoQueryCache"></a>
+                        <div class="element clickable method public  method_testNoQueryCache" data-toggle="collapse" data-target=".method_testNoQueryCache .collapse">
+                            <h2>Test no query cache</h2>
+                            <pre>testNoQueryCache() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testQuery"></a>
+                        <div class="element clickable method public  method_testQuery" data-toggle="collapse" data-target=".method_testQuery .collapse">
+                            <h2>Test query</h2>
+                            <pre>testQuery(array $request, mixed $otherArg) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>queryProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$otherArg</h4>
+                                                <code>mixed</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testQueryCache"></a>
+                        <div class="element clickable method public  method_testQueryCache" data-toggle="collapse" data-target=".method_testQueryCache .collapse">
+                            <h2>Test query cache</h2>
+                            <pre>testQueryCache() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testRead"></a>
+                        <div class="element clickable method public  method_testRead" data-toggle="collapse" data-target=".method_testRead .collapse">
+                            <h2>Test read</h2>
+                            <pre>testRead(\Model $Model, array $queryData, integer $recursive, array $result, boolean $cached, array $request) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>readProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Model</h4>
+                                                <code>\Model</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$queryData</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$recursive</h4>
+                                                <code>integer</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$result</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$cached</h4>
+                                                <code>boolean</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testRequestFlow"></a>
+                        <div class="element clickable method public  method_testRequestFlow" data-toggle="collapse" data-target=".method_testRequestFlow .collapse">
+                            <h2>Test request method flow</h2>
+                            <pre>testRequestFlow(\Model $Model = null, string|array $requestData = null, string $requestMethod = null, array $request = null) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>requestFlowProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Model</h4>
+                                                <code>\Model</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$requestData</h4>
+                                                <code>string|array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$requestMethod</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testShowLog"></a>
+                        <div class="element clickable method public  method_testShowLog" data-toggle="collapse" data-target=".method_testShowLog .collapse">
+                            <h2>Test showLog</h2>
+                            <pre>testShowLog(array $logs, boolean $sorted, boolean $html, array $result) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>showLogProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$logs</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$sorted</h4>
+                                                <code>boolean</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$html</h4>
+                                                <code>boolean</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$result</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testSingleRequest"></a>
+                        <div class="element clickable method public  method_testSingleRequest" data-toggle="collapse" data-target=".method_testSingleRequest .collapse">
+                            <h2>Test single request</h2>
+                            <pre>testSingleRequest(integer $debug, array $request, array $requestFull, array $response, array $responseResult, boolean $asModel, string $requestMethod, array $config, array $connectionData, string $log, \HttpSourceEndpoint $Endpoint = null) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>singleRequestProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$debug</h4>
+                                                <code>integer</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$requestFull</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$response</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$responseResult</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$asModel</h4>
+                                                <code>boolean</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$requestMethod</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$config</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$connectionData</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$log</h4>
+                                                <code>string</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Endpoint</h4>
+                                                <code><a href="../classes/HttpSourceEndpoint.html">\HttpSourceEndpoint</a></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testSplitRequest"></a>
+                        <div class="element clickable method public  method_testSplitRequest" data-toggle="collapse" data-target=".method_testSplitRequest .collapse">
+                            <h2>Test request splitter</h2>
+                            <pre>testSplitRequest(array $request, array $response, \HttpSourceEndpoint $Endpoint = null) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>splitRequestProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$response</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Endpoint</h4>
+                                                <code><a href="../classes/HttpSourceEndpoint.html">\HttpSourceEndpoint</a></code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testSwapTokens"></a>
+                        <div class="element clickable method public  method_testSwapTokens" data-toggle="collapse" data-target=".method_testSwapTokens .collapse">
+                            <h2>Test swapTokens</h2>
+                            <pre>testSwapTokens(array $request, array $requestResult) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>swapTokensProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$requestResult</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testTransactionParams"></a>
+                        <div class="element clickable method public  method_testTransactionParams" data-toggle="collapse" data-target=".method_testTransactionParams .collapse">
+                            <h2>Test transaction params</h2>
+                            <pre>testTransactionParams() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testTransactions"></a>
+                        <div class="element clickable method public  method_testTransactions" data-toggle="collapse" data-target=".method_testTransactions .collapse">
+                            <h2>Test transactions</h2>
+                            <pre>testTransactions() </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_testUpdate"></a>
+                        <div class="element clickable method public  method_testUpdate" data-toggle="collapse" data-target=".method_testUpdate .collapse">
+                            <h2>Test update</h2>
+                            <pre>testUpdate(\Model $Model, array $fields, array $values, array $conditions, array $result, array $request) </pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    dataProvider
+                                                </th>
+                                                <td>
+                                                                                                                                                                        
+                                                                                                                                                                        <p>updateProvider</p>
+                                                                                                    </td>
+                                            </tr>
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                                                            <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$Model</h4>
+                                                <code>\Model</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$fields</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$values</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$conditions</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$result</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$request</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                            
+                                                                    </div>
+                            </div>
+
+                        </div>
+                                            <a id="method_updateProvider"></a>
+                        <div class="element clickable method public  method_updateProvider" data-toggle="collapse" data-target=".method_updateProvider .collapse">
+                            <h2>Data provider for testUpdate</h2>
+                            <pre>updateProvider() : array</pre>
+                            <div class="labels">
+                                                                                                                                                                                            </div>
+
+                            
+                            <div class="row collapse">
+                                <div class="detail-description">
+                                    <div class="long_description"></div>
+
+                                    <table class="table">
+                                                                                    <tr>
+                                                <th>
+                                                    
+                                                </th>
+                                                <td>
+                                                                                                    </td>
+                                            </tr>
+                                                                            </table>
+
+                                    
+                                                                            <h3>Response</h3>
+                                        <code>array</code><p></p>
+                                                                    </div>
+                            </div>
+
+                        </div>
+                    
+                    
+                                                        </div>
+            </div>
+            <a id="\HttpSourceTest"></a>
+            <ul class="breadcrumb">
+                <li><a href="../index.html"><i class="icon-custom icon-class"></i></a></li>
+                    
+    
+    <li><span class="divider">\</span><a href="../namespaces/default.html">\</a></li>
+
+                <li class="active"><span class="divider">\</span><a href="../classes/HttpSourceTest.html">HttpSourceTest</a></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+        <footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
+            <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
+            generated on Mon, 22 Dec 2014 10:20:04 +0000.<br/>
+    </footer>
+    </body>
+</html>
