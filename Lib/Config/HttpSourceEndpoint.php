@@ -463,7 +463,7 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 	 * @param array $queryData
 	 */
 	public function buildRequest(Model $model, array $queryData) {
-		$queryData += array(
+		$queryData = $queryData + array(
 			'conditions' => array()
 		);
 		if ($this->method() === static::METHOD_READ) {
@@ -543,7 +543,7 @@ class HttpSourceEndpoint extends HttpSourceConfigFactoryItem {
 			$values = explode('+', $value);
 			$conditions[$condition] = 0;
 			foreach ($values as $valueName) {
-				$conditions[$condition] += (int)Hash::get($params, $valueName);
+				$conditions[$condition] = $conditions[$condition] + (int)Hash::get($params, $valueName);
 				unset($params[$valueName]);
 			}
 			if ($conditions[$condition] === 0) {
