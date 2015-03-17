@@ -52,7 +52,8 @@ class HttpSourceConnectionTest extends CakeTestCase {
 		$constructor = $reflectedClass->getConstructor();
 		$constructor->invoke($Connection, $config, $Transport);
 		$this->assertSame($transportName, get_class($Connection->getTransport()));
-		$this->assertSame($transportConfig, $Connection->getTransport()->config);
+		$transportConfig += $Connection->getTransport()->config;
+		$this->assertEquals($transportConfig, $Connection->getTransport()->config);
 	}
 
 	/**
@@ -72,7 +73,7 @@ class HttpSourceConnectionTest extends CakeTestCase {
 				array(
 					'persistent' => false,
 					'host' => 'localhost',
-					'protocol' => (int)6,
+					
 					'port' => 80,
 					'timeout' => (int)30,
 					'ssl_verify_peer' => true,
@@ -110,7 +111,7 @@ class HttpSourceConnectionTest extends CakeTestCase {
 				array(
 					'persistent' => false,
 					'host' => 'localhost',
-					'protocol' => (int)6,
+					
 					'port' => 80,
 					'timeout' => (int)30,
 					'ssl_verify_peer' => true,
@@ -148,7 +149,7 @@ class HttpSourceConnectionTest extends CakeTestCase {
 				array(
 					'persistent' => false,
 					'host' => 'localhost',
-					'protocol' => (int)6,
+					
 					'port' => 80,
 					'timeout' => (int)30,
 					'ssl_verify_peer' => true,
@@ -186,7 +187,7 @@ class HttpSourceConnectionTest extends CakeTestCase {
 				array(
 					'persistent' => false,
 					'host' => 'example',
-					'protocol' => (int)6,
+					
 					'port' => 80,
 					'timeout' => (int)30,
 					'ssl_verify_peer' => true,
@@ -227,7 +228,7 @@ class HttpSourceConnectionTest extends CakeTestCase {
 				array(
 					'persistent' => false,
 					'host' => 'localhost',
-					'protocol' => (int)6,
+					
 					'port' => 80,
 					'timeout' => (int)30,
 					'ssl_verify_peer' => true,
@@ -273,7 +274,7 @@ class HttpSourceConnectionTest extends CakeTestCase {
 				array(
 					'persistent' => false,
 					'host' => 'localhost',
-					'protocol' => (int)6,
+					
 					'port' => 80,
 					'timeout' => (int)30,
 					'ssl_verify_peer' => true,
