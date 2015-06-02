@@ -161,6 +161,11 @@ class HttpSourceUtilityTest extends CakeTestCase {
 		$Process = new Symfony\Component\Process\Process("printf 'HTTP/1.1 200 OK\nContent-length: 6\n\nanswer' | nc.traditional -l -p 12345");
 		$Process->start();
 		sleep(1);
+		if (!$Process->isRunning()) {
+			$Process = new Symfony\Component\Process\Process("printf 'HTTP/1.1 200 OK\nContent-length: 6\n\nanswer' | nc -l 12345");
+			$Process->start();
+			sleep(1);
+		}
 		$result = HttpSourceUtility::explainQuery($query);
 		foreach ($explain as $pattern) {
 			$this->assertContains($pattern, $result, '', true);
